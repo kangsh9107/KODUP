@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>kang.jsp</title>
+<title>Insert title here</title>
 </head>
 <body>
-시작~~
+his seongho 
 </body>
 </html>

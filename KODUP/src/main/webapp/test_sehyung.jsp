@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>kang.jsp</title>
+<title>세형씀</title>
 </head>
 <body>
-시작~~
+세형씀
 </body>
 </html>
