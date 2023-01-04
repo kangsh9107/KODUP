@@ -7,6 +7,6 @@
 <title>kang.jsp</title>
 </head>
 <body>
-시작~
+시작~~
 </body>
 </html>
