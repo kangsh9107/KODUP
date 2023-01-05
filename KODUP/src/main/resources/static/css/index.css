@@ -1,0 +1,261 @@
+@charset "UTF-8";
+
+/***** FONT *****/
+@import url('//cdn.jsdelivr.net/gh/snz-hayden/toolo/fonts/jua/jua.css'); /* font-family: 'Jua', sans-serif; */
+@import url('https://webfontworld.github.io/BMDoHyeon/BMDoHyeon.css'); /* font-family: 'BMDoHyeon'; */
+@import url('https://webfontworld.github.io/woowahan/BMHannaAir.css'); /* font-family: 'BMHannaAir'; */
+@import url('https://webfontworld.github.io/BMHanna11yrs/BMHanna11yrs.css'); /* font-family: 'BMHanna11yrs'; */
+
+/***** BOOTSTRAP CUSTOM *****/
+.dropdown-menu {
+	min-width: 1rem !important;
+}
+
+/***** MEDIA *****/
+@media all and (max-width: 992px) {
+	.index_nav_items {
+		margin-left: 60px;
+	}
+}
+
+/***** NAV *****/
+.index_nav {
+	padding: 10px 0 10px 0 !important;
+	margin: 0 0 40px 0;
+}
+
+.index_nav .index_logo_a {
+	color: #bb2649;
+	font-weight: 700;
+	font-size: 1.5rem;
+	font-family: 'BMDoHyeon';
+	line-height: 5px;
+	padding: 7px 0 0 0 !important;
+}
+
+.index_nav .index_logo_a:hover {
+	color: #ff3363;
+}
+
+.index_nav .index_logo_a .index_logo {
+	width: 60px;
+	height: 30px;
+	margin: 0 5px 0 0;
+}
+
+.index_nav a span {
+	font-family: 'BMHanna11yrs';
+	font-size: 1rem !important;
+}
+
+.index_nav a span:hover {
+	color: #bb2649;
+}
+
+#index_dropdown {
+	background-color: #bb2649;
+}
+
+#index_dropdown a {
+	font-family: 'BMHanna11yrs';
+	font-size: 1rem;
+	color: white;
+}
+
+#index_dropdown a:hover {
+	background-color: white;
+	color: #bb2649;
+}
+
+#index_dropdown hr {
+	border-color: white;
+}
+
+.btnLogin {
+	border: 1px solid #bb2649;
+	border-radius: 5px;
+	background-color: #bb2649;
+	color: white;
+}
+
+.btnLogin:hover {
+	border: 1px solid #bb2649;
+	background-color: white;
+	color: #bb2649;
+}
+
+/***** MANTOMAN *****/
+.btnMantoman {
+	position: absolute;
+	top: 800px;
+	right: 40px;
+	color: #bb2649;
+}
+
+.btnMantoman:hover {
+	color: #ff3363;
+}
+
+.btnMantoman i {
+	display: inline;
+	border: 0 solid white;
+	padding: 0;
+	margin: 0;
+}
+
+/***** MIDDLE_LEFT *****/
+#index_hashtag {
+	padding: 0;
+	margin-bottom: 20px;
+	font-size: 0.8rem;
+}
+
+#index_hashtag a {
+	color: black;
+}
+
+#index_hashtag a:hover {
+	color: #bb2649;
+}
+
+#index_top_writer {
+	padding: 0;
+	font-size: 0.8rem;
+}
+
+#index_top_writer a {
+	color: black;
+}
+
+#index_top_writer_nickname:hover {
+	color: #bb2649;
+}
+
+#index_top_writer_profile {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	vertical-align: text-top;
+}
+
+/***** MIDDLE_CENTER *****/
+#index_main_boardtype {
+	padding: 10px;
+	font-family: 'BMHanna11yrs';
+	font-size: 1.4rem;
+	border: 0px solid white;
+	background-color: #e7edf0;
+	/*
+	background: radial-gradient(circle, rgba(187,38,73,1) 10%, rgba(135,27,53,1) 100%);
+	*/
+	/*
+	background-image: url("../images/index_boardtype_background.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	object-fit: contain;
+	*/
+}
+
+#index_main_boardtype:hover {
+	color: #bb2649;
+}
+
+#index_boardtype_background {
+	position: absolute;
+	width: 80px;
+	heigth: 80px;
+	right: 0;
+	bottom: 10px;
+}
+
+#index_profile {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	vertical-align: text-top;
+}
+
+#index_nickname {
+	color: black;
+	font-size: 0.9rem;
+	font-family: 'BMHannaAir';
+}
+
+#index_nickname:hover {
+	color: #bb2649;
+}
+
+#index_time {
+	font-size: 0.9rem;
+	font-family: 'BMHannaAir';
+}
+
+#index_updown {
+	width: 15px;
+	height: 20px;
+	vertical-align: text-top;
+}
+
+#index_updown_sum {
+	vertical-align: text-bottom;
+}
+
+#index_repl {
+	width: 20px;
+	height: 20px;
+	vertical-align: text-top;
+}
+
+#index_repl_sum {
+	vertical-align: text-bottom;
+}
+
+#index_doc {
+	color: black;
+	font-size: 1rem;
+	font-family: 'BMHannaAir';
+	font-weight: 600;
+}
+
+#index_doc:hover {
+	color: #bb2649;
+}
+
+/***** FOOTER *****/
+.index_footer {
+	font-size: 0.8rem;
+	border-top: 1px solid #d2d4d9;
+	margin: 20px 0 0 0;
+}
+
+.index_footer .index_footer_dog {
+	width: 60px;
+	height: 40px;
+	right: 10%;
+	bottom: 0;
+}
+
+.index_footer li a {
+	text-decoration: none;
+}
+
+.index_footer li a:hover {
+	color: #bb2649 !important;
+}
+
+.index_footer i {
+	color: #bb2649;
+}
+
+.index_footer i:hover {
+	color: #ff3363;
+}
+
+.index_footer .index_footer_copy {
+	background-color: #bb2649 !important;
+}
+
+.index_footer .index_footer_copy p {
+	color: white !important;
+	font-family: 'BMDoHyeon';
+}
