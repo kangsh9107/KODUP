@@ -9,6 +9,7 @@ public class MainController {
 	
 	@RequestMapping("/")
 	public ModelAndView index() {
+		System.out.println("컨트롤러");
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index");
 		return mv;
