@@ -1,4 +1,14 @@
 @charset "UTF-8";
+@media ( max-width :995px) {
+	div.tag {
+		display: none;
+	}
+}
+@media ( max-width :1300px) {
+	div.add {
+		display: none;
+	}
+}
 dd{
 	margin:0;
 }
