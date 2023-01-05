@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/***** 강수형 *****/
 /***** FONT *****/
 @import url('//cdn.jsdelivr.net/gh/snz-hayden/toolo/fonts/jua/jua.css'); /* font-family: 'Jua', sans-serif; */
 @import url('https://webfontworld.github.io/BMDoHyeon/BMDoHyeon.css'); /* font-family: 'BMDoHyeon'; */
@@ -258,4 +259,20 @@
 .index_footer .index_footer_copy p {
 	color: white !important;
 	font-family: 'BMDoHyeon';
+}
+
+
+
+
+
+/***** 박요한 *****/
+@media ( max-width :995px) {
+	div.tag {
+		display: none;
+	}
+}
+@media ( max-width :1300px) {
+	div.add {
+		display: none;
+	}
 }
