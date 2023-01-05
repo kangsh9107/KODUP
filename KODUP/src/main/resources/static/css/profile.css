@@ -1,0 +1,148 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700&display=swap');
+/*----------------member_profile(프로필 메인)--------------------*/
+
+.profile_wrapper{
+	/* background-color:#aaa; */
+	min-height:800px;
+	padding:10px;
+}
+
+.profile_wrapper>.profile_main{
+	position:relative;
+	background-color:white;
+	margin:20px 0;
+	height:183px;
+	border:1px solid #d2d4d9;
+	border-radius:8px;
+}
+
+.profile_wrapper>.profile_main>.profile_nav{
+	position:absolute;
+	bottom:0;
+	height:55px;
+	width:100%;
+	background-color:#f3f4f6;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-top:1.34px solid #caccd3;
+}
+
+
+
+#horizontal-underline{
+    position: absolute;
+    left:0;
+    height: 4px;
+    width: 0;
+    border-radius: 3px;
+    transition: 0.3s;
+    background-color: #bb2649;
+    top:0;
+}
+
+.profile_wrapper>.profile_main>.basic_profile{
+	position:absolute;
+	top:24px;
+	left:20px;
+	width:64px;
+	height:64px;
+	margin:10px;
+	border-radius:50%;
+	cursor:pointer;
+}
+
+.profile_wrapper>.profile_main>.setting_iconDiv{
+	position:absolute;
+	top:2px;
+	right:2px;
+	width:31px;
+	height:31px;
+	border-radius:50%;
+	transition:background-color 0.4s;
+}
+
+.profile_wrapper>.profile_main>.setting_iconDiv:hover{
+	background-color:#d2d4d9;
+	cursor:pointer;
+}
+
+.profile_wrapper>.profile_main>.setting_iconDiv>.setting_icon{
+	position:absolute;
+	top:0.6px;
+	right:0.6px;
+	width:30px;
+	height:30px;
+}
+
+.profile_wrapper>.profile_main>.profile_nicknameDiv{
+	position:absolute;
+	top:38px;
+	left:110px;
+}
+
+.profile_wrapper>.profile_main .profile_nickname{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size:20px;
+}
+
+.profile_wrapper>.profile_main .profile_grade{
+	font-size:18px;
+}
+
+.profile_wrapper>.profile_main>.profile_Phrases{
+	position:absolute;
+	top:72px;
+	left:112px;
+	font-size:13px;
+}
+
+.profile_wrapper>.profile_main>.profile_nav>.profile_atags{
+	position:absolute;
+	display:flex;
+	justify-content:space-evenly;
+	top:15px;
+	white-space:nowrap;
+	width:312px;
+}
+
+.profile_atags>a{
+	color: #6c748e;
+	text-decoration:none;
+	transition:background-color 0.8s;
+}
+.profile_atags>a:hover{
+	color: #bb2649;
+}
+
+
+
+/*--------------------member_profile_myarticle-----------------------*/
+
+.myarticle_articleWrapper>.article{
+	padding:20px 5px;
+	background-color:white;
+	border-bottom:1.2px solid #c8ced6;
+}
+.myarticle_articleWrapper>.article>.boardtype{
+	display:inline-block;
+	margin-bottom:8px;
+	color:#6b7280;
+	font-size:12px;
+}
+
+.myarticle_articleWrapper>.article>.nal{
+	float:right;
+	color:#6b7280;
+	font-size:14px;
+}
+
+.myarticle_articleWrapper>.article>.subject{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.myarticle_articleWrapper>.article>.subject:hover{
+	color:#0090f9;
+	cursor:pointer;
+}
+
