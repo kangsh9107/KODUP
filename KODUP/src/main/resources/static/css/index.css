@@ -6,16 +6,12 @@
 @import url('https://webfontworld.github.io/BMDoHyeon/BMDoHyeon.css'); /* font-family: 'BMDoHyeon'; */
 @import url('https://webfontworld.github.io/woowahan/BMHannaAir.css'); /* font-family: 'BMHannaAir'; */
 @import url('https://webfontworld.github.io/BMHanna11yrs/BMHanna11yrs.css'); /* font-family: 'BMHanna11yrs'; */
-
-/***** BOOTSTRAP CUSTOM *****/
-.dropdown-menu {
-	min-width: 1rem !important;
-}
+@import url('https://fonts.googleapis.com/css?family=Numans'); /* font-family: 'Numans', sans-serif; */
 
 /***** MEDIA *****/
-@media all and (max-width: 992px) {
-	.index_nav_items {
-		margin-left: 60px;
+@media all and (max-width: 768px) {
+	.index_footer {
+		margin-top: 165px !important;
 	}
 }
 
@@ -45,8 +41,7 @@
 }
 
 .index_nav a span {
-	font-family: 'BMHanna11yrs';
-	font-size: 1rem !important;
+	font-size: 0.9rem;
 }
 
 .index_nav a span:hover {
@@ -55,6 +50,7 @@
 
 #index_dropdown {
 	background-color: #bb2649;
+	min-width: 1rem !important;
 }
 
 #index_dropdown a {
@@ -72,14 +68,15 @@
 	border-color: white;
 }
 
-.btnLogin {
+.index_btnLogin {
 	border: 1px solid #bb2649;
 	border-radius: 5px;
 	background-color: #bb2649;
 	color: white;
+	font-size: 0.9rem;
 }
 
-.btnLogin:hover {
+.index_btnLogin:hover {
 	border: 1px solid #bb2649;
 	background-color: white;
 	color: #bb2649;
@@ -91,6 +88,7 @@
 	top: 800px;
 	right: 40px;
 	color: #bb2649;
+	z-index: 1;
 }
 
 .btnMantoman:hover {
@@ -141,11 +139,12 @@
 
 /***** MIDDLE_CENTER *****/
 #index_main_boardtype {
-	padding: 10px;
+	padding: 20px;
 	font-family: 'BMHanna11yrs';
-	font-size: 1.4rem;
+	font-size: 1.2rem;
 	border: 0px solid white;
 	background-color: #e7edf0;
+	color: #555;
 	/*
 	background: radial-gradient(circle, rgba(187,38,73,1) 10%, rgba(135,27,53,1) 100%);
 	*/
@@ -166,20 +165,21 @@
 	width: 80px;
 	heigth: 80px;
 	right: 0;
-	bottom: 10px;
+	bottom: 30px;
 }
 
 #index_profile {
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
-	vertical-align: text-top;
+	vertical-align: middle;
 }
 
 #index_nickname {
-	color: black;
+	color: #666;
 	font-size: 0.9rem;
 	font-family: 'BMHannaAir';
+	font-weight: bold;
 }
 
 #index_nickname:hover {
@@ -212,10 +212,10 @@
 }
 
 #index_doc {
-	color: black;
+	color: #555;
 	font-size: 1rem;
 	font-family: 'BMHannaAir';
-	font-weight: 600;
+	font-weight: bold;
 }
 
 #index_doc:hover {
@@ -261,17 +261,179 @@
 	font-family: 'BMDoHyeon';
 }
 
+/***** LOGIN *****/
+.index_login_form {
+	padding: 30px;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+}
+
+#index_lgoin_img {
+	text-align: center;
+	width: 100%;
+	opacity: 0.3;
+}
+
+#index_kakao_join {
+	width: 100%;
+}
+
+#index_kakao_login {
+	width: 100%;
+}
+
+.index_login_input {
+	margin: 0 0 5px 0;
+}
+
+.index_login_input span {
+	width: 38px;
+	height: 38px;
+	color: white;
+	border: 0 !important;
+	background-color: #bb2649;
+	/*
+	background-color: #FFC312;
+	*/
+}
+
+.index_login_input input:focus {
+	outline: 0 0 0 0 !important;
+	box-shadow: 0 0 0 0 !important;
+}
+
+.index_btnLoginR {
+	width: 303px;
+	color: white;
+	background-color: #bb2649;
+	font-size: 0.9rem;
+}
+
+.index_btnLoginR:hover {
+	color: #bb2649;
+	background-color: white;
+	border: 1px solid #bb2649;
+}
+
+.index_btnJoin {
+	width: 303px;
+	color: white;
+	background-color: #bb2649;
+	font-size: 0.9rem;
+}
+
+.index_btnJoin:hover {
+	color: #bb2649;
+	background-color: white;
+	border: 1px solid #bb2649;
+}
+
+.index_btnKakaoLoginR {
+	width: 303px;
+	color: white;
+	background-color: #bb2649;
+	font-size: 0.9rem;
+}
+
+.index_btnKakaoLoginR:hover {
+	color: #bb2649;
+	background-color: white;
+	border: 1px solid #bb2649;
+}
+
+.index_btnKakaoJoin {
+	width: 303px;
+	color: white;
+	background-color: #bb2649;
+	font-size: 0.9rem;
+}
+
+.index_btnKakaoJoin:hover {
+	color: #bb2649;
+	background-color: white;
+	border: 1px solid #bb2649;
+}
+
+/***** FIND ACCOUNT *****/
+.index_find_account_form {
+	padding: 30px;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+}
+
+.index_find_menual span {
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	font-size: 0.8rem;
+	margin: 0 0 5px 0;
+}
+
+.index_find_accountR {
+	width: 303px;
+	color: white;
+	background-color: #bb2649;
+	font-size: 0.9rem;
+}
+
+.index_find_accountR:hover {
+	color: #bb2649;
+	background-color: white;
+	border: 1px solid #bb2649;
+}
+
+.index_find {
+	text-align: right;
+}
+
+.index_find_account, .index_find_pwd {
+	text-decoration: none;
+	color: black;
+	font-size: 0.9rem;
+}
+
+.index_find_account:hover, .index_find_pwd:hover {
+	color: #bb2649;
+}
+
+/***** CHANGE PASSWORD *****/
+.index_change_password_form {
+	padding: 30px;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+}
+
+.index_change_passwordR {
+	width: 303px;
+	color: white;
+	background-color: #bb2649;
+	font-size: 0.9rem;
+}
+
+.index_change_passwordR:hover {
+	color: #bb2649;
+	background-color: white;
+	border: 1px solid #bb2649;
+}
+
+/***** JOIN *****/
+.index_join_form {
+	padding: 30px;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+}
+
 
 
 
 
 /***** 박요한 *****/
-@media ( max-width :995px) {
+@media ( max-width :768px) {
 	div.tag {
 		display: none;
 	}
 }
-@media ( max-width :1300px) {
+@media ( max-width :992px) {
 	div.add {
 		display: none;
 	}

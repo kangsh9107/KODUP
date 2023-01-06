@@ -3,6 +3,9 @@
  */
 
 /***** 강수형 *****/
+/***** MAIN *****/
+$('#center').load('/login/main');
+
 /***** MANTOMAN *****/
 $(document).ready(function() {
 	$(window).scroll(function() {
@@ -10,6 +13,21 @@ $(document).ready(function() {
 		$(".btnMantoman").stop().animate({top:position+"px"},400);
 	});
 });
+
+/***** LOGIN *****/
+$('.index_btnLogin').on('click', function() {
+	$('#center').load('/login/login');
+});
+
+/***** INSERT *****/
+$('.btnQna').on('click', function() {
+	$('#center').load('/qna/qna');
+});
+
+/***** QNA LIST *****/
+function run() {
+	console.log("ok");
+}
 
 
 

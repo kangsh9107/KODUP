@@ -1,0 +1,175 @@
+@charset "UTF-8";
+
+/***** 강수형 *****/
+/***** INSERT *****/
+.qna_board_header {
+	padding: 0;
+}
+
+.qna_board_header span {
+	font-size: 1.5rem;
+}
+
+.qna_board_menual {
+	padding: 0;
+	color: #888;
+	margin: 0 0 40px 0;
+}
+
+.qna_board_menual span {
+	font-size: 0.9rem;
+	color: #666;
+}
+
+.qna_board_insert_form .input-group {
+	margin: 0 0 30px 0;
+}
+
+.qna_board_insert_form .input-group-text {
+	width: 80px;
+	height: 42px;
+	color: white;
+	border: 0 !important;
+	background-color: #bb2649;
+	justify-content: center;
+	font-size: 0.9rem;
+}
+
+.qna_board_insert_form input {
+	font-size: 0.9rem;
+}
+
+.qna_board_insert_form input:focus {
+	outline: 0 0 0 0 !important;
+	box-shadow: 0 0 0 0 !important;
+}
+
+.qna_board_insert_form input::placeholder {
+	color: #999;
+}
+
+.qna_board_insert_form select {
+	font-size: 0.9rem;
+}
+
+.qna_board_insert_form select:focus {
+	outline: 0 0 0 0 !important;
+	box-shadow: 0 0 0 0 !important;
+}
+
+.btnQnaInsertR, .btnCancle {
+	color: white;
+	background-color: #bb2649;
+	font-size: 0.9rem;
+}
+
+.btnQnaInsertR:hover, .btnCancle:hover {
+	color: #bb2649;
+	background-color: white;
+	border: 1px solid #bb2649;
+}
+
+/***** SUMMERNOTE *****/
+.note-editor {
+	width: 100% !important;
+}
+
+/***** HASHTAG *****/
+.tagify {
+	height: 42px !important;
+	border-radius: 0 5px 5px 0 !important;
+	font-size: 0.9rem;
+}
+
+/***** UPDATE *****/
+.btnQnaUpdateR {
+	color: white;
+	background-color: #bb2649;
+	font-size: 0.9rem;
+}
+
+.btnQnaUpdateR:hover {
+	color: #bb2649;
+	background-color: white;
+	border: 1px solid #bb2649;
+}
+
+.qna_board_update_form .input-group {
+	margin: 0 0 30px 0;
+}
+
+.qna_board_update_form .input-group-text {
+	width: 80px;
+	height: 42px;
+	color: white;
+	border: 0 !important;
+	background-color: #bb2649;
+	justify-content: center;
+	font-size: 0.9rem;
+}
+
+.qna_board_update_form input {
+	font-size: 0.9rem;
+}
+
+.qna_board_update_form input:focus {
+	outline: 0 0 0 0 !important;
+	box-shadow: 0 0 0 0 !important;
+}
+
+.qna_board_update_form input::placeholder {
+	color: #999;
+}
+
+.qna_board_update_form select {
+	font-size: 0.9rem;
+}
+
+.qna_board_update_form select:focus {
+	outline: 0 0 0 0 !important;
+	box-shadow: 0 0 0 0 !important;
+}
+
+/***** LIST *****/
+.qna_board_search_form {
+	text-align: center;
+	margin: 0 0 30px 0;
+	padding: 25px 0 0 0;
+}
+
+.qna_board_search_form label {
+	border-radius: 5px;
+	padding: 3px 7px;
+	margin: 0 10px;
+	font-size: 0.9rem;
+}
+
+.qna_board_search_form label:hover {
+	cursor: pointer;
+}
+
+.qna_board_search_form input[type="radio"]:checked+label {
+	color: white;
+	background-color: #bb2649;
+}
+
+.qna_board_search_form span {
+	width: 38px;
+	height: 38px;
+	color: white;
+	border: 0 !important;
+	background-color: #bb2649;
+}
+
+.qna_board_search_form .btnQnaInsert {
+	width: 80px;
+	color: white;
+	background-color: #bb2649;
+	font-size: 0.9rem;
+}
+
+.qna_board_search_form .btnQnaInsert:hover {
+	color: #bb2649;
+	background-color: white;
+	border: 1px solid #bb2649;
+}
