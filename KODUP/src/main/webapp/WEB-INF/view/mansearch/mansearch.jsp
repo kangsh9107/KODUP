@@ -8,9 +8,61 @@
 <meta charset="UTF-8">
 <title>mansearch/mansearch.jsp</title>
 <link rel='stylesheet' href='css/mansearch.css'>
-<script defer src="js/mansearch.js"></script> 
+<script defer src="js/mansearch.js"></script>
+<!-- <style>
+.button {
+  position:absolute;
+  background: #3D4C53;
+  left:0;
+  top:0;
+  width : 200px;
+  height : 50px;
+  overflow: hidden;
+  text-align : center;
+  transition : .2s;
+  cursor : pointer;
+  border-radius: 3px;
+  box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+}
+.btnTwo {
+  position : relative;
+  width : 200px;
+  height : 100px;
+  margin-top: -100px;
+  padding-top: 2px;
+  background : #26A69A;
+  left : -250px;
+  transition : .3s;
+  font-size:30px;
+}
+.btnText {
+  color : white;
+  transition : .3s;
+}
+.btnText2 {
+  margin-top : 50px;
+  margin-right : -130px;
+  color : #FFF;
+}
+.button:hover .btnTwo{ /*When hovering over .button change .btnTwo*/
+  left: -130px;
+}
+.button:hover .btnText{ /*When hovering over .button change .btnText*/
+  margin-left : 65px;
+}
+.button:active { /*Clicked and held*/
+  box-shadow: 0px 5px 6px rgba(0,0,0,0.3);
+}
+
+</style> -->
 </head>
 <body>
+ <!-- <div class="button">
+    <p class="btnText">돌아가기</p>
+     <div class="btnTwo">
+      <p class="btnText2">⬅</p>
+    </div>
+ </div> -->
 	<div class='col-md-8 mansearch_title' style="z-index:-10;">
 		<img src="/images/mansearch_logo.png" style="width:110px; height:100px; float:right; margin-right:5px; margin-top:-25px; display:inline-block; z-index:100;">
 		<dl>

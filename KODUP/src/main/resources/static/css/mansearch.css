@@ -28,7 +28,7 @@ button.mansearch_insert{
 	border:2px solid #bb2642;
 	border-radius:5px;
 }
-button.mansearch_input:hover{
+button.mansearch_insert:hover{
 	background-color:#871b30;
 }
 div.mansearch_title{
@@ -127,4 +127,16 @@ button.btnMove:hover{
 	display:inline-block;
 	overflow-y:auto;
 	margin:10px;
+}
+/*mansearch_view.jsp*/
+#mansearch_datezone{
+	margin-top:5px;
+}
+span.work_start{
+	color:#374151;
+	font-size:0.9rem;
+}
+span.deadline{
+	color:#bb2642;
+	font-size:0.9rem;	
 }
