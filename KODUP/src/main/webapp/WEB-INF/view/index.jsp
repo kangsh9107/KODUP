@@ -12,10 +12,16 @@
 <!-- CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css">
 <link href="css/index.css" rel="stylesheet">
 <!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<script src="https://unpkg.com/@yaireo/tagify"></script>
+<script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
 <script defer src="js/index.js"></script>
 <script defer src="js/mypage.js"></script>
 <title>코드 레벨업 - 코덥!</title>
@@ -25,37 +31,40 @@
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0 index_nav">
 		<div class="container" style="padding-right: 0;">
 			<div class="row" style="width: 100%;">
-				<div class="col-md-2">
-			        <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5 index_logo_a">
-			           	<img src="images/로고3.png" alt="Logo" class="d-inline-block align-text-top index_logo">
-			           	KODUP
-			        </a>
-		        </div>
-		        <div class="col-md-8 index_nav_items">
-			   		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-			       		<li class="nav-item">
-			       			<a class="nav-link active" aria-current="page" href="#"><span>QnA</span></a>
-			       		</li>
-			       		<li class="nav-item">
-			       			<a class="nav-link active" aria-current="page" href="#"><span>정보공유</span></a>
-			       		</li>
-			       		<li class="nav-item">
-			       			<a class="nav-link active" aria-current="page" href="#"><span>커뮤니티</span></a>
-			       		</li>
-			       		<li class="nav-item">
-			       			<a class="nav-link active mansearch" aria-current="page" href="#"><span>구인</span></a>
-			       		</li>
-			       		<li class="nav-item">
-			       			<a class="nav-link active" aria-current="page" href="#"><span>구직</span></a>
-			       		</li>
-			       		<li class="nav-item">
-			       			<a class="nav-link active" aria-current="page" href="#"><span>공지사항</span></a>
-			       		</li>
-			       	</ul>
-		       	</div>
-		       	<div class="col-md-2" style="padding-right: 3px;">
-			        <div class="collapse navbar-collapse" id="navbarCollapse">
-			            <div class="navbar-nav ms-auto p-4 p-lg-0">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+		        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="padding: 0;">
+					<div class="col-md-2">
+				        <a href="/" class="navbar-brand d-flex align-items-center px-4 px-lg-5 index_logo_a">
+				           	<img src="images/로고3.png" alt="Logo" class="d-inline-block align-text-top index_logo">
+				           	KODUP
+				        </a>
+			        </div>
+		        	<div class="col-md-8 index_nav_items">
+				   		<ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 10px">
+				       		<li class="nav-item">
+				       			<a class="nav-link active btnQna" aria-current="page" href="#"><span>QnA</span></a>
+				       		</li>
+				       		<li class="nav-item">
+				       			<a class="nav-link active" aria-current="page" href="#"><span>정보공유</span></a>
+				       		</li>
+				       		<li class="nav-item">
+				       			<a class="nav-link active" aria-current="page" href="#"><span>커뮤니티</span></a>
+				       		</li>
+				       		<li class="nav-item">
+				       			<a class="nav-link active mansearch" aria-current="page" href="#"><span>구인</span></a>
+				       		</li>
+				       		<li class="nav-item">
+				       			<a class="nav-link active" aria-current="page" href="#"><span>구직</span></a>
+				       		</li>
+				       		<li class="nav-item">
+				       			<a class="nav-link active" aria-current="page" href="#"><span>공지사항</span></a>
+				       		</li>
+				       	</ul>
+			       	</div>
+			       	<div class="col-md-2" style="padding-right: 3px;">
+			            <div class="navbar-nav ms-auto p-4 p-lg-0" style="float: right;">
 			                <div class="nav-item dropdown">
 			                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="padding: 4px; margin-right: 10px;">
 			                    	<img src="images/index_default.png" class="d-inline-block align-text-top" style="width: 30px; height: 30px; border-radius: 50%;">
@@ -68,9 +77,9 @@
 									<a class="dropdown-item" href="#">로그아웃</a>
 			                    </div>
 			                </div>
+				            <input type="button" value="로그인" class="btn index_btnLogin"/>
 			            </div>
-			            <input type="button" value="로그인" class="btn btnLogin"/>
-			        </div>
+				    </div>
 		        </div>
 	        </div>
 	    </div>
@@ -85,8 +94,9 @@
 	<div id="middle" class="container">
 	
 		<!-- LEFT -->
+		<!-- TAG -->
 		<div class="row">
-			<div class="col-md-2 tag">
+			<div class="col-md-2 tag" style="padding: 0;">
 				<aside id="left" style="float: left;">
 					<div class="container">
 						<div class="row">
@@ -117,49 +127,24 @@
 			
 			<!-- CENTER -->
 			<div class="col-md-8">
-				<section id="center">
-					<div class="container" style="padding: 0;">
-						<div class="row">
-							<c:forEach var="list" begin="0" end="5">
-								<div class="col-md-6">
-									<div class="list-group">
-										<a href="#" class="list-group-item list-group-item-action" id="index_main_boardtype">
-											QnA
-											<img id="index_boardtype_background" src="images/index_boardtype_background2.png">
-										</a>
-									</div>
-									<ul class="list-group list-group-flush" style="margin-bottom: 40px;">
-										<c:forEach var="vo" begin="0" end="4">
-											<li class="list-group-item" style="padding: 10px 0 10px 0;">
-												<a href="#" class="text-decoration-none">
-													<img id="index_profile" src="images/index_default.png">
-													<span id="index_nickname">딥러닝악마</span>
-												</a>
-												<span id="index_time">· 5분 전</span>
-													<div style="float: right;">
-														<img id="index_updown" src="images/index_updown.png">
-														<span id="index_updown_sum">5</span>
-														<img id="index_repl" src="images/index_repl.png">
-														<span id="index_repl_sum">7</span>
-													</div>
-												<br/>
-												<a href="#" class="text-decoration-none">
-													<span id="index_doc">초보자를 위한 오픈 소스 시작하기</span>
-												</a>
-											</li>
-										</c:forEach>
-									</ul>
-								</div>
-							</c:forEach>
-						</div>
-					</div>
-				</section>
+				<!-- INSERT CONTENT -->
+				<section id="center"></section>
 			</div>
 			
 			<!-- RIGHT -->
+			<!-- AD -->
 			<div class="col-md-2 add">
 				<aside id="right" style="float: right;">
-					<img src="images/광고1.png" alt="Logo" style="width: 100%; height: 300px;">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12" style="padding: 0;">
+								<img src="images/index_ad2.png" style="width: 100px; height: 500px; float: right;">
+							</div>
+							<div class="col-md-12" style="padding: 0;">
+								<img src="images/index_ad2.png" style="width: 100px; height: 500px; float: right;">
+							</div>
+						</div>
+					</div>
 				</aside>
 			</div>
 		</div>
