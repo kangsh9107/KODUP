@@ -45,6 +45,9 @@ $('#btnMantoman').on('click',function() {
 });
 
 
+
+
+
 /***** 박요한 *****/
 $('.mansearch').on('click',function(){
    $('#center').load('/mansearch/mansearch');
