@@ -12,47 +12,47 @@
 	<div class='article'>
 		<span class='boardtype'>QnA에 댓글을 작성하였습니다.</span>
 		<span class='nal'>2023-01-04  08:21:04</span><br>
-		<h6 class='subject'>첫 댓글입니다.</h6>
+		<span class='subject'>첫 댓글입니다.</span>
 	</div>
 	<div class='article'>
 		<span class='boardtype'>QnA에 댓글을 작성하였습니다.</span>
-		<span class='nal'>2023-01-04  08:21:04</span>
-		<h6 class='subject'>두번째 댓글입니다.</h6>
+		<span class='nal'>2023-01-04  08:21:04</span><br>
+		<span class='subject'>두번째 댓글입니다.</span>
 	</div>
 	<div class='article'>
 		<span class='boardtype'>QnA에 댓글을 작성하였습니다.</span>
-		<span class='nal'>2023-01-04  08:21:04</span>
-		<h6 class='subject'>세번째 댓글입니다.</h6>
+		<span class='nal'>2023-01-04  08:21:04</span><br>
+		<span class='subject'>세번째 댓글입니다.</span>
 	</div>
 	<div class='article'>
 		<span class='boardtype'>QnA에 댓글을 작성하였습니다.</span>
-		<span class='nal'>2023-01-04  08:21:04</span>
-		<h6 class='subject'>네번째 댓글입니다.</h6>
+		<span class='nal'>2023-01-04  08:21:04</span><br>
+		<span class='subject'>네번째 댓글입니다.</span>
 	</div>
 	<div class='article'>
 		<span class='boardtype'>QnA에 댓글을 작성하였습니다.</span>
-		<span class='nal'>2023-01-04  08:21:04</span>
-		<h6 class='subject'>네번째 댓글입니다.</h6>
+		<span class='nal'>2023-01-04  08:21:04</span><br>
+		<span class='subject'>네번째 댓글입니다.</span>
 	</div>
 	<div class='article'>
 		<span class='boardtype'>QnA에 댓글을 작성하였습니다.</span>
-		<span class='nal'>2023-01-04  08:21:04</span>
-		<h6 class='subject'>네번째 댓글입니다.</h6>
+		<span class='nal'>2023-01-04  08:21:04</span><br>
+		<span class='subject'>네번째 댓글입니다.</span>
 	</div>
 	<div class='article'>
 		<span class='boardtype'>QnA에 댓글을 작성하였습니다.</span>
-		<span class='nal'>2023-01-04  08:21:04</span>
-		<h6 class='subject'>네번째 댓글입니다.</h6>
+		<span class='nal'>2023-01-04  08:21:04</span><br>
+		<span class='subject'>네번째 댓글입니다.</span>
 	</div>
 	<div class='article'>
 		<span class='boardtype'>QnA에 댓글을 작성하였습니다.</span>
-		<span class='nal'>2023-01-04  08:21:04</span>
-		<h6 class='subject'>네번째 댓글입니다.</h6>
+		<span class='nal'>2023-01-04  08:21:04</span><br>
+		<span class='subject'>네번째 댓글입니다.</span>
 	</div>
 	<div class='article'>
 		<span class='boardtype'>QnA에 댓글을 작성하였습니다.</span>
-		<span class='nal'>2023-01-04  08:21:04</span>
-		<h6 class='subject'>네번째 댓글입니다.</h6>
+		<span class='nal'>2023-01-04  08:21:04</span><br>
+		<span class='subject'>네번째 댓글입니다.</span>
 	</div>
 
 </div>

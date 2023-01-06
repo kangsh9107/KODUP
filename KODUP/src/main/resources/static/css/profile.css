@@ -32,16 +32,16 @@
 
 #horizontal-underline{
     position: absolute;
-    left:0;
+    left:27px;
     height: 4px;
-    width: 0;
+    width: 70px;
     border-radius: 3px;
     transition: 0.3s;
     background-color: #bb2649;
-    top:0;
+    top:29px;
 }
 
-.profile_wrapper>.profile_main>.basic_profile{
+.profile_wrapper>.profile_main>.profileImg{
 	position:absolute;
 	top:24px;
 	left:20px;
@@ -90,7 +90,7 @@
 	font-size:18px;
 }
 
-.profile_wrapper>.profile_main>.profile_Phrases{
+.profile_wrapper>.profile_main>.profile_phrases{
 	position:absolute;
 	top:72px;
 	left:112px;

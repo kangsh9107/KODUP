@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>mantoman/mantoman_chatlist.jsp</title>
 </head>
 <body>
-
+chatlist 들어옴
 </body>
 </html>
