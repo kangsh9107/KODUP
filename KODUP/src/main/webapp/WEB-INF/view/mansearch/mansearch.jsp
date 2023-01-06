@@ -23,19 +23,19 @@
 		<input type="button" class="img-button" />
 	</div>
 	<div>
-		<button class="mansearch_input">구인등록</button>
+		<button class="mansearch_insert">구인등록</button>
 		<div class="dropdown" style="float:right;">
 	  		<button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border:1px solid #000">검색필터</button>
-	  		<div class="dropdown-menu row">
-	  			<div class="dropdown-content">
-					<select class="form-select" size="5">
+	  		<div class="dropdown-menu dropdown_row">
+	  			<div class="dropdown-content dropdown_content">
+					<select class="form-select form_select" size="5">
   						<option value="position">포지션</option>
   						<option value="location">지역</option>
   						<option value="pay">급여</option>
   						<option value="required_career">경력</option>
   						<option value="education_level">학력</option>
 					</select>
-					<select class="form-select" size="5">
+					<select class="form-select form_select" size="5">
   						<option value="">소분류</option>
   						<option value="">소분류</option>
   						<option value="">소분류</option>
@@ -48,7 +48,7 @@
 	</div>
 	<ul class="list-group list-group-flush" style="margin-bottom: 40px;">
 		<c:forEach var="vo" begin="0" end="4">
-			<li class="list-group-item" style="padding: 10px 0 10px 0;">
+			<li class="list-group-item ListGroupItem" style="padding: 10px 0 10px 0;">
 				<img id="index_profile" src="images/index_default.png" style="vertical-align:middle;">
 				<span id="index_corpname">(주)뻥이요</span>
 				<div id="task">

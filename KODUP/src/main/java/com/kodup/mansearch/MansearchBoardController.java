@@ -21,4 +21,12 @@ public class MansearchBoardController {
 
 		return mv;
 	}
+	
+	@RequestMapping("/mansearch/mansearch_insert")
+	public ModelAndView insert() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("mansearch/mansearch_insert");
+
+		return mv;
+	}	
 }

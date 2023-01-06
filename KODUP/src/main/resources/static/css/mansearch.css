@@ -2,7 +2,7 @@
 dd{
 	margin:0;
 }
-li{
+li.ListGroupItem{
 	list-style:none;
 	margin:0;
 	padding:0;
@@ -18,7 +18,7 @@ input.img-button {
     border: none;
 	cursor: pointer;
 }
-button.mansearch_input{
+button.mansearch_insert{
 	width:93px;
 	height:38px;
 	padding:6px 12px;
@@ -43,7 +43,7 @@ div.mansearch_title{
 	background-color:#e7edf0;
 }
 
-.form-control {
+div.mansearch_findstr_zone>.form-control {
     display: inline-block;
     width: 95%;
     padding: .375rem .75rem;
@@ -117,18 +117,14 @@ button.btnMove{
 button.btnMove:hover{
 	color:#bb2642;
 }
-.dropdown-menu .dropdown-content{
+.dropdown_row .dropdown_content{
 	width:40vw;
 	height:20vh;
 }
-.dropdown-menu .dropdown-content .form-select{
+.dropdown_row .dropdown_content .form_select{
 	width:45%;
 	height:90%;
 	display:inline-block;
 	overflow-y:auto;
 	margin:10px;
-}
-.dropdown-menu .dropdown-content div.item-detail{
-	display:inline-block;
-	width:80%;
 }
