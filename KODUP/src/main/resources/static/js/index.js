@@ -26,7 +26,6 @@ $('.btnQna').on('click', function() {
 
 /***** QNA LIST *****/
 function run() {
-	console.log("ok");
 }
 
 
