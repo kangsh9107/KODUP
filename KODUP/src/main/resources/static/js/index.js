@@ -24,6 +24,11 @@ $('.btnQna').on('click', function() {
 	$('#center').load('/qna/qna');
 });
 
+/***** QNA LIST *****/
+function run() {
+	console.log("ok");
+}
+
 
 
 

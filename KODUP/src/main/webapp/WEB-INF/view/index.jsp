@@ -86,7 +86,7 @@
     </nav>
     
 	<!-- MANTOMAN -->
-	<a href="#" class="btnMantoman">
+	<a href="#" class="btnMantoman" id='btnMantoman'>
 		<i class="xi xi-message xi-4x pull-left xi-border"></i>
 	</a>
     

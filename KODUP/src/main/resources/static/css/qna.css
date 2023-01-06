@@ -131,3 +131,45 @@
 }
 
 /***** LIST *****/
+.qna_board_search_form {
+	text-align: center;
+	margin: 0 0 30px 0;
+	padding: 25px 0 0 0;
+}
+
+.qna_board_search_form label {
+	border-radius: 5px;
+	padding: 3px 7px;
+	margin: 0 10px;
+	font-size: 0.9rem;
+}
+
+.qna_board_search_form label:hover {
+	cursor: pointer;
+}
+
+.qna_board_search_form input[type="radio"]:checked+label {
+	color: white;
+	background-color: #bb2649;
+}
+
+.qna_board_search_form span {
+	width: 38px;
+	height: 38px;
+	color: white;
+	border: 0 !important;
+	background-color: #bb2649;
+}
+
+.qna_board_search_form .btnQnaInsert {
+	width: 80px;
+	color: white;
+	background-color: #bb2649;
+	font-size: 0.9rem;
+}
+
+.qna_board_search_form .btnQnaInsert:hover {
+	color: #bb2649;
+	background-color: white;
+	border: 1px solid #bb2649;
+}

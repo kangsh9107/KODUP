@@ -8,11 +8,6 @@
 @import url('https://webfontworld.github.io/BMHanna11yrs/BMHanna11yrs.css'); /* font-family: 'BMHanna11yrs'; */
 @import url('https://fonts.googleapis.com/css?family=Numans'); /* font-family: 'Numans', sans-serif; */
 
-/***** BOOTSTRAP CUSTOM *****/
-.dropdown-menu {
-	min-width: 1rem !important;
-}
-
 /***** MEDIA *****/
 @media all and (max-width: 768px) {
 	.index_footer {
@@ -55,6 +50,7 @@
 
 #index_dropdown {
 	background-color: #bb2649;
+	min-width: 1rem !important;
 }
 
 #index_dropdown a {
@@ -143,7 +139,7 @@
 
 /***** MIDDLE_CENTER *****/
 #index_main_boardtype {
-	padding: 10px;
+	padding: 20px;
 	font-family: 'BMHanna11yrs';
 	font-size: 1.2rem;
 	border: 0px solid white;
@@ -169,7 +165,7 @@
 	width: 80px;
 	heigth: 80px;
 	right: 0;
-	bottom: 10px;
+	bottom: 30px;
 }
 
 #index_profile {
@@ -426,7 +422,6 @@
 	border-radius: 10px 10px 10px 10px;
 	box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
 }
-
 
 
 
