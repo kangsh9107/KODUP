@@ -1,5 +1,28 @@
 @charset "UTF-8";
 
+
+
+#container {
+	display: grid;
+	grid-template-columns: 150px 700px;
+}
+
+.label_name{
+	color: grey;
+}
+
+.bottom{
+	margin-bottom: 10px;
+}
+
+
+
+
+/* 회원 정보 */
+.member_info{
+	border: 2px solid #bb2649;
+}
+
 /* mypage_memberinfo.jsp */
 #mypage_memberinfo{
 	display: inline-block;
@@ -13,17 +36,28 @@
 	text-align: right;
 }
 
+.mm_text{ width: 100px;}
 
-/* 마이페이지 인증 관리 */
+
+.form-floating, .btnC{
+	display: inline-block;
+}
+
+#certification{
+	text-align: left;
+}
+
+
+/* 마이페이지 인증 버튼 효과 */
 .btnC {
   display: inline-block;
-  background: transparent;
+  background: transparent; 
   text-transform: uppercase;
   font-weight: 500;
   font-style: normal;
   font-size: 0.625rem;
   letter-spacing: 0.3em;
-  color: rgba(223,190,106,0.7);
+  color: rgba(223,190,106,0.7); 
   border-radius: 0;
   padding: 18px 80px 20px;
   transition: all 0.7s ease-out;
@@ -42,3 +76,33 @@
   color: $white;
   background-position: 99% 50%;
 }
+
+
+
+
+
+
+/* 마이페이지 텍스트 효과(복고풍) */
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:900');
+
+svg {
+  /* background: white; */
+  background: #ebe7e0; 
+}
+
+text {
+  fill: #35322a;
+  filter: url('#money');
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 50px;
+  font-weight: 900;
+}
+
+/* html {
+  align-items: center;
+  background: #ebe7e0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  min-width: 600px;
+} */
