@@ -38,8 +38,11 @@ $('#btnMyprofile').on('click', function() {
    $('#center').load('/profile/member_profile'); 
 });
 
-
-
+$('#btnMantoman').on('click',function() {
+	var title  = "popup";
+	var status = "toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=350, height=500, top=400, left=1300"; 
+	window.open("/mantoman/mantoman_index", title, status);
+});
 
 
 /***** 박요한 *****/

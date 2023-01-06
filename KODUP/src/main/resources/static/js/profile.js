@@ -2,17 +2,6 @@
  * profile.js
  */
 
-$('#profile_innerSection').load('/profile/member_profile_myarticle');
-/*document.getElementById('btnMyarticle').click();*/
-
-$('#btnMyarticle').on('click', function() {
-	$('#profile_innerSection').load('/profile/member_profile_myarticle'); 
-});
-
-$('#btnMyrepl').on('click', function() {
-	$('#profile_innerSection').load('/profile/member_profile_myrepl'); 
-});
-
 /*-------------------------네비게이션 슬라이딩 바---------------------------*/
 
 var horizontalBar = document.querySelector("#horizontal-underline");
@@ -29,4 +18,20 @@ horizontalMenus.forEach((menu) =>
     horizontalIndicator(e.currentTarget)
   )
 );
+
+/*------------------------------------------------------------------------*/
+
+$('#profile_innerSection').load('/profile/member_profile_myarticle');
+
+$('#btnMyarticle').on('click', function() {
+	$('#profile_innerSection').load('/profile/member_profile_myarticle'); 
+});
+
+
+
+$('#btnMyrepl').on('click', function() {
+	$('#profile_innerSection').load('/profile/member_profile_myrepl'); 
+});
+
+
 

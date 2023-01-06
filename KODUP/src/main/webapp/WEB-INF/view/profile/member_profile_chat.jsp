@@ -4,16 +4,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/profile.css">
-<script defer src="js/profile.js"></script>
-<title>profile/member_profile.jsp</title>
+<link rel="stylesheet" href="../css/profile.css">
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<script defer src="../js/profile.js"></script>
+<title>profile/member_profile_chat.jsp</title>
+<style>
+body{
+ -ms-overflow-style: none;
+ }
+ 
+::-webkit-scrollbar {
+  display: none;
+}
+
+</style>
 </head>
 <body>
 <div class="profile_wrapper">
 	<div class="profile_main">
-		<img src="images/basic_profile.jpg" class="profileImg">
+		<img src="../images/basic_profile.jpg" class="profileImg">
 		<div class="setting_iconDiv">
-			<img src="images/setting_icon.png" class="setting_icon">
+			<img src="../images/setting_icon.png" class="setting_icon">
 		</div>
 		
 		<div class="profile_nicknameDiv">
@@ -30,10 +41,8 @@
 			</nav>
 		</div>
 	</div>
-	
 	<div id="profile_innerSection">
 	</div>
-	
 </div>
 </body>
 </html>
