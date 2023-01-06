@@ -1,5 +1,8 @@
 @charset "UTF-8";
-
+@font-face{
+	font-family:"BMJUA";
+	src: url("/fonts/BMJUA_ttf.ttf");
+}
 ul, ol, li {
 	list-style: none;
 }
@@ -7,12 +10,12 @@ ul, ol, li {
 dd {
 	margin: 0;
 }
-
-/* @media ( max-width :995px) {
-	div.lefttag {
-		display: none;
-	}
-} */
+h3.pg_title{
+	font-family: 'BMJUA';
+}
+h4{
+	font-family: 'BMJUA';
+}
 @media ( max-width :780px) {
 	.inwrap {
 		margin: 0 auto;
@@ -131,17 +134,20 @@ dd {
 	border: 1px solid #bb2649;
 	width: 100px;
 	font-size: 14px;
-	color: #bb2649;
-	background-color: white;
+	background-color: #bb2649;
+	color: white;
 	padding: 12px 20px;
-	border-radius: 2px;
+	border-radius: 5px;
 	position: absolute;
 	top: 42px;
 	left: 144px;
 	font-weight: bold;
 	left: 144px;
 }
-
+.st_area .buy .btn_buy:hover {
+	color: #bb2649;
+	background-color: white;
+}
 .notice {
 	position:relative;
 	width: 100%;
