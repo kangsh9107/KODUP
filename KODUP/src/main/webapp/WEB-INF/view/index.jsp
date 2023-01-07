@@ -23,7 +23,6 @@
 <script src="https://unpkg.com/@yaireo/tagify"></script>
 <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
 <script defer src="js/index.js"></script>
-<script defer src="js/mypage.js"></script>
 <title>코드 레벨업 - 코덥!</title>
 </head>
 <body>
@@ -42,24 +41,24 @@
 				        </a>
 			        </div>
 		        	<div class="col-md-8 index_nav_items">
-				   		<ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 10px">
+				   		<ul class="navbar-nav me-auto mb-2 mb-lg-0 index_nav_ul" style="padding-left: 10px">
 				       		<li class="nav-item">
-				       			<a class="nav-link active btnQna" aria-current="page" href="#"><span>QnA</span></a>
+				       			<a class="nav-link active non-click btnQna" aria-current="page" href="#">QnA</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active" aria-current="page" href="#"><span>정보공유</span></a>
+				       			<a class="nav-link active non-click" aria-current="page" href="#">정보공유</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active" aria-current="page" href="#"><span>커뮤니티</span></a>
+				       			<a class="nav-link active non-click" aria-current="page" href="#">커뮤니티</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active mansearch" aria-current="page" href="#"><span>구인</span></a>
+				       			<a class="nav-link active non-click mansearch" aria-current="page" href="#">구인</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active" aria-current="page" href="#"><span>구직</span></a>
+				       			<a class="nav-link active non-click" aria-current="page" href="#">구직</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active" aria-current="page" href="#"><span>공지사항</span></a>
+				       			<a class="nav-link active non-click" aria-current="page" href="#">공지사항</a>
 				       		</li>
 				       	</ul>
 			       	</div>
@@ -86,7 +85,7 @@
     </nav>
     
 	<!-- MANTOMAN -->
-	<a href="#" class="btnMantoman" id='btnMantoman'>
+	<a href="#" onclick="return false" class="btnMantoman" id="btnMantoman">
 		<i class="xi xi-message xi-4x pull-left xi-border"></i>
 	</a>
     
@@ -127,6 +126,7 @@
 			
 			<!-- CENTER -->
 			<div class="col-md-8">
+				<img src="images/index_ad3.png" style="height: 180px; width: 100%; padding-right: 0; margin-bottom: 40px;">
 				<!-- INSERT CONTENT -->
 				<section id="center"></section>
 			</div>
@@ -138,10 +138,10 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-md-12" style="padding: 0;">
-								<img src="images/index_ad2.png" style="width: 100px; height: 500px; float: right;">
+								<img src="images/index_ad2.png" style="width: 140px; height: 500px; float: right;">
 							</div>
 							<div class="col-md-12" style="padding: 0;">
-								<img src="images/index_ad2.png" style="width: 100px; height: 500px; float: right;">
+								<img src="images/index_ad2.png" style="width: 140px; height: 500px; float: right;">
 							</div>
 						</div>
 					</div>
@@ -160,37 +160,37 @@
 				<div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
 					<h6 class="text-uppercase font-weight-bold mb-4">광고문의</h6>
 					<ul class="list-unstyled mb-0">
-						<li class="mb-2"><a href="#" class="text-muted">Contact Us</a></li>
-						<li class="mb-2"><a href="#" class="text-muted">About Us</a></li>
-						<li class="mb-2"><a href="#" class="text-muted">Stories</a></li>
-						<li class="mb-2"><a href="#" class="text-muted">Press</a></li>
+						<li class="mb-2"><a href="#" onclick="return false" class="text-muted">Contact Us</a></li>
+						<li class="mb-2"><a href="#" onclick="return false" class="text-muted">About Us</a></li>
+						<li class="mb-2"><a href="#" onclick="return false" class="text-muted">Stories</a></li>
+						<li class="mb-2"><a href="#" onclick="return false" class="text-muted">Press</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
 					<h6 class="text-uppercase font-weight-bold mb-4">버그제보</h6>
 					<ul class="list-unstyled mb-0">
-						<li class="mb-2"><a href="#" class="text-muted">Payments</a></li>
-						<li class="mb-2"><a href="#" class="text-muted">Shipping</a></li>
-						<li class="mb-2"><a href="#" class="text-muted">Cancellation</a></li>
-						<li class="mb-2"><a href="#" class="text-muted">Returns</a></li>
+						<li class="mb-2"><a href="#" onclick="return false" class="text-muted">Return Policy</a></li>
+						<li class="mb-2"><a href="#" onclick="return false" class="text-muted">Terms Of Use</a></li>
+						<li class="mb-2"><a href="#" onclick="return false" class="text-muted">Security</a></li>
+						<li class="mb-2"><a href="#" onclick="return false" class="text-muted">Privacy</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
 					<h6 class="text-uppercase font-weight-bold mb-4">개인정보 처리방침</h6>
 					<ul class="list-unstyled mb-0">
-						<li class="mb-2"><a href="#" class="text-muted">Return Policy</a></li>
-						<li class="mb-2"><a href="#" class="text-muted">Terms Of Use</a></li>
-						<li class="mb-2"><a href="#" class="text-muted">Security</a></li>
-						<li class="mb-2"><a href="#" class="text-muted">Privacy</a></li>
+						<li class="mb-2"><a href="#" onclick="return false" class="text-muted">Login</a></li>
+						<li class="mb-2"><a href="#" onclick="return false" class="text-muted">Register</a></li>
+						<li class="mb-2"><a href="#" onclick="return false" class="text-muted">Sitemap</a></li>
+						<li class="mb-2"><a href="#" onclick="return false" class="text-muted">Our Products</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
 					<h6 class="text-uppercase font-weight-bold mb-4">서비스 이용약관</h6>
 					<ul class="list-unstyled mb-0">
-						<li class="mb-2"><a href="#" class="text-muted">Login</a></li>
-						<li class="mb-2"><a href="#" class="text-muted">Register</a></li>
-						<li class="mb-2"><a href="#" class="text-muted">Sitemap</a></li>
-						<li class="mb-2"><a href="#" class="text-muted">Our Products</a></li>
+						<li class="mb-2"><a href="#" onclick="return false" class="text-muted">Payments</a></li>
+						<li class="mb-2"><a href="#" onclick="return false" class="text-muted">Shipping</a></li>
+						<li class="mb-2"><a href="#" onclick="return false" class="text-muted">Cancellation</a></li>
+						<li class="mb-2"><a href="#" onclick="return false" class="text-muted">Returns</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-4 col-md-6 mb-lg-0">

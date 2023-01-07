@@ -16,3 +16,8 @@ $(document).ready(function () {
 		}
 	});
 });
+
+/***** QNA INSERT *****/
+$('.btnQnaInsert').on('click', function() {
+	$('#center').load('/qna/qna_insert');
+});

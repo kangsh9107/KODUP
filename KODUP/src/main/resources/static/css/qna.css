@@ -27,7 +27,7 @@
 
 .qna_board_insert_form .input-group-text {
 	width: 80px;
-	height: 42px;
+	height: 40px;
 	color: white;
 	border: 0 !important;
 	background-color: #bb2649;
@@ -76,7 +76,7 @@
 
 /***** HASHTAG *****/
 .tagify {
-	height: 42px !important;
+	height: 40px !important;
 	border-radius: 0 5px 5px 0 !important;
 	font-size: 0.9rem;
 }
@@ -140,36 +140,139 @@
 .qna_board_search_form label {
 	border-radius: 5px;
 	padding: 3px 7px;
-	margin: 0 10px;
 	font-size: 0.9rem;
 }
 
 .qna_board_search_form label:hover {
 	cursor: pointer;
+	color: #bb2649;
 }
 
 .qna_board_search_form input[type="radio"]:checked+label {
-	color: white;
-	background-color: #bb2649;
-}
-
-.qna_board_search_form span {
-	width: 38px;
-	height: 38px;
-	color: white;
-	border: 0 !important;
-	background-color: #bb2649;
+	background-color: #e7edf0;
 }
 
 .qna_board_search_form .btnQnaInsert {
-	width: 80px;
+	font-size: 0.9rem;
+	width: 91px;
+	padding: 3px 7px;
 	color: white;
 	background-color: #bb2649;
-	font-size: 0.9rem;
+	justify-content: center;
+	vertical-align: bottom;
+	line-height: 20px;
+}
+
+.qna_board_search_form select {
+	font-size: 0.8rem;
+	width: 91px;
+	float: right;
+	line-height: 15px;
+}
+
+.qna_board_search_form select:focus {
+	outline: 0 0 0 0 !important;
+	box-shadow: 0 0 0 0 !important;
 }
 
 .qna_board_search_form .btnQnaInsert:hover {
-	color: #bb2649;
-	background-color: white;
-	border: 1px solid #bb2649;
+	background-color: #ff3363;
+}
+
+.qna_board_search_form .btnQnaRefresh {
+	color: #555;
+	font-size: 1.1rem;
+}
+
+.qna_board_search_form .btnQnaRefresh:hover {
+	color: #aaa;
+}
+
+.qna_board_search_form .btnQnaPrevious {
+	color: #555;
+	font-size: 1.1rem;
+}
+
+.qna_board_search_form .btnQnaPrevious:hover {
+	color: #aaa;
+}
+
+.qna_board_search_form .btnQnaNext {
+	color: #555;
+	font-size: 1.1rem;
+}
+
+.qna_board_search_form .btnQnaNext:hover {
+	color: #aaa;
+}
+
+#index_corpname {
+	color: black;
+	font-size: 0.9rem;
+	font-family: 'BMHannaAir';
+}
+
+#task {
+	padding:0;
+	display:inline-block;
+	text-align:center;
+	font-size:12px;
+	width:40px;
+	height:17px;
+	border-radius:15px;
+	background-color:#bb2642;
+	color:white;
+	vertical-align:middle;
+	line-height: 15px;
+}
+
+#work_start {
+	font-size:0.8rem;
+	color:#6b7280;
+}
+
+#deadline {
+	font-size:0.8rem;
+	color:#bb2642;
+}
+
+/***** LIST SEARCH *****/
+.searchbar {
+	margin-top: 2%;
+	height: 28px;
+	background-color: #555;
+	border-radius: 14px;
+}
+
+.search_input {
+	color: white;
+	border: 0;
+	outline: 0;
+	background: none;
+	width: 0;
+	line-height: 0px;
+	transition: width 0.4s linear;
+	font-size: 0.8rem;
+}
+
+.searchbar:hover > .search_input {
+	padding: 0 10px;
+	width: 300px;
+	transition: width 0.4s linear;
+}
+
+.searchbar:hover > .search_icon {
+	background: white;
+	color: #e74c3c;
+}
+
+.search_icon {
+	height: 28px;
+	width: 28px;
+	float: right;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	color:white;
 }

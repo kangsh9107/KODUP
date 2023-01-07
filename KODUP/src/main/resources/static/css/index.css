@@ -40,11 +40,15 @@
 	margin: 0 5px 0 0;
 }
 
-.index_nav a span {
+.index_nav .index_nav_ul a {
 	font-size: 0.9rem;
 }
 
-.index_nav a span:hover {
+.index_nav .index_nav_ul a:hover {
+	color: #bb2649;
+}
+
+.index_nav .index_nav_ul .click {
 	color: #bb2649;
 }
 
@@ -138,7 +142,7 @@
 }
 
 /***** MIDDLE_CENTER *****/
-#index_main_boardtype {
+#index_main_boardtype, #index_qna_boardtype {
 	padding: 20px;
 	font-family: 'BMHanna11yrs';
 	font-size: 1.2rem;
