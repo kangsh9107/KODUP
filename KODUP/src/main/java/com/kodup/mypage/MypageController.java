@@ -55,12 +55,27 @@ public class MypageController {
 		return mv;
 	}
 	
-	@RequestMapping("/board/mypage_quit") //회원탈퇴
-	public ModelAndView mypage_quit() {
+	@RequestMapping("/board/mypage_corp_certification") //기업인증
+	public ModelAndView mypage_corp_certification() {
 		ModelAndView mv = new ModelAndView();
 		
-		mv.setViewName("mypage/mypage_quit");
+		mv.setViewName("mypage/mypage_corp_certification");
 		return mv;
 	}
 	
+	@RequestMapping("/board/mypage_memberinfo_quit") //회원탈퇴
+	public ModelAndView mypage_memberinfo_quit() {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("mypage/mypage_memberinfo_quit");
+		return mv;
+	}
+	
+	@RequestMapping("/board/mypage_memberinfo_update") //회원탈퇴
+	public ModelAndView mypage_memberinfo_update() {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("mypage/mypage_memberinfo_update");
+		return mv;
+	}
 }

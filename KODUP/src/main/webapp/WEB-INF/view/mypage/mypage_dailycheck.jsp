@@ -9,7 +9,7 @@
 <title>daily check</title>
 </head>
 <body>
-<!-- 		<svg width='600' height='200'>
+		<svg width='600' height='200'>
   		<filter id='money'>
 		    <feMorphology in='SourceGraphic' operator='dilate' radius='2' result='expand'/>
 		
@@ -79,7 +79,7 @@
 		
 		  <text dominant-baseline='middle' text-anchor='middle' x='50%' y='50%'>
 		    출석체크
-		  </text> -->
+		  </text> 
 		  <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxOTExMTZfMzcg%2FMDAxNTczOTE0MDQ3OTk1.XKe08Icy9DiojVEMOvWnEmRae25qqvbTQ8qlZz8FHKYg.pl7DTzo3Ni7R5RxLq0w1ug9DDvH7ceHRHWyGQbgvq90g.PNG.mentorkh%2F%25C3%25E2%25BC%25AE%25C3%25BC%25C5%25A9_2.png&type=sc960_832">
 		</svg>
 		

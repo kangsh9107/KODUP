@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 
-
 #container {
 	display: grid;
 	grid-template-columns: 150px 700px;
@@ -24,9 +23,20 @@
 }
 
 /* mypage_memberinfo.jsp */
-#mypage_memberinfo{
+
+.mypage_member_profile {
+	display: grid;
+	grid-template-columns: 300px 450px;
+	/* background-color: skyblue; */
+	gap: 20px 20px;
+	/* row-gap: 20px; column-gap: 20px; */
+} 
+
+
+.btnModify, .btnQuit{
 	display: inline-block;
 }
+
 
 .list-group {
 	width:1000px;
@@ -36,12 +46,24 @@
 	text-align: right;
 }
 
-.mm_text{ width: 100px;}
+.mm_text{ 
+	display:inline-block;
+	width: 100px; 
+	font-weight:bold;}
 
 
 .form-floating, .btnC{
 	display: inline-block;
 }
+
+
+/* 회원정보 수정 */
+#memberinfo_modify{
+	margin-top:30px;
+	text-align:center;
+}
+
+.name{margin-bottom:5px;}
 
 #certification{
 	text-align: left;

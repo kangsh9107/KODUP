@@ -23,18 +23,15 @@ $('.btnMyPixel').on('click', function(){
 	$('#m_section2').load('/board/mypage_mypixel');
 });
 
-//mypage_certification (개인 인증)
+//mypage_certification (개인인증)
 $('.btnCertification').on('click', function(){
 	console.log("ㅇㅈ");
 	$('#m_section2').load('/board/mypage_certification');
 });
 
 
-//mypage_quit (회원탈퇴) 
-$('.btnQuit').on('click', function(){
-	console.log("탈퇴");
-	$('#m_section2').load('/board/mypage_quit');
-});
-
-
 //mypage_corp_certification (기업인증)
+$('.btn_corp_certification').on('click', function(){
+	console.log("기업인증");
+	$('#m_section2').load('/board/mypage_corp_certification');
+});
