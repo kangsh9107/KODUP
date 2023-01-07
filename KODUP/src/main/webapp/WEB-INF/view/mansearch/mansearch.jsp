@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,11 +9,11 @@
 <link rel='stylesheet' href='css/mansearch.css'>
 <script defer src="js/mansearch.js"></script>
 <!-- <style>
-.button {
+div.button {
   position:absolute;
   background: #3D4C53;
-  left:0;
-  top:0;
+  left:50;
+  top:50;
   width : 200px;
   height : 50px;
   overflow: hidden;
@@ -24,7 +23,7 @@
   border-radius: 3px;
   box-shadow: 0px 1px 2px rgba(0,0,0,.2);
 }
-.btnTwo {
+div.btnTwo {
   position : relative;
   width : 200px;
   height : 100px;
@@ -35,29 +34,29 @@
   transition : .3s;
   font-size:30px;
 }
-.btnText {
+p.btnText {
   color : white;
   transition : .3s;
 }
-.btnText2 {
+p.btnText2 {
   margin-top : 50px;
   margin-right : -130px;
   color : #FFF;
 }
-.button:hover .btnTwo{ /*When hovering over .button change .btnTwo*/
+div.button:hover .btnTwo{ /*When hovering over .button change .btnTwo*/
   left: -130px;
 }
-.button:hover .btnText{ /*When hovering over .button change .btnText*/
+div.button:hover .btnText{ /*When hovering over .button change .btnText*/
   margin-left : 65px;
 }
-.button:active { /*Clicked and held*/
+div.button:active { /*Clicked and held*/
   box-shadow: 0px 5px 6px rgba(0,0,0,0.3);
 }
 
 </style> -->
 </head>
 <body>
- <!-- <div class="button">
+<!--  <div class="button">
     <p class="btnText">돌아가기</p>
      <div class="btnTwo">
       <p class="btnText2">⬅</p>
@@ -66,7 +65,7 @@
 	<div class='col-md-8 mansearch_title' style="z-index:-10;">
 		<img src="/images/mansearch_logo.png" style="width:110px; height:100px; float:right; margin-right:5px; margin-top:-25px; display:inline-block; z-index:100;">
 		<dl>
-			<dt style="margin-top: 10px;">구인게시판</dt>
+			<dt style="margin-top: 10px; margin-left:5px;">구인게시판</dt>
 			<dd>내게 어울리는 채용 공고를 찾는 공간입니다.</dd>
 		</dl>
 	</div>

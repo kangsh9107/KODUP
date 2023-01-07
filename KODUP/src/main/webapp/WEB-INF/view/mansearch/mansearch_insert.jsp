@@ -7,6 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-mansearch_insert.jsp
+<div class="container">
+  <div class="row">
+    <div class="col-sm">col-1</div>
+    <div class="col-sm">col_2</div>
+    <div class="col-sm">col_3</div>
+  </div>
+</div>
 </body>
 </html>

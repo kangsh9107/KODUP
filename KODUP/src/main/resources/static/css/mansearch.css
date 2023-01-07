@@ -38,7 +38,7 @@ div.mansearch_title{
 	border:2px solid #edf0ef;
 	border-radius:5px;
 	width:100%;
-	height:80px;
+	height:auto;
 	margin-bottom:30px;
 	background-color:#e7edf0;
 }
@@ -68,25 +68,25 @@ div.mansearch_findstr_zone>.form-control {
 	font-family: 'BMHannaAir';
 }
 #task{
-	padding:0;
+	padding:0 10px;
 	display:inline-block;
 	text-align:center;
 	font-size:12px;
-	width:40px;
+	width:auto;
 	height:17px;
-	border-radius:15px;
+	border-radius:14px;
 	background-color:#bb2642;
 	color:white;
 	vertical-align:middle;
 }
 #job_index{
-	padding:0;
+	padding:0 10px;
 	text-align:center;
 	display:inline-block;
 	font-size:12px;
-	width:95px;
+	width:auto;
 	height:17px;
-	border-radius:15px;
+	border-radius:14px;
 	background-color:#bb2642;
 	color:white;
 	vertical-align:middle;
@@ -101,7 +101,7 @@ span#deadline{
 }
 span#corp_location,#pay,#education_level,#required_carrer,#work_type{
 	display:inline-block;
-	margin-right:15px;
+	margin-right:14px;
 	font-size:0.8rem;
 	color:#6b7280;
 }
@@ -132,11 +132,87 @@ button.btnMove:hover{
 #mansearch_datezone{
 	margin-top:5px;
 }
-span.work_start{
+span.deadline{
 	color:#374151;
 	font-size:0.9rem;
 }
-span.deadline{
+span.deadline_count{
 	color:#bb2642;
 	font-size:0.9rem;	
+}
+img.view_corp_logo{
+	width:40px;
+	height:40px;
+}
+.mansearch_view_subject{
+	height: 45px;
+	text-align:left;
+}
+.datepaylocation_area{
+	background-color:#f9fafb;
+	width:100%;
+	height:auto;
+	border-radius:5px;
+	margin:9px 9px 30px 9px;
+	padding:25px;
+}
+.datepaylocation_area dt,dd{
+	margin:5px;
+}
+.datepaylocation_area dd{
+	color:#4b5563;
+}
+.mansearch_view_element .element_left{
+	display:flex;
+	gap: 0 20px;
+	margin-right:8%; 
+	margin-bottom:5%; 
+	border-bottom:2px solid #d2d4d9;
+	padding:0;
+}
+.mansearch_view_element .element_left_title{
+	width:37%;
+	padding:0;
+	font-weight:bold;
+}
+.mansearch_view_element .element_left_doc{
+	width:60%;
+	padding:0;
+}
+.mansearch_view_element .element_right{
+	display:flex;
+	gap: 0 20px;
+	margin-bottom:5%; 
+	border-bottom:2px solid #d2d4d9;
+	padding:0;
+}
+.mansearch_view_element .element_right_title{
+	width:37%;
+	padding:0;
+	font-weight:bold;
+}
+.mansearch_view_element .element_right_doc{
+	width:60%;
+	padding:0;
+}
+div.mansearch_view_doc{
+	display:flex;
+	flex-wrap:wrap;
+	margin-bottom:3%;
+}
+div.mansearch_view_doc>pre{
+	display:inline-block;
+	font-family: '굴림';
+	white-space: pre-wrap;
+	margin-bottom:5%;
+}
+div.mansearch_view_manager{
+	padding:10px;
+	height:auto;
+	border-top:2px solid #d2d4d9;
+	border-bottom:2px solid #d2d4d9;	
+}
+div.mansearch_view_manager .col-md-2,.col-md-4{
+	padding:0;
+	margin:0;
 }
