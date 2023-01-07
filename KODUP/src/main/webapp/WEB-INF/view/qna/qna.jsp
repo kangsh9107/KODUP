@@ -90,7 +90,7 @@
 								<span id="deadline">마감 ?일전</span>
 							</div>
 							<br/>
-							<a href="#" class="text-decoration-none">
+							<a href="#" class="text-decoration-none" onclick='qna_view()'>
 								<span id="index_doc" class="index_doc">백엔드,팀원 | 제대로 튀겨드립니다. 신입도 3년차부터! 가 족같은 분위기에서 일하실 분 구합니다 ^_^</span>
 							</a>
 						</li>

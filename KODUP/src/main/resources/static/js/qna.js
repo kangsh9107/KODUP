@@ -21,3 +21,12 @@ $(document).ready(function () {
 $('.btnQnaInsert').on('click', function() {
 	$('#center').load('/qna/qna_insert');
 });
+
+
+
+
+
+/*****조성호 *****/
+function qna_view(){
+	 $('#center').load('/qna/qna_view');
+}
