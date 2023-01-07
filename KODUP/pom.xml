@@ -78,6 +78,13 @@
 		    <artifactId>jstl</artifactId>
 		    <version>1.2</version>
 		</dependency>
+		
+		<!--웹소켓 디펜던시-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+			<version>2.6.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
