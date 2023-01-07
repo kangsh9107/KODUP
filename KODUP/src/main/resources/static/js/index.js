@@ -6,6 +6,22 @@
 /***** MAIN *****/
 $('#center').load('/login/main');
 
+/***** NAV *****/
+const nonClick = document.querySelectorAll(".non-click");
+
+function handleClick(event) {
+	// div에서 모든 "click" 클래스 제거
+	nonClick.forEach((e) => { //e는 element
+		e.classList.remove("click");
+	});
+	// 클릭한 span만 "click" 클래스 추가
+	event.target.classList.add("click");
+}
+
+nonClick.forEach((e) => {
+	e.addEventListener("click", handleClick);
+});
+
 /***** MANTOMAN *****/
 $(document).ready(function() {
 	$(window).scroll(function() {
@@ -19,13 +35,13 @@ $('.index_btnLogin').on('click', function() {
 	$('#center').load('/login/login');
 });
 
-/***** INSERT *****/
+/***** QNA LIST *****/
 $('.btnQna').on('click', function() {
 	$('#center').load('/qna/qna');
 });
 
-/***** QNA LIST *****/
 function run() {
+	console.log("테스트");
 }
 
 

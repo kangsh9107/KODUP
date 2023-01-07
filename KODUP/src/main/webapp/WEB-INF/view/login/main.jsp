@@ -19,7 +19,7 @@
 										   images/index_boardtype_background5.png" delims=",">
 				
 				<!-- BORADTYPE -->
-				<div class="col-md-6" style="padding-left: 10px; padding-right: 40px;">
+				<div class="col-md-6" style="padding-left: 10px; padding-right: 10px;">
 					<div class="list-group">
 						<a href="#" class="list-group-item list-group-item-action" id="index_main_boardtype">
 							QnA

@@ -22,9 +22,9 @@
 			</div>
 		</div>
 	</div>
+	
 	<!-- FORM -->
 	<form name="qna_board_insert_form" class="qna_board_insert_form" method="post">
-		<!-- FORM DATA -->
 		<div class="input-group form-group">
 			<span class="input-group-text">말머리</span>
 			<br/>
@@ -54,7 +54,6 @@
 			<input type="button" value="등록" class="btn btnQnaInsertR">
 		</div>
 		
-		<!-- HIDDEN -->
 		<input type="hidden" name="nowPage" value="">
 		<input type="hidden" name="findStr" value="">
 	</form>
