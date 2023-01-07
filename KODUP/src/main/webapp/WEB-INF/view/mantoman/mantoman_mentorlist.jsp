@@ -7,7 +7,7 @@
 <title>mantoman/mantoman_mentorlist</title>
 </head>
 <body>
-<div class='partnerMentorList'>
+<div class='partnerMentorList slide_out'>
 	<div class='partnerType separator'>파트너 멘토</div>
 	
 	<div class='chat_user separator'>
@@ -28,7 +28,6 @@
 		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
 		<input type='button' class='btnCall' value='멘토 요청'>
 	</div>
-	
 </div>
 <div class='plusMentorList'>
 	<div class='partnerType separator'>플러스 멘토</div>
@@ -74,7 +73,6 @@
 		<input type='button' class='btnCall' value='멘토 요청'>
 	</div>
 </div>
-
 <script>
 
 $('.mentor_profileImg').on('click',function() {

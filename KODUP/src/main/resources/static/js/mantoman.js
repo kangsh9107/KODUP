@@ -32,3 +32,5 @@ $('#btnMentorList').on('click', function() {
 $('#btnChatList').on('click', function() {
 	$('#mantoman_innerSection').load('/mantoman/mantoman_chatlist'); 
 });
+
+
