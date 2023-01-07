@@ -16,3 +16,8 @@ $(document).ready(function () {
 		}
 	});
 });
+
+/*****조성호 *****/
+function qna_view(){
+	 $('#center').load('/qna/qna_view');
+}
