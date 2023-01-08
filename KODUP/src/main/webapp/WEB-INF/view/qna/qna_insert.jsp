@@ -60,11 +60,11 @@
 	
 	<!-- HASHTAG -->
 	<script>
-		const input = document.querySelector('input[name=basic]');
+		var input = document.querySelector('input[name=basic]');
 		let tagify = new Tagify(input);
 		
 		tagify.on('add', function() {
-		  console.log(tagify.value); //입력된 태그 확인용
+			console.log(tagify.value); //입력된 태그 확인용
 		});
 	</script>
 </body>

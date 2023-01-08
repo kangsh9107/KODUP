@@ -38,13 +38,10 @@
 							<span class="input-group-text"><i class="fas fa-keyboard"></i></span>
 							<input type="button" value="로그인" class="btn index_btnLoginR">
 						</div>
-						<div class="input-group form-group index_login_input" style="margin-bottom: 20px;">
-							<span class="input-group-text"><i class="fas fa-keyboard"></i></span>
-							<input type="button" value="회원가입" class="btn index_btnJoin">
-						</div>
 						
 						<!-- FIND ACCOUNT & PASSWORD -->
 						<div class="index_find">
+							<a href="#" class="index_btnJoin">계정 찾기</a>
 							<a href="#" class="index_find_account">계정 찾기</a>
 						</div>
 					</form>

@@ -23,7 +23,7 @@ public class QnaBoardController {
 	
 	//성호
 	@RequestMapping("/qna/qna_view")
-	public ModelAndView view() {
+	public ModelAndView qnaView() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/qna/qna_view");
 

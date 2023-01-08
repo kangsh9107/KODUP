@@ -25,7 +25,7 @@ nonClick.forEach((e) => {
 /***** MANTOMAN *****/
 $(document).ready(function() {
 	$(window).scroll(function() {
-		var position = $(window).scrollTop()+800; 
+		var position = $(window).scrollTop()+750; 
 		$(".btnMantoman").stop().animate({top:position+"px"},400);
 	});
 });
@@ -40,9 +40,19 @@ $('.btnQna').on('click', function() {
 	$('#center').load('/qna/qna');
 });
 
-function run() {
+function runQna() {
 	console.log("테스트");
 }
+
+/***** INFOSHARE LIST *****/
+$('.btnInfoshare').on('click', function() {
+	$('#center').load('/infoshare/infoshare');
+});
+
+function runInfoshare() {
+	console.log("테스트");
+}
+
 
 
 
