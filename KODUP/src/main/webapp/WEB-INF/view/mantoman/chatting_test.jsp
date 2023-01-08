@@ -46,7 +46,7 @@
 
 #chatt .me{
 	background-color : #ffc;
-	margin : 1px 0px 2px 30%;	
+	margin : 1px 0px 2px 30%;
 }
 
 #chatt .other{
