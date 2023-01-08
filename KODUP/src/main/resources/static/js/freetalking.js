@@ -1,6 +1,7 @@
 /**
- * qna.jsp
+ * freetalking.jsp
  */
+
 
 /***** 강수형 *****/
 /***** SUMMERNOTE *****/
@@ -17,12 +18,12 @@ $(document).ready(function () {
 	});
 });
 
-/***** QNA INSERT *****/
-$('.btnQnaInsert').on('click', function() {
-	$('#center').load('/qna/qna_insert');
+/***** FREETALKING INSERT *****/
+$('.btnFreetalkingInsert').on('click', function() {
+	$('#center').load('/freetalking/freetalking_insert');
 });
 
-/***** QNA SEARCH *****/
+/***** FREETALKING SEARCH *****/
 $('.inputSearch').keyup(function(evnet) {
 	if(event.keyCode == 13) {
 		$('.btnSearch').click();
@@ -39,5 +40,5 @@ $('.btnSearch').click(function() {
 
 /***** 조성호 *****/
 function qna_view(){
-	 $('#center').load('/qna/qna_view');
+	 $('#center').load('/freetalking/freetalking_view');
 }

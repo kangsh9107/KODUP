@@ -53,6 +53,37 @@ function runInfoshare() {
 	console.log("테스트");
 }
 
+/***** FREETALKING LIST *****/
+$('.btnFreetalking').on('click', function() {
+	$('#center').load('/freetalking/freetalking');
+});
+
+function runFreetalking() {
+	console.log("테스트");
+}
+
+/***** JOBSEARCH LIST *****/
+$('.btnJobsearch').on('click', function() {
+	$('#center').load('/jobsearch/jobsearch');
+});
+
+function runJobsearch() {
+	console.log("테스트");
+}
+
+/***** NOTIFICATION LIST *****/
+$('.btnNotification').on('click', function() {
+	$('#center').load('/notification/notification');
+});
+
+function runNotification() {
+	console.log("테스트");
+}
+
+/***** BACK TO LIST *****/
+$('.btnList').on('click', function() {
+	
+});
 
 
 

@@ -2,30 +2,30 @@
 
 /***** 강수형 *****/
 /***** INSERT *****/
-.qna_board_header {
+.board_header {
 	padding: 0;
 }
 
-.qna_board_header span {
+.board_header span {
 	font-size: 1.5rem;
 }
 
-.qna_board_menual {
+.board_menual {
 	padding: 0;
 	color: #888;
 	margin: 0 0 40px 0;
 }
 
-.qna_board_menual span {
+.board_menual span {
 	font-size: 0.9rem;
 	color: #666;
 }
 
-.qna_board_insert_form .input-group {
+.board_insert_form .input-group {
 	margin: 0 0 30px 0;
 }
 
-.qna_board_insert_form .input-group-text {
+.board_insert_form .input-group-text {
 	width: 80px;
 	height: 40px;
 	color: white;
@@ -35,35 +35,35 @@
 	font-size: 0.9rem;
 }
 
-.qna_board_insert_form input {
+.board_insert_form input {
 	font-size: 0.9rem;
 }
 
-.qna_board_insert_form input:focus {
+.board_insert_form input:focus {
 	outline: 0 0 0 0 !important;
 	box-shadow: 0 0 0 0 !important;
 }
 
-.qna_board_insert_form input::placeholder {
+.board_insert_form input::placeholder {
 	color: #999;
 }
 
-.qna_board_insert_form select {
+.board_insert_form select {
 	font-size: 0.9rem;
 }
 
-.qna_board_insert_form select:focus {
+.board_insert_form select:focus {
 	outline: 0 0 0 0 !important;
 	box-shadow: 0 0 0 0 !important;
 }
 
-.btnQnaInsertR, .btnCancle {
+.btnNotificationInsertR, .btnList {
 	color: white;
 	background-color: #bb2649;
 	font-size: 0.9rem;
 }
 
-.btnQnaInsertR:hover, .btnCancle:hover {
+.btnNotificationInsertR:hover, .btnList:hover {
 	color: #bb2649;
 	background-color: white;
 	border: 1px solid #bb2649;
@@ -82,23 +82,23 @@
 }
 
 /***** UPDATE *****/
-.btnQnaUpdateR {
+.btnNotificationUpdateR {
 	color: white;
 	background-color: #bb2649;
 	font-size: 0.9rem;
 }
 
-.btnQnaUpdateR:hover {
+.btnNotificationUpdateR:hover {
 	color: #bb2649;
 	background-color: white;
 	border: 1px solid #bb2649;
 }
 
-.qna_board_update_form .input-group {
+.board_update_form .input-group {
 	margin: 0 0 30px 0;
 }
 
-.qna_board_update_form .input-group-text {
+.board_update_form .input-group-text {
 	width: 80px;
 	height: 42px;
 	color: white;
@@ -108,24 +108,24 @@
 	font-size: 0.9rem;
 }
 
-.qna_board_update_form input {
+.board_update_form input {
 	font-size: 0.9rem;
 }
 
-.qna_board_update_form input:focus {
+.board_update_form input:focus {
 	outline: 0 0 0 0 !important;
 	box-shadow: 0 0 0 0 !important;
 }
 
-.qna_board_update_form input::placeholder {
+.board_update_form input::placeholder {
 	color: #999;
 }
 
-.qna_board_update_form select {
+.board_update_form select {
 	font-size: 0.9rem;
 }
 
-.qna_board_update_form select:focus {
+.board_update_form select:focus {
 	outline: 0 0 0 0 !important;
 	box-shadow: 0 0 0 0 !important;
 }
@@ -154,7 +154,7 @@
 	background-color: #e7edf0;
 }
 
-.board_search_form .btnQnaInsert {
+.board_search_form .btnNotificationInsert {
 	font-size: 0.9rem;
 	width: 93px;
 	height: 36px;
@@ -178,7 +178,7 @@
 	box-shadow: 0 0 0 0 !important;
 }
 
-.board_search_form .btnQnaInsert:hover {
+.board_search_form .btnNotificationInsert:hover {
 	background-color: #ff3363;
 }
 
@@ -219,7 +219,7 @@
 
 .board_list_hashtag:hover {
 	cursor: pointer;
-	color: #bb2649 !importatant;
+	color: #bb2649 !important;
 }
 
 /***** LIST SEARCH *****/

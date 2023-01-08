@@ -49,16 +49,16 @@
 				       			<a class="nav-link active non-click btnInfoshare" aria-current="page" href="#">정보공유</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click" aria-current="page" href="#">커뮤니티</a>
+				       			<a class="nav-link active non-click btnFreetalking" aria-current="page" href="#">커뮤니티</a>
 				       		</li>
 				       		<li class="nav-item">
 				       			<a class="nav-link active non-click mansearch" aria-current="page" href="#">구인</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click" aria-current="page" href="#">구직</a>
+				       			<a class="nav-link active non-click btnJobsearch" aria-current="page" href="#">구직</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click" aria-current="page" href="#">공지사항</a>
+				       			<a class="nav-link active non-click btnNotification" aria-current="page" href="#">공지사항</a>
 				       		</li>
 				       	</ul>
 			       	</div>

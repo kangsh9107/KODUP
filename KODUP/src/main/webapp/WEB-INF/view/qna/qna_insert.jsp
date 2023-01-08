@@ -14,17 +14,17 @@
 	<!-- BOARDTYPE -->
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-12 qna_board_header">
+			<div class="col-md-12 board_header">
 				<span>궁금증 해결하기</span>
 			</div>
-			<div class="col-md-12 qna_board_menual">
+			<div class="col-md-12 board_menual">
 				<span>a001</span> 님 KODUP에서 최고의 개발자들과 함께 궁금증을 해결하세요.
 			</div>
 		</div>
 	</div>
 	
 	<!-- FORM -->
-	<form name="qna_board_insert_form" class="qna_board_insert_form" method="post">
+	<form name="board_insert_form" class="board_insert_form" method="post">
 		<div class="input-group form-group">
 			<span class="input-group-text">말머리</span>
 			<br/>
@@ -50,7 +50,7 @@
 			<div id="summernote"></div>
 		</div>
 		<div class="input-group form-group" style="justify-content: end;">
-			<input type="button" value="취소" class="btn btnCancle">
+			<input type="button" value="취소" class="btn btnList">
 			<input type="button" value="등록" class="btn btnQnaInsertR">
 		</div>
 		

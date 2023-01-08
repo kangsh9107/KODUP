@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <!-- CSS -->
-<link href="css/infoshare.css" rel="stylesheet">
+<link href="css/freetalking.css" rel="stylesheet">
 <!-- JS -->
-<script defer src="js/infoshare.js"></script>
-<title>infoshare/infoshare.jsp</title>
+<script defer src="js/freetalking.js"></script>
+<title>freetalking/freetalking.jsp</title>
 </head>
 <body>
 	<!-- CONTENT -->
@@ -19,8 +19,8 @@
 			<div class="col-md-12" style="padding-left: 10px; padding-right: 10px;">
 				<div class="list-group">
 					<label class="list-group-item list-group-item-action" id="index_board_boardtype">
-						정보공유
-						<img id="index_boardtype_background" src="images/index_boardtype_background1.png">
+						커뮤니티
+						<img id="index_boardtype_background" src="images/index_boardtype_background2.png">
 					</label>
 				</div>
 			</div>
@@ -31,16 +31,20 @@
 			<div class="row">
 				<div class="col-md-12" style="padding-left: 10px; padding-right: 10px;">
 					<!-- INSERT -->
-					<input type="button" class="btn btnInfoshareInsert" value="&#xf304; 작성하기" style="font-family: FontAwesome; float: left;">
+					<input type="button" class="btn btnFreetalkingInsert" value="&#xf304; 작성하기" style="font-family: FontAwesome; float: left;">
 					<!-- HORSEHEAD -->
-					<input type="radio" onclick="runInfoshare()" class="btn-check" name="horsehead_radio" id="horsehead_radio1">
-					<label for="horsehead_radio1">팁</label>
-					<input type="radio" onclick="runInfoshare()" class="btn-check" name="horsehead_radio" id="horsehead_radio2">
-					<label for="horsehead_radio2">리뷰</label>
-					<input type="radio" onclick="runInfoshare()" class="btn-check" name="horsehead_radio" id="horsehead_radio3">
-					<label for="horsehead_radio3">기타</label>
-					<input type="radio" onclick="runInfoshare()" class="btn-check" name="horsehead_radio" id="horsehead_radio4" checked>
-					<label for="horsehead_radio4">전체</label>
+					<input type="radio" onclick="runFreetalking()" class="btn-check" name="horsehead_radio" id="horsehead_radio1">
+					<label for="horsehead_radio1">스포츠</label>
+					<input type="radio" onclick="runFreetalking()" class="btn-check" name="horsehead_radio" id="horsehead_radio2">
+					<label for="horsehead_radio2">게임</label>
+					<input type="radio" onclick="runFreetalking()" class="btn-check" name="horsehead_radio" id="horsehead_radio3">
+					<label for="horsehead_radio3">일상</label>
+					<input type="radio" onclick="runFreetalking()" class="btn-check" name="horsehead_radio" id="horsehead_radio4">
+					<label for="horsehead_radio4">연예</label>
+					<input type="radio" onclick="runFreetalking()" class="btn-check" name="horsehead_radio" id="horsehead_radio5">
+					<label for="horsehead_radio5">기타</label>
+					<input type="radio" onclick="runFreetalking()" class="btn-check" name="horsehead_radio" id="horsehead_radio6" checked>
+					<label for="horsehead_radio6">전체</label>
 					<!-- SORT -->
 					<select name="sort" class="form-select" aria-label="Default select example">
 						<option value="1" selected>최신순</option>
@@ -58,7 +62,7 @@
 					<input type="button" class="btn btnRefresh" value="&#xf021;" style="font-family: FontAwesome; float: left; padding: 0; margin-left: -12px;">
 					<!-- SEARCH BOX -->
 					<button type="button" class="btn btnSearch"><i class="fas fa-search"></i></button>
-					<input type="search" name="findStr" class="inputSearch" placeholder="정보공유 내에서 검색" autocomplete="off">
+					<input type="search" name="findStr" class="inputSearch" placeholder="커뮤니티 내에서 검색" autocomplete="off">
 					<input type="search" class="inputSearchTemp">
 					<!-- MOVE -->
 					<label style="float: right; padding: 0 0 0 10px;">
@@ -80,33 +84,33 @@
 				<li class="list-group-item" style="padding: 10px 0 10px 0;">
 					<a href="#" class="text-decoration-none">
 						<img id="index_profile" src="images/index_default.png">
-						<span id="index_nickname">운체조교</span>
+						<span id="index_nickname">고금솔</span>
 					</a>
-					<span id="index_time">· 4일 전</span>
+					<span id="index_time">· 22시간 전</span>
 					<div style="float: right;">
 						<i class="fas fa-circle-check" style="color: #555; font-size: 0.9rem;"></i>
 					</div>
 					<br/>
 					<a href="#" class="text-decoration-none">
-						<span id="index_doc">프로그래밍 언어 별 채용공고 통계</span>
+						<span id="index_doc">혹시 최근(2년) 취업하신 분들 초봉이 어떻게 되세요?</span>
 					</a>
 					<br/>
 					<div style="float: left;">
 						<!-- HORSEHEAD -->
-						<label id="board_horsehead">팁</label>
+						<label id="board_horsehead">일상</label>
 						<!-- HASHTAG -->
-						<c:forTokens var="list" items="#C++,#PYTHON,#REACT" delims=",">
+						<c:forTokens var="list" items="#연봉,#취업,#야근" delims=",">
 							<a href="#" onclick="return false" class="board_list_hashtag" style="font-size: 0.8rem; color: #555; margin-left: 3px;">${list }</a>
 						</c:forTokens>
 					</div>
 					<!-- VIEW & THUMB & REPL -->
 					<div style="float: right;">
 						<img id="index_viewcount" src="images/index_viewcount.png">
-						<span id="index_viewcount_sum">3838</span>
+						<span id="index_viewcount_sum">777</span>
 						<img id="index_updown" src="images/index_updown.png">
-						<span id="index_updown_sum">57</span>
+						<span id="index_updown_sum">100</span>
 						<img id="index_repl" src="images/index_repl.png">
-						<span id="index_repl_sum">23</span>
+						<span id="index_repl_sum">30</span>
 					</div>
 				</li>
 			</c:forEach>
