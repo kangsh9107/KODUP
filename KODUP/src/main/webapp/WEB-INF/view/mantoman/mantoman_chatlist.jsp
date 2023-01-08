@@ -43,8 +43,8 @@ $('.mentor_profileImg').on('click',function() {
 });
 
 $('.clickSection').on('click', function() {
-	//$(".slide").load('/mantoman/mantoman_chatview'); 
-	$(".slide").load('/mantoman/chatting_test'); 
+	$(".slide").load('/mantoman/mantoman_chatview'); 
+	//$(".slide").load('/mantoman/chatting_test'); 
 });
 </script>
 </body>

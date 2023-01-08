@@ -217,43 +217,4 @@ body{
 	cursor:pointer;
 }
 
-/*--------------------mantoman_chatview.jsp(채팅방)----------------------*/
-
-
-#web_client{
-	width:87%;
-	margin:30px auto;
-	background-color:#B2C7D9;
-	border-radius:13px;
-	padding:20px;
-}
-#result{
-	width:87%;
-	height:380px;
-	box-sizing:border-box;
-	padding:20px;
-	overflow:auto;
-}
-#msg{
-	width:75%;
-	font-size:19px;
-	border-radius:8px;
-}
-#btnSend{
-	background-color:#FFEB33;
-	border-radius:5px;
-	border-color:#E8D73F;
-	font-size:17px;
-	margin-bottom:1px;
-}
-#msg2{
-	background-color:#FFEB33;
-	display:inline-block;
-	margin-top:10px; 
-	border-radius:5px;
-	padding:4px;
-	font-size:20px;
-	border:1px solid #E8D73F;
-	font-family: 'Single Day', cursive;
-}
 
