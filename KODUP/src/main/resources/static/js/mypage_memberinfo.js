@@ -8,13 +8,6 @@ $('.btnQuit').on('click', function(){
 	$('#m_section2').load('/board/mypage_memberinfo_quit');
 });
 
-//XX
-$('.btnQuit_Irreversible').on('click', function(){
-	alert("탈퇴완료");
-});
-
-
-
 
 //mypage_memberinfo_update (회원정보 수정) 
 $('.btnModify').on('click', function(){

@@ -97,7 +97,7 @@
 
 			<div class='mypage_member_profile_item'>
 				<span class='mm_text'>이름</span><span>고박사</span><br>
-				<span class='mm_text'>닉네임</span><span>고덥지박령</span><br>
+				<span class='mm_text'>닉네임</span><span>코덥지박냥</span><br>
 				<span class='mm_text'>이메일</span><span>where_am_i@kodup.kr</span><br>
 				<span class='mm_text'>나이</span><span>만 3세</span><br>
 				<span class='mm_text'>성별</span><span>알수없음</span>

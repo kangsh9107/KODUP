@@ -85,6 +85,56 @@
 </div>
  -->
  
+ <div id="mypage_mypixel">
+ 	<div class='mypage_mypixel_management'>
+ 		<div>
+			<span>픽셀관리</span>		
+ 		</div>
+ 		<div>
+			<span>보유픽셀</span>
+			<input type='text'>
+			<input type='button' value='충전'>	
+ 		</div>
+ 		<div>
+			<span>환전픽셀</span>
+			<input type='text'>
+			<input type='button' value='환전신청'> 		
+ 		</div>
+ 	</div>
+ 	<br>
+ 	<div class='mypage_mypixel_use'>
+ 		<div class='mypage_mypixel_use_box1'>
+			<span class='mypage_mypixel_use_text'>포인트 충전/환전 내역</span>	 		
+			<input type='button' value='충전'> 
+			<input type='button' value='환전'> 		
+ 		</div>
+ 		<div class='mypage_mypixel_use_box2'>
+ 			
+ 		</div>
+ 		
+ 	</div>
+ 	<div class='mypage_mypixel_page'>
+ 		<span class='mypage_mypixel_page_number'> 1 2 3 4 5</span>
+ 	</div>
+ </div>
+ 
+ 
+ 
+<!--  그리드 구현은 나중에...
+<div class="pixel-grid-container container1">
+	<div class="pixel-grid-item">100px</div>
+	<div class="pixel-grid-item">100px</div>
+	<div class="pixel-grid-item">100px</div>
+	<div class="pixel-grid-item">100px</div>
+	<div class="pixel-grid-item">100px</div>
+	<div class="pixel-grid-item">100px</div>
+	<div class="pixel-grid-item">100px</div>
+	<div class="pixel-grid-item">100px</div>
+</div> -->
+ 
+ 
+ 
+ 
  
 		 
 		 

@@ -30,8 +30,4 @@ $('.btnCertification').on('click', function(){
 });
 
 
-//mypage_corp_certification (기업인증)
-$('.btn_corp_certification').on('click', function(){
-	console.log("기업인증");
-	$('#m_section2').load('/board/mypage_corp_certification');
-});
+
