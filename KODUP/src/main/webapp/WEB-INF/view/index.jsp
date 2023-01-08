@@ -28,8 +28,8 @@
 <body>
 	<!-- NAV -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0 index_nav">
-		<div class="container" style="padding-right: 0;">
-			<div class="row" style="width: 100%;">
+		<div class="container index_hamburg_wrap" style="padding-right: 0;">
+			<div class="row index_nav_warp" style="width: 100%;">
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -46,25 +46,25 @@
 				       			<a class="nav-link active non-click btnQna" aria-current="page" href="#">QnA</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click" aria-current="page" href="#">정보공유</a>
+				       			<a class="nav-link active non-click btnInfoshare" aria-current="page" href="#">정보공유</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click" aria-current="page" href="#">커뮤니티</a>
+				       			<a class="nav-link active non-click btnFreetalking" aria-current="page" href="#">커뮤니티</a>
 				       		</li>
 				       		<li class="nav-item">
 				       			<a class="nav-link active non-click mansearch" aria-current="page" href="#">구인</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click" aria-current="page" href="#">구직</a>
+				       			<a class="nav-link active non-click btnJobsearch" aria-current="page" href="#">구직</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click" aria-current="page" href="#">공지사항</a>
+				       			<a class="nav-link active non-click btnNotification" aria-current="page" href="#">공지사항</a>
 				       		</li>
 				       	</ul>
 			       	</div>
 			       	<div class="col-md-2" style="padding-right: 3px;">
-			            <div class="navbar-nav ms-auto p-4 p-lg-0" style="float: right;">
-			                <div class="nav-item dropdown">
+			            <div class="navbar-nav ms-auto p-4 p-lg-0 index_dropdown_wrap_wrap" style="float: right; padding: 0 !important;">
+			                <div class="nav-item dropdown index_dropdown_wrap">
 			                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="padding: 4px; margin-right: 10px;">
 			                    	<img src="images/index_default.png" class="d-inline-block align-text-top" style="width: 30px; height: 30px; border-radius: 50%;">
 			                    </a>

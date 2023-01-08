@@ -1,5 +1,5 @@
 /**
- * qna.jsp
+ * jobsearch.jsp
  */
 
 /***** 강수형 *****/
@@ -17,12 +17,12 @@ $(document).ready(function () {
 	});
 });
 
-/***** QNA INSERT *****/
-$('.btnQnaInsert').on('click', function() {
-	$('#center').load('/qna/qna_insert');
+/***** JOBSEARCH INSERT *****/
+$('.btnJobsearchInsert').on('click', function() {
+	$('#center').load('/jobsearch/jobsearch_insert');
 });
 
-/***** QNA SEARCH *****/
+/***** JOBSEARCH SEARCH *****/
 $('.inputSearch').keyup(function(evnet) {
 	if(event.keyCode == 13) {
 		$('.btnSearch').click();
@@ -38,6 +38,6 @@ $('.btnSearch').click(function() {
 
 
 /***** 조성호 *****/
-function qna_view(){
-	 $('#center').load('/qna/qna_view');
+function jobsearch_view(){
+	 $('#center').load('/jobsearch/jobsearch_view');
 }

@@ -57,13 +57,13 @@
 	box-shadow: 0 0 0 0 !important;
 }
 
-.btnQnaInsertR, .btnList {
+.btnNotificationInsertR, .btnList {
 	color: white;
 	background-color: #bb2649;
 	font-size: 0.9rem;
 }
 
-.btnQnaInsertR:hover, .btnList:hover {
+.btnNotificationInsertR:hover, .btnList:hover {
 	color: #bb2649;
 	background-color: white;
 	border: 1px solid #bb2649;
@@ -82,13 +82,13 @@
 }
 
 /***** UPDATE *****/
-.btnQnaUpdateR {
+.btnNotificationUpdateR {
 	color: white;
 	background-color: #bb2649;
 	font-size: 0.9rem;
 }
 
-.btnQnaUpdateR:hover {
+.btnNotificationUpdateR:hover {
 	color: #bb2649;
 	background-color: white;
 	border: 1px solid #bb2649;
@@ -154,7 +154,7 @@
 	background-color: #e7edf0;
 }
 
-.board_search_form .btnQnaInsert {
+.board_search_form .btnNotificationInsert {
 	font-size: 0.9rem;
 	width: 93px;
 	height: 36px;
@@ -178,7 +178,7 @@
 	box-shadow: 0 0 0 0 !important;
 }
 
-.board_search_form .btnQnaInsert:hover {
+.board_search_form .btnNotificationInsert:hover {
 	background-color: #ff3363;
 }
 

@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <!-- CSS -->
-<link href="css/qna.css" rel="stylesheet">
+<link href="css/infoshare.css" rel="stylesheet">
 <!-- JS -->
-<script defer src="js/qna.js"></script>
-<title>qna/qna.jsp</title>
+<script defer src="js/infoshare.js"></script>
+<title>infoshare/infoshare.jsp</title>
 </head>
 <body>
 	<!-- CONTENT -->
@@ -19,8 +19,8 @@
 			<div class="col-md-12" style="padding-left: 10px; padding-right: 10px;">
 				<div class="list-group">
 					<label class="list-group-item list-group-item-action" id="index_board_boardtype">
-						QnA
-						<img id="index_boardtype_background" src="images/index_boardtype_background0.png">
+						정보공유
+						<img id="index_boardtype_background" src="images/index_boardtype_background1.png">
 					</label>
 				</div>
 			</div>
@@ -31,15 +31,15 @@
 			<div class="row">
 				<div class="col-md-12" style="padding-left: 10px; padding-right: 10px;">
 					<!-- INSERT -->
-					<input type="button" class="btn btnQnaInsert" value="&#xf304; 작성하기" style="font-family: FontAwesome; float: left;">
+					<input type="button" class="btn btnInfoshareInsert" value="&#xf304; 작성하기" style="font-family: FontAwesome; float: left;">
 					<!-- HORSEHEAD -->
-					<input type="radio" onclick="runQna()" class="btn-check" name="horsehead_radio" id="horsehead_radio1">
-					<label for="horsehead_radio1">기술</label>
-					<input type="radio" onclick="runQna()" class="btn-check" name="horsehead_radio" id="horsehead_radio2">
-					<label for="horsehead_radio2">커리어</label>
-					<input type="radio" onclick="runQna()" class="btn-check" name="horsehead_radio" id="horsehead_radio3">
+					<input type="radio" onclick="runInfoshare()" class="btn-check" name="horsehead_radio" id="horsehead_radio1">
+					<label for="horsehead_radio1">팁</label>
+					<input type="radio" onclick="runInfoshare()" class="btn-check" name="horsehead_radio" id="horsehead_radio2">
+					<label for="horsehead_radio2">리뷰</label>
+					<input type="radio" onclick="runInfoshare()" class="btn-check" name="horsehead_radio" id="horsehead_radio3">
 					<label for="horsehead_radio3">기타</label>
-					<input type="radio" onclick="runQna()" class="btn-check" name="horsehead_radio" id="horsehead_radio4" checked>
+					<input type="radio" onclick="runInfoshare()" class="btn-check" name="horsehead_radio" id="horsehead_radio4" checked>
 					<label for="horsehead_radio4">전체</label>
 					<!-- SORT -->
 					<select name="sort" class="form-select" aria-label="Default select example">
@@ -58,7 +58,7 @@
 					<input type="button" class="btn btnRefresh" value="&#xf021;" style="font-family: FontAwesome; float: left; padding: 0; margin-left: -12px;">
 					<!-- SEARCH BOX -->
 					<button type="button" class="btn btnSearch"><i class="fas fa-search"></i></button>
-					<input type="search" name="findStr" class="inputSearch" placeholder="QnA 내에서 검색" autocomplete="off">
+					<input type="search" name="findStr" class="inputSearch" placeholder="정보공유 내에서 검색" autocomplete="off">
 					<input type="search" class="inputSearchTemp">
 					<!-- MOVE -->
 					<label style="float: right; padding: 0 0 0 10px;">
@@ -80,33 +80,33 @@
 				<li class="list-group-item" style="padding: 10px 0 10px 0;">
 					<a href="#" class="text-decoration-none">
 						<img id="index_profile" src="images/index_default.png">
-						<span id="index_nickname">딥러닝악마</span>
+						<span id="index_nickname">운체조교</span>
 					</a>
-					<span id="index_time">· 5분 전</span>
+					<span id="index_time">· 4일 전</span>
 					<div style="float: right;">
 						<i class="fas fa-circle-check" style="color: #555; font-size: 0.9rem;"></i>
 					</div>
 					<br/>
 					<a href="#" class="text-decoration-none">
-						<span id="index_doc">초보자를 위한 오픈 소스 시작하기</span>
+						<span id="index_doc">프로그래밍 언어 별 채용공고 통계</span>
 					</a>
 					<br/>
 					<div style="float: left;">
 						<!-- HORSEHEAD -->
-						<label id="board_horsehead">기술</label>
+						<label id="board_horsehead">팁</label>
 						<!-- HASHTAG -->
-						<c:forTokens var="list" items="#JAVA,#SPRING,#JAVASCRIPT" delims=",">
+						<c:forTokens var="list" items="#C++,#PYTHON,#REACT" delims=",">
 							<a href="#" onclick="return false" class="board_list_hashtag" style="font-size: 0.8rem; color: #555; margin-left: 3px;">${list }</a>
 						</c:forTokens>
 					</div>
 					<!-- VIEW & THUMB & REPL -->
 					<div style="float: right;">
 						<img id="index_viewcount" src="images/index_viewcount.png">
-						<span id="index_viewcount_sum">247</span>
+						<span id="index_viewcount_sum">3838</span>
 						<img id="index_updown" src="images/index_updown.png">
-						<span id="index_updown_sum">5</span>
+						<span id="index_updown_sum">57</span>
 						<img id="index_repl" src="images/index_repl.png">
-						<span id="index_repl_sum">7</span>
+						<span id="index_repl_sum">23</span>
 					</div>
 				</li>
 			</c:forEach>

@@ -9,9 +9,86 @@
 @import url('https://fonts.googleapis.com/css?family=Numans'); /* font-family: 'Numans', sans-serif; */
 
 /***** MEDIA *****/
+@media all and (max-width: 992px) {
+	.index_dropdown_wrap_wrap {
+		margin-right: -133px;
+	}
+	
+	.index_logo_a {
+		justify-content: center;
+		margin: 5px 0 0 188px;
+		padding: 5px 0 0 188px !important;
+	}
+	
+	.index_nav_warp {
+		text-align: center;
+	}
+	
+	#navbarSupportedContent {
+		padding: 0 0 0 165px !important;
+	}
+}
+
 @media all and (max-width: 768px) {
+	.index_dropdown_wrap_wrap {
+		margin-right: 222px !important;
+	}
+	
+	#navbarSupportedContent {
+		padding: 0 !important;
+		margin: 0 0 0 -7px !important;
+	}
+	
+	.index_logo_a {
+		justify-content: center;
+		margin: 0;
+	}
+	
+	.index_nav_warp {
+		text-align: center;
+	}
+	
 	.index_footer {
 		margin-top: 165px !important;
+	}
+}
+
+@media all and (max-width: 576px) {
+	.index_dropdown_wrap_wrap {
+		margin-right: 77px !important;
+	}
+	
+	.index_hamburg_wrap {
+		margin-right: -7px !important;
+	}
+	
+	.index_logo_a {
+		justify-content: center;
+		margin: 5px 0 0 0;
+	}
+	
+	.index_nav_warp {
+		text-align: center;
+	}
+	
+	.index_dropdown_wrap {
+		margin: -5px 0 0 -140px;
+	}
+	
+	.index_btnLogin {
+		margin: 0 145px 5px 0 !important;
+	}
+}
+
+@media all and (max-width: 575px) {
+	.index_dropdown_wrap_wrap {
+		margin-right: 13.3680vw !important;
+	}
+}
+
+@media all and (max-width: 390px) {
+	.index_dropdown_wrap_wrap {
+		margin-right: 3px !important;
 	}
 }
 
@@ -58,8 +135,7 @@
 }
 
 #index_dropdown a {
-	font-family: 'BMHanna11yrs';
-	font-size: 1rem;
+	font-size: 0.9rem;
 	color: white;
 }
 
@@ -142,7 +218,7 @@
 }
 
 /***** MIDDLE_CENTER *****/
-#index_main_boardtype, #index_qna_boardtype {
+#index_main_boardtype, #index_board_boardtype {
 	padding: 20px;
 	font-family: 'BMHanna11yrs';
 	font-size: 1.2rem;
@@ -193,6 +269,16 @@
 #index_time {
 	font-size: 0.9rem;
 	font-family: 'BMHannaAir';
+}
+
+#index_viewcount {
+	width: 20px;
+	height: 20px;
+	vertical-align: text-top;
+}
+
+#index_viewcount_sum {
+	vertical-align: text-bottom;
 }
 
 #index_updown {

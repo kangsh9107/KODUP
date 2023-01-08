@@ -1,5 +1,5 @@
 /**
- * qna.jsp
+ * infoshare.jsp
  */
 
 /***** 강수형 *****/
@@ -17,12 +17,12 @@ $(document).ready(function () {
 	});
 });
 
-/***** QNA INSERT *****/
-$('.btnQnaInsert').on('click', function() {
-	$('#center').load('/qna/qna_insert');
+/***** INFOSHARE INSERT *****/
+$('.btnInfoshareInsert').on('click', function() {
+	$('#center').load('/infoshare/infoshare_insert');
 });
 
-/***** QNA SEARCH *****/
+/***** INFOSHARE SEARCH *****/
 $('.inputSearch').keyup(function(evnet) {
 	if(event.keyCode == 13) {
 		$('.btnSearch').click();
@@ -37,7 +37,7 @@ $('.btnSearch').click(function() {
 
 
 
-/***** 조성호 *****/
-function qna_view(){
-	 $('#center').load('/qna/qna_view');
+/*****조성호 *****/
+function infoshare_view(){
+	 $('#center').load('/infoshare/infoshare_view');
 }

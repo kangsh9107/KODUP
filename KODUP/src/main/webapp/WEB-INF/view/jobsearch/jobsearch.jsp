@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <!-- CSS -->
-<link href="css/qna.css" rel="stylesheet">
+<link href="css/jobsearch.css" rel="stylesheet">
 <!-- JS -->
-<script defer src="js/qna.js"></script>
-<title>qna/qna.jsp</title>
+<script defer src="js/jobsearch.js"></script>
+<title>jobsearch/jobsearch.jsp</title>
 </head>
 <body>
 	<!-- CONTENT -->
@@ -19,8 +19,8 @@
 			<div class="col-md-12" style="padding-left: 10px; padding-right: 10px;">
 				<div class="list-group">
 					<label class="list-group-item list-group-item-action" id="index_board_boardtype">
-						QnA
-						<img id="index_boardtype_background" src="images/index_boardtype_background0.png">
+						구직
+						<img id="index_boardtype_background" src="images/index_boardtype_background3.png">
 					</label>
 				</div>
 			</div>
@@ -31,16 +31,18 @@
 			<div class="row">
 				<div class="col-md-12" style="padding-left: 10px; padding-right: 10px;">
 					<!-- INSERT -->
-					<input type="button" class="btn btnQnaInsert" value="&#xf304; 작성하기" style="font-family: FontAwesome; float: left;">
+					<input type="button" class="btn btnJobsearchInsert" value="&#xf304; 작성하기" style="font-family: FontAwesome; float: left;">
 					<!-- HORSEHEAD -->
-					<input type="radio" onclick="runQna()" class="btn-check" name="horsehead_radio" id="horsehead_radio1">
-					<label for="horsehead_radio1">기술</label>
-					<input type="radio" onclick="runQna()" class="btn-check" name="horsehead_radio" id="horsehead_radio2">
-					<label for="horsehead_radio2">커리어</label>
-					<input type="radio" onclick="runQna()" class="btn-check" name="horsehead_radio" id="horsehead_radio3">
-					<label for="horsehead_radio3">기타</label>
-					<input type="radio" onclick="runQna()" class="btn-check" name="horsehead_radio" id="horsehead_radio4" checked>
-					<label for="horsehead_radio4">전체</label>
+					<input type="radio" onclick="runJobsearch()" class="btn-check" name="horsehead_radio" id="horsehead_radio1">
+					<label for="horsehead_radio1">백엔드</label>
+					<input type="radio" onclick="runJobsearch()" class="btn-check" name="horsehead_radio" id="horsehead_radio2">
+					<label for="horsehead_radio2">프론트</label>
+					<input type="radio" onclick="runJobsearch()" class="btn-check" name="horsehead_radio" id="horsehead_radio3">
+					<label for="horsehead_radio3">풀스택</label>
+					<input type="radio" onclick="runJobsearch()" class="btn-check" name="horsehead_radio" id="horsehead_radio4">
+					<label for="horsehead_radio4">기타</label>
+					<input type="radio" onclick="runJobsearch()" class="btn-check" name="horsehead_radio" id="horsehead_radio5" checked>
+					<label for="horsehead_radio5">전체</label>
 					<!-- SORT -->
 					<select name="sort" class="form-select" aria-label="Default select example">
 						<option value="1" selected>최신순</option>
@@ -58,7 +60,7 @@
 					<input type="button" class="btn btnRefresh" value="&#xf021;" style="font-family: FontAwesome; float: left; padding: 0; margin-left: -12px;">
 					<!-- SEARCH BOX -->
 					<button type="button" class="btn btnSearch"><i class="fas fa-search"></i></button>
-					<input type="search" name="findStr" class="inputSearch" placeholder="QnA 내에서 검색" autocomplete="off">
+					<input type="search" name="findStr" class="inputSearch" placeholder="구직 내에서 검색" autocomplete="off">
 					<input type="search" class="inputSearchTemp">
 					<!-- MOVE -->
 					<label style="float: right; padding: 0 0 0 10px;">
@@ -80,33 +82,33 @@
 				<li class="list-group-item" style="padding: 10px 0 10px 0;">
 					<a href="#" class="text-decoration-none">
 						<img id="index_profile" src="images/index_default.png">
-						<span id="index_nickname">딥러닝악마</span>
+						<span id="index_nickname">민트초코맛</span>
 					</a>
-					<span id="index_time">· 5분 전</span>
+					<span id="index_time">· 1일 전</span>
 					<div style="float: right;">
 						<i class="fas fa-circle-check" style="color: #555; font-size: 0.9rem;"></i>
 					</div>
 					<br/>
 					<a href="#" class="text-decoration-none">
-						<span id="index_doc">초보자를 위한 오픈 소스 시작하기</span>
+						<span id="index_doc">개발자 3명 프로젝트 찾습니다.</span>
 					</a>
 					<br/>
 					<div style="float: left;">
 						<!-- HORSEHEAD -->
-						<label id="board_horsehead">기술</label>
+						<label id="board_horsehead">풀스택</label>
 						<!-- HASHTAG -->
-						<c:forTokens var="list" items="#JAVA,#SPRING,#JAVASCRIPT" delims=",">
+						<c:forTokens var="list" items="#REACT,#NODE.JS" delims=",">
 							<a href="#" onclick="return false" class="board_list_hashtag" style="font-size: 0.8rem; color: #555; margin-left: 3px;">${list }</a>
 						</c:forTokens>
 					</div>
 					<!-- VIEW & THUMB & REPL -->
 					<div style="float: right;">
 						<img id="index_viewcount" src="images/index_viewcount.png">
-						<span id="index_viewcount_sum">247</span>
+						<span id="index_viewcount_sum">121</span>
 						<img id="index_updown" src="images/index_updown.png">
-						<span id="index_updown_sum">5</span>
+						<span id="index_updown_sum">0</span>
 						<img id="index_repl" src="images/index_repl.png">
-						<span id="index_repl_sum">7</span>
+						<span id="index_repl_sum">2</span>
 					</div>
 				</li>
 			</c:forEach>

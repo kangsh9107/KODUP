@@ -5,18 +5,20 @@
 <head>
 <meta charset="UTF-8">
 <!-- CSS -->
-<link href="css/qna.css" rel="stylesheet">
-<title>qna/qna_update.jsp</title>
+<link href="css/notification.css" rel="stylesheet">
+<!-- JS -->
+<script defer src="js/notification.js"></script>
+<title>notification/notification_update.jsp</title>
 </head>
 <body>
 	<!-- BOARDTYPE -->
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12 board_header">
-				<span>궁금증 해결하기</span>
+				<span>공지사항</span>
 			</div>
 			<div class="col-md-12 board_menual">
-				<span>a001</span> 님 KODUP에서 최고의 개발자들과 함께 궁금증을 해결하세요.
+				<span>MASTER</span> 님 오늘도 즐거운 하루되세요.
 			</div>
 		</div>
 	</div>
@@ -26,12 +28,11 @@
 		<div class="input-group form-group">
 			<span class="input-group-text">말머리</span>
 			<br/>
-			<select name="qna_horsehead" class="form-select" aria-label="Default select example">
+			<select name="notification_horsehead" class="form-select" aria-label="Default select example">
 				<option selected>말머리를 선택해주세요.</option>
-				<option value="1">기술</option>
-				<option value="2">커리어</option>
-				<option value="3">기타</option>
-				<option value="4">전체</option>
+				<option value="1">공지사항</option>
+				<option value="2">이벤트</option>
+				<option value="3">전체</option>
 			</select>
 		</div>
 		<div class="input-group form-group">
@@ -49,7 +50,7 @@
 		</div>
 		<div class="input-group form-group" style="justify-content: end;">
 			<input type="button" value="취소" class="btn btnCancle">
-			<input type="button" value="수정" class="btn btnQnaUpdateR">
+			<input type="button" value="수정" class="btn btnNotificationUpdateR">
 		</div>
 		
 		<!-- HIDDEN -->

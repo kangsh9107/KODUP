@@ -1,5 +1,5 @@
 /**
- * qna.jsp
+ * notification.jsp
  */
 
 /***** 강수형 *****/
@@ -17,12 +17,12 @@ $(document).ready(function () {
 	});
 });
 
-/***** QNA INSERT *****/
-$('.btnQnaInsert').on('click', function() {
-	$('#center').load('/qna/qna_insert');
+/***** NOTIFICATION INSERT *****/
+$('.btnNotificationInsert').on('click', function() {
+	$('#center').load('/notification/notification_insert');
 });
 
-/***** QNA SEARCH *****/
+/***** NOTIFICATION SEARCH *****/
 $('.inputSearch').keyup(function(evnet) {
 	if(event.keyCode == 13) {
 		$('.btnSearch').click();
@@ -38,6 +38,6 @@ $('.btnSearch').click(function() {
 
 
 /***** 조성호 *****/
-function qna_view(){
-	 $('#center').load('/qna/qna_view');
+function notification_view(){
+	 $('#center').load('/notification/notification_view');
 }
