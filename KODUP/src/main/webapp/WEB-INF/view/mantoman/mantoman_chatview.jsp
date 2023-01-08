@@ -81,7 +81,6 @@ body{
 #chatt #btnSend{
 	width: 54px;
 	height: 35px;
-	background-color:#bb2649;
 	border-radius:4px;
 }
 
