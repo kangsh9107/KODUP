@@ -62,6 +62,7 @@ div.mansearch_findstr_zone>.form-control {
     text-align:right;
     margin-bottom:10px;
 }
+
 #index_corpname {
 	color: black;
 	font-size: 0.9rem;
@@ -78,6 +79,7 @@ div.mansearch_findstr_zone>.form-control {
 	background-color:#bb2642;
 	color:white;
 	vertical-align:middle;
+	line-height:17px;
 }
 #job_index{
 	padding:0 10px;
@@ -90,6 +92,7 @@ div.mansearch_findstr_zone>.form-control {
 	background-color:#bb2642;
 	color:white;
 	vertical-align:middle;
+	line-height:17px;
 }
 span#work_start{
 	font-size:0.8rem;
@@ -171,12 +174,11 @@ img.view_corp_logo{
 	padding:0;
 }
 .mansearch_view_element .element_left_title{
-	width:37%;
+	width:30%;
 	padding:0;
 	font-weight:bold;
 }
 .mansearch_view_element .element_left_doc{
-	width:60%;
 	padding:0;
 }
 .mansearch_view_element .element_right{
@@ -187,12 +189,11 @@ img.view_corp_logo{
 	padding:0;
 }
 .mansearch_view_element .element_right_title{
-	width:37%;
+	width:30%;
 	padding:0;
 	font-weight:bold;
 }
 .mansearch_view_element .element_right_doc{
-	width:60%;
 	padding:0;
 }
 div.mansearch_view_doc{
@@ -215,4 +216,189 @@ div.mansearch_view_manager{
 div.mansearch_view_manager .col-md-2,.col-md-4{
 	padding:0;
 	margin:0;
+}
+button.mansearch_update,.mansearch_delete{
+	width:auto;
+	height:38px;
+	padding:6px 12px;
+	margin-bottom:10px;
+	background-color:#bb2642;
+	color:white;
+	border:2px solid #bb2642;
+	border-radius:5px;
+}
+button.mansearch_update:hover,.mansearch_delete:hover{
+	background-color:#871b30;
+}
+div.premium_review_title{
+	margin-top:8%;
+}
+div.premium_review_title .col{
+	margin:0;
+	padding:0;
+}
+
+#pre_review_explane div {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  
+}
+
+.arrow_box {
+  margin-top:12px;
+  display: none;
+  position: absolute;
+  padding: 8px;
+  left: 0;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  background: #333;
+  color: #fff;
+  font-size: 14px;
+}
+
+.arrow_box:after {
+  position: absolute;
+  bottom: 100%;
+  left: 10%;
+  width: 0;
+  height: 0;
+  margin-left: -10px;
+  margin-top: 20px;
+  border: solid transparent;
+  border-color: rgba(51, 51, 51, 0);
+  border-bottom-color: #333;
+  border-width: 10px;
+  pointer-events: none;
+  content: ' ';
+}
+span.arrow{
+	margin-bottom:30px;
+}
+span.arrow:hover + p.arrow_box {
+  display: block;
+}
+@media ( max-width :470px) {
+	.col>label>h5{
+		font-size:14pt;
+	}
+}
+@media ( max-width :395px) {
+	.col>label>h5{
+		font-size:12pt;
+	}
+}
+.premium_review_wrap{
+	padding:0;
+}
+img#premium_review_writer_icon{
+	vertical-align:middle;
+	width:30px;
+	height:30px;
+}
+.premium_review_writer>span{
+	display:inline-block;
+	margin:3px;
+	color:#686a6d;
+}
+.premium_review_doc_wrap{
+	position:relative;
+} 
+.premium_review_doc{
+	filter: blur(3px);
+	z-index: -500;
+}
+.premium_review_doc_wrap>.doc_blind_wrap{
+	position:absolute;
+	top:40%;
+	left:33%;
+	z-index:500;
+}
+@media ( max-width :993px) {
+	.premium_review_doc_wrap>.doc_blind_wrap{
+	top:40%;
+	left:23%;
+	}
+}
+@media ( max-width :395px) {
+	.premium_review_doc_wrap>.doc_blind_wrap{
+	top:40%;
+	left:12%;
+	}
+}
+button.premium_review_payment{
+	width:auto;
+	height:38px;
+	padding:5px;
+	background-color:#bb2642;
+	color:white;
+	border:2px solid #bb2642;
+	border-radius:5px;
+	font:14px;
+}
+button.premium_review_payment:hover{
+	background-color:#871b30;
+}
+
+/*mansearch_insert.jsp*/
+.mansearch_insert_title{
+	margin-bottom:30px;
+}
+.corp_enroll_step{
+	padding:16px;
+	width:auto;
+	height:auto;
+	background-color:#e7edf0;
+	border:1px solid #b5babd;
+	border-radius:5px;
+	font-size:14px;
+	margin-bottom:30px;
+	
+}
+img.corp_enroll_step_icon{
+	width:16px;
+	height:16px;
+	margin-top: -6px;
+}
+label.corp_enroll_step_top{
+	font-weight:bold;
+	margin-bottom:10px;	
+}
+.corp_logo_insert{
+	margin-bottom:20px;
+	display:none;
+}
+.info_label{
+	font-size:16px;
+ 	font-weight:bold;	
+ 	margin-bottom:8px;
+}
+.corp_info>div,.manager_info>div,.work_info>div{
+	padding:20px;
+}
+input.mansearch_board_insert_form input:focus {
+	outline: 0 0 0 0 !important;
+	box-shadow: 0 0 0 0 !important;
+}
+.mansearch_board_insertR{
+	margin-right:20px;
+	width:100px;
+	height:40px;
+	background-color:#bb2642;
+	color:white;
+	border:1px solid #bb2642;
+	border-radius:5px;
+}
+.mansearch_board_cancel{
+	width:100px;
+	height:40px;
+	background-color:#bb2642;
+	color:white;
+	border:1px solid #bb2642;
+	border-radius:5px;
+}
+.mansearch_board_cancel:hover,.mansearch_board_insertR:hover{
+	background-color:#871b30;
 }
