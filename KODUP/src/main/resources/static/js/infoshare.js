@@ -15,6 +15,16 @@ $(document).ready(function () {
 			air: []
 		}
 	});
+	$('.view_summernote').summernote({
+	    placeholder: '내용을 입력해주세요.',
+	    height: 100,
+	    maxHeight: 100,
+	    popover: { 
+	        image: [],
+	        link: [],
+	        air: []
+	    }
+	});
 });
 
 /***** INFOSHARE INSERT *****/

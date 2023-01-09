@@ -12,9 +12,15 @@
 	min-height: 300px;
 	background: #eee;
 }
+
+#freetalking_view{
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+	font-weight: 600;
+	color: #111827;
+}
 </style>
 </head>
-
 <body>
 <form id="freetalking_view">
 	<!-- boardtype + / + horsehead -->

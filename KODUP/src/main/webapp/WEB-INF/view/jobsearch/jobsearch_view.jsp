@@ -11,6 +11,24 @@
 #jobsearch_view #jobsearch_view_doc {
 	min-height: 300px;
 	background: #eee;
+	
+}
+#jobsearch_view {
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+	font-weight: 600;
+	color: #111827;
+}
+#jobsearch_view #jobsearch_view_btnzone>.btnUpdate,.btnDeleteR,.btnList{
+	width: 50px;
+	height: 30px;
+	color: white;
+	background-color: #bb2649;
+	border : 0px;
+}
+#jobsearch_view #jobsearch_view_btnzone>.btnUpdate:hover,.btnDeleteR:hover,.btnList:hover{
+	background-color: #ff3363;
+	color: white;
 }
 </style>
 </head>
@@ -75,7 +93,11 @@
 		<a href="#" style="text-decoration : none; color:#bb2649;">#7년차</a>
 	</div>
 	<!-- (목록,수정,삭제)btnzone -->
-	<div style="text-align:right;">
+	<div style="text-align:right; width: 50px;
+	height: 30px;
+	color: white;
+	background-color: #bb2649;
+	border : 0px;">
 		<input type="button" class="btnUpdate" value="수정">
 		<input type="button" class="btnDeleteR" value="삭제">
 		<input type="button" class="btnList" value="목록">
