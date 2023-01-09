@@ -22,10 +22,28 @@ nonClick.forEach((e) => {
 	e.addEventListener("click", handleClick);
 });
 
+$('.pixelbuy').on('click', function() {
+	nonClick.forEach((e) => {
+		e.classList.remove("click");
+	});
+});
+
+$('#btnMyprofile').on('click', function() {
+	nonClick.forEach((e) => {
+		e.classList.remove("click");
+	});
+});
+
+$('.btnMypage').on('click', function() {
+	nonClick.forEach((e) => {
+		e.classList.remove("click");
+	});
+});
+
 /***** MANTOMAN *****/
 $(document).ready(function() {
 	$(window).scroll(function() {
-		var position = $(window).scrollTop()+750; 
+		var position = $(window).scrollTop()+550; 
 		$(".btnMantoman").stop().animate({top:position+"px"},400);
 	});
 });
@@ -34,6 +52,12 @@ $(document).ready(function() {
 $('.index_btnLogin').on('click', function() {
 	$('#center').load('/login/login');
 });
+
+var cnt = 0;
+if(cnt == 0) {
+	cnt++;
+	window.Kakao.init("76fd5185be40793e6d0205f6710f85d0");
+}
 
 /***** QNA LIST *****/
 $('.btnQna').on('click', function() {
@@ -79,11 +103,6 @@ $('.btnNotification').on('click', function() {
 function runNotification() {
 	console.log("테스트");
 }
-
-/***** BACK TO LIST *****/
-$('.btnList').on('click', function() {
-	
-});
 
 
 

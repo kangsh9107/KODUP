@@ -1,0 +1,404 @@
+@charset "UTF-8";
+dd{
+	margin:0;
+}
+li.ListGroupItem{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+input.img-button {
+	display:inline-block;
+	width:25px;
+	height:25px;
+    background-image:url("/images/검색돋보기.png");
+   	background-size: cover;
+   	background-position:center;
+	background-repeat: no-repeat;
+    border: none;
+	cursor: pointer;
+}
+button.mansearch_insert{
+	width:93px;
+	height:38px;
+	padding:6px 12px;
+	margin-bottom:10px;
+	background-color:#bb2642;
+	color:white;
+	border:2px solid #bb2642;
+	border-radius:5px;
+}
+button.mansearch_insert:hover{
+	background-color:#871b30;
+}
+div.mansearch_title{
+	padding:5px 30px;
+	font-size:1rem;
+	display:inline-block;
+	border:2px solid #edf0ef;
+	border-radius:5px;
+	width:100%;
+	height:auto;
+	margin-bottom:30px;
+	background-color:#e7edf0;
+}
+
+div.mansearch_findstr_zone>.form-control {
+    display: inline-block;
+    width: 95%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .375rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    text-align:right;
+    margin-bottom:10px;
+}
+
+#index_corpname {
+	color: black;
+	font-size: 0.9rem;
+	font-family: 'BMHannaAir';
+}
+#task{
+	padding:0 10px;
+	display:inline-block;
+	text-align:center;
+	font-size:12px;
+	width:auto;
+	height:17px;
+	border-radius:14px;
+	background-color:#bb2642;
+	color:white;
+	vertical-align:middle;
+	line-height:17px;
+}
+#job_index{
+	padding:0 10px;
+	text-align:center;
+	display:inline-block;
+	font-size:12px;
+	width:auto;
+	height:17px;
+	border-radius:14px;
+	background-color:#bb2642;
+	color:white;
+	vertical-align:middle;
+	line-height:17px;
+}
+span#work_start{
+	font-size:0.8rem;
+	color:#6b7280;
+}
+span#deadline{
+	font-size:0.8rem;
+	color:#bb2642;
+}
+span#corp_location,#pay,#education_level,#required_carrer,#work_type{
+	display:inline-block;
+	margin-right:14px;
+	font-size:0.8rem;
+	color:#6b7280;
+}
+span#required_skill{
+	display:inline-block;
+	font-size:0.8rem;
+	color:#6b7280;
+}
+button.btnMove{
+	border:none;
+	background-color:white;
+}
+button.btnMove:hover{
+	color:#bb2642;
+}
+.dropdown_row .dropdown_content{
+	width:40vw;
+	height:20vh;
+}
+.dropdown_row .dropdown_content .form_select{
+	width:45%;
+	height:90%;
+	display:inline-block;
+	overflow-y:auto;
+	margin:10px;
+}
+/*mansearch_view.jsp*/
+#mansearch_datezone{
+	margin-top:5px;
+}
+span.deadline{
+	color:#374151;
+	font-size:0.9rem;
+}
+span.deadline_count{
+	color:#bb2642;
+	font-size:0.9rem;	
+}
+img.view_corp_logo{
+	width:40px;
+	height:40px;
+}
+.mansearch_view_subject{
+	height: 45px;
+	text-align:left;
+}
+.datepaylocation_area{
+	background-color:#f9fafb;
+	width:100%;
+	height:auto;
+	border-radius:5px;
+	margin:9px 9px 30px 9px;
+	padding:25px;
+}
+.datepaylocation_area dt,dd{
+	margin:5px;
+}
+.datepaylocation_area dd{
+	color:#4b5563;
+}
+.mansearch_view_element .element_left{
+	display:flex;
+	gap: 0 20px;
+	margin-right:8%; 
+	margin-bottom:5%; 
+	border-bottom:2px solid #d2d4d9;
+	padding:0;
+}
+.mansearch_view_element .element_left_title{
+	width:30%;
+	padding:0;
+	font-weight:bold;
+}
+.mansearch_view_element .element_left_doc{
+	padding:0;
+}
+.mansearch_view_element .element_right{
+	display:flex;
+	gap: 0 20px;
+	margin-bottom:5%; 
+	border-bottom:2px solid #d2d4d9;
+	padding:0;
+}
+.mansearch_view_element .element_right_title{
+	width:30%;
+	padding:0;
+	font-weight:bold;
+}
+.mansearch_view_element .element_right_doc{
+	padding:0;
+}
+div.mansearch_view_doc{
+	display:flex;
+	flex-wrap:wrap;
+	margin-bottom:3%;
+}
+div.mansearch_view_doc>pre{
+	display:inline-block;
+	font-family: '굴림';
+	white-space: pre-wrap;
+	margin-bottom:5%;
+}
+div.mansearch_view_manager{
+	padding:10px;
+	height:auto;
+	border-top:2px solid #d2d4d9;
+	border-bottom:2px solid #d2d4d9;	
+}
+div.mansearch_view_manager .col-md-2,.col-md-4{
+	padding:0;
+	margin:0;
+}
+button.mansearch_update,.mansearch_delete{
+	width:auto;
+	height:38px;
+	padding:6px 12px;
+	margin-bottom:10px;
+	background-color:#bb2642;
+	color:white;
+	border:2px solid #bb2642;
+	border-radius:5px;
+}
+button.mansearch_update:hover,.mansearch_delete:hover{
+	background-color:#871b30;
+}
+div.premium_review_title{
+	margin-top:8%;
+}
+div.premium_review_title .col{
+	margin:0;
+	padding:0;
+}
+
+#pre_review_explane div {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  
+}
+
+.arrow_box {
+  margin-top:12px;
+  display: none;
+  position: absolute;
+  padding: 8px;
+  left: 0;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  background: #333;
+  color: #fff;
+  font-size: 14px;
+}
+
+.arrow_box:after {
+  position: absolute;
+  bottom: 100%;
+  left: 10%;
+  width: 0;
+  height: 0;
+  margin-left: -10px;
+  margin-top: 20px;
+  border: solid transparent;
+  border-color: rgba(51, 51, 51, 0);
+  border-bottom-color: #333;
+  border-width: 10px;
+  pointer-events: none;
+  content: ' ';
+}
+span.arrow{
+	margin-bottom:30px;
+}
+span.arrow:hover + p.arrow_box {
+  display: block;
+}
+@media ( max-width :470px) {
+	.col>label>h5{
+		font-size:14pt;
+	}
+}
+@media ( max-width :395px) {
+	.col>label>h5{
+		font-size:12pt;
+	}
+}
+.premium_review_wrap{
+	padding:0;
+}
+img#premium_review_writer_icon{
+	vertical-align:middle;
+	width:30px;
+	height:30px;
+}
+.premium_review_writer>span{
+	display:inline-block;
+	margin:3px;
+	color:#686a6d;
+}
+.premium_review_doc_wrap{
+	position:relative;
+} 
+.premium_review_doc{
+	filter: blur(3px);
+	z-index: -500;
+}
+.premium_review_doc_wrap>.doc_blind_wrap{
+	position:absolute;
+	top:40%;
+	left:33%;
+	z-index:500;
+}
+@media ( max-width :993px) {
+	.premium_review_doc_wrap>.doc_blind_wrap{
+	top:40%;
+	left:23%;
+	}
+}
+@media ( max-width :395px) {
+	.premium_review_doc_wrap>.doc_blind_wrap{
+	top:40%;
+	left:12%;
+	}
+}
+button.premium_review_payment{
+	width:auto;
+	height:38px;
+	padding:5px;
+	background-color:#bb2642;
+	color:white;
+	border:2px solid #bb2642;
+	border-radius:5px;
+	font:14px;
+}
+button.premium_review_payment:hover{
+	background-color:#871b30;
+}
+
+/*mansearch_insert.jsp*/
+.mansearch_insert_title{
+	margin-bottom:30px;
+}
+.corp_enroll_step{
+	padding:16px;
+	width:auto;
+	height:auto;
+	background-color:#e7edf0;
+	border:1px solid #b5babd;
+	border-radius:5px;
+	font-size:14px;
+	margin-bottom:30px;
+	
+}
+img.corp_enroll_step_icon{
+	width:16px;
+	height:16px;
+	margin-top: -6px;
+}
+label.corp_enroll_step_top{
+	font-weight:bold;
+	margin-bottom:10px;	
+}
+.corp_logo_insert{
+	margin-bottom:20px;
+	display:none;
+}
+.info_label{
+	font-size:16px;
+ 	font-weight:bold;	
+ 	margin-bottom:8px;
+}
+.corp_info>div,.manager_info>div,.work_info>div{
+	padding:20px;
+}
+input.mansearch_board_insert_form input:focus {
+	outline: 0 0 0 0 !important;
+	box-shadow: 0 0 0 0 !important;
+}
+.mansearch_board_insertR{
+	margin-right:20px;
+	width:100px;
+	height:40px;
+	background-color:#bb2642;
+	color:white;
+	border:1px solid #bb2642;
+	border-radius:5px;
+}
+.mansearch_board_cancel{
+	width:100px;
+	height:40px;
+	background-color:#bb2642;
+	color:white;
+	border:1px solid #bb2642;
+	border-radius:5px;
+}
+.mansearch_board_cancel:hover,.mansearch_board_insertR:hover{
+	background-color:#871b30;
+}

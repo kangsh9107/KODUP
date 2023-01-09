@@ -70,6 +70,8 @@
 			
 			<!-- HIDDEN -->
 			<input type="hidden" name="nowPage" value="">
+			<input type="hidden" name="notification_sno" value="">
+			<input type="hidden" name="sno" value="">
 		</form>
 
 		<!-- LIST -->
@@ -78,27 +80,27 @@
 				<li class="list-group-item" style="padding: 10px 0 10px 0;">
 					<a href="#" class="text-decoration-none">
 						<img id="index_profile" src="images/index_default.png">
-						<span id="index_nickname">코딩하조</span>
+						<span id="index_nickname">글로벌IT</span>
 					</a>
-					<span id="index_time">· 1일 전</span>
+					<span id="index_time">· 3분 전</span>
 					<div style="float: right;">
 						<i class="fas fa-circle-check" style="color: #555; font-size: 0.9rem;"></i>
 					</div>
 					<br/>
-					<a href="#" class="text-decoration-none">
-						<span id="index_doc">1월 첫째주 처형목록</span>
+					<a href="#" onclick="notification_view()" class="text-decoration-none">
+						<span id="index_doc">1월 둘째 살생부</span>
 					</a>
 					<br/>
 					<div style="float: left;">
 						<!-- HORSEHEAD -->
-						<label id="board_horsehead">이벤트</label>
+						<label id="board_horsehead">공지사항</label>
 						<!-- HASHTAG -->
-						<c:forTokens var="list" items="#REACT,#NODE.JS" delims=",">
+						<c:forTokens var="list" items="#카드빨리,#퇴실빨리" delims=",">
 							<a href="#" onclick="return false" class="board_list_hashtag" style="font-size: 0.8rem; color: #555; margin-left: 3px;">${list }</a>
 						</c:forTokens>
 					</div>
 					<!-- VIEW & THUMB & REPL -->
-					<div style="float: right;">
+					<div style="float: right; cursor: default;">
 						<img id="index_viewcount" src="images/index_viewcount.png">
 						<span id="index_viewcount_sum">2023</span>
 						<img id="index_updown" src="images/index_updown.png">

@@ -23,6 +23,7 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 <script src="https://unpkg.com/@yaireo/tagify"></script>
 <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script defer src="js/index.js"></script>
 <title>코드 레벨업 - 코덥!</title>
 </head>
@@ -44,7 +45,7 @@
 		        	<div class="col-md-8 index_nav_items">
 				   		<ul class="navbar-nav me-auto mb-2 mb-lg-0 index_nav_ul" style="padding-left: 10px">
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click btnQna" aria-current="page" href="#">QnA</a>
+				       			<a class="nav-link active non-click btnQna" aria-current="page" href="#">Q&A</a>
 				       		</li>
 				       		<li class="nav-item">
 				       			<a class="nav-link active non-click btnInfoshare" aria-current="page" href="#">정보공유</a>
@@ -96,10 +97,11 @@
 		<!-- LEFT -->
 		<!-- TAG -->
 		<div class="row">
-			<div class="col-md-2 tag" style="padding: 0;">
+			<div class="col-md-2 tag" style="padding: 0 40px 0 0;">
 				<aside id="left" style="float: left;">
 					<div class="container">
 						<div class="row">
+							<!-- HOT TAG -->
 							<div class="col-md-12" id="index_hashtag">
 								<span style="font-weight: 600;">#인기 태그</span>
 								<hr/>
@@ -109,7 +111,13 @@
 									<br/><br/>
 								</c:forEach>
 							</div>
+							<!-- HONOR -->
+							<div class="col-md-12" id="index_honor" style="padding: 0;">
+								<img src="images/index_ad4.png" style="width: 100%; float: left;">
+							</div>
+							<!-- TOP WRITER -->
 							<div class="col-md-12" id="index_top_writer">
+								<br/><br/>
 								<span style="font-weight: 600;">#Top Writer</span>
 								<hr/>
 								<c:forEach var="list" begin="0" end="4">

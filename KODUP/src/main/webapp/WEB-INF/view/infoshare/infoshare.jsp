@@ -72,6 +72,8 @@
 			
 			<!-- HIDDEN -->
 			<input type="hidden" name="nowPage" value="">
+			<input type="hidden" name="infoshare_sno" value="">
+			<input type="hidden" name="sno" value="">
 		</form>
 
 		<!-- LIST -->
@@ -87,7 +89,7 @@
 						<i class="fas fa-circle-check" style="color: #555; font-size: 0.9rem;"></i>
 					</div>
 					<br/>
-					<a href="#" class="text-decoration-none">
+					<a href="#" onclick="infoshare_view()" class="text-decoration-none">
 						<span id="index_doc">프로그래밍 언어 별 채용공고 통계</span>
 					</a>
 					<br/>
@@ -95,12 +97,12 @@
 						<!-- HORSEHEAD -->
 						<label id="board_horsehead">팁</label>
 						<!-- HASHTAG -->
-						<c:forTokens var="list" items="#C++,#PYTHON,#REACT" delims=",">
+						<c:forTokens var="list" items="#JAVA,#PYTHON,#C++" delims=",">
 							<a href="#" onclick="return false" class="board_list_hashtag" style="font-size: 0.8rem; color: #555; margin-left: 3px;">${list }</a>
 						</c:forTokens>
 					</div>
 					<!-- VIEW & THUMB & REPL -->
-					<div style="float: right;">
+					<div style="float: right; cursor: default;">
 						<img id="index_viewcount" src="images/index_viewcount.png">
 						<span id="index_viewcount_sum">3838</span>
 						<img id="index_updown" src="images/index_updown.png">

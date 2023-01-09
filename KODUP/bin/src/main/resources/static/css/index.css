@@ -1,0 +1,530 @@
+@charset "UTF-8";
+
+/***** 강수형 *****/
+/***** FONT *****/
+@import url('//cdn.jsdelivr.net/gh/snz-hayden/toolo/fonts/jua/jua.css'); /* font-family: 'Jua', sans-serif; */
+@import url('https://webfontworld.github.io/BMDoHyeon/BMDoHyeon.css'); /* font-family: 'BMDoHyeon'; */
+@import url('https://webfontworld.github.io/woowahan/BMHannaAir.css'); /* font-family: 'BMHannaAir'; */
+@import url('https://webfontworld.github.io/BMHanna11yrs/BMHanna11yrs.css'); /* font-family: 'BMHanna11yrs'; */
+@import url('https://fonts.googleapis.com/css?family=Numans'); /* font-family: 'Numans', sans-serif; */
+
+/***** MEDIA *****/
+@media all and (max-width: 992px) {
+	.index_dropdown_wrap_wrap {
+		margin-right: -133px;
+	}
+	
+	.index_logo_a {
+		justify-content: center;
+		margin: 5px 0 0 188px;
+		padding: 5px 0 0 188px !important;
+	}
+	
+	.index_nav_warp {
+		text-align: center;
+	}
+	
+	#navbarSupportedContent {
+		padding: 0 0 0 165px !important;
+	}
+}
+
+@media all and (max-width: 768px) {
+	.index_dropdown_wrap_wrap {
+		margin-right: 222px !important;
+	}
+	
+	#navbarSupportedContent {
+		padding: 0 !important;
+		margin: 0 0 0 -7px !important;
+	}
+	
+	.index_logo_a {
+		justify-content: center;
+		margin: 0;
+	}
+	
+	.index_nav_warp {
+		text-align: center;
+	}
+	
+	.index_footer {
+		margin-top: 165px !important;
+	}
+}
+
+@media all and (max-width: 576px) {
+	.index_dropdown_wrap_wrap {
+		margin-right: 77px !important;
+	}
+	
+	.index_hamburg_wrap {
+		margin-right: -7px !important;
+	}
+	
+	.index_logo_a {
+		justify-content: center;
+		margin: 5px 0 0 0;
+	}
+	
+	.index_nav_warp {
+		text-align: center;
+	}
+	
+	.index_dropdown_wrap {
+		margin: -5px 0 0 -140px;
+	}
+	
+	.index_btnLogin {
+		margin: 0 145px 5px 0 !important;
+	}
+}
+
+@media all and (max-width: 575px) {
+	.index_dropdown_wrap_wrap {
+		margin-right: 13.3680vw !important;
+	}
+}
+
+@media all and (max-width: 390px) {
+	.index_dropdown_wrap_wrap {
+		margin-right: 3px !important;
+	}
+}
+
+/***** NAV *****/
+.index_nav {
+	padding: 10px 0 10px 0 !important;
+	margin: 0 0 40px 0;
+}
+
+.index_nav .index_logo_a {
+	color: #bb2649;
+	font-weight: 700;
+	font-size: 1.5rem;
+	font-family: 'BMDoHyeon';
+	line-height: 5px;
+	padding: 7px 0 0 0 !important;
+}
+
+.index_nav .index_logo_a:hover {
+	color: #ff3363;
+}
+
+.index_nav .index_logo_a .index_logo {
+	width: 60px;
+	height: 30px;
+	margin: 0 5px 0 0;
+}
+
+.index_nav .index_nav_ul a {
+	font-size: 0.9rem;
+}
+
+.index_nav .index_nav_ul a:hover {
+	color: #bb2649;
+}
+
+.index_nav .index_nav_ul .click {
+	color: #bb2649;
+}
+
+#index_dropdown {
+	background-color: #bb2649;
+	min-width: 1rem !important;
+}
+
+#index_dropdown a {
+	font-size: 0.9rem;
+	color: white;
+}
+
+#index_dropdown a:hover {
+	background-color: white;
+	color: #bb2649;
+}
+
+#index_dropdown hr {
+	border-color: white;
+}
+
+.index_btnLogin {
+	border: 1px solid #bb2649;
+	border-radius: 5px;
+	background-color: #bb2649;
+	color: white;
+	font-size: 0.9rem;
+}
+
+.index_btnLogin:hover {
+	border: 1px solid #bb2649;
+	background-color: white;
+	color: #bb2649;
+}
+
+/***** MANTOMAN *****/
+.btnMantoman {
+	position: absolute;
+	top: 800px;
+	right: 40px;
+	color: #bb2649;
+	z-index: 1;
+}
+
+.btnMantoman:hover {
+	color: #ff3363;
+}
+
+.btnMantoman i {
+	display: inline;
+	border: 0 solid white;
+	padding: 0;
+	margin: 0;
+}
+
+/***** MIDDLE_LEFT *****/
+#index_hashtag {
+	padding: 0;
+	margin-bottom: 20px;
+	font-size: 0.8rem;
+}
+
+#index_hashtag a {
+	color: black;
+}
+
+#index_hashtag a:hover {
+	color: #bb2649;
+}
+
+#index_top_writer {
+	padding: 0;
+	font-size: 0.8rem;
+}
+
+#index_top_writer a {
+	color: black;
+}
+
+#index_top_writer_nickname:hover {
+	color: #bb2649;
+}
+
+#index_top_writer_profile {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	vertical-align: text-top;
+}
+
+/***** MIDDLE_CENTER *****/
+#index_main_boardtype, #index_board_boardtype {
+	padding: 20px;
+	font-family: 'BMHanna11yrs';
+	font-size: 1.2rem;
+	border: 0px solid white;
+	background-color: #e7edf0;
+	color: #555;
+	/*
+	background: radial-gradient(circle, rgba(187,38,73,1) 10%, rgba(135,27,53,1) 100%);
+	*/
+	/*
+	background-image: url("../images/index_boardtype_background.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	object-fit: contain;
+	*/
+}
+
+#index_main_boardtype:hover {
+	color: #bb2649;
+}
+
+#index_boardtype_background {
+	position: absolute;
+	width: 80px;
+	heigth: 80px;
+	right: 0;
+	bottom: 30px;
+}
+
+#index_profile {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	vertical-align: middle;
+}
+
+#index_nickname {
+	color: #666;
+	font-size: 0.9rem;
+	font-family: 'BMHannaAir';
+	font-weight: bold;
+}
+
+#index_nickname:hover {
+	color: #bb2649;
+}
+
+#index_time {
+	font-size: 0.9rem;
+	font-family: 'BMHannaAir';
+}
+
+#index_viewcount {
+	width: 20px;
+	height: 20px;
+	vertical-align: text-top;
+}
+
+#index_viewcount_sum {
+	vertical-align: text-bottom;
+}
+
+#index_updown {
+	width: 15px;
+	height: 20px;
+	vertical-align: text-top;
+}
+
+#index_updown_sum {
+	vertical-align: text-bottom;
+}
+
+#index_repl {
+	width: 20px;
+	height: 20px;
+	vertical-align: text-top;
+}
+
+#index_repl_sum {
+	vertical-align: text-bottom;
+}
+
+#index_doc {
+	color: #555;
+	font-size: 1rem;
+	font-family: 'BMHannaAir';
+	font-weight: bold;
+}
+
+#index_doc:hover {
+	color: #bb2649;
+}
+
+/***** FOOTER *****/
+.index_footer {
+	font-size: 0.8rem;
+	border-top: 1px solid #d2d4d9;
+	margin: 20px 0 0 0;
+}
+
+.index_footer .index_footer_dog {
+	width: 60px;
+	height: 40px;
+	right: 10%;
+	bottom: 0;
+}
+
+.index_footer li a {
+	text-decoration: none;
+}
+
+.index_footer li a:hover {
+	color: #bb2649 !important;
+}
+
+.index_footer i {
+	color: #bb2649;
+}
+
+.index_footer i:hover {
+	color: #ff3363;
+}
+
+.index_footer .index_footer_copy {
+	background-color: #bb2649 !important;
+}
+
+.index_footer .index_footer_copy p {
+	color: white !important;
+	font-family: 'BMDoHyeon';
+}
+
+/***** LOGIN *****/
+.index_login_form {
+	padding: 30px;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+}
+
+#index_lgoin_img {
+	text-align: center;
+	width: 100%;
+	opacity: 0.3;
+}
+
+#index_kakao_join {
+	width: 100%;
+}
+
+#index_kakao_login {
+	width: 100%;
+}
+
+.index_login_input {
+	margin: 0 0 5px 0;
+}
+
+.index_login_input span {
+	width: 38px;
+	height: 38px;
+	color: white;
+	border: 0 !important;
+	background-color: #bb2649;
+	/*
+	background-color: #FFC312;
+	*/
+}
+
+.index_login_input input:focus {
+	outline: 0 0 0 0 !important;
+	box-shadow: 0 0 0 0 !important;
+}
+
+.index_btnLoginR {
+	width: 303px;
+	color: white;
+	background-color: #bb2649;
+	font-size: 0.9rem;
+}
+
+.index_btnLoginR:hover {
+	color: #bb2649;
+	background-color: white;
+	border: 1px solid #bb2649;
+}
+
+.index_btnJoin {
+	width: 303px;
+	color: white;
+	background-color: #bb2649;
+	font-size: 0.9rem;
+}
+
+.index_btnJoin:hover {
+	color: #bb2649;
+	background-color: white;
+	border: 1px solid #bb2649;
+}
+
+.index_btnKakaoLoginR {
+	width: 303px;
+	color: white;
+	background-color: #bb2649;
+	font-size: 0.9rem;
+}
+
+.index_btnKakaoLoginR:hover {
+	color: #bb2649;
+	background-color: white;
+	border: 1px solid #bb2649;
+}
+
+.index_btnKakaoJoin {
+	width: 303px;
+	color: white;
+	background-color: #bb2649;
+	font-size: 0.9rem;
+}
+
+.index_btnKakaoJoin:hover {
+	color: #bb2649;
+	background-color: white;
+	border: 1px solid #bb2649;
+}
+
+/***** FIND ACCOUNT *****/
+.index_find_account_form {
+	padding: 30px;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+}
+
+.index_find_menual span {
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	font-size: 0.8rem;
+	margin: 0 0 5px 0;
+}
+
+.index_find_accountR {
+	width: 303px;
+	color: white;
+	background-color: #bb2649;
+	font-size: 0.9rem;
+}
+
+.index_find_accountR:hover {
+	color: #bb2649;
+	background-color: white;
+	border: 1px solid #bb2649;
+}
+
+.index_find {
+	text-align: right;
+}
+
+.index_find_account, .index_find_pwd {
+	text-decoration: none;
+	color: black;
+	font-size: 0.9rem;
+}
+
+.index_find_account:hover, .index_find_pwd:hover {
+	color: #bb2649;
+}
+
+/***** CHANGE PASSWORD *****/
+.index_change_password_form {
+	padding: 30px;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+}
+
+.index_change_passwordR {
+	width: 303px;
+	color: white;
+	background-color: #bb2649;
+	font-size: 0.9rem;
+}
+
+.index_change_passwordR:hover {
+	color: #bb2649;
+	background-color: white;
+	border: 1px solid #bb2649;
+}
+
+/***** JOIN *****/
+.index_join_form {
+	padding: 30px;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+}
+
+
+
+
+
+/***** 박요한 *****/
+@media ( max-width :768px) {
+	div.tag {
+		display: none;
+	}
+}
+@media ( max-width :992px) {
+	div.add {
+		display: none;
+	}
+}
