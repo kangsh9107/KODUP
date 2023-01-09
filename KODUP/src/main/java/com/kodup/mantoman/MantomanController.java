@@ -47,12 +47,4 @@ public class MantomanController {
 		return mv;
 	}
 	
-	@RequestMapping("/mantoman/chatting_test")
-	public ModelAndView chattingTest() {
-		ModelAndView mv = new ModelAndView();
-		
-		mv.setViewName("mantoman/chatting_test");
-		return mv;
-	}
-	
 }
