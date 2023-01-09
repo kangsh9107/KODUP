@@ -10,6 +10,7 @@
 @media all and (max-width: 992px) {
 	.index_dropdown_wrap_wrap {
 		margin-right: -122px;
+		margin-top: -5px !important;
 	}
 	
 	.index_logo_a {
@@ -30,6 +31,7 @@
 @media all and (max-width: 768px) {
 	.index_dropdown_wrap_wrap {
 		margin-right: 233px !important;
+		margin-top: -5px !important;
 	}
 	
 	#navbarSupportedContent {
@@ -82,6 +84,10 @@
 		text-align: center;
 	}
 	
+	.index_nav {
+		padding-bottom: 20px !important;
+	}
+	
 	.index_dropdown_wrap {
 		margin: -5px 0 0 -140px;
 	}
@@ -94,10 +100,25 @@
 @media all and (max-width: 575px) {
 	.index_nav {
 		margin-bottom: 40px !important;
+		padding-bottom: 25px !important;
+	}
+	
+	.index_dropdown_wrap {
+		margin-left: 0 !important;
+		padding-bottom: 5px !important;
 	}
 	
 	.index_dropdown_wrap_wrap {
 		margin: 5px 85px -5px 0 !important;
+		width: 100% !important;
+		float: none !important;
+		text-align: center !important;
+	}
+	
+	.index_btnLogin {
+		width: 67.95px !important;
+		margin-left: 40% !important;
+		margin-top: -5px !important;
 	}
 }
 
@@ -108,7 +129,8 @@
 	
 	.index_dropdown_wrap_wrap {
 		float: right !important;
-		margin-right: 13px !important;
+		margin-right: 0 !important;
+		margin-top: 0 !important;
 	}
 }
 
@@ -178,6 +200,7 @@
 	font-size: 0.875rem;
 	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
 	font-weight: 600;
+	height: 39.46px;
 }
 
 .index_btnLogin:hover {

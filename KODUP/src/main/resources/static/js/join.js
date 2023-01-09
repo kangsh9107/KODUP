@@ -27,6 +27,32 @@ $('.index_btnKakaoJoin').on('click', function() {
 	});
 });
 
+//KODUP
+$('.index_btnLoginR').on('click', function() {
+	var frm = $('.index_login_form')[0];
+	
+	if(frm.id.value == '') {
+		alert('아이디를 입력해주세요.');
+	} else if(frm.pwd.value == '') {
+		alert('비밀번호를 입력해주세요.');
+	} else {
+		var param = new FormData(frm);
+	
+		$.ajax({
+			type: 'POST',
+			url: '/login/loginR',
+			contentType: false,
+			processData: false,
+			data: param,
+			dataType: 'html',
+			success: function(data) {
+				$('#center').html(data);
+				location.replace('/');
+			}
+		});
+	}
+});
+
 /***** FIND ACCOUNT *****/
 $('.index_find_account').on('click', function() {
 	$('#center').load('/login/find_account');

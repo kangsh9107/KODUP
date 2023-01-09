@@ -7,44 +7,54 @@
 $('#center').load('/login/main');
 
 /***** NAV *****/
-const nonClick = document.querySelectorAll(".non-click");
+const nonClick = document.querySelectorAll('.non-click');
 
 function handleClick(event) {
-	// div에서 모든 "click" 클래스 제거
+	// div에서 모든 'click' 클래스 제거
 	nonClick.forEach((e) => { //e는 element
-		e.classList.remove("click");
+		e.classList.remove('click');
 	});
-	// 클릭한 span만 "click" 클래스 추가
-	event.target.classList.add("click");
+	// 클릭한 span만 'click' 클래스 추가
+	event.target.classList.add('click');
 }
 
 nonClick.forEach((e) => {
-	e.addEventListener("click", handleClick);
+	e.addEventListener('click', handleClick);
 });
 
 $('.pixelbuy').on('click', function() {
 	nonClick.forEach((e) => {
-		e.classList.remove("click");
+		e.classList.remove('click');
 	});
 });
 
 $('#btnMyprofile').on('click', function() {
 	nonClick.forEach((e) => {
-		e.classList.remove("click");
+		e.classList.remove('click');
 	});
 });
 
 $('.btnMypage').on('click', function() {
 	nonClick.forEach((e) => {
-		e.classList.remove("click");
+		e.classList.remove('click');
 	});
+});
+
+/***** LOGOUT *****/
+$('.btnLogoutR').on('click', function() {
+	nonClick.forEach((e) => {
+		e.classList.remove('click');
+	});
+	
+	$('#center').load('/login/logoutR');
+	location.replace('/');
 });
 
 /***** MANTOMAN *****/
 $(document).ready(function() {
 	$(window).scroll(function() {
 		var position = $(window).scrollTop()+550; 
-		$(".btnMantoman").stop().animate({top:position+"px"},400);
+		$('.btnMantoman').stop().animate({top:position+'px'},400);
 	});
 });
 
@@ -53,10 +63,11 @@ $('.index_btnLogin').on('click', function() {
 	$('#center').load('/login/login');
 });
 
+//KAKAO
 var cnt = 0;
 if(cnt == 0) {
 	cnt++;
-	window.Kakao.init("76fd5185be40793e6d0205f6710f85d0");
+	window.Kakao.init('76fd5185be40793e6d0205f6710f85d0');
 }
 
 /***** QNA LIST *****/
@@ -65,7 +76,7 @@ $('.btnQna').on('click', function() {
 });
 
 function runQna() {
-	console.log("테스트");
+	console.log('테스트');
 }
 
 /***** INFOSHARE LIST *****/
@@ -74,7 +85,7 @@ $('.btnInfoshare').on('click', function() {
 });
 
 function runInfoshare() {
-	console.log("테스트");
+	console.log('테스트');
 }
 
 /***** FREETALKING LIST *****/
@@ -83,7 +94,7 @@ $('.btnFreetalking').on('click', function() {
 });
 
 function runFreetalking() {
-	console.log("테스트");
+	console.log('테스트');
 }
 
 /***** JOBSEARCH LIST *****/
@@ -92,7 +103,7 @@ $('.btnJobsearch').on('click', function() {
 });
 
 function runJobsearch() {
-	console.log("테스트");
+	console.log('테스트');
 }
 
 /***** NOTIFICATION LIST *****/
@@ -101,7 +112,7 @@ $('.btnNotification').on('click', function() {
 });
 
 function runNotification() {
-	console.log("테스트");
+	console.log('테스트');
 }
 
 
@@ -114,9 +125,9 @@ $('#btnMyprofile').on('click', function() {
 });
 
 $('#btnMantoman').on('click',function() {
-	var title  = "popup";
-	var status = "toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=350, height=500, top=400, left=1300"; 
-	window.open("/mantoman/mantoman_index", title, status);
+	var title  = 'popup';
+	var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=350, height=500, top=400, left=1300'; 
+	window.open('/mantoman/mantoman_index', title, status);
 });
 
 
@@ -139,6 +150,6 @@ $('.pixelbuy').on('click',function(){
 
 //mypage_memberinfo (회원정보)
 $('.btnMypage').on('click', function(){
-	console.log("회원정보");
+	console.log('회원정보');
 	$('#center').load('/board/mypage');
 });

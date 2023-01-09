@@ -66,19 +66,25 @@
 			       	</div>
 			       	<div class="col-md-2" style="padding-right: 3px;">
 			            <div class="navbar-nav ms-auto p-4 p-lg-0 index_dropdown_wrap_wrap" style="float: right; padding: 0 !important;">
-			                <div class="nav-item dropdown index_dropdown_wrap">
-			                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="padding: 4px; margin-right: 10px;">
-			                    	<img src="images/index_default.png" class="d-inline-block align-text-top" style="width: 30px; height: 30px; border-radius: 50%;">
-			                    </a>
-			                    <div class="dropdown-menu fade-down m-0" id="index_dropdown">
-									<a class="dropdown-item pixelbuy" href="#">포인트충전</a>
-									<a id='btnMyprofile' class="dropdown-item" href="#">내프로필</a>
-									<a class="dropdown-item btnMypage" href="#">마이페이지</a>
-									<hr class="dropdown-divider">
-									<a class="dropdown-item" href="#">로그아웃</a>
-			                    </div>
-			                </div>
-				            <input type="button" value="로그인" class="btn index_btnLogin"/>
+			            	<c:choose>
+				            	<c:when test="${sessionId ne null }">
+					                <div class="nav-item dropdown index_dropdown_wrap">
+					                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="padding: 4px;">
+					                    	<img src="images/index_default.png" class="d-inline-block align-text-top" style="width: 30px; height: 30px; border-radius: 50%;">
+					                    </a>
+					                    <div class="dropdown-menu fade-down m-0" id="index_dropdown">
+											<a class="dropdown-item pixelbuy" href="#">포인트충전</a>
+											<a id='btnMyprofile' class="dropdown-item" href="#">내프로필</a>
+											<a class="dropdown-item btnMypage" href="#">마이페이지</a>
+											<hr class="dropdown-divider">
+											<a class="dropdown-item btnLogoutR" href="#">로그아웃</a>
+					                    </div>
+					                </div>
+				            	</c:when>
+				            	<c:otherwise>
+						            <input type="button" value="로그인" class="btn index_btnLogin"/>
+				            	</c:otherwise>
+			            	</c:choose>
 			            </div>
 				    </div>
 		        </div>
