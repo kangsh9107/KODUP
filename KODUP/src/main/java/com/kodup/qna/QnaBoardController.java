@@ -28,6 +28,15 @@ public class QnaBoardController {
 		return mv;
 	}
 	
+	//INSERT
+	@RequestMapping("/qna/qna_insertR")
+	public ModelAndView qnaInsertR() {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("/qna/qna");
+		return mv;
+	}
+	
 	//성호
 	@RequestMapping("/qna/qna_view")
 	public ModelAndView qnaView() {
@@ -36,4 +45,5 @@ public class QnaBoardController {
 
 		return mv;
 	}
+	
 }

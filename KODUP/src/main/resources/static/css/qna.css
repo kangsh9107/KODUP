@@ -1,6 +1,13 @@
 @charset "UTF-8";
 
 /***** 강수형 *****/
+/***** MEDIA *****/
+@media all and (max-width: 576px) {
+	#textPrevious, #textNext {
+		display: none;
+	}
+}
+
 /***** INSERT *****/
 .board_header {
 	padding: 0;
@@ -351,6 +358,10 @@
 }
 
 
+
+
+
+
 /***** 조성호 *****/
 /***** QNA VIEW *****/
 #qna_view {
@@ -391,14 +402,14 @@
 #qna_view #qna_view_btnzone{
 	text-align:right !important;
 }
-#qna_view #qna_view_btnzone>.btnUpdate,.btnDeleteR,.btnList{
+#qna_view #qna_view_btnzone input[type="button"] {
 	width: 50px;
 	height: 30px;
 	color: white;
 	background-color: #bb2649;
 	border : 0px;
 }
-#qna_view #qna_view_btnzone>.btnUpdate:hover,.btnDeleteR:hover,.btnList:hover{
+#qna_view #qna_view_btnzone input[type="button"]:hover {
 	background-color: #ff3363;
 	color: white;
 }

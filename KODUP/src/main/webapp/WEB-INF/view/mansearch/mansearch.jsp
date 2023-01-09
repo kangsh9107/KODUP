@@ -78,7 +78,7 @@ div.button:active { /*Clicked and held*/
 		<div class="dropdown" style="float:right;">
 	  		<button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border:1px solid #000">검색필터</button>
 	  		<div class="dropdown-menu dropdown_row">
-	  			<div class="dropdown-content dropdown_content">
+	  			<div class="dropdown-content dropdown_content" style="text-align: center;">
 					<select class="form-select form_select" size="5">
   						<option value="position">포지션</option>
   						<option value="location">지역</option>

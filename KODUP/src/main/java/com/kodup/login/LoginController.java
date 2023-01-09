@@ -104,4 +104,30 @@ public class LoginController {
 		return mv;
 	}
 	
+	//카카오 로그인
+	@RequestMapping("/login/join_kakao_check")
+	public ModelAndView loginKakaoR(MemberVo mVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		
+		//id 중복체크
+		
+		String id = req.getParameter("id");
+		String email = req.getParameter("email");
+		mv.addObject("id", id);
+		mv.addObject("email", email);
+		mv.setViewName("/login/join_kakao");
+		return mv;
+	}
+	
+	@RequestMapping("/login/login_kakao")
+	public ModelAndView loginKakao(MemberVo mVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		
+		//INSERT
+		
+		mv.addObject("mVo", mVo);
+		mv.setViewName("/login/main");
+		return mv;
+	}
+	
 }

@@ -32,6 +32,8 @@ $('.btnQnaInsert').on('click', function() {
 	$('#center').load('/qna/qna_insert');
 });
 
+
+
 /***** QNA SEARCH *****/
 $('.inputSearch').keyup(function(evnet) {
 	if(event.keyCode == 13) {

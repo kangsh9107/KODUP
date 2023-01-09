@@ -53,7 +53,7 @@ $('.btnLogoutR').on('click', function() {
 /***** MANTOMAN *****/
 $(document).ready(function() {
 	$(window).scroll(function() {
-		var position = $(window).scrollTop()+550; 
+		var position = $(window).scrollTop()+800; //80%로 주는 방법 찾기. vh 계산해서 800대신 변수 대입.
 		$('.btnMantoman').stop().animate({top:position+'px'},400);
 	});
 });
@@ -69,6 +69,10 @@ if(cnt == 0) {
 	cnt++;
 	window.Kakao.init('76fd5185be40793e6d0205f6710f85d0');
 }
+
+$('.index_btnJoinKakaoR').on('click', function() {
+	$('#center').load('/login/login_kakao');
+});
 
 /***** QNA LIST *****/
 $('.btnQna').on('click', function() {

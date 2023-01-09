@@ -12,19 +12,22 @@ $('.index_btnJoin').on('click', function() {
 /***** LOGIN *****/
 //KAKAO LOGIN
 $('.index_btnKakaoJoin').on('click', function() {
-	window.Kakao.Auth.login({
-		scope: 'profile_nickname, account_email, gender',
-		success: function(autoObj) {
-			console.log("authObj : " + authObj);
-			window.Kakao.API.request({
-				url: '/v2/user/me',
-				siccess: res => {
-					const kakao_account = res.kakao.account;
-					console.log("kakao_account : " + kakao_account);
-				}
-			});
-		}
-	});
+    Kakao.Auth.login({
+		scope: 'account_email', //가져올 항목
+        success: function(response) {
+            Kakao.API.request({ //사용자 정보 가져오기 
+                url: '/v2/user/me',
+                success: (res) => {
+                	var id = res.id+"K";
+                	var email = res.kakao_account.email;
+                	$('#center').load('/login/join_kakao_check?id=' + id + "&email=" + email);
+                }
+            });
+        },
+        fail: function(error) {
+            alert(error);
+        }
+    });
 });
 
 //KODUP
@@ -52,6 +55,41 @@ $('.index_btnLoginR').on('click', function() {
 		});
 	}
 });
+
+/*
+$.ajax({
+	type : "post",
+	url : '/login/join_kakao_check', //ID중복체크를 통해 회원가입 유무를 결정하고, join_kakao.jsp로 이동 후 
+	data : { "userid":kakaoid },
+	dataType: "json",
+	success : function(json) {
+		if(json.idExists) {
+			$('#center').load('/login/loginR'); //존재하는 경우 로그인 처리
+		} else {
+			$.ajax({
+				type : "post",
+				url : '/login/join_kakao', //INSERT
+				data : {"id":kakaoid,
+					    "email":response.kakao_account.email},
+				dataType :"json",
+				success : function(json) {
+					if(json.success) {
+						$('#center').load('/login/loginR');
+					} else {
+						alert('카카오 회원가입 실패. 일반계정으로 로그인하시기 바랍니다.');
+					}
+				},
+				error: function(request, status, error) {
+	                   alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
+	            }
+			});
+		}						
+	},
+	error: function(request, status, error) {
+           alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
+    }
+});
+*/
 
 /***** FIND ACCOUNT *****/
 $('.index_find_account').on('click', function() {
