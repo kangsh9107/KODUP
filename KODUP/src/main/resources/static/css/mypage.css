@@ -160,6 +160,73 @@ text {
 
 /* mypage_mypixel.jsp 나의 픽셀 css */
 
+.mypage_mypixel_management_text{
+	display:inline-block;
+	margin-bottom:15px;
+}
+
+
+
+.pixel_box{
+	background-color:#ccc;
+	font-weight:bolder;
+}
+
+/* #3981E5; */
+
+.btn_mypage_pixel_charge{
+	color:#0055CC;
+	background-color:white;
+	border-radius:10px;
+}
+
+.btn_mypage_pixel_charge:hover{
+	color:white;
+	background-color:#0055CC;
+	border:2px solid #0055CC;
+	border-radius:10px;
+}
+
+.btn_mypage_pixel_exchange{
+	color:#BB2649;
+	background-color:white;
+	border-radius:10px;
+}
+
+.btn_mypage_pixel_exchange:hover{
+	color:white;
+	background-color:#BB2649;
+	border:2px solid #BB2649; 
+	border-radius:10px;
+}
+
+.mypage_mypixel_use_box2{
+	border: 1px solid #ccc;
+	padding: 10px;	
+	margin-top: 10px;
+}
+
+.mypage_mypixel_date{
+	display:inline-block;
+	width: 30%;
+	text-align:center;
+}
+
+.mypage_mypixel_details{
+	display:inline-block;
+	width: 48%;
+	text-align:center;
+}
+.mypage_mypixel_pixel{
+	display:inline-block;
+	width: 10%;
+	text-align:center;
+}
+
+
+.mypage_mypixel_page_number{
+	margin-left: 35%;
+}
 
 /* 그리드 구현 영역
 .pixel-grid-container{
@@ -180,5 +247,6 @@ text {
 /* #mypage_mypixel{
 	text-align: center;
 } */
+
 
 
