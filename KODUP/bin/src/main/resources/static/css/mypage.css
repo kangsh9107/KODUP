@@ -1,0 +1,184 @@
+@charset "UTF-8";
+
+
+#container {
+	display: grid;
+	grid-template-columns: 150px 700px;
+}
+
+.label_name{
+	color: grey;
+}
+
+.bottom{
+	margin-bottom: 10px;
+}
+
+
+
+
+/* 회원 정보 */
+.member_info{
+	border: 2px solid #bb2649;
+}
+
+/* mypage_memberinfo.jsp */
+
+.mypage_member_profile {
+	display: grid;
+	grid-template-columns: 300px 450px;
+	/* background-color: skyblue; */
+	gap: 20px 20px;
+	/* row-gap: 20px; column-gap: 20px; */
+} 
+
+
+.btnModify, .btnQuit{
+	display: inline-block;
+}
+
+
+.list-group {
+	width:1000px;
+}
+
+.button {
+	text-align: right;
+}
+
+.mm_text{ 
+	display:inline-block;
+	width: 100px; 
+	font-weight:bold;}
+
+
+.form-floating, .btnC{
+	display: inline-block;
+}
+
+
+/* 회원정보 수정 */
+#memberinfo_update{
+	margin-top:30px;
+	text-align:center;
+}
+
+.name{margin-bottom:5px;}
+
+#certification{
+	text-align: left;
+}
+
+/* mypage_member_quit.jsp 회원탈퇴 */
+#member_quit{
+	margin: 50px 20px 0px 20px;
+	border-radius: 20px;
+	border: 2px solid 
+}
+
+
+.btnQuit_Irreversible{
+	margin-left: 10px;
+}
+
+
+
+/* mypage_corp_certification.jsp */
+
+#mypage_corp_certification{
+	margin-top: 80px;
+	text-align: center; 
+}
+
+.mypage_corp_certification_noti{
+	display:inline-block;
+	width: 400px;
+	text-align: left;
+}
+
+
+/* 마이페이지 인증 버튼 효과 */
+.btnC {
+  display: inline-block;
+  background: transparent; 
+  text-transform: uppercase;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 0.625rem;
+  letter-spacing: 0.3em;
+  color: rgba(223,190,106,0.7); 
+  border-radius: 0;
+  padding: 18px 80px 20px;
+  transition: all 0.7s ease-out;
+  background: linear-gradient(270deg, rgba(223,190,106,0.8), rgba(146,111,52,0.8), rgba(34,34,34,0), rgba(34,34,34,0));
+  background-position: 1% 50%;
+  background-size: 300% 300%;
+  text-decoration: none;
+  margin: 0.625rem;
+  border: none;
+  border: 1px solid rgba(223,190,106,0.3);
+}
+
+.btnC:hover {
+  color: #fff;
+  border: 1px solid rgba(223,190,106,0);
+  color: $white;
+  background-position: 99% 50%;
+}
+
+
+
+
+
+
+/* 마이페이지 텍스트 효과(복고풍) */
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:900');
+
+svg {
+  /* background: white; */
+  background: #ebe7e0; 
+}
+
+text {
+  fill: #35322a;
+  filter: url('#money');
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 50px;
+  font-weight: 900;
+}
+
+/* html {
+  align-items: center;
+  background: #ebe7e0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  min-width: 600px;
+} */
+
+
+
+/* mypage_mypixel.jsp 나의 픽셀 css */
+
+
+/* 그리드 구현 영역
+.pixel-grid-container{
+	display: grid;
+	padding: 10px;
+	background-color: #ccc;
+	grid-template-colums: repeat (4, 1fr);
+	grid-template-rows: (1fr 1fr 1fr 1fr 3fr);
+}
+
+.pixel-grid-item{
+	margin: 10px;
+	padding: 10px;
+	background-color: lightgreen;	
+} */
+
+
+/* #mypage_mypixel{
+	text-align: center;
+} */
+
+
