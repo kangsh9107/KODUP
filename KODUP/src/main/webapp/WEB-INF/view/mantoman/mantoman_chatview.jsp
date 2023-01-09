@@ -6,21 +6,26 @@
 <meta charset="UTF-8">
 <title>mantoman/mantoman_chatview.jsp</title>
 <style>
+@import url('https://webfontworld.github.io/dgb/IMHyemin.css');
+@import url('https://webfontworld.github.io/BMJua/BMJua.css');
+@import url('https://webfontworld.github.io/sebang/SebangGothic.css');
+
 body{
 	padding:0;
 	margin:0;
-	background-color:#bb7b8a;
 }
-/* .slide_in{
+
+.slide_in{
+	position:relative;
 	background-color:#bb7b8a;
-	height:100%;
-} */
+	height:100vh;
+}
 
 #chatt{
 	width: 100%;
 }
 
-.profileImg{
+#chatt>.chattNav .profileImg{
 	position:absolute;
 	top:6px;
 	left:10px;
@@ -33,41 +38,50 @@ body{
 	position:relative;
 	width:100%;
 	height:50px;
-	background-color:#2f2f2f;
+	background-color:#3a3a3a;
 }
 
 #chatt>.chattNav>#mid{
 	position:absolute;
 	top:13px;
 	left:60px;
-	background-color:#2f2f2f;
+	background-color:#3a3a3a;
 	color:white;
-	font-size:18px;
+	font-size:17px;
 	border-radius:5px;
 	border:none;
 	text-align:center;
+	font-family: 'SebangGothic';
 }
 
 #chatt>.chattNav>#btnLogin{
 	position:absolute;
-	top:13px;
-	left:190px;
+	background-color:#c89d9d;
+	top:8px;
+	left:170px;
+	font-size:16px;
+	padding:6px;
+	border-radius:8px;
+	border:1.5px solid #534444;
+	font-family: 'BMJua';
+	vertical-align: center;
 }
 
 #chatt>.chattNav .btnBack{
 	position:absolute;
 	top:8px;
 	right:20px;
-	width:20px;
+	width:22px;
 	height:32px;
 }
 
 #chatt #talk{
-	width: 100%;
-	height: 380px;
+	height: 75vh;
 	overflow: scroll;
 }
 #chatt #msg{
+/* 	position:absolute;
+	bottom:10px; */
 	width: 75%;
 	height:30px;
 	display: inline-block;
@@ -82,33 +96,124 @@ body{
 	width: 54px;
 	height: 35px;
 	border-radius:4px;
+	border:1.3px solid #b0b0b0;
+	font-family: 'SebangGothic';
+	font-size:13px;
 }
 
-#chatt #talk div{
-	width: 100%;
-	display: inline-block;
-	padding: 6px;
-	border-radius:10px;
-	margin-left:8px;
+#chatt #talk .other{
+	position:relative;
+	margin-bottom:7px;
 }
 
-#chatt .me{
-	background-color : #ffc;
-	margin : 1px 0px 2px 30%;
+#chatt #talk .other .yourPicture{
+	width:45px;
+	height:45px;
+	border-radius:50%;
+	margin-left:5px;
+	float:left;
 }
 
-#chatt .other{
-	background-color : #eee;
-	margin : 2px;
+#chatt #talk .other .yourId{
+	position:absolute;
+	left:65px;
+	top:2px;
+	font-size:12px;
+	margin-left:5px;
+	font-family: 'BMJua';
 }
+
+#chatt .other .yourBalloon{
+	position:relative;
+	display:inline-block;
+	max-width:50%;
+	margin:20px 0 0 20px;
+	background:white;
+	border-radius: 3px;
+	padding:5px;
+	box-shadow: 1px 2px 1px #c7c7c7;
+	font-family: 'IMHyemin';
+	font-size:14px;
+}
+
+#chatt .other .yourBalloon:after {
+	border-top:15px solid white;
+	border-left: 15px solid transparent;
+	border-right: 0px solid transparent;
+	border-bottom: 0px solid transparent;
+	content:"";
+	position:absolute;
+	top:6px;
+	left:-11px;
+}
+
+#chatt .other .dateTime{
+	display:inline-block;
+	margin-left:70px;
+	font-size:8px;
+}
+
+#chatt #talk .me{
+	position:relative;
+	margin-bottom:7px;
+}
+
+#chatt #talk .me .myPicture{
+	width:45px;
+	height:45px;
+	border-radius:50%;
+	margin-right:5px;
+	float:right;
+}
+
+#chatt #talk .me .myId{
+	position:absolute;
+	top:2px;
+	right:65px;
+	font-size:12px;
+	margin-right:5px;
+	font-family: 'BMJua';
+}
+
+#chatt .me .myBalloon{
+	position:relative;
+	display:inline-block;
+	max-width:50%;
+	float:right;
+	margin:20px 20px 0 0;
+	background:#852138;
+	color:white;
+	border-radius: 3px;
+	padding:5px;
+	box-shadow: 1px 2px 1px #5d1727;
+	font-family: 'IMHyemin';
+	font-size:14px;
+}
+
+#chatt .me .myBalloon:after {
+	border-top:15px solid #852138;
+	border-left: 0px solid transparent;
+	border-right: 15px solid transparent;
+	border-bottom: 0px solid transparent;
+	content:"";
+	position:absolute;
+	top:6px;
+	right:-11px;
+}
+
+#chatt .me .dateTime{
+	display:inline-block;
+	margin-left:180px;
+	font-size:8px;
+}
+
 </style>
 </head>
-<body>
 <div class='slide_in'>
 	<div id='chatt'>
 		<div class='chattNav'>
 			<img src='../images/basic_profile.jpg' class='profileImg'>
-			<input type='text' id='mid' value='옥다방고양이' size='8'>
+			<input type='text' id='mid' value='옥다방고양이' size='9'>
 			<input type='button' value='로그인' id='btnLogin'>
 			<a href='/mantoman/mantoman_index'><img src='../images/back_button.png' class='btnBack'></a>
 		</div>
@@ -144,23 +249,35 @@ btnLogin.onclick = function(){
 		console.log(data);
 		console.log(data.msg);
 		var css;
+		var item="";
 		
 		if(data.mid == mid.value){
 			css = 'class=me';
+			
+			item = `<div \${css} >
+						<span class='myId'>\${data.mid}</span>
+						<img src='../images/basic_profile.jpg' class='myPicture'>						
+						<div class='myBalloon'><span>\${data.msg}</span></div><br/>
+						<span class='dateTime'>\${data.date}</span>
+					</div>`;
 		}else{
 			css = 'class=other';
+			
+			item = `<div \${css} >
+						<span class='yourId'>\${data.mid}</span>
+						<img src='../images/fox_profile.png' class='yourPicture'>						
+						<div class='yourBalloon'><span>\${data.msg}</span></div><br/>
+						<span class='dateTime'>\${data.date}</span>
+					</div>`;
 		}
 		
-		var item = `<div ${css} >
-		                <span><b>\${data.mid}</b></span> [ \${data.date} ]<br/>
-                      <span>\${data.msg}</span>
-						</div>`;
+
 		console.log(item);			
 		talk.innerHTML += item;
 		talk.scrollTop=talk.scrollHeight;//스크롤바 하단으로 이동
 	}
 	btnLogin.disabled=true;
-	btnLogin.value='접속중';
+	btnLogin.value='접속됨';
 }
 
 msg.onkeyup = function(ev){
@@ -185,5 +302,4 @@ function send(){
 }
  
 </script>
-</body>
 </html>
