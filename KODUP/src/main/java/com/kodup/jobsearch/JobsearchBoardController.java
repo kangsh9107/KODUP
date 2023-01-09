@@ -21,6 +21,13 @@ public class JobsearchBoardController {
 		return mv;
 	}
 	
+	@RequestMapping("/jobsearch/jobsearch_update")
+	public ModelAndView jobsearchUpdate() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/jobsearch/jobsearch_update");
+		return mv;
+	}
+	
 	//성호
 	@RequestMapping("/jobsearch/jobsearch_view")
 	public ModelAndView jobsearchView() {

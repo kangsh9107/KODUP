@@ -33,11 +33,21 @@ $('.btnSearch').click(function() {
 	console.log("검색");
 });
 
+/***** BACK TO LIST *****/
+$('.btnList').on('click', function() {
+	$('#center').load('/infoshare/infoshare');
+});
+
 
 
 
 
 /*****조성호 *****/
+/***** INFOSHARE VIEW *****/
 function infoshare_view(){
 	 $('#center').load('/infoshare/infoshare_view');
 }
+
+$('.btnUpdate').on('click', function() {
+	$('#center').load('/infoshare/infoshare_update');
+});

@@ -74,6 +74,8 @@
 			
 			<!-- HIDDEN -->
 			<input type="hidden" name="nowPage" value="">
+			<input type="hidden" name="jobsearch_sno" value="">
+			<input type="hidden" name="sno" value="">
 		</form>
 
 		<!-- LIST -->
@@ -89,7 +91,7 @@
 						<i class="fas fa-circle-check" style="color: #555; font-size: 0.9rem;"></i>
 					</div>
 					<br/>
-					<a href="#" class="text-decoration-none">
+					<a href="#" onclick="jobsearch_view()" class="text-decoration-none">
 						<span id="index_doc">개발자 3명 프로젝트 찾습니다.</span>
 					</a>
 					<br/>
@@ -102,7 +104,7 @@
 						</c:forTokens>
 					</div>
 					<!-- VIEW & THUMB & REPL -->
-					<div style="float: right;">
+					<div style="float: right; cursor: default;">
 						<img id="index_viewcount" src="images/index_viewcount.png">
 						<span id="index_viewcount_sum">121</span>
 						<img id="index_updown" src="images/index_updown.png">

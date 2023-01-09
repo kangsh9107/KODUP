@@ -21,6 +21,13 @@ public class InfoshareBoardController {
 		return mv;
 	}
 	
+	@RequestMapping("/infoshare/infoshare_update")
+	public ModelAndView infoshareUpdate() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/infoshare/infoshare_update");
+		return mv;
+	}
+	
 	//성호
 	@RequestMapping("/infoshare/infoshare_view")
 	public ModelAndView infoshareView() {
