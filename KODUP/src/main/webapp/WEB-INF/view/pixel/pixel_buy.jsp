@@ -76,11 +76,41 @@
 	<br />
 	<h4>픽셀을 어디에 사용하나요?</h4>
 	<div class="inwrap">
-		<div class="sinfo">
+		<div class="item_pixel container text-center">
+			<div class="st_area use1">
+				<div class="buy">
+					<dl>
+						<dt>궁금한 것이 있을 땐?</dt>
+						<dd>Q&A 게시판을 이용해보세요!</dd>
+						<dd>이용자들이 답변해 줄 거예요.</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="st_area use2">
+				<div class="buy">
+					<dl>
+						<dt>전문가 상담이 필요할 땐?</dt>
+						<dd>멘토 시스템을 이용해보세요!</dd>
+						<dd>24시간 대기하고 있습니다.</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="st_area use3">
+				<div class="buy">
+					<dl>
+						<dt>현장감 있는 리뷰가 궁금할 땐?</dt>
+						<dd>프리미엄 리뷰를 읽어보세요!</dd>
+						<dd>전&현직원의 생생한 후기입니다.</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- 		<div class="sinfo">
 			<ul>
 				<li class="desc1">
 					<div class="box_gry">
-						<span class="img">
+						<span class="use_pixel_img">
 							<img src="/images/qna.png">
 						</span>
 						<dl>
@@ -92,7 +122,7 @@
 				</li>
 				<li class="desc2">
 					<div class="box_gry">
-						<span class="img">
+						<span class="use_pixel_img">
 							<img src="/images/전문가.png">
 						</span>
 						<dl>
@@ -104,7 +134,7 @@
 				</li>
 			</ul>
 		</div>
-	</div>
+	</div> -->
 	<div class="notice">
 		<dl>
 			<dt>픽셀 구매 안내</dt>
