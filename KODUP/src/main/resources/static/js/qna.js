@@ -33,11 +33,21 @@ $('.btnSearch').click(function() {
 	console.log("검색");
 });
 
+/***** BACK TO LIST *****/
+$('.btnList').on('click', function() {
+	$('#center').load('/qna/qna');
+});
+
 
 
 
 
 /***** 조성호 *****/
-function qna_view(){
-	 $('#center').load('/qna/qna_view');
+/***** QNA VIEW *****/
+function qna_view() {
+	$('#center').load('/qna/qna_view');
 }
+
+$('.btnUpdate').on('click', function() {
+	$('#center').load('/qna/qna_update');
+});

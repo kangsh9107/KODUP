@@ -21,6 +21,13 @@ public class NotificationBoardController {
 		return mv;
 	}
 	
+	@RequestMapping("/notification/notification_update")
+	public ModelAndView notificationUpdate() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/notification/notification_update");
+		return mv;
+	}
+	
 	//성호
 	@RequestMapping("/notification/notification_view")
 	public ModelAndView notficationView() {

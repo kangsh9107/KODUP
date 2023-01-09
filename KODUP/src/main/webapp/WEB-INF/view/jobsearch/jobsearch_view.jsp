@@ -4,35 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- JS -->
+<script defer src="js/jobsearch.js"></script>
 <title>jobsearch/jobsearch_view.jsp</title>
-</head>
-
 <style>
 #jobsearch_view #jobsearch_view_doc {
 	min-height: 300px;
 	background: #eee;
 }
-a:hover{
-	background-color: #ffff00;
-}
 </style>
+</head>
+
 <body>
-<script>
-/***** 조성호 *****/
-/***** SUMMERNOTE *****/
-$(document).ready(function () {
-	$('.summernote').summernote({
-		placeholder: '댓글을 입력해주세요.',
-		height: 100,
-		maxHeight: 100,
-		popover: { //footer 밑 쓸모 없는 메뉴 삭제
-			image: [],
-			link: [],
-			air: []
-		}
-	});
-});
-</script>
 <form id="jobsearch_view">
 	<!-- boardtype + / + horsehead -->
 	<div id="jobsearch_view_horsehead">
@@ -93,9 +76,9 @@ $(document).ready(function () {
 	</div>
 	<!-- (목록,수정,삭제)btnzone -->
 	<div style="text-align:right;">
-		<input type="button" value="수정" style="visibility : hidden;">
-		<input type="button" value="삭제" style="visibility : hidden;">
-		<input type="button" value="목록">
+		<input type="button" class="btnUpdate" value="수정">
+		<input type="button" class="btnDeleteR" value="삭제">
+		<input type="button" class="btnList" value="목록">
 	</div>
 	
 	<hr/>

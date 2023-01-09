@@ -21,6 +21,13 @@ public class FreetalkingBoardController {
 		return mv;
 	}
 	
+	@RequestMapping("/freetalking/freetalking_update")
+	public ModelAndView freetalkingUpdate() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/freetalking/freetalking_update");
+		return mv;
+	}
+	
 	//성호
 	@RequestMapping("/freetalking/freetalking_view")
 	public ModelAndView freetalkingView() {

@@ -18,11 +18,7 @@
 					<!-- FORM -->
 					<form name="index_login_form" class="index_login_form" method="post">
 						<div class="input-group form-group index_login_input">
-							<span class="input-group-text"><i class="fas fa-comment"></i></span>
-							<input type="button" value="카카오 로그인" class="btn index_btnKakaoLoginR">
-						</div>
-						<div class="input-group form-group index_login_input">
-							<span class="input-group-text"><i class="fas fa-comment"></i></span>
+							<span class="input-group-text kakao"><i class="fas fa-comment"></i></span>
 							<input type="button" value="카카오로 시작하기" class="btn index_btnKakaoJoin">
 						</div>
 						<hr/>
@@ -32,7 +28,7 @@
 						</div>
 						<div class="input-group form-group index_login_input">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
-							<input type="password" name="pwd" class="form-control" placeholder="password">
+							<input type="password" name="pwd" class="form-control" placeholder="password" autocomplete="off">
 						</div>
 						<div class="input-group form-group index_login_input">
 							<span class="input-group-text"><i class="fas fa-keyboard"></i></span>
@@ -41,8 +37,8 @@
 						
 						<!-- FIND ACCOUNT & PASSWORD -->
 						<div class="index_find">
-							<a href="#" class="index_btnJoin">계정 찾기</a>
-							<a href="#" class="index_find_account">계정 찾기</a>
+							<a href="#" class="index_btnJoin">회원가입</a>
+							<a href="#" class="index_find_account">계정찾기</a>
 						</div>
 					</form>
 				</div>

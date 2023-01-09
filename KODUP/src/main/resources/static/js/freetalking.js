@@ -34,11 +34,21 @@ $('.btnSearch').click(function() {
 	console.log("검색");
 });
 
+/***** BACK TO LIST *****/
+$('.btnList').on('click', function() {
+	$('#center').load('/freetalking/freetalking');
+});
+
 
 
 
 
 /***** 조성호 *****/
-function qna_view(){
+/***** FREETALKING VIEW *****/
+function freetalking_view(){
 	 $('#center').load('/freetalking/freetalking_view');
 }
+
+$('.btnUpdate').on('click', function() {
+	$('#center').load('/freetalking/freetalking_update');
+});
