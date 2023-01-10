@@ -12,7 +12,7 @@
 </head>
 <body>
 <div id='memberinfo_update'>
-	<h5>회원정보 수정</h5><br>
+	<span class='mypage_subject_text'>회원정보 수정</span><br><br>
 	<span class='mm_text'>이름</span><input type='text' class='name' placeholder='고박사'><br/>
 	<span class='mm_text'>닉네임</span><input type='text' class='name' placeholder='코덥지박냥'><br/>
 	<span class='mm_text'>이메일</span><input type='text' class='name' placeholder='where_am_i@kodup.kr'><br/>
