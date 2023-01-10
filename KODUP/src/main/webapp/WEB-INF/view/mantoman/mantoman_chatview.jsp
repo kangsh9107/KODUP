@@ -202,10 +202,14 @@ body{
 }
 
 #chatt .me .dateTime{
-	display:inline-block;
-	margin-left:180px;
+ 	display:inline-block; 
 	font-size:8px;
+	margin-right:70px;
 }
+
+/* #chatt .me .talk_wrapper{
+	text-align:right;
+} */
 
 </style>
 </head>
@@ -256,16 +260,23 @@ btnLogin.onclick = function(){
 			
 			item = `<div \${css} >
 						<span class='myId'>\${data.mid}</span>
-						<img src='../images/basic_profile.jpg' class='myPicture'>						
-						<div class='myBalloon'><span>\${data.msg}</span></div><br/>
-						<span class='dateTime'>\${data.date}</span>
+						<img src='../images/basic_profile.jpg' class='myPicture'>
+						<div>
+							<div class='myBalloon'>
+								<span>\${data.msg}</span>
+							</div><br/><br/>
+							<div style="text-align: right; margin-top: 6px;">
+								<span class='dateTime'>\${data.date}</span>
+							</div>
+						</div>
+						
 					</div>`;
 		}else{
 			css = 'class=other';
 			
 			item = `<div \${css} >
 						<span class='yourId'>\${data.mid}</span>
-						<img src='../images/fox_profile.png' class='yourPicture'>						
+						<img src='../images/fox_profile.png' class='yourPicture'>
 						<div class='yourBalloon'><span>\${data.msg}</span></div><br/>
 						<span class='dateTime'>\${data.date}</span>
 					</div>`;

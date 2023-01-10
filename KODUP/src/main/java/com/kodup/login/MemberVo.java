@@ -12,7 +12,7 @@ public class MemberVo {
 	int account_type;   //0: 일반회원, 1: 카카오회원
 	int ban_status;
 	int pixel;
-	String grade;       //normal: 일반회원, personal: 퍼스널멘토, plus: 플러스멘토, partner: 파트너멘토, bm: 게시판지기, master: 관리자
+	String grade;       //0: 일반회원, 1: 퍼스널멘토, 2: 플러스멘토, 3: 파트너멘토, 4: 게시판지기, 5: 관리자
 	String join_date;
 	int email_status;   //0: 비인증(글,댓글,추천X), 1: 인증신청, 2: 인증승인
 	int mento_status;   //0: 비인증(멘토활동X),    1: 인증신청, 2: 인증승인

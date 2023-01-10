@@ -1,9 +1,10 @@
 @charset "UTF-8";
 
 
+
 #container {
 	display: grid;
-	grid-template-columns: 150px 700px;
+	grid-template-columns: 150px 650px;
 }
 
 .label_name{
@@ -16,6 +17,13 @@
 
 
 
+.mypage_subject_text{
+	display:inline-block;
+	font-weight:bolder;
+	text-align:center;
+	font-size: 1.5rem;
+}
+
 
 /* 회원 정보 */
 .member_info{
@@ -24,10 +32,14 @@
 
 /* mypage_memberinfo.jsp */
 
+.mypage_member_profile_item{
+	width: 320px;
+	height: 254px;
+}
+
 .mypage_member_profile {
 	display: grid;
 	grid-template-columns: 300px 450px;
-	/* background-color: skyblue; */
 	gap: 20px 20px;
 	/* row-gap: 20px; column-gap: 20px; */
 } 
@@ -57,17 +69,32 @@
 }
 
 
-/* 회원정보 수정 */
-#memberinfo_update{
+/* 회원정보 수정 memberinfo_update */
+
+#certification, #mypage_mypixel, 
+#mypage_dailycheck, #mypage_memberinfo, 
+#memberinfo_update, #member_quit{
+	
+	text-align:left;
+}
+
+.mypage_certification_box{
+	text-align:left;
+}
+
+/* #memberinfo_update{
 	margin-top:30px;
 	text-align:center;
-}
+} */
 
 .name{margin-bottom:5px;}
 
-#certification{
-	text-align: left;
-}
+#certification, #mypage_mypixel, 
+#mypage_dailycheck, #mypage_memberinfo, 
+#memberinfo_update, #member_quit{
+	
+	margin-left: 10px;
+} 
 
 /* mypage_member_quit.jsp 회원탈퇴 */
 #member_quit{
@@ -82,6 +109,11 @@
 }
 
 
+/* mypage_cerification 마이페이지 인증 */
+#certification span{
+	display: inline-block;
+	margin-bottom: 10px;
+}
 
 /* mypage_corp_certification.jsp */
 
@@ -99,6 +131,35 @@
 
 /* 마이페이지 인증 버튼 효과 */
 .btnC {
+  width: 100px;
+  height: 50px;
+  display: inline-block;								
+  background: transparent; 
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-style: normal;
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  color: white; 
+  border-radius: 10px;
+  padding: 15px 15px;
+  transition: all 0.7s ease-out;
+  background: linear-gradient(270deg, rgba(223,190,106,0.8), rgba(146,111,52,0.8), rgba(34,34,34,0), rgba(34,34,34,0));
+  background-position: 1% 50%;
+  background-size: 300% 300%;
+  text-decoration: none;
+  margin: 0.625rem;
+  border: none;
+}
+
+.btnC:hover {
+  color: #fff;
+  border: 1px solid rgba(223,190,106,0);
+  color: $white;
+  background-position: 99% 50%;
+}
+
+/* .btnC {
   display: inline-block;
   background: transparent; 
   text-transform: uppercase;
@@ -125,7 +186,7 @@
   color: $white;
   background-position: 99% 50%;
 }
-
+ */
 
 
 
@@ -159,6 +220,7 @@ text {
 
 
 /* mypage_mypixel.jsp 나의 픽셀 css */
+
 
 .mypage_mypixel_management_text{
 	display:inline-block;

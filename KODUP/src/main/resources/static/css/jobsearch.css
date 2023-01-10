@@ -1,6 +1,13 @@
 @charset "UTF-8";
 
 /***** 강수형 *****/
+/***** MEDIA *****/
+@media all and (max-width: 576px) {
+	#textPrevious, #textNext {
+		display: none;
+	}
+}
+
 /***** INSERT *****/
 .board_header {
 	padding: 0;

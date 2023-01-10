@@ -212,7 +212,7 @@
 /***** MANTOMAN *****/
 .btnMantoman {
 	position: absolute;
-	top: 50%;
+	top: 80%;
 	right: 40px;
 	color: #bb2649;
 	z-index: 1;
@@ -385,10 +385,10 @@
 }
 
 #index_doc {
-	font-size: 1.125rem;
+	font-size: 1rem;
 	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
 	font-weight: 600;
-	color: black;
+	color: #111827;
 }
 
 #index_doc:hover {

@@ -53,7 +53,8 @@ $('.btnLogoutR').on('click', function() {
 /***** MANTOMAN *****/
 $(document).ready(function() {
 	$(window).scroll(function() {
-		var position = $(window).scrollTop()+550; 
+		var height80vh = parseInt($(window).height() * 0.8); //VH의 80%
+		var position = $(window).scrollTop()+height80vh;
 		$('.btnMantoman').stop().animate({top:position+'px'},400);
 	});
 });
@@ -69,6 +70,10 @@ if(cnt == 0) {
 	cnt++;
 	window.Kakao.init('76fd5185be40793e6d0205f6710f85d0');
 }
+
+$('.index_btnJoinKakaoR').on('click', function() {
+	$('#center').load('/login/login_kakao');
+});
 
 /***** QNA LIST *****/
 $('.btnQna').on('click', function() {
