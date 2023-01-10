@@ -150,6 +150,20 @@ if(sessionId != ""){
 		var mentoList = document.querySelector('.mentoList');
 		mentoList.innerHTML += input; */
 		
+		$.ajax({
+			type: 'POST',
+			url: '/login/chat?mento=' + mento,
+			contentType: false,
+			processData: false,
+			dataType: 'html',
+			success: function(data) {
+				if(data == 'false') {
+					alert('채팅서버 연결에 실패했습니다.');
+				} else {
+					$('#center').html(data);
+				}
+			}
+		});
 	}
 }
 

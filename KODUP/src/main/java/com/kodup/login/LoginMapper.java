@@ -10,5 +10,8 @@ public interface LoginMapper {
 	public int login(MemberVo mVo);
 	public int checkId(String id);
 	public int checkGrade(String id);
+	public int chatInsert(String mento);
+	public int checkChatId(String mento);
+	public int chatDelete(String id);
 	
 }

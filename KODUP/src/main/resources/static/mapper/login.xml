@@ -20,4 +20,14 @@
 		WHERE id = #{_parameter}
 	</select>
 	
+	<!-- CHAT INSERT -->
+	<insert id="chatInsert" parameterType="String">
+		INSERT INTO chat(id) VALUES(#{_parameter})
+	</insert>
+	
+	<!-- CHECK CHAT ID -->
+	<select id="checkChatId" parameterType="String" resultType="Integer">
+		SELECT count(id) FROM chat WHERE id = #{_parameter}
+	</select>
+	
 </mapper>

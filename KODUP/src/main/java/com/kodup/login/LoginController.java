@@ -156,4 +156,27 @@ public class LoginController {
 		return mv;
 	}
 	
+	//멘토 로그인시 채팅세션 오픈
+	@RequestMapping("/login/chat")
+	public ModelAndView chat(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		boolean b = false;
+		boolean c = false;
+		
+		//chat테이블에 존재하는지 확인
+		c = service.checkChatId(req.getParameter("mento"));
+		
+		if(c) {
+			b = service.chatInsert(req.getParameter("mento"));
+			//b = false; //테스트용
+			if( !b ) {
+				mv.addObject("b", b);
+				mv.setViewName("/login/chat_false");
+			}
+		}
+		
+		mv.setViewName("/login/main");
+		return mv;
+	}
+	
 }
