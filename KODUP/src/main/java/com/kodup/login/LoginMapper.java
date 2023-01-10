@@ -8,5 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface LoginMapper {
 
 	public int login(MemberVo mVo);
+	public int checkId(String id);
+	public int checkGrade(String id);
 	
 }

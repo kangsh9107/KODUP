@@ -81,22 +81,26 @@ public class LoginController {
 //		mVo.setPixel(1000);
 //		mVo.setProfile_img("default.png");
 //		mVo.setPwd("1111");
-		b = service.login(mVo);
+		b = service.login(mVo); //ID&PWD체크
 		
-		b = true;  //테스트용
+		//b = true;  //테스트용
 		//b = false; // 테스트용
 		
 		if( !b ) {
-			String msg = "아이디와 비밀번호를 확인해주세요.";
-			res.setContentType("text/html; charset=euc-kr");
-			res.setCharacterEncoding("euc-kr");
-			PrintWriter out = res.getWriter();
-			out.println("<script>alert('" + msg + "');</script>");
-			out.flush();
-			mv.setViewName("/login/login");
+			mv.addObject("b", b);
+			mv.setViewName("/login/login_false");
 		} else {
 			HttpSession session = req.getSession();
 			session.setAttribute("sessionId", mVo.getId());
+			
+			//grade가져옴
+			int grade = 0;
+			grade = service.checkGrade(mVo.getId());
+			
+			if(grade > 0 || grade <4) {
+				session.setAttribute("grade", grade);
+			}
+			
 			mv.setViewName("/login/main");
 		}
 		
@@ -107,24 +111,47 @@ public class LoginController {
 	@RequestMapping("/login/join_kakao_check")
 	public ModelAndView loginKakaoR(MemberVo mVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
-		
-		//ID 중복체크
-		
 		String id = req.getParameter("id");
 		String email = req.getParameter("email");
-		mv.addObject("id", id);
-		mv.addObject("email", email);
-		mv.setViewName("/login/join_kakao");
+		String img = req.getParameter("img");
+		boolean b = false;
+		
+		//ID 중복체크 후 중복아니면 INSERT하고 로그인, 중복이면 LOGIN
+		b = service.checkId(id);
+		
+		b = true; //테스트용
+		//ID중복
+		if( b ) {
+			mv.addObject("id", id);
+			mv.addObject("email", email);
+			mv.addObject("img", img);
+			mv.setViewName("/login/join_kakao");
+		} else { //ID중복 아님
+			HttpSession session = req.getSession();
+			session.setAttribute("sessionId", mVo.getId());
+			mv.setViewName("/login/main");
+		}
+		
 		return mv;
 	}
 	
 	@RequestMapping("/login/login_kakao")
 	public ModelAndView loginKakao(MemberVo mVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
-		
-		//INSERT
-		
 		mv.addObject("mVo", mVo);
+		mv.setViewName("/login/main");
+		return mv;
+	}
+	
+	//카카오 회원가입
+	@RequestMapping("/login/join_kakao")
+	public ModelAndView joinKako(MemberVo mVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		
+		
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("sessionId", mVo.getId());
 		mv.setViewName("/login/main");
 		return mv;
 	}
