@@ -1,4 +1,4 @@
-package com.kodup.mantoman;
+package com.kodup.login;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -13,8 +13,8 @@ import javax.websocket.server.ServerEndpoint;
 import org.springframework.stereotype.Service;
 
 @Service
-@ServerEndpoint(value="/chatt")
-public class WebSocketChatt {
+@ServerEndpoint(value="/socket_login")
+public class WebSocketLogin {
 	private static Set<Session> clients = 
 			Collections.synchronizedSet(new HashSet<Session>());
 
@@ -47,5 +47,6 @@ public class WebSocketChatt {
 		System.out.println("session close : " + s);
 		clients.remove(s);
 	}
+
 	
 }

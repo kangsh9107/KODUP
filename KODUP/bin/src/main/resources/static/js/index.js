@@ -35,6 +35,24 @@ $('.index_btnLogin').on('click', function() {
 	$('#center').load('/login/login');
 });
 
+/***** SESSION LOGIN(세형작업중) *****/
+//console.log("js들어옴");
+//let sessionId = document.querySelector('.sessionId_hidden').value;
+//console.log("sessionId : " + sessionId);
+$('.btn1234').on('click', function() {
+	let sessionId = sessionStorage.getItem('sessionId');
+	console.log(sessionId)
+});
+
+$('.sessionId_hidden').change(function() {
+	console.log('실행');
+	ws = new WebSocket("ws://" + location.host + "/socket_login");
+	
+	ws.onmessage = function(msg){
+	}
+	console.log("세션 로그인");
+});
+
 /***** QNA LIST *****/
 $('.btnQna').on('click', function() {
 	$('#center').load('/qna/qna');

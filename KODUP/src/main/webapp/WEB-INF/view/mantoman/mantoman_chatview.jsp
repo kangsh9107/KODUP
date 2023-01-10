@@ -250,8 +250,6 @@ btnLogin.onclick = function(){
 	ws.onmessage = function(msg){
 		
 		var data = JSON.parse(msg.data);
-		console.log(data);
-		console.log(data.msg);
 		var css;
 		var item="";
 		
