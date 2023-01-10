@@ -18,7 +18,6 @@ public class LoginController {
 	@Autowired
 	LoginService service;
 	
-	//페이지 이동
 	@RequestMapping("/login/main")
 	public ModelAndView main() {
 		ModelAndView mv = new ModelAndView();
@@ -109,7 +108,7 @@ public class LoginController {
 	public ModelAndView loginKakaoR(MemberVo mVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		
-		//id 중복체크
+		//ID 중복체크
 		
 		String id = req.getParameter("id");
 		String email = req.getParameter("email");

@@ -63,6 +63,9 @@
 				       		<li class="nav-item">
 				       			<a class="nav-link active non-click btnNotification" aria-current="page" href="#">공지사항</a>
 				       		</li>
+				       		<li class="nav-item">
+				       			<a class="nav-link active non-click" aria-current="page" href="/intro">INTRO</a>
+				       		</li>
 				       	</ul>
 			       	</div>
 			       	<div class="col-md-2" style="padding-right: 3px;">

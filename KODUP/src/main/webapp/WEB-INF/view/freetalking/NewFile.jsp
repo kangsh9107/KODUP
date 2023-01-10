@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <!-- CSS -->
-<link href="css/infoshare.css" rel="stylesheet">
+<link href="css/qna.css" rel="stylesheet">
 <!-- JS -->
 <script defer src="js/infoshare.js"></script>
-<title>infoshare/inforshare_view.jsp</title>
+<title>infoshare/infoshare_view.jsp</title>
 </head>
 <body>
 <form id="infoshare_view">
@@ -33,7 +33,7 @@
 		<span id="infoshare_view_profile_profileimage" > <!-- span태그사용 : 이미지사진+닉네임 한줄로 붙이기위해 span이 inline요소라서 -->
 			<img id="infoshare_view_profile_profileimage_file" src="images/index_default.png" >
 		</span>
-		<span id="infoshare_view_profile">
+		<span id="index_profile">
 			<span>딥러닝악마</span>
 		</span>
 	</div>

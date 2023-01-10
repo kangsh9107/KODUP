@@ -53,7 +53,8 @@ $('.btnLogoutR').on('click', function() {
 /***** MANTOMAN *****/
 $(document).ready(function() {
 	$(window).scroll(function() {
-		var position = $(window).scrollTop()+800; //80%로 주는 방법 찾기. vh 계산해서 800대신 변수 대입.
+		var height80vh = parseInt($(window).height() * 0.8); //VH의 80%
+		var position = $(window).scrollTop()+height80vh;
 		$('.btnMantoman').stop().animate({top:position+'px'},400);
 	});
 });

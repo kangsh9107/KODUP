@@ -40,7 +40,7 @@ $('.index_btnLoginR').on('click', function() {
 		alert('비밀번호를 입력해주세요.');
 	} else {
 		var param = new FormData(frm);
-	
+		
 		$.ajax({
 			type: 'POST',
 			url: '/login/loginR',
@@ -55,41 +55,6 @@ $('.index_btnLoginR').on('click', function() {
 		});
 	}
 });
-
-/*
-$.ajax({
-	type : "post",
-	url : '/login/join_kakao_check', //ID중복체크를 통해 회원가입 유무를 결정하고, join_kakao.jsp로 이동 후 
-	data : { "userid":kakaoid },
-	dataType: "json",
-	success : function(json) {
-		if(json.idExists) {
-			$('#center').load('/login/loginR'); //존재하는 경우 로그인 처리
-		} else {
-			$.ajax({
-				type : "post",
-				url : '/login/join_kakao', //INSERT
-				data : {"id":kakaoid,
-					    "email":response.kakao_account.email},
-				dataType :"json",
-				success : function(json) {
-					if(json.success) {
-						$('#center').load('/login/loginR');
-					} else {
-						alert('카카오 회원가입 실패. 일반계정으로 로그인하시기 바랍니다.');
-					}
-				},
-				error: function(request, status, error) {
-	                   alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
-	            }
-			});
-		}						
-	},
-	error: function(request, status, error) {
-           alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
-    }
-});
-*/
 
 /***** FIND ACCOUNT *****/
 $('.index_find_account').on('click', function() {
