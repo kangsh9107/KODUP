@@ -52,7 +52,7 @@
 						</div>
 						<div class="input-group form-group index_login_input">
 							<span class="input-group-text"><i class="fas fa-keyboard"></i></span>
-							<input type="button" value="가입완료" class="btn index_btnJoin">
+							<input type="button" value="가입완료" class="btn index_btnJoinR">
 						</div>
 					</form>
 				</div>

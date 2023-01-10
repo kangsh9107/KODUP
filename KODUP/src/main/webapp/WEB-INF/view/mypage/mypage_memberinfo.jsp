@@ -18,18 +18,17 @@
 		<br><br>
 		<div class='mypage_member_profile'>
 			<div class='mypage_member_profile_item'>
-					<img src="https://s3.orbi.kr/data/file/united2/ee9383d48d17470daf04007152b83dc0.png"
-					style='width: 280px;'>
-			</div>
+					<img src="https://s3.orbi.kr/data/file/united2/ee9383d48d17470daf04007152b83dc0.png" alt='asdfasdf' style='width: 280px;' >
+<!-- 				<img src="https://previews.123rf.com/images/sudakasi/sudakasi1405/sudakasi140500174/28673467-%EC%95%84%EB%A6%84%EB%8B%A4%EC%9A%B4-%EC%9E%90%EC%97%B0-%EB%B0%B0%EA%B2%BD.jpg">
+ -->			</div>
 
 			<div class='mypage_member_profile_item'>
-				<span class='mm_text'>이름</span><span>고박사</span><br>
-				<span class='mm_text'>닉네임</span><span>코덥지박냥</span><br>
-				<span class='mm_text'>이메일</span><span>where_am_i@kodup.kr</span><br>
-				<span class='mm_text'>나이</span><span>만 3세</span><br>
-				<span class='mm_text'>성별</span><span>알수없음askdfja;kdfas</span>
+				<span class='mm_text'>닉네임</span><span>${mpVo.nickname }</span><br>
+				<span class='mm_text'>이메일</span><span>${mpVo.email }</span><br>
+				<span class='mm_text'>나이</span><span>${mpVo.age }</span><br>
+				<span class='mm_text'>성별</span><span>${mpVo.gender }</span>
 				<br><br><br>
-				<button type="button" class="btn btn-outline-primary btnModify">내 정보수정</button><br>
+				<button type="button" class="btn btn-outline-primary btnUpdate">내 정보수정</button><br>
 				<button type="button" class="btn btn-outline-secondary btnQuit">탈퇴</button>
 			</div>		
 

@@ -15,6 +15,16 @@ $(document).ready(function () {
 			air: []
 		}
 	});
+	$('.view_summernote').summernote({
+	    placeholder: '내용을 입력해주세요.',
+	    height: 100,
+	    maxHeight: 100,
+	    popover: { 
+	        image: [],
+	        link: [],
+	        air: []
+	    }
+	});
 });
 
 /***** QNA INSERT *****/
@@ -33,11 +43,21 @@ $('.btnSearch').click(function() {
 	console.log("검색");
 });
 
+/***** BACK TO LIST *****/
+$('.btnList').on('click', function() {
+	$('#center').load('/qna/qna');
+});
+
 
 
 
 
 /***** 조성호 *****/
-function qna_view(){
-	 $('#center').load('/qna/qna_view');
+/***** QNA VIEW *****/
+function qna_view() {
+	$('#center').load('/qna/qna_view');
 }
+
+$('.btnUpdate').on('click', function() {
+	$('#center').load('/qna/qna_update');
+});

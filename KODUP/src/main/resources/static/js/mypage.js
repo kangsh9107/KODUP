@@ -9,7 +9,6 @@
  $('.HN_btnMyPage').on('click', function(){
  	$('#m_section2').load('/board/mypage_memberinfo');
  });
- 
 
 
 //mypage_dailycheck (출석체크)
