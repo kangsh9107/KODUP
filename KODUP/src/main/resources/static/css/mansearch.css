@@ -150,9 +150,10 @@ img.view_corp_logo{
 .mansearch_view_subject{
 	height: 45px;
 	text-align:left;
+	padding-left:0;
 }
 .datepaylocation_area{
-	background-color:#f9fafb;
+	background-color:#eceded;
 	width:100%;
 	height:auto;
 	border-radius:5px;
@@ -307,7 +308,6 @@ img#premium_review_writer_icon{
 	position:relative;
 } 
 .premium_review_doc{
-	filter: blur(3px);
 	z-index: -500;
 	-ms-user-select: none; 
   	-moz-user-select: -moz-none;
@@ -315,16 +315,21 @@ img#premium_review_writer_icon{
   	-webkit-user-select: none;
   	user-select: none;
 }
+.premium_review_doc>img{
+	border-radius:8px;
+	width:100%;
+	box-shadow:10px gray;
+}
 .premium_review_doc_wrap>.doc_blind_wrap{
 	position:absolute;
 	top:40%;
-	left:33%;
+	left:35%;
 	z-index:500;
 }
 @media ( max-width :993px) {
 	.premium_review_doc_wrap>.doc_blind_wrap{
 	top:40%;
-	left:23%;
+	left:25%;
 	}
 }
 @media ( max-width :395px) {
@@ -376,6 +381,7 @@ label.corp_enroll_step_top{
 	display:none;
 }
 .info_label{
+	padding:0;
 	font-size:16px;
  	font-weight:bold;	
  	margin-bottom:8px;

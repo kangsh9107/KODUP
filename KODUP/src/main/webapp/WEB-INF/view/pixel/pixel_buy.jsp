@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +9,11 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <link rel='stylesheet' href='css/pixel.css'>
+<script defer src="js/pixel.js"></script>
 <title>pixel/pixel_buy.jsp</title>
 </head>
 <body>
+<input type='hidden' class='member_id' value='${vo.id }'/>
 	<h3 class="pg_title">픽셀충전</h3>
 	<div class="inwrap">
 		<div class="item_pixel container text-center">
@@ -20,7 +23,7 @@
 						<span class="num">픽셀<strong>100</strong>개
 						</span> <span class="price">1,000원</span>
 					</div>
-					<button type="button" class="btn_buy">구매하기</button>
+					<button type="button" class="btn_buy" onclick="requestPay()">구매하기</button>
 				</div>
 			</div>
 			<div class="st_area st2">
@@ -29,7 +32,7 @@
 						<span class="num">픽셀<strong>300</strong>개
 						</span> <span class="price">2,700원</span>
 					</div>
-					<button type="button" class="btn_buy">구매하기</button>
+					<button type="button" class="btn_buy" onclick="requestPay()">구매하기</button>
 				</div>
 			</div>
 			<div class="st_area st3">
@@ -38,7 +41,7 @@
 						<span class="num">픽셀<strong>500</strong>개
 						</span> <span class="price">4,500원</span>
 					</div>
-					<button type="button" class="btn_buy">구매하기</button>
+					<button type="button" class="btn_buy" onclick="requestPay()">구매하기</button>
 				</div>
 			</div>
 
@@ -48,7 +51,7 @@
 						<span class="num">픽셀<strong>1,000</strong>개
 						</span> <span class="price">9,000원</span>
 					</div>
-					<button type="button" class="btn_buy">구매하기</button>
+					<button type="button" class="btn_buy" onclick="requestPay()">구매하기</button>
 				</div>
 			</div>
 
@@ -58,7 +61,7 @@
 						<span class="num">픽셀<strong>3,000</strong>개
 						</span> <span class="price">27,000원</span>
 					</div>
-					<button type="button" class="btn_buy">구매하기</button>
+					<button type="button" class="btn_buy" onclick="requestPay()">구매하기</button>
 				</div>
 			</div>
 
@@ -68,7 +71,7 @@
 						<span class="num">픽셀<strong>5,000</strong>개
 						</span> <span class="price">45,000원</span>
 					</div>
-					<button type="button" class="btn_buy">구매하기</button>
+					<button type="button" class="btn_buy" onclick="requestPay()">구매하기</button>
 				</div>
 			</div>
 		</div>
@@ -106,35 +109,6 @@
 			</div>
 		</div>
 	</div>
-<!-- 		<div class="sinfo">
-			<ul>
-				<li class="desc1">
-					<div class="box_gry">
-						<span class="use_pixel_img">
-							<img src="/images/qna.png">
-						</span>
-						<dl>
-							<dt>궁금한 것이 있을 땐?</dt>
-							<dd>Q&A 게시판을 이용해보세요!</dd>
-							<dd>이용자들이 답변해 줄 거예요.</dd>
-						</dl>
-					</div>
-				</li>
-				<li class="desc2">
-					<div class="box_gry">
-						<span class="use_pixel_img">
-							<img src="/images/전문가.png">
-						</span>
-						<dl>
-							<dt>전문가 상담이 필요할 땐?</dt>
-							<dd>멘토 시스템을 이용해보세요!</dd>
-							<dd>24시간 대기하고 있습니다.</dd>
-						</dl>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</div> -->
 	<div class="notice">
 		<dl>
 			<dt>픽셀 구매 안내</dt>

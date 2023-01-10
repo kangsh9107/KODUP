@@ -16,7 +16,7 @@ h3.pg_title{
 h4{
 	font-family: 'BMJUA';
 }
-@media ( max-width :780px) {
+@media ( max-width :1150px) {
 	.inwrap {
 		margin: 0 auto;
 		display: grid !important;
@@ -31,7 +31,7 @@ h4{
 	}		
 }
 
-@media ( min-width :781px) {
+@media ( min-width :1152px) {
 	.inwrap {
 		margin: 0 auto;
 		display: grid !important;

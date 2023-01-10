@@ -23,7 +23,7 @@ li {
 <div class="container text-center">
 	<div class="row justify-content-md-center">
 		<div class="col mansearch_view_subject">
-			<span style="font-size:1.8rem;">
+			<span style="font-size:1.8rem; padding:0; margin:0;">
 				<label><strong>★중급★ 카드사 시스템 유지보수 (API연계)</strong></label>
 			</span><br/>
 			<span class="deadline">
@@ -39,7 +39,7 @@ li {
 		</div>
 	</div>
 </div>
-<div class="container text-left"style="margin-top:90px;">
+<div class="container text-left"style="margin-top:90px; padding-left:0;">
 	<div class="row">
 		<div class="col-sm datepaylocation_area">
 			<dl>
@@ -242,7 +242,23 @@ BC카드 시스템 유지보수 (API연계)
 	</div>
 </div>
 <br/><br/>
-<div class="container">
+<div class="container text-left">
+	<div class="row">
+    	<div class="col-1" style="padding:0;">
+			<span>
+				<img id="premium_review_writer_icon" src="images/index_default.png" style="width:42px; height:42px; margin-top:19px;"> 
+			</span>
+		</div>
+    	<div class="col-11">
+      		<div class="form-floating">
+  				<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+  				<label for="floatingTextarea2">경력증명서 인증 후 리뷰를 작성할 수 있습니다.</label>
+			</div>
+    	</div>
+  	</div>
+    	<button class="mansearch_insert" style="float:right; margin-top:15px;">리뷰등록</button>
+</div><br/><br/>	
+<div class="container" style="padding-left:0;">
 	<div class="row">
 		<div class="col premium_review_wrap">
 			<div class="premium_review_writer">
@@ -258,20 +274,38 @@ BC카드 시스템 유지보수 (API연계)
 					<label>2023-01-09</label>
 				</span>
 			</div>
+		
 			<div class="premium_review_doc_wrap">
 				<div class="premium_review_doc">
-					원질이 별과 피에 이것은 구하기 불어 그것은 같으며, 위하여서. 따뜻한 실현에 따뜻한 이상, 길을 인간의 얼마나 보이는 것은 그리하였는가? 사는가 무엇을 무엇이 봄바람이다. 풍부하게 것은 이상 봄날의 못할 많이 같으며, 뼈 인생에 교향악이다. 이것이야말로 위하여서, 이는 피다. 하였으며, 별과 밥을 관현악이며, 생생하며, 꽃이 사막이다. 이성은 무한한 우리의 고동을 내는 가슴이 봄바람이다. 하여도 때에, 그들의 같이 평화스러운 귀는 그들을 청춘의 있는가? 간에 심장의 오직 장식하는 인간은 때까지 따뜻한 교향악이다.
-	
-					꽃 속잎나고, 때까지 피는 착목한는 같으며, 속에 산야에 영락과 교향악이다. 얼마나 예수는 갑 내는 아니더면, 이성은 것이 설산에서 끓는다. 있으며, 이상은 착목한는 만물은 창공에 아름다우냐? 꾸며 황금시대의 싹이 찾아다녀도, 약동하다. 황금시대의 주는 꾸며 방황하였으며, 싸인 온갖 이상이 칼이다. 피는 우는 인간의 심장의 싸인 청춘의 희망의 힘있다. 어디 굳세게 실로 동산에는 새가 천고에 싸인 열락의 것이다. 그림자는 풍부하게 봄날의 것이다. 착목한는 피가 소금이라 광야에서 이것이다.
-	
-					얼음 스며들어 열락의 용감하고 곳으로 대고, 살 것이다. 찬미를 얼마나 귀는 있는가? 품으며, 속잎나고, 구하지 사는가 이것이야말로 불러 교향악이다. 풀밭에 같은 그들은 돋고, 사는가 창공에 간에 밥을 앞이 봄바람이다. 이상은 트고, 청춘에서만 튼튼하며, 피다. 심장의 행복스럽고 그들의 희망의 낙원을 충분히 발휘하기 철환하였는가? 너의 피어나는 인생을 생의 있음으로써 뛰노는 아름다우냐? 날카로우나 들어 보내는 청춘 보라. 얼마나 생생하며, 이상을 인간의 실로 거선의 능히 싶이 보라.
+					<img src="/images/review_blur.png">
 				</div>
 				<div class="doc_blind_wrap">
-					<button class="premium_review_payment">픽셀을 사용하여 프리미엄 리뷰 보기</button>
+					<button type="button" class="premium_review_payment" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  						프리미엄 리뷰 보기
+					</button>
 				</div>
 			</div>
+			
 		</div>	
 	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">프리미엄 리뷰 결제</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        정말 픽셀을 사용하여 프리미엄 리뷰를 보시겠습니까?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아니오</button>
+        <button type="button" class="btn btn-primary">네, 보겠습니다.</button>
+      </div>
+    </div>
+  </div>
 </div>
 </body>
 </html>
