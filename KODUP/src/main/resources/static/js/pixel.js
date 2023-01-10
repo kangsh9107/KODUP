@@ -14,25 +14,27 @@ function requestPay() {
 	    merchant_uid: "merchant_" + new Date().getTime(),
 	    name : '픽셀 구매',
 	    amount : 100,
-	    buyer_id : memberid,
-/*	 
-	    buyer_email : 'iamport@siot.do',
+	    buyer_id : memberid,	 
+/*	    buyer_email : 'iamport@siot.do',
 	    buyer_tel : '010-1111-1111',
 	    buyer_addr : '서울특별시 관악구 봉천동',
-	    buyer_postcode : '11111'
-*/	
-	}, function(rsp) { //callback
+	    buyer_postcode : '11111'*/	
+	    }, function(rsp) { //callback
 	    if ( rsp.success ) { //결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
 	    	//jQuery로 HTTP 요청
 	    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달
 	    	jQuery.ajax({
-	    		url: "/payments/complete", //cross-domain error가 발생하지 않도록 주의
+	    		url: "/pixel/buy_complete", //cross-domain error가 발생하지 않도록 주의
 	    		type: 'POST',
-	    		dataType: 'json',
+	    		dataType: 'html',
 	    		data: {
 		    		imp_uid : rsp.imp_uid
 		    		//기타 필요한 데이터가 있으면 추가 전달
-	    		}
+	    		},
+	    		success : function(receiveData, status){
+					$('#center').html(receiveData);
+				}	
+
 	    	}).done(function(data) {
 	    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
 	    		if ( everythings_fine ) {
