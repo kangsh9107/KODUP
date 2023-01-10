@@ -2,9 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kodup.mypage.MypageMapper">
 
+	<!-- 회원 정보 -->
+	<select id='info' parameterType="String" resultType="com.kodup.mypage.MypageVo">
+		SELECT nickname, email, gender, age, profile_img FROM member WHERE id= #{_parameter}
+	</select>
 
-<!-- SELECT nickname, email, gender, age, profile_img FROM member WHERE id = #{_parameter}
- -->
-
-
+	<!-- <select id='info_update'>
+		SELECT nickname = #{nickname}, email, gender, age, profile_img FROM member WHERE id = #{_parameter}
+	</select> -->
+	
+	<!-- 회원 탈퇴 -->
+	<delete id='member_quit' parameterType='String'>
+		delete from member where id= #{_parameter}
+	</delete> 
+	
+	<!-- resultType='com.kodup.mypage.MypageQuitVo' -->
+	
 </mapper>

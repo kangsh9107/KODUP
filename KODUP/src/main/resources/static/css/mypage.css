@@ -98,9 +98,11 @@
 
 /* mypage_member_quit.jsp 회원탈퇴 */
 #member_quit{
+	box-sizing: border-box;
 	margin: 50px 20px 0px 20px;
 	border-radius: 20px;
-	border: 2px solid 
+	border: 2px solid;
+	padding: 10px;
 }
 
 
@@ -155,7 +157,7 @@
 .btnC:hover {
   color: #fff;
   border: 1px solid rgba(223,190,106,0);
-  color: $white;
+  color: white;
   background-position: 99% 50%;
 }
 

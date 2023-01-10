@@ -22,7 +22,7 @@
 				<div class="col-md-6" style="padding-left: 10px; padding-right: 10px;">
 					<div class="list-group">
 						<a href="#" class="list-group-item list-group-item-action" id="index_main_boardtype">
-							QnA
+							Q&A
 							<img id="index_boardtype_background" src="${list }">
 						</a>
 					</div>

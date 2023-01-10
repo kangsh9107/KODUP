@@ -5,9 +5,12 @@
 <head>
 
 <script>
+
+
 $('.btnQuit_Irreversible').on('click', function(){
 	alert("탈퇴완료");
-	$('#center').load('/login/main');
+	$('#center').load('/board/mypage_memberinfo_quit_real');
+	/* $('#center').load('/login/main'); */
 	
 });
 </script>

@@ -309,6 +309,11 @@ img#premium_review_writer_icon{
 .premium_review_doc{
 	filter: blur(3px);
 	z-index: -500;
+	-ms-user-select: none; 
+  	-moz-user-select: -moz-none;
+  	-khtml-user-select: none;
+  	-webkit-user-select: none;
+  	user-select: none;
 }
 .premium_review_doc_wrap>.doc_blind_wrap{
 	position:absolute;

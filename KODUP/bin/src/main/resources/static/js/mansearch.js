@@ -25,6 +25,7 @@ $(document).ready(function () {
 });
 
 $('.mansearch_board_cancel').on('click',function(){
+	window.scrollTo(0,0);
 	$('#center').load('/mansearch/mansearch');
 });
 $('.mansearch_update').on('click',function(){

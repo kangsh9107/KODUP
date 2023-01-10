@@ -76,6 +76,8 @@
 			
 			<!-- HIDDEN -->
 			<input type="hidden" name="nowPage" value="">
+			<input type="hidden" name="freetalking_sno" value="">
+			<input type="hidden" name="sno" value="">
 		</form>
 
 		<!-- LIST -->
@@ -91,20 +93,20 @@
 						<i class="fas fa-circle-check" style="color: #555; font-size: 0.9rem;"></i>
 					</div>
 					<br/>
-					<a href="#" class="text-decoration-none">
-						<span id="index_doc">혹시 최근(2년) 취업하신 분들 초봉이 어떻게 되세요?</span>
+					<a href="#" onclick="freetalking_view()" class="text-decoration-none">
+						<span id="index_doc">혹시 자소서 언제 보내실거에요?</span>
 					</a>
 					<br/>
 					<div style="float: left;">
 						<!-- HORSEHEAD -->
 						<label id="board_horsehead">일상</label>
 						<!-- HASHTAG -->
-						<c:forTokens var="list" items="#연봉,#취업,#야근" delims=",">
+						<c:forTokens var="list" items="#믿음,#소망,#사랑" delims=",">
 							<a href="#" onclick="return false" class="board_list_hashtag" style="font-size: 0.8rem; color: #555; margin-left: 3px;">${list }</a>
 						</c:forTokens>
 					</div>
 					<!-- VIEW & THUMB & REPL -->
-					<div style="float: right;">
+					<div style="float: right; cursor: default;">
 						<img id="index_viewcount" src="images/index_viewcount.png">
 						<span id="index_viewcount_sum">777</span>
 						<img id="index_updown" src="images/index_updown.png">

@@ -9,7 +9,6 @@
 <meta charset="UTF-8">
 <!-- FAVICON -->
 
-
 <!-- CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
@@ -23,6 +22,7 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 <script src="https://unpkg.com/@yaireo/tagify"></script>
 <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script defer src="js/index.js"></script>
 <title>코드 레벨업 - 코덥!</title>
 </head>
@@ -44,7 +44,7 @@
 		        	<div class="col-md-8 index_nav_items">
 				   		<ul class="navbar-nav me-auto mb-2 mb-lg-0 index_nav_ul" style="padding-left: 10px">
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click btnQna" aria-current="page" href="#">QnA</a>
+				       			<a class="nav-link active non-click btnQna" aria-current="page" href="#">Q&A</a>
 				       		</li>
 				       		<li class="nav-item">
 				       			<a class="nav-link active non-click btnInfoshare" aria-current="page" href="#">정보공유</a>
@@ -65,19 +65,25 @@
 			       	</div>
 			       	<div class="col-md-2" style="padding-right: 3px;">
 			            <div class="navbar-nav ms-auto p-4 p-lg-0 index_dropdown_wrap_wrap" style="float: right; padding: 0 !important;">
-			                <div class="nav-item dropdown index_dropdown_wrap">
-			                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="padding: 4px; margin-right: 10px;">
-			                    	<img src="images/index_default.png" class="d-inline-block align-text-top" style="width: 30px; height: 30px; border-radius: 50%;">
-			                    </a>
-			                    <div class="dropdown-menu fade-down m-0" id="index_dropdown">
-									<a class="dropdown-item pixelbuy" href="#">포인트충전</a>
-									<a id='btnMyprofile' class="dropdown-item" href="#">내프로필</a>
-									<a class="dropdown-item btnMypage" href="#">마이페이지</a>
-									<hr class="dropdown-divider">
-									<a class="dropdown-item" href="#">로그아웃</a>
-			                    </div>
-			                </div>
-				            <input type="button" value="로그인" class="btn index_btnLogin"/>
+			            	<c:choose>
+				            	<c:when test="${sessionId ne null }">
+					                <div class="nav-item dropdown index_dropdown_wrap">
+					                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="padding: 4px;">
+					                    	<img src="images/index_default.png" class="d-inline-block align-text-top" style="width: 30px; height: 30px; border-radius: 50%;">
+					                    </a>
+					                    <div class="dropdown-menu fade-down m-0" id="index_dropdown">
+											<a class="dropdown-item pixelbuy" href="#">포인트충전</a>
+											<a id='btnMyprofile' class="dropdown-item" href="#">내프로필</a>
+											<a class="dropdown-item btnMypage" href="#">마이페이지</a>
+											<hr class="dropdown-divider">
+											<a class="dropdown-item btnLogoutR" href="#">로그아웃</a>
+					                    </div>
+					                </div>
+				            	</c:when>
+				            	<c:otherwise>
+						            <input type="button" value="로그인" class="btn index_btnLogin"/>
+				            	</c:otherwise>
+			            	</c:choose>
 			            </div>
 				    </div>
 		        </div>
@@ -96,10 +102,11 @@
 		<!-- LEFT -->
 		<!-- TAG -->
 		<div class="row">
-			<div class="col-md-2 tag" style="padding: 0;">
+			<div class="col-md-2 tag" style="padding: 0 40px 0 0;">
 				<aside id="left" style="float: left;">
 					<div class="container">
 						<div class="row">
+							<!-- HOT TAG -->
 							<div class="col-md-12" id="index_hashtag">
 								<span style="font-weight: 600;">#인기 태그</span>
 								<hr/>
@@ -109,7 +116,13 @@
 									<br/><br/>
 								</c:forEach>
 							</div>
+							<!-- HONOR -->
+							<div class="col-md-12" id="index_honor" style="padding: 0;">
+								<img src="images/index_ad4.png" style="width: 100%; float: left;">
+							</div>
+							<!-- TOP WRITER -->
 							<div class="col-md-12" id="index_top_writer">
+								<br/><br/>
 								<span style="font-weight: 600;">#Top Writer</span>
 								<hr/>
 								<c:forEach var="list" begin="0" end="4">

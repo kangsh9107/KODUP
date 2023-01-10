@@ -18,19 +18,19 @@
 			</div>
 		</div>
 		<div class='chat_user separator'>
-			<img src="../images/basic_profile.jpg" class="mentor_profileImg">
+			<img src="../images/devil_profile.png" class="mentor_profileImg">
 			<div class='clickSection'>
-				<span class='profile_nickname'>옥다방고양이</span>
+				<span class='profile_nickname'>딥러닝악마</span>
 				<span class='nal'>2023-01-07 17:38</span><br>
-				<span class='last_talk'>네 다음에 또 얘기해요!</span>
+				<span class='last_talk'>고생하셨습니다!</span>
 			</div>
 		</div>
 		<div class='chat_user separator'>
-			<img src="../images/basic_profile.jpg" class="mentor_profileImg">
+			<img src="../images/cat_profile.png" class="mentor_profileImg">
 			<div class='clickSection'>
-				<span class='profile_nickname'>옥다방고양이</span>
+				<span class='profile_nickname'>min2us</span>
 				<span class='nal'>2023-01-07 17:38</span><br>
-				<span class='last_talk'>네 다음에 또 얘기해요!</span>
+				<span class='last_talk'>넹 안녕히주무세요!</span>
 			</div>
 		</div>
 	</div>
@@ -43,8 +43,7 @@ $('.mentor_profileImg').on('click',function() {
 });
 
 $('.clickSection').on('click', function() {
-	$(".slide").load('/mantoman/mantoman_chatview'); 
-	//$(".slide").load('/mantoman/chatting_test'); 
+	$(".slide").load('/mantoman/mantoman_chatview');
 });
 </script>
 </body>
