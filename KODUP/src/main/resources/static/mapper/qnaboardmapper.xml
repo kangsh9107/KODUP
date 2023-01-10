@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kodup.qna.QnaBoardMapper">
+	
+	<select id='view' parameterType="Integer" resultType="com.kodup.qna.QnaBoardVo">
+		SELECT b.id,b.boardtype, b.nal, b.subject, b.viewcount, (b.thumbup-b.thumbdown), b.doc,
+	    q.QnA_horsehead,
+	    m.profile_img, m.nickname
+		FROM board b LEFT JOIN QnA_board q ON b.sno = q.sno
+	    LEFT JOIN member m    ON m.id = b.id
+	    WHERE b.sno = ${_parameter}
+    </select>
+    
+    <select id='hashList' parameterType="Integer" resultType="com.kodup.qna.QnaHashVo">
+    	select hashtag from board where sno=${_parameter}
+    </select>
+</mapper>

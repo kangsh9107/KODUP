@@ -22,7 +22,10 @@ $('.btnQnaInsert').on('click', function() {
 	$('#center').load('/qna/qna_insert');
 });
 
-
+/***** QNA UPDATE *****/
+$('.btnUpdate').on('click', function() {
+	$('#center').load('/qna/qna_update');
+});
 
 /***** QNA SEARCH *****/
 $('.inputSearch').keyup(function(evnet) {
@@ -43,9 +46,19 @@ $('.btnList').on('click', function() {
 
 
 
-
 /***** 조성호 *****/
 /***** QNA VIEW *****/
+
+//qna.jsp에서 목록클리시 뷰단으로이동
+function qna_view() {
+	$('#center').load('/qna/qna_view');
+}
+
+function qna_view_findHashtag(hashtag){
+	//해시태그클릭시 해당태그로 검색된 검색결과리스트출력
+	//지금은 일단 콘솔로그만 찍어줌
+	console.log(hashtag);
+}
 $(document).ready(function () {
 	$('.view_summernote').summernote({
 	    placeholder: '내용을 입력해주세요.',
@@ -58,34 +71,9 @@ $(document).ready(function () {
 	    }
 	});
 });
-function qna_view() {
-	$('#center').load('/qna/qna_view');
-}
-
-$('.btnUpdate').on('click', function() {
-	$('#center').load('/qna/qna_update');
+$('.btnBoardtype').on('click', function() {
+	$('#center').load('/qna/qna');
 });
-
-/*$(function(){
-	$('#repl_inner_display_onkey').click(function(){
-		if($("#qna_view_repl_inner_insert1").css("display")=="none"){
-			$('#qna_view_repl_inner_insert1').show();
-			$('#repl_inner_display_onkey').hide();
-			$('#repl_inner_display_offkey').show();
-		}
-	})
-});
-$(function(){
-	$('#repl_inner_display_offkey').click(function(){
-		if($("#qna_view_repl_inner_insert1").css("display")!="none"){
-			$('#qna_view_repl_inner_insert1').hide();
-			$('#repl_inner_display_onkey').show();
-			$('#repl_inner_display_offkey').hide();
-		}
-	})
-});*/
-
-
 
 function insertFormToggle(OptNo){
         var insertId = "repl_insert_section"+OptNo;
@@ -98,6 +86,7 @@ function insertFormToggle(OptNo){
             $('#' +insertId).css('display','none');
         }
 }
+
 
 
 
