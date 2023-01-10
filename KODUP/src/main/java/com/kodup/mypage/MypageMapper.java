@@ -1,5 +1,12 @@
 package com.kodup.mypage;
 
-public interface MypageMapper {
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+//인터페이스
+@Repository
+@Mapper
+public interface MypageMapper {
+	public MypageVo info(String id);
+	public MypageQuitVo member_quit(String id);
 }

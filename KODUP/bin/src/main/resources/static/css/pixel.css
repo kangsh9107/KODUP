@@ -24,17 +24,11 @@ h4{
 		gap: 15px;
 	}
 	.item_pixel {
+		padding:0;
 		display: grid !important;
 		grid-template-columns: repeat(1, 1fr);
 		gap: 15px;
-	}
-	.sinfo ul {
-		margin-left: -20px;
-		display: grid;
-		grid-template-columns: repeat(1, 1fr);
-		gap: 15px;
-		display: grid;
-	}
+	}		
 }
 
 @media ( min-width :781px) {
@@ -45,16 +39,10 @@ h4{
 		gap: 15px;
 	}
 	.item_pixel {
+		padding:0;
 		display: grid !important;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 15px;
-	}
-	.sinfo ul {
-		margin-left: -20px;
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 15px;
-		display: grid;
 	}
 }
 
@@ -100,10 +88,24 @@ h4{
 	background-size: 145px 130px;
 	background-repeat: no-repeat;
 }
-
+.use1{
+	background-image: url('/images/qna.png');
+	background-size: 145px 130px;
+	background-repeat: no-repeat;	
+}
+.use2{
+	background-image: url('/images/전문가.png');
+	background-size: 145px 130px;
+	background-repeat: no-repeat;	
+}
+.use3{
+	background-image: url('/images/premium_review.png');
+	background-size: 145px 130px;
+	background-repeat: no-repeat;	
+}
 .st_area .buy {
 	position: relative;
-	min-width: 280px;
+	min-width: 250px;
 	height: 126px;
 	margin-left: 150px;
 	background: #fff;
@@ -125,7 +127,7 @@ h4{
 
 .st_area .buy .area {
 	text-align: right;
-	width: 125px;
+	width: 110px;
 	position: absolute;
 	top: 40px;
 }
@@ -140,7 +142,7 @@ h4{
 	border-radius: 5px;
 	position: absolute;
 	top: 42px;
-	left: 144px;
+	left: 127px;
 	font-weight: bold;
 }
 .st_area .buy .btn_buy:hover {
@@ -149,14 +151,12 @@ h4{
 }
 .notice {
 	position:relative;
-	width: 100%;
+	width: 95%;
 	height: 100%;
 	margin-top: 10px;
-	margin-left: 10px;
 	border-top: 1px solid #e5e5e5;
 	background: #f8f8f8;
 	margin-top: 10px;
-	margin-left: 10px;
 	border-top: 1px solid #e5e5e5;
 	background: #f8f8f8;
 	padding: 10px;
@@ -165,31 +165,8 @@ h4{
 span.price {
 	font-size: 25px;
 }
-
-.sinfo ul li .box_gry {
-	display: inline-block;
-	border: 1px solid #e8e8e8;
-	border-radius: 5px;
-	min-width: 430px;
-	height: 170px;
-}
-
-.sinfo dl {
+.buy>dl {
 	display: inline-block;
 	text-align: center;
 	margin-top: 30px;
-	margin-left: 60px;
-}
-
-span.img {
-	display: inline-block;
-	width: 100px;
-	height: 100px;
-}
-
-span.img>img {
-	margin-top: -30px;
-	margin-left: 25px;
-	width: 130px;
-	height: 130px;
 }

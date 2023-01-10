@@ -52,12 +52,95 @@
 						</div>
 						<div class="input-group form-group index_login_input">
 							<span class="input-group-text"><i class="fas fa-keyboard"></i></span>
-							<input type="button" value="가입완료" class="btn index_btnJoin">
+							<input type="button" value="가입완료" class="btn index_btnJoinR">
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+<script>
+function getId(id){
+	return document.getElementById(id);
+}
+
+var data = {};//전송 데이터(JSON)
+
+var ws;
+var mid = getId('mid');
+var btnLogin = getId('btnLogin');
+var btnSend = getId('btnSend');
+var talk = getId('talk');
+var msg = getId('msg');
+
+btnLogin.onclick = function(){
+	ws = new WebSocket("ws://" + location.host + "/chatt");
+	
+	ws.onmessage = function(msg){
+		
+		var data = JSON.parse(msg.data);
+		console.log(data);
+		console.log(data.msg);
+		var css;
+		var item="";
+		
+		if(data.mid == mid.value){
+			css = 'class=me';
+			
+			item = `<div \${css} >
+						<span class='myId'>\${data.mid}</span>
+						<img src='../images/basic_profile.jpg' class='myPicture'>
+						<div>
+							<div class='myBalloon'>
+								<span>\${data.msg}</span>
+							</div><br/><br/>
+							<div style="text-align: right; margin-top: 6px;">
+								<span class='dateTime'>\${data.date}</span>
+							</div>
+						</div>
+						
+					</div>`;
+		}else{
+			css = 'class=other';
+			
+			item = `<div \${css} >
+						<span class='yourId'>\${data.mid}</span>
+						<img src='../images/fox_profile.png' class='yourPicture'>
+						<div class='yourBalloon'><span>\${data.msg}</span></div><br/>
+						<span class='dateTime'>\${data.date}</span>
+					</div>`;
+		}
+		
+
+		console.log(item);			
+		talk.innerHTML += item;
+		talk.scrollTop=talk.scrollHeight;//스크롤바 하단으로 이동
+	}
+	btnLogin.disabled=true;
+	btnLogin.value='접속됨';
+}
+
+msg.onkeyup = function(ev){
+	if(ev.keyCode == 13){
+		send();
+	}
+}
+
+btnSend.onclick = function(){
+	send();
+}
+
+function send(){
+	if(msg.value.trim() != ''){
+		data.mid = getId('mid').value;
+		data.msg = msg.value;
+		data.date = new Date().toLocaleString();
+		var temp = JSON.stringify(data);
+		ws.send(temp);
+	}
+	msg.value ='';
+}
+ 
+</script>
 </body>
 </html>

@@ -8,9 +8,6 @@
 <title>mansearch/mansearch.jsp</title>
 <link rel='stylesheet' href='css/mansearch.css'>
 <script defer src="js/mansearch.js"></script>
-<script>
-
-</script>
 <!-- <style>
 div.button {
   position:absolute;

@@ -543,6 +543,21 @@
 	border: 1px solid #fee500;
 }
 
+.index_btnKakaoJoinR {
+	width: 303px;
+	color: #111827;
+	background-color: #fee500;
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+	font-weight: 600;
+}
+
+.index_btnKakaoJoinR:hover {
+	color: #111827;
+	background-color: white;
+	border: 1px solid #fee500;
+}
+
 /***** FIND ACCOUNT *****/
 .index_find_account_form {
 	padding: 30px;

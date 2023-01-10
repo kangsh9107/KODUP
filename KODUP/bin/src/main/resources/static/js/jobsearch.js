@@ -33,11 +33,21 @@ $('.btnSearch').click(function() {
 	console.log("검색");
 });
 
+/***** BACK TO LIST *****/
+$('.btnList').on('click', function() {
+	$('#center').load('/jobsearch/jobsearch');
+});
+
 
 
 
 
 /***** 조성호 *****/
+/***** JOBSEARCH VIEW */
 function jobsearch_view(){
 	 $('#center').load('/jobsearch/jobsearch_view');
 }
+
+$('.btnUpdate').on('click', function() {
+	$('#center').load('/jobsearch/jobsearch_update');
+});

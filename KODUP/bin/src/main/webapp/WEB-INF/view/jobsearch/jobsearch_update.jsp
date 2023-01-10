@@ -51,7 +51,7 @@
 			<div id="summernote"></div>
 		</div>
 		<div class="input-group form-group" style="justify-content: end;">
-			<input type="button" value="취소" class="btn btnCancle">
+			<input type="button" value="취소" class="btn btnList">
 			<input type="button" value="수정" class="btn btnJobsearchUpdateR">
 		</div>
 		
@@ -62,8 +62,8 @@
 	
 	<!-- HASHTAG -->
 	<script>
-		const input = document.querySelector('input[name=basic]');
-		let tagify = new Tagify(input);
+		var input = document.querySelector('input[name=basic]');
+		var tagify = new Tagify(input);
 		
 		tagify.on('add', function() {
 		  console.log(tagify.value); //입력된 태그 확인용

@@ -131,9 +131,15 @@
   	</div>
 </div>
 <label class="info_label" style="padding: 0 12px;">글 작성</label>
-<div class="input-group form-group" style="margin:0 0 30px 20px;">
-	<div id="summernote"></div>
-</div>
+<div class="container text-left">
+	<div class="row">
+		<div class="col">
+			<div class="input-group form-group" style="margin:0 0 30px 0;">
+				<div id="summernote"></div>
+			</div>		
+		</div>
+	</div>
+</div>	
 <div class="grid text-center" style="--bs-columns: 1;">
 	<div>
   		<button type='button' class="mansearch_board_cancel">취소</button>

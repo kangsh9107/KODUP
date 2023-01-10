@@ -18,8 +18,7 @@ $('.btnQuit_Irreversible').on('click', function(){
 <body>
 
 <div id='member_quit'>
-
-	<font color='333333'><h5><b>탈퇴 안내</b></h5></font>
+	<span class='mypage_subject_text'>탈퇴 안내</span><br><br>
 	<font color='66667a'>
 	
 	
