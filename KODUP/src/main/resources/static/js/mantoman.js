@@ -23,7 +23,7 @@ horizontalMenus.forEach((menu) =>
 
 /*------------------------------------------------------------------------*/
 
-$('#mantoman_innerSection').load('/mantoman/mantoman_mentorlist');
+//$('#mantoman_innerSection').load('/mantoman/mantoman_mentorlist');
 
 $('#btnMentorList').on('click', function() {
 	$('#mantoman_innerSection').load('/mantoman/mantoman_mentorlist'); 
@@ -33,4 +33,5 @@ $('#btnChatList').on('click', function() {
 	$('#mantoman_innerSection').load('/mantoman/mantoman_chatlist'); 
 });
 
+document.querySelector('#btnMentorList').click();
 
