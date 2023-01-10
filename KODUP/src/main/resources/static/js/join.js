@@ -12,19 +12,22 @@ $('.index_btnJoin').on('click', function() {
 /***** LOGIN *****/
 //KAKAO LOGIN
 $('.index_btnKakaoJoin').on('click', function() {
-	window.Kakao.Auth.login({
-		scope: 'profile_nickname, account_email, gender',
-		success: function(autoObj) {
-			console.log("authObj : " + authObj);
-			window.Kakao.API.request({
-				url: '/v2/user/me',
-				siccess: res => {
-					const kakao_account = res.kakao.account;
-					console.log("kakao_account : " + kakao_account);
-				}
-			});
-		}
-	});
+    Kakao.Auth.login({
+		scope: 'account_email', //가져올 항목
+        success: function(response) {
+            Kakao.API.request({ //사용자 정보 가져오기 
+                url: '/v2/user/me',
+                success: (res) => {
+                	var id = res.id+"K";
+                	var email = res.kakao_account.email;
+                	$('#center').load('/login/join_kakao_check?id=' + id + "&email=" + email);
+                }
+            });
+        },
+        fail: function(error) {
+            alert(error);
+        }
+    });
 });
 
 //KODUP
@@ -37,7 +40,7 @@ $('.index_btnLoginR').on('click', function() {
 		alert('비밀번호를 입력해주세요.');
 	} else {
 		var param = new FormData(frm);
-	
+		
 		$.ajax({
 			type: 'POST',
 			url: '/login/loginR',

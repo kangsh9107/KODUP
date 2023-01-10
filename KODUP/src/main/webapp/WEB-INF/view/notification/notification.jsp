@@ -118,11 +118,11 @@
 				<div style="float: left; padding: 0; line-height: 33px;">
 					<button type="button" class="btn" id="btnPrevious" style="padding: 0;">
 						<i class="fas fa-arrow-left" style="color: #555; font-size: 0.9rem;"></i>
-						<span style="margin-left: 10px; font-size: 0.9rem;">Previous</span>
+						<span id="textPrevious" style="margin-left: 10px; font-size: 0.9rem;">Previous</span>
 					</button>
 				</div>
 				
-				<c:forEach var="i" begin="1" end="5">
+				<c:forEach var="i" begin="1" end="3">
 		        	<button type="button" class="btn" id="btnMove">${i }</button>
 				</c:forEach>
 				<a href="#" onclick="return false" id="btnMoveInput">...</a>
@@ -130,7 +130,7 @@
 				
 				<div style="float: right; padding: 0 0 0 10px; line-height: 33px;">
 					<button type="button" class="btn" id="btnNext" style="padding: 0; margin-right: -12px;">
-						<span style="margin-right: 10px; font-size: 0.9rem;">Next</span>
+						<span id="textNext" style="margin-right: 10px; font-size: 0.9rem;">Next</span>
 						<i class="fas fa-arrow-right" style="color: #555; font-size: 0.9rem;"></i>
 					</button>
 				</div>

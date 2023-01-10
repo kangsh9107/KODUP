@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>login/join.jsp</title>
+<title>login/join_kakao.jsp</title>
 </head>
 <body>
 	<!-- JOIN -->
@@ -17,11 +17,11 @@
 					<!-- FORM -->
 					<form name="index_join_form" class="index_join_form" method="post">
 						<!-- ID -->
-						<input type="hidden" name="id" class="form-control">
+						<input type="text" value="${id }" name="id" class="form-control">
 						<!-- EMAIL -->
 						<div class="input-group form-group index_login_input">
 							<span class="input-group-text"><i class="fas fa-envelope"></i></span>
-							<input type="text" name="email" class="form-control" readOnly>
+							<input type="text" value="${email }" name="email" class="form-control" readOnly>
 						</div>
 						<!-- NICKNAME -->
 						<div class="input-group form-group index_login_input">
@@ -45,7 +45,7 @@
 						</div>
 						<div class="input-group form-group index_login_input">
 							<span class="input-group-text"><i class="fas fa-keyboard"></i></span>
-							<input type="button" value="가입완료" class="btn index_btnJoinR">
+							<input type="button" value="가입완료" class="btn index_btnJoinKakaoR">
 						</div>
 					</form>
 				</div>
