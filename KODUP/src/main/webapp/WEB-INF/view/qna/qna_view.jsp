@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,77 +13,76 @@
 </head>
 <body>
 <form id="qna_view">
+<input type='text' id="sno" name='sno' value='3' style="visibility: hidden;"/><!-- style="visibility: hidden;" -->
+<input type='text' id="" name='nowPage' value='2'style="visibility: hidden;"/>
+<input type='text' name='nowPage' value='3'style="visibility: hidden;"/>
+
 	<!-- boardtype  /  horsehead -->
 	<div id="qna_view_horsehead">
-		<span>QnA</span>
+		<a href="#" class="btnBoardtype">${qbVo.boardtype}</a>
 		/
-		<span>기술</span>
+		<a>${qbVo.qna_horsehead}</a>
 	</div>
 	
 	<!-- 본문 글제목 -->
 	<div id="qna_view_subject">
-		<div class="col" >
-			<span>
+		<span style="font-size:1.5rem; font-weight:600;">
 				초보자를 위한 오픈 소스 시작하기
-			</span>
-		</div>
+		</span>
 	</div>
 	<!-- 본문 작성자프로필사진+닉네임 -->
-	<div id="qna_view_profile" style="vertical-align:middle;" >
+	<div id="qna_view_profile"  >
 		<span id="qna_view_profile_profileimage"> <!-- span태그사용 : 이미지사진+닉네임 한줄로 붙이기위해 span이 inline요소라서 -->
 			<img id="qna_view_profile_profileimage_file" style="width:50px; height:50px; vertical-align: top;"src="images/index_default.png" >
 		</span>
 		<!-- 본문 조회수,작성시간 -->
 		<div id="qna_view_nalandhit" style="display:inline-block; vertical-align: top;">
-			<div id="qna_view_profile_nickname">딥러닝악마</div>
-			<span>10분전
+			<div id="qna_view_profile_nickname">${qbVo.nickname}</div>
+			<span>${qbVo.nal}
 			<img src="images/index_viewcount.png" style="width:20px; height:15px; margin-top: -5px; margin-right:-4px;">
-			33</span>
+			${qbVo.viewcount }</span>
 		</div>	
 	</div>
 
 	
-	<!-- 본문 글내용 -->
-	<div id="qna_view_doc" >
-		같으며, 봄바람을 보이는 희망의 이것이다. 그들의 옷을 얼마나 사랑의 위하여서. 풀이 청춘 자신과 바이며, 봄바람을 주며, 아니다.
-		수 많이 풍부하게 충분히 몸이 아름다우냐? 구하지 대고, 풀밭에 심장은 만천하의 없으면, 별과 구할 것이다. 따뜻한 따뜻한 가치를 없으면 있다.
-		구하지 있으며, 청춘이 때문이다. 꽃이 낙원을 가슴에 그러므로 주는 대중을 무한한 사막이다. 그들의 이성은 피가 같이 것이다. 주며, 웅대한 청춘은 눈이 있으랴?
-		인생을 웅대한 유소년에게서 피부가 아니더면, 무엇을 보배를 소리다.이것은 예가 끓는다.
-	</div>
+	<!-- 본문 글내용 --> <!--  -->
+	<span id="qna_view_doc" style="font-size:17px; display:inline-block;min-height:300px; margin-top:20px;">
+		${qbVo.doc}
+	</span>
 	
 	<!-- 본문 해시태그 --><!-- 해당해시태그를 누를경우 findStr로 해당 태그가 들어간 글들을 셀렉트 -->
+		<br/><br/><br/>
 	<div id="qna_view_hashtag">
-		<a href="#">#봄바람	</a>
-		<a href="#">#희망		</a>
-		<a href="#">#청춘		</a>
+		<c:forEach var='vo' items='${qbVo.hashtaglist}'>
+			<span>
+				<a href="#" onclick="qna_view_findHashtag(${vo.hashtag})">${vo.hashtag}</a>
+			</span>
+		</c:forEach>
 	</div>
 	<!-- 본문 btnzone -->
 	<div id="qna_view_btnzone" >
-		<input type="button" class="btnUpdate qna_view_originalBtn" value="수정">
-		<input type="button" class="btnDeleteR  qna_view_originalBtn" value="삭제">
-		<input type="button" class="btnList  qna_view_originalBtn" value="목록">
+		<input type="button" class="btnUpdate qna_view_originalBtn" style="vertical-align:top;"value="수정">
+		<input type="button" class="btnDeleteR  qna_view_originalBtn"style="vertical-align:top;" value="삭제">
+		<input type="button" class="btnList  qna_view_originalBtn" style="vertical-align:top;"value="목록">
 	</div>
 	
 	<hr/>
 	<!-- 댓글insert -->
-	<div id="qna_view_repl_insert" style=" border:1px solid #999; padding: 50px; border-radius:30px; ">
-		<span>
-			<img id="qna_view_repl_insert_profileimage_file" src="images/ITtravel.png" style="margin-top:30px; vertical-align:top;" >
-		</span>
+	<div id="qna_view_repl_insert" style=" border:1px solid #999; padding : 20px 30px 50px 30px;border-radius:30px;">
 		<!-- 댓글인서트_내용 서머노트 -->
-		<div class="view_summernote_section" style="display:inline-block; margin-top:30px;" >
-			<div class="view_summernote">
-			</div>
+		<div class="view_summernote_section">
+			<span>
+				<img id="qna_view_repl_insert_profileimage_file" src="images/ITtravel.png" >
+			</span>
+			<div class="view_summernote"></div>
 		</div>
-		<!-- 댓글인서트_버튼 -->
 		<div>
-			<input type="button" value="댓글입력" id="qna_view_repl_btnInsert" style="margin-top:5px;">
+			<input type="button" value="댓글입력" id="qna_view_repl_btnInsert" class="qna_view_originalBtn" style="margin-top:5px; width:100px;" >
 		</div>
 		
 	</div>
 	<br/>
 	<br/>
-	
 	
 	<!-- 댓글 -->
 	<div id="qna_view_repl_list" >
@@ -108,11 +108,11 @@
 			인생을 웅대한 유소년에게서 피부가 아니더면, 무엇을 보배를 소리
 			</div>
 		</div>
-		<!-- 댓글(수정,삭제)btnzone -->
+		<!-- 댓글btnzone -->
 		<div class="qna_view_repl_btnzone" >
-			<input type="button" value="수정"><!-- 댓글작성자가 세션아이디와 똑같은 경우에만 활성화;수정,삭제버튼 -->
-			<input type="button" value="삭제">
-			<input type="button" value="채택"><!-- 본문글작성자가 세션아이디와 똑같은 경우에만 활성화;채택버튼 JS:cf)confirm-->
+			<input type="button" class="qna_view_originalBtn" value="수정"><!-- 댓글작성자가 세션아이디와 똑같은 경우에만 활성화;수정,삭제버튼 -->
+			<input type="button" class="qna_view_originalBtn" value="삭제">
+			<input type="button" class="qna_view_originalBtn" value="채택"><!-- 본문글작성자가 세션아이디와 똑같은 경우에만 활성화;채택버튼 JS:cf)confirm-->
 		</div>
 		<!-- 대댓글 -->
 		<div class="qna_view_repl_inner">
@@ -136,10 +136,10 @@
 						사랑해요
 					</div>
 				</div>
-				<!-- 대댓글(수정,삭제)btnzone --> <!-- 대댓글작성자와 세션아이디가 같은경우에만 활성화 -->
+				<!-- 대댓글btnzone --> <!-- 대댓글작성자와 세션아이디가 같은경우에만 활성화 -->
 				<div class="qna_view_repl_inner_btnzone">
-					<input type="button" value="수정">
-					<input type="button" value="삭제">
+					<input type="button" class="qna_view_originalBtn" value="수정">
+					<input type="button" class="qna_view_originalBtn" value="삭제">
 				</div>
 				
 				<!--대댓글2-->
@@ -162,39 +162,40 @@
 				</div>
 				<!-- 대댓글(수정,삭제)btnzone --> <!-- 대댓글작성자와 세션아이디가 같은경우에만 활성화 -->
 				<div class="qna_view_repl_inner_btnzone">
-					<input type="button" value="수정">
-					<input type="button" value="삭제">
+					<input type="button" class="qna_view_originalBtn" value="수정">
+					<input type="button" class="qna_view_originalBtn" value="삭제">
 				</div>
 			</div>
 		</div>
-		<!-- 댓글3 -->
+		<!-- 댓글2 -->
 		<!-- 댓글작성자프로필사진+닉네임+댓글작성시간 -->
 		<div class="qna_view_repl_profile">
 			<span class="qna_view_repl_profile_profileimage"><!--댓글작성자프로필사진+닉네임+댓글작성시간 한줄로 붙이기위해 inline요소인 span태그사용 -->
 				<img class="qna_view_repl_profile_profileimage_file" src="images/girlchar.png" >
 			</span>
-			<span class="qna_view_profile_nickname">
-				<span>>ol쁜0r이</span>
+			<span class="qna_view_repl_profile_nickname">
+				<span>ol쁜0r이</span>
 			</span>
 			<span class="qna_view_repl_nal">
 				<span>11분전</span>
 			</span>
 		</div>
 		<!-- 댓글내용 -->
-		<div class="qna_view_repl_doc">
+		<div class="qna_view_repl_doc" style="position:relative;">
 			<div >
 			없으면, 별과 구할 것이다. 따뜻한 따뜻한 가치를 없으면 있다.
 			</div>
+			<button id="repl_inner_display_onkey" class="qna_view_originalBtn"
+			 type="button" style="width:100px; position:absolute; bottom:0;"  onclick="insertFormToggle(120)">
+			대댓입력</button>
+			
 		</div>
-		<div id="repl_inner_insert_display" style="border:1px solid #999">
-			<button id="repl_inner_display_onkey" type="button" style="width:100px;"  onclick="insertFormToggle(120)">대댓입력</button>
 			<!-- 댓글(수정,삭제)btnzone -->
 			<div class="qna_view_repl_btnzone">                       
-				<input type="button" value="수정">
-				<input type="button" value="삭제">
-				<input type="button" value="채택">
+				<input type="button" class="qna_view_originalBtn" value="수정">
+				<input type="button" class="qna_view_originalBtn" value="삭제">
+				<input type="button" class="qna_view_originalBtn" value="채택">
 			</div>
-		</div>
 		<!-- 대댓글insert -->
 		<div id="repl_insert_section120" style="display:none;">
 			<span>
@@ -206,14 +207,10 @@
 			<!-- 대댓글인서트_내용 서머노트 -->
 			<div class="view_summernote"></div>
 			<!-- 대댓글인서트_버튼 -->
-			<div id="qna_view_repl_inner_btnInsert">
-				<input type="button" value="대댓글입력">
+			<div id="qna_view_repl_inner_btnInsert" >
+				<input type="button" class="qna_view_originalBtn"  value="대댓글입력" style="width:100px;" >
 			</div>
 		</div>
-		
-		
-		
-		
 		
 	</div>
 </form>
