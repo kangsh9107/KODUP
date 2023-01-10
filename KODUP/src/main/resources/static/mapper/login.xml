@@ -8,4 +8,26 @@
 		WHERE id = #{id} AND pwd = #{pwd}
 	</select>
 	
+	<!-- CHECK ID -->
+	<select id="checkId" parameterType="String" resultType="Integer">
+		SELECT count(id) FROM member
+		WHERE account_type = 1 AND id = #{_parameter}
+	</select>
+	
+	<!-- CHECK GRADE -->
+	<select id="checkGrade" parameterType="String" resultType="Integer">
+		SELECT grade FROM member
+		WHERE id = #{_parameter}
+	</select>
+	
+	<!-- CHAT INSERT -->
+	<insert id="chatInsert" parameterType="String">
+		INSERT INTO chat(id) VALUES(#{_parameter})
+	</insert>
+	
+	<!-- CHECK CHAT ID -->
+	<select id="checkChatId" parameterType="String" resultType="Integer">
+		SELECT count(id) FROM chat WHERE id = #{_parameter}
+	</select>
+	
 </mapper>

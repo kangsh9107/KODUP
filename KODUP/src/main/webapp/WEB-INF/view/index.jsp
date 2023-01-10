@@ -29,6 +29,8 @@
 <title>코드 레벨업 - 코덥!</title>
 </head>
 <body>
+	<input type="hidden" class="sessionId_hidden" value="${sessionId }">
+	<input type="hidden" value="${grade }">
 	<!-- NAV -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0 index_nav">
 		<div class="container index_hamburg_wrap" style="padding-right: 0;">
