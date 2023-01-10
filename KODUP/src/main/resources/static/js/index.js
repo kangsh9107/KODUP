@@ -135,7 +135,23 @@ $('#btnMantoman').on('click',function() {
 	window.open('/mantoman/mantoman_index', title, status);
 });
 
-
+let sessionId = document.querySelector('.sessionId_hidden').value;
+console.log("sessionId : " + sessionId);
+if(sessionId != ""){
+	ws = new WebSocket("ws://" + location.host + "/socket_login");
+	ws.onopen = () => { //webSocket이 맺어지고 난 후, 실행
+		console.log(ws.readyState);
+    	ws.send(sessionId);
+	}
+	
+	ws.onmessage = function(msg){
+		var mento = msg.data;
+/*		var input = `<input type='text' value='${mento}' class='mentoes'>`;
+		var mentoList = document.querySelector('.mentoList');
+		mentoList.innerHTML += input; */
+		
+	}
+}
 
 
 
