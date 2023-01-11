@@ -4,8 +4,12 @@
 
 /***** 강수형 *****/
 /***** MAIN *****/
-$('#center').load('/login/main');
-var id = $('.sessionId_hidden').val();
+var main = function() {
+	$('#center').load('/login/main');
+	var id = $('.sessionId_hidden').val();
+}
+main();
+
 
 /***** NAV *****/
 const nonClick = document.querySelectorAll('.non-click');
@@ -47,8 +51,17 @@ $('.btnLogoutR').on('click', function() {
 		e.classList.remove('click');
 	});
 	
-	$('#center').load('/login/logoutR');
-	location.replace('/');
+	$.ajax({
+		type: 'POST',
+		url: '/login/logoutR',
+		contentType: false,
+		processData: false,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+			location.replace('/');
+		}
+	});
 });
 
 /***** SESSION CLOSE *****/

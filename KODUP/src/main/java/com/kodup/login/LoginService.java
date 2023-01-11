@@ -1,5 +1,7 @@
 package com.kodup.login;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -78,12 +80,21 @@ public class LoginService {
 		return c;
 	}
 	
-	//살려줘
+	//로그아웃시 chat테이블 삭제
 	public void chatDelete(String id) {
 		int cnt = 0;
 		cnt = loginMapper.chatDelete(id);
 		if(cnt > 0) System.out.println("채팅종료자: " + id + ", chat테이블에서 삭제");
 		else        System.out.println("채팅종료자: " + id + ", chat테이블에서 삭제 실패");
+	}
+	
+	//TOP WRITER
+	public List<MemberVo> topWriter() {
+		List<MemberVo> listTopWriter = null;
+		
+		listTopWriter = loginMapper.topWriter();
+		
+		return listTopWriter;
 	}
 
 }
