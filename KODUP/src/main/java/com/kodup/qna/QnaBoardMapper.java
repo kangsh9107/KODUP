@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface QnaBoardMapper {
 	public QnaBoardVo view(int sno);
 	public List<QnaHashVo> hashList(int sno);
+	public List<QnaBoardReplVo> replList(int sno);
 }

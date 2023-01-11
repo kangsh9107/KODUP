@@ -364,7 +364,7 @@
 	text-align:left;
 }
 
-#qna_view #qna_view_profile{
+#qna_view #qna_view_header{
 	display:inline-block; 
 	width:100%;
 	height:55px;
@@ -372,11 +372,10 @@
 	
 }
 
-#qna_view #qna_view_profile_nickname{
-	font-size:17px;
-}
-#qna_view #qna_view_nalandhit {
+
+#qna_view #qna_view_header {
 	text-align:left;
+	font-size:13px;
 }
 #qna_view #qna_view_doc{
 	min-height: 400px;
@@ -384,12 +383,18 @@
 #qna_view #qna_view_hashtag{
 	
 }
-#qna_view #qna_view_hashtag>a{
+#qna_view #qna_view_hashtag a{
 	text-decoration : none;
 	font-weight: 600;
 	font-size:20px;
 	color:#bb2649;
 }
+
+#qna_view #qna_view_hashtag a:hover{
+	background-color: #ff3363;
+	color: white;
+}
+
 #qna_view #qna_view_btnzone{
 	text-align:right !important;
 }
@@ -454,5 +459,11 @@
 }
 #qna_view #qna_view_repl_inner_btnInsert {
 	text-align:right;
+}
+#qna_view .note-frame{
+	border: 1px solid #DCDCDC;
+	border-radius:20px;
+	padding:5px;
+	
 }
 
