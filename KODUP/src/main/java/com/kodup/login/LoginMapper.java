@@ -17,5 +17,6 @@ public interface LoginMapper {
 	public int chatDelete(String id);
 	
 	public List<MemberVo> topWriter();
+	public List<CommonBoardVo> hotTag();
 	
 }
