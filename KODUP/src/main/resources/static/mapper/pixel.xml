@@ -12,7 +12,7 @@
 		values(#{id},now(),#{pixel_buy_amount})
 	</insert>
 	<update id="addpixel" parameterType="com.kodup.login.MemberVo">
-		update member m set m.pixel = m.pixel+(select pb.pixel_buy_amount from pixel_buy_list pb where pb.id= ${id} order by pixel_buy_date desc limit 0,1)
-		where id =${id}
+		update member set pixel = pixel+(select pixel_buy_amount from pixel_buy_list order by pixel_buy_date desc limit 0,1)
+		where id = #{id}
 	</update>
 </mapper>

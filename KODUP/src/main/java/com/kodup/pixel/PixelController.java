@@ -28,20 +28,18 @@ public class PixelController {
 	@RequestMapping("/pixel/pixel_buy_complete")
 	public synchronized String buy(MemberVo mVo, PixelBuyVo buyVo) {
 		String msg="";
+		String msg1="";
 		
 		boolean listflag = service.buylist(buyVo);
 		if(listflag) {
-			msg = "정상적으로 충전되었습니다.";
-		}else msg ="충전 중 오류 발생";
+			msg = "리스트 추가 완료. ";
+		}else msg ="리스트 추가 중 오류 발생";
 		
 		boolean buyflag = service.addpixel(mVo);
-//		mVo = service.addpixel(buyVo);
 		
-		
-//		mv.addObject("buyVo",buyVo);
-//		mv.addObject("mVo", mVo);
-//		mv.setViewName("mypage/mypage_mypixel");
+		if(buyflag) msg1=" 정상적으로 충전되었습니다.";
+		else msg1="충전 중 오류 발생";		
 			
-		return msg;
+		return msg+msg1;
 	}		
 }

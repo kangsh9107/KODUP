@@ -46,6 +46,12 @@ public class PixelService {
 		status = manager.getTransaction(new DefaultTransactionDefinition());
 		savePoint = status.createSavepoint();
 		int cnt = mapper.addpixel(mVo);
+		if(cnt<1) {
+			b=false;
+		}
+		if(b) {
+			manager.commit(status);
+		}else status.rollbackToSavepoint(savePoint);
 
 		return b;
 	}

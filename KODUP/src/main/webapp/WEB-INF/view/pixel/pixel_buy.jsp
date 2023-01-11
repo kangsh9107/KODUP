@@ -20,9 +20,9 @@
 		<div class="item_pixel container text-center">
 			<div class="st_area st1">
 				<form class='pixel_frm1' method='post'>
-					<input type='hidden' class='member_id' name='id' value=''/>
+					<input type='text' class='member_id' name='id' value=''/>
 					<input type='hidden' name="pixel_buy_amount" value="${vo.pixel_1_amount }">
-					<input type='hidden' name="pixel1_price" value="${vo.pixel_1_price }">				
+					<input type='hidden' name="pixel_buy_price" value="${vo.pixel_1_price }">				
 					<div class="buy">
 						<div class="area">
 							<span class='pixelfont'>픽셀</span>
@@ -35,8 +35,9 @@
 			</div>
 			<div class="st_area st2">
 				<form name='pixel_frm2' method='post'>
-					<input type='hidden' name="pixel2_amount" value="${vo.pixel_2_amount }">
-					<input type='hidden' name="pixel2_price" value="${vo.pixel_2_price }">
+					<input type='text' class='member_id' name='id' value=''/>				
+					<input type='hidden' name="pixel_buy_amount" value="${vo.pixel_2_amount }">
+					<input type='hidden' name="pixel_buy_price" value="${vo.pixel_2_price }">
 					<div class="buy">
 						<div class="area">
 							<span class='pixelfont'>픽셀</span><span class="num num2"><strong><fmt:formatNumber value="${vo.pixel_2_amount }" pattern="#,###"/></strong>
@@ -48,8 +49,9 @@
 			</div>
 			<div class="st_area st3">
 				<form name='pixel_frm3' method='post'>
-					<input type='hidden' name="pixel3_amount" value="${vo.pixel_3_amount }">
-					<input type='hidden' name="pixel3_price" value="${vo.pixel_3_price }">
+					<input type='text' class='member_id' name='id' value=''/>
+					<input type='hidden' name="pixel_buy_amount" value="${vo.pixel_3_amount }">
+					<input type='hidden' name="pixel_buy_price" value="${vo.pixel_3_price }">
 					<div class="buy">
 						<div class="area">
 							<span class='pixelfont'>픽셀</span><span class="num num3"><strong><fmt:formatNumber value="${vo.pixel_3_amount }" pattern="#,###"/></strong>
@@ -62,8 +64,9 @@
 
 			<div class="st_area st4">
 				<form name='pixel_frm4' method='post'>
-					<input type='hidden' name="pixel4_amount" value="${vo.pixel_4_amount }">
-					<input type='hidden' name="pixel4_price" value="${vo.pixel_4_price }">
+					<input type='text' class='member_id' name='id' value=''/>
+					<input type='hidden' name="pixel_buy_amount" value="${vo.pixel_4_amount }">
+					<input type='hidden' name="pixel_buy_price" value="${vo.pixel_4_price }">
 								
 					<div class="buy">
 						<div class="area">
@@ -77,8 +80,9 @@
 
 			<div class="st_area st5">
 				<form name='pixel_frm5' method='post'>
-					<input type='hidden' name="pixel5_amount" value="${vo.pixel_5_amount }">
-					<input type='hidden' name="pixel5_price" value="${vo.pixel_5_price }">
+					<input type='text' class='member_id' name='id' value=''/>
+					<input type='hidden' name="pixel_buy_amount" value="${vo.pixel_5_amount }">
+					<input type='hidden' name="pixel_buy_price" value="${vo.pixel_5_price }">
 					<div class="buy">
 						<div class="area">
 							<span class='pixelfont'>픽셀</span><span class="num num5"><strong><fmt:formatNumber value="${vo.pixel_5_amount }" pattern="#,###"/></strong>
@@ -91,8 +95,9 @@
 
 			<div class="st_area st6">
 				<form name='pixel_frm6' method='post'>
-					<input type='hidden' name="pixel6_amount" value="${vo.pixel_6_amount }">
-					<input type='hidden' name="pixel6_price" value="${vo.pixel_6_price }">				
+					<input type='text' class='member_id' name='id' value=''/>
+					<input type='hidden' name="pixel_buy_amount" value="${vo.pixel_6_amount }">
+					<input type='hidden' name="pixel_buy_price" value="${vo.pixel_6_price }">				
 					<div class="buy">
 						<div class="area">
 							<span class='pixelfont'>픽셀</span><span class="num num6"><strong><fmt:formatNumber value="${vo.pixel_6_amount }" pattern="#,###"/></strong>

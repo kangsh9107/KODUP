@@ -2,36 +2,36 @@
  * 
  */
 
-var memberid = document.querySelector('.member_id');
+var memberid = document.querySelectorAll('.member_id');
 var param;
-memberid.value = sessionId;
-console.log(memberid.value);
+for(let i=0; i<memberid.length; i++){
+	memberid[i].value = sessionId;	
+}
+
 var pixel_price = document.querySelectorAll('.price');
 var pixel_amount = document.querySelectorAll('.amount');
+
 var pixel_frm1 = $('.pixel_frm1')[0];
-param = new FormData(pixel_frm1);
-console.log(pixel_frm1,param);
-//param = new FormData(pixel_frm1);
+var pixel_frm2 = $('.pixel_frm2')[0];
+var pixel_frm3 = $('.pixel_frm3')[0];
+var pixel_frm4 = $('.pixel_frm4')[0];
+var pixel_frm5 = $('.pixel_frm5')[0];
+var pixel_frm6 = $('.pixel_frm6')[0];
+
+
 // 카드결제 api -------------------------------------------------
 var IMP = window.IMP;    //안해도 괜찮다
 IMP.init("imp68151717"); //본인 아임포트 가맹점 식별코드
 function requestPay1() {
-	pixel_frm1 = $('.pixel_frm1')[0];
+	pixel_frm = $('.pixel_frm1')[0];
 	param = new FormData(pixel_frm1);
 	//IMP.request_pay(param, callback) 결제창 호출
 	IMP.request_pay({ //param
 	    pg : 'html5_inicis',
 	    pay_method : 'card',
 	    merchant_uid: "merchant_" + new Date().getTime(),
-	    amount : 100,/*(pixel_price[0].innerHTML).replace(/,/g , '')*/
+	    amount : (pixel_price[0].innerHTML).replace(/,/g , ''),
 	    name : '픽셀 구매'
-		/*	    
-		buyer_id : 'a001',	 
-	    buyer_email : 'iamport@siot.do',
-	    buyer_tel : '010-1111-1111',
-	    buyer_addr : '서울특별시 관악구 봉천동',
-	    buyer_postcode : '11111'	
-	    */
 	    }, function(rsp) { //callback
 	    if ( rsp.success ) { //결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
 	    	//jQuery로 HTTP 요청
@@ -64,12 +64,7 @@ function requestPay1() {
 	    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 	    		}
 	    	});
-   			console.log(rsp);
-   			console.log(rsp.name);
-   			var tempName = rsp.name;
-   			console.log(rsp.paid_amount);
-   			console.log(data);
-   			var tempAmount = rsp.paid_amount;
+
 	    } else {
 	        var msg = '결제에 실패하였습니다.';
 	        msg += '에러내용 : ' + rsp.error_msg;
@@ -83,29 +78,30 @@ function requestPay1() {
 var IMP = window.IMP;    //안해도 괜찮다
 IMP.init("imp68151717"); //본인 아임포트 가맹점 식별코드
 function requestPay2() {
+	pixel_frm2 = $('.pixel_frm2')[0];
+	param = new FormData(pixel_frm2);
 	//IMP.request_pay(param, callback) 결제창 호출
 	IMP.request_pay({ //param
 	    pg : 'html5_inicis',
 	    pay_method : 'card',
 	    merchant_uid: "merchant_" + new Date().getTime(),
-	    name : '픽셀 구매',
 	    amount : (pixel_price[1].innerHTML).replace(/,/g , ''),
-/*	    buyer_id : memberid,	 
-	    buyer_email : 'iamport@siot.do',
-	    buyer_tel : '010-1111-1111',
-	    buyer_addr : '서울특별시 관악구 봉천동',
-	    buyer_postcode : '11111'*/	
+	    name : '픽셀 구매'
 	    }, function(rsp) { //callback
 	    if ( rsp.success ) { //결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
 	    	//jQuery로 HTTP 요청
 	    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달
 	    	jQuery.ajax({
 	    		url: "/pixel/pixel_buy_complete", //cross-domain error가 발생하지 않도록 주의
+	    		contentType : false,
+            	processData : false,
 	    		type: 'POST',
-	    		dataType: 'html',
 	    		data: param,
-	    		success : function(receiveData, status){
-					$('#center').html(receiveData);
+	    		dataType: 'html',
+	    		success : function(data){
+					if(data != '') alert(data);
+					param = $(pixel_frm2).serialize();
+					$('#center').load('/mypage/mypage_mypixel',param);
 				}	
 
 	    	}).done(function(data) {
@@ -123,11 +119,7 @@ function requestPay2() {
 	    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 	    		}
 	    	});
-   			console.log(rsp);
-   			console.log(rsp.name);
-   			var tempName = rsp.name;
-   			console.log(rsp.paid_amount);
-   			var tempAmount = rsp.paid_amount;
+
 	    } else {
 	        var msg = '결제에 실패하였습니다.';
 	        msg += '에러내용 : ' + rsp.error_msg;
@@ -136,37 +128,34 @@ function requestPay2() {
 	    }
 	});
 }
-// -------------------------------------------------
-// 카드결제 api -------------------------------------------------
+// -------------------------------------------------// 카드결제 api -------------------------------------------------
 var IMP = window.IMP;    //안해도 괜찮다
 IMP.init("imp68151717"); //본인 아임포트 가맹점 식별코드
 function requestPay3() {
+	pixel_frm3 = $('.pixel_frm3')[0];
+	param = new FormData(pixel_frm3);
 	//IMP.request_pay(param, callback) 결제창 호출
 	IMP.request_pay({ //param
 	    pg : 'html5_inicis',
 	    pay_method : 'card',
 	    merchant_uid: "merchant_" + new Date().getTime(),
-	    name : '픽셀 구매',
 	    amount : (pixel_price[2].innerHTML).replace(/,/g , ''),
-/*	    buyer_id : memberid,	 
-	    buyer_email : 'iamport@siot.do',
-	    buyer_tel : '010-1111-1111',
-	    buyer_addr : '서울특별시 관악구 봉천동',
-	    buyer_postcode : '11111'*/	
+	    name : '픽셀 구매'
 	    }, function(rsp) { //callback
 	    if ( rsp.success ) { //결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
 	    	//jQuery로 HTTP 요청
 	    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달
 	    	jQuery.ajax({
 	    		url: "/pixel/pixel_buy_complete", //cross-domain error가 발생하지 않도록 주의
+	    		contentType : false,
+            	processData : false,
 	    		type: 'POST',
+	    		data: param,
 	    		dataType: 'html',
-	    		data: {
-		    		imp_uid : rsp.imp_uid
-		    		//기타 필요한 데이터가 있으면 추가 전달
-	    		},
-	    		success : function(receiveData, status){
-					$('#center').html(receiveData);
+	    		success : function(data){
+					if(data != '') alert(data);
+					param = $(pixel_frm3).serialize();
+					$('#center').load('/mypage/mypage_mypixel',param);
 				}	
 
 	    	}).done(function(data) {
@@ -184,12 +173,7 @@ function requestPay3() {
 	    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 	    		}
 	    	});
-   			console.log(rsp);
-   			console.log(rsp.name);
-   			console.log(rsp.buyer_id);
-   			var tempName = rsp.name;
-   			console.log(rsp.paid_amount);
-   			var tempAmount = rsp.paid_amount;
+
 	    } else {
 	        var msg = '결제에 실패하였습니다.';
 	        msg += '에러내용 : ' + rsp.error_msg;
@@ -198,37 +182,34 @@ function requestPay3() {
 	    }
 	});
 }
-// -------------------------------------------------
-// 카드결제 api -------------------------------------------------
+// -------------------------------------------------// 카드결제 api -------------------------------------------------
 var IMP = window.IMP;    //안해도 괜찮다
 IMP.init("imp68151717"); //본인 아임포트 가맹점 식별코드
 function requestPay4() {
+	pixel_frm4 = $('.pixel_frm4')[0];
+	param = new FormData(pixel_frm4);
 	//IMP.request_pay(param, callback) 결제창 호출
 	IMP.request_pay({ //param
 	    pg : 'html5_inicis',
 	    pay_method : 'card',
 	    merchant_uid: "merchant_" + new Date().getTime(),
-	    name : '픽셀 구매',
 	    amount : (pixel_price[3].innerHTML).replace(/,/g , ''),
-	    buyer_id : memberid,	 
-/*	    buyer_email : 'iamport@siot.do',
-	    buyer_tel : '010-1111-1111',
-	    buyer_addr : '서울특별시 관악구 봉천동',
-	    buyer_postcode : '11111'*/	
+	    name : '픽셀 구매'
 	    }, function(rsp) { //callback
 	    if ( rsp.success ) { //결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
 	    	//jQuery로 HTTP 요청
 	    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달
 	    	jQuery.ajax({
 	    		url: "/pixel/pixel_buy_complete", //cross-domain error가 발생하지 않도록 주의
+	    		contentType : false,
+            	processData : false,
 	    		type: 'POST',
+	    		data: param,
 	    		dataType: 'html',
-	    		data: {
-		    		imp_uid : rsp.imp_uid
-		    		//기타 필요한 데이터가 있으면 추가 전달
-	    		},
-	    		success : function(receiveData, status){
-					$('#center').html(receiveData);
+	    		success : function(data){
+					if(data != '') alert(data);
+					param = $(pixel_frm4).serialize();
+					$('#center').load('/mypage/mypage_mypixel',param);
 				}	
 
 	    	}).done(function(data) {
@@ -246,11 +227,7 @@ function requestPay4() {
 	    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 	    		}
 	    	});
-   			console.log(rsp);
-   			console.log(rsp.name);
-   			var tempName = rsp.name;
-   			console.log(rsp.paid_amount);
-   			var tempAmount = rsp.paid_amount;
+
 	    } else {
 	        var msg = '결제에 실패하였습니다.';
 	        msg += '에러내용 : ' + rsp.error_msg;
@@ -259,37 +236,34 @@ function requestPay4() {
 	    }
 	});
 }
-// -------------------------------------------------
-// 카드결제 api -------------------------------------------------
+// -------------------------------------------------// 카드결제 api -------------------------------------------------
 var IMP = window.IMP;    //안해도 괜찮다
 IMP.init("imp68151717"); //본인 아임포트 가맹점 식별코드
 function requestPay5() {
+	pixel_frm5 = $('.pixel_frm5')[0];
+	param = new FormData(pixel_frm5);
 	//IMP.request_pay(param, callback) 결제창 호출
 	IMP.request_pay({ //param
 	    pg : 'html5_inicis',
 	    pay_method : 'card',
 	    merchant_uid: "merchant_" + new Date().getTime(),
-	    name : '픽셀 구매',
 	    amount : (pixel_price[4].innerHTML).replace(/,/g , ''),
-	    buyer_id : memberid,	 
-/*	    buyer_email : 'iamport@siot.do',
-	    buyer_tel : '010-1111-1111',
-	    buyer_addr : '서울특별시 관악구 봉천동',
-	    buyer_postcode : '11111'*/	
+	    name : '픽셀 구매'
 	    }, function(rsp) { //callback
 	    if ( rsp.success ) { //결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
 	    	//jQuery로 HTTP 요청
 	    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달
 	    	jQuery.ajax({
 	    		url: "/pixel/pixel_buy_complete", //cross-domain error가 발생하지 않도록 주의
+	    		contentType : false,
+            	processData : false,
 	    		type: 'POST',
+	    		data: param,
 	    		dataType: 'html',
-	    		data: {
-		    		imp_uid : rsp.imp_uid
-		    		//기타 필요한 데이터가 있으면 추가 전달
-	    		},
-	    		success : function(receiveData, status){
-					$('#center').html(receiveData);
+	    		success : function(data){
+					if(data != '') alert(data);
+					param = $(pixel_frm5).serialize();
+					$('#center').load('/mypage/mypage_mypixel',param);
 				}	
 
 	    	}).done(function(data) {
@@ -307,11 +281,7 @@ function requestPay5() {
 	    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 	    		}
 	    	});
-   			console.log(rsp);
-   			console.log(rsp.name);
-   			var tempName = rsp.name;
-   			console.log(rsp.paid_amount);
-   			var tempAmount = rsp.paid_amount;
+
 	    } else {
 	        var msg = '결제에 실패하였습니다.';
 	        msg += '에러내용 : ' + rsp.error_msg;
@@ -320,37 +290,34 @@ function requestPay5() {
 	    }
 	});
 }
-// -------------------------------------------------
-// 카드결제 api -------------------------------------------------
+// -------------------------------------------------// 카드결제 api -------------------------------------------------
 var IMP = window.IMP;    //안해도 괜찮다
 IMP.init("imp68151717"); //본인 아임포트 가맹점 식별코드
 function requestPay6() {
+	pixel_frm6 = $('.pixel_frm6')[0];
+	param = new FormData(pixel_frm6);
 	//IMP.request_pay(param, callback) 결제창 호출
 	IMP.request_pay({ //param
 	    pg : 'html5_inicis',
 	    pay_method : 'card',
 	    merchant_uid: "merchant_" + new Date().getTime(),
-	    name : '픽셀 구매',
-	    amount : (pixel_price[5].innerHTML).replace(/,/g , ''),
-	    buyer_id : memberid,	 
-/*	    buyer_email : 'iamport@siot.do',
-	    buyer_tel : '010-1111-1111',
-	    buyer_addr : '서울특별시 관악구 봉천동',
-	    buyer_postcode : '11111'*/	
+	    amount :100 /*(pixel_price[5].innerHTML).replace(/,/g , '')*/,
+	    name : '픽셀 구매'
 	    }, function(rsp) { //callback
 	    if ( rsp.success ) { //결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
 	    	//jQuery로 HTTP 요청
 	    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달
 	    	jQuery.ajax({
 	    		url: "/pixel/pixel_buy_complete", //cross-domain error가 발생하지 않도록 주의
+	    		contentType : false,
+            	processData : false,
 	    		type: 'POST',
+	    		data: param,
 	    		dataType: 'html',
-	    		data: {
-		    		imp_uid : rsp.imp_uid
-		    		//기타 필요한 데이터가 있으면 추가 전달
-	    		},
-	    		success : function(receiveData, status){
-					$('#center').html(receiveData);
+	    		success : function(data){
+					if(data != '') alert(data);
+					param = $(pixel_frm6).serialize();
+					$('#center').load('/mypage/mypage_mypixel',param);
 				}	
 
 	    	}).done(function(data) {
@@ -368,11 +335,7 @@ function requestPay6() {
 	    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
 	    		}
 	    	});
-   			console.log(rsp);
-   			console.log(rsp.name);
-   			var tempName = rsp.name;
-   			console.log(rsp.paid_amount);
-   			var tempAmount = rsp.paid_amount;
+
 	    } else {
 	        var msg = '결제에 실패하였습니다.';
 	        msg += '에러내용 : ' + rsp.error_msg;
