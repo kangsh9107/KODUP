@@ -1,7 +1,7 @@
 package com.kodup.login;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,9 +18,16 @@ public class LoginController {
 	@Autowired
 	LoginService service;
 	
+	//최신글, 베스트 글, HOT TAG, TOP WRITER
 	@RequestMapping("/login/main")
 	public ModelAndView main() {
 		ModelAndView mv = new ModelAndView();
+		
+		List<MemberVo> listTopWriter = service.topWriter();
+		for(MemberVo vo : listTopWriter) {
+			System.out.println(vo.profile_img);
+		}
+		mv.addObject("listTopWriter", listTopWriter);
 		mv.setViewName("/login/main");
 		return mv;
 	}
@@ -108,7 +115,7 @@ public class LoginController {
 	
 	//카카오 로그인
 	@RequestMapping("/login/join_kakao_check")
-	public ModelAndView loginKakaoR(MemberVo mVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+	public ModelAndView loginKakaoR(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		String id = req.getParameter("id");
 		String email = req.getParameter("email");
@@ -127,11 +134,11 @@ public class LoginController {
 			mv.setViewName("/login/join_kakao");
 		} else { //ID중복 아님
 			HttpSession session = req.getSession();
-			session.setAttribute("sessionId", mVo.getId());
+			session.setAttribute("sessionId", id);
 			
 			//grade가져옴
 			int grade = 0;
-			grade = service.checkGrade(mVo.getId());
+			grade = service.checkGrade(id);
 			session.setAttribute("grade", grade);
 			
 			mv.setViewName("/login/main");

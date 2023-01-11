@@ -4,8 +4,12 @@
 
 /***** 강수형 *****/
 /***** MAIN *****/
-$('#center').load('/login/main');
-var id = $('.sessionId_hidden').val();
+var main = function() {
+	$('#center').load('/login/main');
+	var id = $('.sessionId_hidden').val();
+}
+main();
+
 
 /***** NAV *****/
 const nonClick = document.querySelectorAll('.non-click');

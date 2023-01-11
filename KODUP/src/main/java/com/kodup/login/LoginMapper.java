@@ -1,5 +1,7 @@
 package com.kodup.login;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -13,5 +15,7 @@ public interface LoginMapper {
 	public int chatInsert(String mento);
 	public int checkChatId(String mento);
 	public int chatDelete(String id);
+	
+	public List<MemberVo> topWriter();
 	
 }

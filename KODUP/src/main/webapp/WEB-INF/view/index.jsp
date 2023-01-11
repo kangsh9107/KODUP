@@ -30,7 +30,7 @@
 <title>코드 레벨업 - 코덥!</title>
 </head>
 <body>
-	<input type="text" class="sessionId_hidden" value="${sessionScope.sessionId }">
+	<input type="hidden" class="sessionId_hidden" value="${sessionScope.sessionId }">
 	<input type="hidden" value="${sessionScope.grade }">
 	<!-- NAV -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0 index_nav">
@@ -133,10 +133,10 @@
 								<br/><br/>
 								<span style="font-weight: 600;">#Top Writer</span>
 								<hr/>
-								<c:forEach var="list" begin="0" end="4">
+								<c:forEach items="${listTopWriter }" var="twVo">
 									<a href="#" class="text-decoration-none" style="float: left;">
-										<img id="index_top_writer_profile" src="images/index_default.png">
-										<span id="index_top_writer_nickname">옥다방고양이</span>
+										<img id="index_top_writer_profile" src="${'images/' + twVo.profile_img }">
+										<span id="index_top_writer_nickname">${twVo.id }</span>
 									</a>
 									<br/><br/>
 								</c:forEach>

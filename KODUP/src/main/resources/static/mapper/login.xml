@@ -35,4 +35,10 @@
 		DELETE FROM chat WHERE id = #{_parameter}
 	</delete>
 	
+	<!-- TOP WRITER -->
+	<select id="topWriter" resultType="com.kodup.login.MemberVo">
+		SELECT id FROM board GROUP BY id
+		ORDER BY count(id) DESC, id ASC LIMIT 0,5
+	</select>
+	
 </mapper>
