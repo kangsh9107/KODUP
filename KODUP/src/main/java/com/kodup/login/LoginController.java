@@ -85,7 +85,7 @@ public class LoginController {
 		b = service.login(mVo); //ID&PWD체크
 		
 		//b = true;  //테스트용
-		//b = false; // 테스트용
+		//b = false; //테스트용
 		
 		if( !b ) {
 			mv.addObject("b", b);
@@ -97,10 +97,7 @@ public class LoginController {
 			//grade가져옴
 			int grade = 0;
 			grade = service.checkGrade(mVo.getId());
-			
-			if(grade > 0 || grade <4) {
-				session.setAttribute("grade", grade);
-			}
+			session.setAttribute("grade", grade);
 			
 			mv.setViewName("/login/main");
 		}
@@ -120,7 +117,7 @@ public class LoginController {
 		//ID 중복체크 후 중복아니면 INSERT하고 로그인, 중복이면 LOGIN
 		b = service.checkId(id);
 		
-		b = true; //테스트용
+		//b = true; //테스트용
 		//ID중복
 		if( b ) {
 			mv.addObject("id", id);
@@ -130,6 +127,12 @@ public class LoginController {
 		} else { //ID중복 아님
 			HttpSession session = req.getSession();
 			session.setAttribute("sessionId", mVo.getId());
+			
+			//grade가져옴
+			int grade = 0;
+			grade = service.checkGrade(mVo.getId());
+			session.setAttribute("grade", grade);
+			
 			mv.setViewName("/login/main");
 		}
 		
@@ -144,20 +147,23 @@ public class LoginController {
 		return mv;
 	}
 	
-	//카카오 회원가입
+	//카카오 회원가입 후 로그인
 	@RequestMapping("/login/join_kakao")
 	public ModelAndView joinKako(MemberVo mVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
-		
-		
-		
 		HttpSession session = req.getSession();
 		session.setAttribute("sessionId", mVo.getId());
+		
+		//grade가져옴
+		int grade = 0;
+		grade = service.checkGrade(mVo.getId());
+		session.setAttribute("grade", grade);
+		
 		mv.setViewName("/login/main");
 		return mv;
 	}
 	
-	//멘토 로그인시 채팅세션 오픈
+	//채팅세션 오픈 후 chat테이블에 INSERT
 	@RequestMapping("/login/chat")
 	public ModelAndView chat(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
@@ -165,10 +171,10 @@ public class LoginController {
 		boolean c = false;
 		
 		//chat테이블에 존재하는지 확인
-		c = service.checkChatId(req.getParameter("mento"));
+		c = service.checkChatId(req.getParameter("id")); //존재하면 false
 		
 		if(c) {
-			b = service.chatInsert(req.getParameter("mento"));
+			b = service.chatInsert(req.getParameter("id"));
 			//b = false; //테스트용
 			if( !b ) {
 				mv.addObject("b", b);

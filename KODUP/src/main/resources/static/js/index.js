@@ -6,8 +6,6 @@
 /***** MAIN *****/
 $('#center').load('/login/main');
 var id = $('.sessionId_hidden').val();
-console.log(id);
-console.log(typeof id);
 
 /***** NAV *****/
 const nonClick = document.querySelectorAll('.non-click');
@@ -48,6 +46,7 @@ $('.btnLogoutR').on('click', function() {
 	nonClick.forEach((e) => {
 		e.classList.remove('click');
 	});
+	
 	$('#center').load('/login/logoutR');
 	location.replace('/');
 });
@@ -155,14 +154,14 @@ if(sessionId != ""){
 	}
 	
 	ws.onmessage = function(msg){
-		var mento = msg.data;
+		var id = msg.data;
 /*		var input = `<input type='text' value='${mento}' class='mentoes'>`;
 		var mentoList = document.querySelector('.mentoList');
 		mentoList.innerHTML += input; */
 		
 		$.ajax({
 			type: 'POST',
-			url: '/login/chat?mento=' + mento,
+			url: '/login/chat?id=' + id,
 			contentType: false,
 			processData: false,
 			dataType: 'html',

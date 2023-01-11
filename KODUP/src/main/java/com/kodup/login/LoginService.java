@@ -51,10 +51,10 @@ public class LoginService {
 	}
 	
 	//채팅방에 접속하면 chat테이블에 INSERT
-	public boolean chatInsert(String mento) {
+	public boolean chatInsert(String id) {
 		boolean b = false;
 		int cnt = 0;
-		cnt = loginMapper.chatInsert(mento);
+		cnt = loginMapper.chatInsert(id);
 		
 		status = manager.getTransaction(new DefaultTransactionDefinition());
 		savePoint = status.createSavepoint();
@@ -69,10 +69,10 @@ public class LoginService {
 		return b;
 	}
 	
-	public boolean checkChatId(String mento) {
+	public boolean checkChatId(String id) {
 		boolean c = true;
 		int cnt = 0;
-		cnt = loginMapper.checkChatId(mento);
+		cnt = loginMapper.checkChatId(id);
 		if(cnt > 0) c = false;
 		
 		return c;
