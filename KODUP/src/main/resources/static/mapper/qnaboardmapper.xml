@@ -17,7 +17,8 @@
     
     <select id="replList" parameterType="Integer" resultType="com.kodup.qna.QnaBoardReplVo">
 		SELECT r.repl_sno, r.grp, r.seq, r.deep, r.repl_nal, r.repl_doc, rs.repl_status,
-		m.profile_img, m.nickname
+		m.profile_img, m.nickname,
+		(select count(*) from repl where grp=r.grp and seq>r.seq) countinnerrepl
 		FROM repl r LEFT JOIN repl_selected rs ON r.repl_sno = rs.repl_sno
 					LEFT JOIN member m 		   ON r.id = m.id
 		where r.sno = ${_parameter}

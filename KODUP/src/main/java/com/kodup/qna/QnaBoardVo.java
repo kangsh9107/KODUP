@@ -9,6 +9,10 @@ public class QnaBoardVo {
 	int qna_sno,qna_pixel_reward;
 	String qna_horsehead;
 	
+	//대댓이 있는지 체크
+	int checkinner;
+	public int getCheckinner() {return checkinner;}
+	public void setCheckinner(int checkinner) {this.checkinner = checkinner;}
 	//해시태그; sno 1개에 해시태그 여러개달릴 수 있는데 1로우로 한줄로 저장하고 자바단에서 샵# 단위로 데이터포맷?
 	//아니면 sno에 맞는 해시태그 테이블을 만들어서 로우 1개에 해시태그 1개씩저장?
 	List<QnaHashVo> hashtaglist = new ArrayList<QnaHashVo>();
