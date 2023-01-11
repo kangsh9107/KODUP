@@ -5,12 +5,13 @@ import java.util.List;
 
 public class QnaBoardVo {
 	int sno,viewcount,thumbup,thumbdown;
-	String id,boardtype, nal, subject,doc,nickname;
+	String id,boardtype, nal, subject,doc,nickname,profile_img;
 	int qna_sno,qna_pixel_reward;
 	String qna_horsehead;
 	
+	//해시태그; sno 1개에 해시태그 여러개달릴 수 있는데 1로우로 한줄로 저장하고 자바단에서 샵# 단위로 데이터포맷?
+	//아니면 sno에 맞는 해시태그 테이블을 만들어서 로우 1개에 해시태그 1개씩저장?
 	List<QnaHashVo> hashtaglist = new ArrayList<QnaHashVo>();
-	
 	public List<QnaHashVo> getHashtaglist() {return hashtaglist;}
 	public void setHashtaglist(List<QnaHashVo> hashtaglist) {this.hashtaglist = hashtaglist;}
 	
@@ -45,4 +46,6 @@ public class QnaBoardVo {
 	//member테이블
 	public String getNickname() {return nickname;}
 	public void setNickname(String nickname) {this.nickname = nickname;}
+	public String getProfile_img() {return profile_img;	}
+	public void setProfile_img(String profile_img) {this.profile_img = profile_img;	}
 }

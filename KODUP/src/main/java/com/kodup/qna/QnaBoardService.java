@@ -17,6 +17,7 @@ public class QnaBoardService {
 	
 	@Autowired
 	QnaBoardMapper mapper;
+	
 	public QnaBoardVo view(int sno) {
 		QnaBoardVo qbVo=null;
 		qbVo = mapper.view(sno);
@@ -25,6 +26,12 @@ public class QnaBoardService {
 		qbVo.setHashtaglist(hashList);
 		
 		return qbVo;
+	}
+	
+	public List<QnaBoardReplVo> replList(int sno) {
+		List<QnaBoardReplVo> replList = null;
+		replList = mapper.replList(sno);
+		return replList;
 	}
 }
 
