@@ -113,16 +113,20 @@ h4{
 	border-radius: 0 5px 5px 0;
 }
 
-.st_area .buy .area .num {
+.pixelfont {
 	font-size: 13px;
 	color: #666;
 	margin-bottom: 2px;
+	margin-left:-5px;
+	display:inline-block;
+	padding:0;
 }
 
 .st_area .buy .area .num strong {
 	font-size: 16px;
 	color: #bb2649;
-	margin-left: 2px;
+	margin:0;
+	padding:0;
 }
 
 .st_area .buy .area {
@@ -131,7 +135,7 @@ h4{
 	position: absolute;
 	top: 40px;
 }
-
+span.num{padding:0; margin:0;}
 .st_area .buy .btn_buy {
 	border: 1px solid #bb2649;
 	width: 100px;

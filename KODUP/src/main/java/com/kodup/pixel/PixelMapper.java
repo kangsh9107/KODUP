@@ -11,6 +11,6 @@ import com.kodup.login.MemberVo;
 @Mapper
 public interface PixelMapper {
 	public List<PixelPriceVo> select();
-	public PixelBuyVo addlist(MemberVo mVo);
-	public int pixeladd(MemberVo mVo);
+	public int addlist(PixelBuyVo buyVo);
+	public int addpixel(MemberVo mVo);
 }
