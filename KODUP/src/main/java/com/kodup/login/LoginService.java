@@ -61,6 +61,7 @@ public class LoginService {
 		if(cnt > 0) {
 			manager.commit(status);
 			b = true;
+			System.out.println("인서트완료");
 		} else {
 			status.rollbackToSavepoint(savePoint);
 		}

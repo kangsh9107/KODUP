@@ -30,4 +30,9 @@
 		SELECT count(id) FROM chat WHERE id = #{_parameter}
 	</select>
 	
+	<!-- CHAT DELETE -->
+	<delete id="chatDelete" parameterType="String">
+		DELETE FROM chat WHERE id = #{_parameter}
+	</delete>
+	
 </mapper>

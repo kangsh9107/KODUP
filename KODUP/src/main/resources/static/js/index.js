@@ -5,6 +5,9 @@
 /***** 강수형 *****/
 /***** MAIN *****/
 $('#center').load('/login/main');
+var id = $('.sessionId_hidden').val();
+console.log(id);
+console.log(typeof id);
 
 /***** NAV *****/
 const nonClick = document.querySelectorAll('.non-click');
@@ -45,10 +48,16 @@ $('.btnLogoutR').on('click', function() {
 	nonClick.forEach((e) => {
 		e.classList.remove('click');
 	});
-	
 	$('#center').load('/login/logoutR');
 	location.replace('/');
 });
+
+/***** SESSION CLOSE *****/
+/* 세션 종료시 chat테이블에서 삭제하는 것은 고도화에서 고려
+window.addEventListener('beforeunload', (event) => {
+	$('#center').load('/login/logoutR');
+});
+*/
 
 /***** MANTOMAN *****/
 $(document).ready(function() {
@@ -137,6 +146,7 @@ $('#btnMantoman').on('click',function() {
 
 let sessionId = document.querySelector('.sessionId_hidden').value;
 console.log("sessionId : " + sessionId);
+
 if(sessionId != ""){
 	ws = new WebSocket("ws://" + location.host + "/socket_login");
 	ws.onopen = () => { //webSocket이 맺어지고 난 후, 실행

@@ -58,6 +58,7 @@ public class LoginController {
 	public ModelAndView logoutR(HttpServletRequest req) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = req.getSession();
+		service.chatDelete((String)session.getAttribute("sessionId"));
 		session.setAttribute("sessionId", null);
 		mv.setViewName("/login/main");
 		return mv;

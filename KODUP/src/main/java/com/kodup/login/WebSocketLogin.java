@@ -19,9 +19,6 @@ public class WebSocketLogin {
 	private static Set<Session> clients = 
 			Collections.synchronizedSet(new HashSet<Session>());
 	
-	@Autowired
-	LoginMapper loginMapper;
-	
 	@OnOpen
 	public void onOpen(Session s) {
 		System.out.println("open session : " + s.toString());
@@ -37,8 +34,6 @@ public class WebSocketLogin {
 	public void onClose(Session s) {
 		System.out.println("session close : " + s);
 		clients.remove(s);
-		System.out.println("ok");
-		loginMapper.chatDelete("m0011");
 	}
 	
 	@OnMessage
