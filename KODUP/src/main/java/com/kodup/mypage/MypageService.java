@@ -29,6 +29,15 @@ public class MypageService {
 	}
 	
 	
+	public MypageVo info_update_complete(String id) {
+		mpVo = new MypageVo();
+		mpVo = mypageMapper.info_update_complete(id);
+		System.out.println("수정완료버튼..서비스..연결됨...");
+		System.out.println("mpVo");
+		return mpVo;
+	}
+	
+	
 	public MypageQuitVo member_quit(String id) {
 		mqVo = new MypageQuitVo();
 		mqVo = mypageMapper.member_quit(id);

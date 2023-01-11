@@ -62,6 +62,28 @@ public class MypageController {
 		mv.setViewName("mypage/mypage_memberinfo_update");
 		return mv;
 	}
+	
+	
+	
+	@RequestMapping("/board/mypage_memberinfo_update_complete") //회원정보 수정 완료
+	public ModelAndView mypage_memberinfo_update_complete(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = req.getSession();
+		String id = (String)session.getAttribute("sessionId");
+
+		System.out.println("수정완료버튼..컨트롤러..연결됨");
+		System.out.println("sessionId");
+
+		
+		MypageVo mpVo = service.info_update_complete(id);
+		mv.addObject("mpVo", mpVo);
+		
+		mv.setViewName("mypage/mypage_memberinfo_update");
+		return mv;
+	}
+	
+	
+	
 
 	@RequestMapping("/board/mypage_dailycheck") //출석체크
 	public ModelAndView mypage_dailycheck() {

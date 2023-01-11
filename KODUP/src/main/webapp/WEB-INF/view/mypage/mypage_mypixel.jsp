@@ -4,13 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="js/mypage_pixel.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>mypage_mypixel</title>
 </head>
 <body>
 
  
- <div id="mypage_mypixel">
+ <div id="mypage_mypixel"> 
  	<span class='mypage_subject_text'>나의 픽셀</span>
  	<div class='mypage_mypixel_management'><br>
  		<div>
