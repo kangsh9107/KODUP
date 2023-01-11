@@ -59,7 +59,8 @@ public class LoginController {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = req.getSession();
 		service.chatDelete((String)session.getAttribute("sessionId"));
-		session.setAttribute("sessionId", null);
+		String str = null;
+		session.setAttribute("sessionId", str);
 		mv.setViewName("/login/main");
 		return mv;
 	}

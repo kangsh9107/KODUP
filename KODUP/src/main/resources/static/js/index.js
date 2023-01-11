@@ -47,8 +47,17 @@ $('.btnLogoutR').on('click', function() {
 		e.classList.remove('click');
 	});
 	
-	$('#center').load('/login/logoutR');
-	location.replace('/');
+	$.ajax({
+		type: 'POST',
+		url: '/login/logoutR',
+		contentType: false,
+		processData: false,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+			location.replace('/');
+		}
+	});
 });
 
 /***** SESSION CLOSE *****/
