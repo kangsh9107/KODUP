@@ -140,7 +140,7 @@ $('#btnMyprofile').on('click', function() {
 $('#btnMantoman').on('click',function() {
 	var title  = 'popup';
 	var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=350, height=500, top=400, left=1300'; 
-	window.open('/mantoman/mantoman_index', title, status);
+	window.open('/mantoman/mantoman_index?sessionId=' + sessionId, title, status);
 });
 
 let sessionId = document.querySelector('.sessionId_hidden').value;
