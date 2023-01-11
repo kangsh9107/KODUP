@@ -1,15 +1,18 @@
 package com.kodup.mypage;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
 
 @RestController
 public class MypageController {
@@ -49,7 +52,7 @@ public class MypageController {
 	}
 	
 	@RequestMapping("/board/mypage_memberinfo_update") //회원정보 수정
-	public ModelAndView mypage_memberinfo_update(HttpServletRequest req, HttpServletResponse res) throws IOException {
+	public ModelAndView mypage_memberinfo_update(HttpServletRequest req, HttpServletResponse res)throws IOException {
 		ModelAndView mv = new ModelAndView();
 		
 		HttpSession session = req.getSession();
@@ -64,27 +67,33 @@ public class MypageController {
 	}
 	
 	
+	/*
+	 * @RequestMapping("/board/mypage_memberinfo_update_complete") //회원정보 수정 완료
+	 * public ModelAndView mypage_memberinfo_update_complete(@ModelAttribute
+	 * MypageVo mpVo){ ModelAndView mv = new ModelAndView();
+	 * 
+	 * service.info_update_complete(mpVo);
+	 * 
+	 * 
+	 * System.out.println("수정완료버튼..컨트롤러..연결됨"); System.out.println(mpVo.nickname);
+	 * 
+	 * mv.addObject("mpVo", mpVo);
+	 * 
+	 * mv.setViewName("mypage/mypage_memberinfo_update"); return mv; }
+	 */
+	
 	
 	@RequestMapping("/board/mypage_memberinfo_update_complete") //회원정보 수정 완료
-	public ModelAndView mypage_memberinfo_update_complete(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		ModelAndView mv = new ModelAndView();
-		HttpSession session = req.getSession();
-		String id = (String)session.getAttribute("sessionId");
-
-		System.out.println("수정완료버튼..컨트롤러..연결됨");
-		System.out.println("sessionId");
-
+	public String mypage_memberinfo_update_complete(@ModelAttribute MypageVo mpVo){
+		String msg = "";
 		
-		MypageVo mpVo = service.info_update_complete(id);
-		mv.addObject("mpVo", mpVo);
+		boolean flag= service.mypage_memberinfo_update_complete(mpVo); // 데이터를 넘겨줌
+		if( !flag ) msg = "수정 중 오류 발생";
 		
-		mv.setViewName("mypage/mypage_memberinfo_update");
-		return mv;
+		return msg;
 	}
 	
 	
-	
-
 	@RequestMapping("/board/mypage_dailycheck") //출석체크
 	public ModelAndView mypage_dailycheck() {
 		ModelAndView mv = new ModelAndView();

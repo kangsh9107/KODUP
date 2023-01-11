@@ -3,13 +3,13 @@
 <mapper namespace="com.kodup.mypage.MypageMapper">
 	<!-- 회원 정보 -->
 	<select id='info' parameterType="String" resultType="com.kodup.mypage.MypageVo">
-		SELECT nickname, email, gender, age, profile_img FROM member WHERE id= #{_parameter}
+		SELECT id, nickname, email, gender, age, profile_img FROM member WHERE id= #{_parameter}
 	</select>
 
-	<update id='info_update_complete'>
-		UPDATE member SET nickname = #{mpVo.nickname }, email= #{mpVo.email }, gender= #{mpVo.gender }, 
-			   			  age= #{mpVo.age }, profile_img = #{mpVo.profile_img} 
-		FROM member WHERE id = #{_parameter}
+	<update id='mypage_memberinfo_update_complete' parameterType="com.kodup.mypage.MypageVo" >
+		UPDATE member SET nickname = #{nickname }, email= #{email }, gender= #{gender }, 
+			   			  age= #{age }, profile_img = #{profile_img} 
+		FROM member WHERE id = #{id}
 	</update>
 	
 	<!-- 회원 탈퇴 -->

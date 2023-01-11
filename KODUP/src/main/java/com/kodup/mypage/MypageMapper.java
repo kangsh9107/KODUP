@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface MypageMapper {
 	public MypageVo info(String id);
-	public MypageVo info_update_complete(String id);
+	public int mypage_memberinfo_update_complete(MypageVo mpVo);
 	public MypageQuitVo member_quit(String id);
 }
