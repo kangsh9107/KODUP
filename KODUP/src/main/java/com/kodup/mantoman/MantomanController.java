@@ -1,15 +1,32 @@
 package com.kodup.mantoman;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kodup.login.MemberVo;
+
 @RestController
 public class MantomanController {
+	
+	@Autowired
+	MantomanService service;
+	
 	@RequestMapping("/mantoman/mantoman_index")
-	public ModelAndView mantomanIndex() {
+	public ModelAndView mantomanIndex(MemberVo mVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		
+		String sessionId = req.getParameter("sessionId");
+		MantomanVo mtmVo = service.selectId(sessionId);
+		
+		mv.addObject("mtmVo", mtmVo);
+
 		mv.setViewName("mantoman/mantoman_index");
 		return mv;
 	}

@@ -14,16 +14,16 @@
 	<div class='slide_out'>
 		<div class="mantoman_wrapper">
 			<div class="mantoman_main">
-				<img src="../images/corini.png" class="profileImg">
+				<img src="../images/${mtmVo.profile_img}" class="profileImg">
 				<div class="setting_iconDiv">
 					<img src="../images/setting_icon.png" class="setting_icon">
 				</div>
 				
 				<div class="mantoman_nicknameDiv">
-					<span class="mantoman_nickname">코린이</span>
-					<span class="mantoman_grade">멘티</span>
+					<span class="mantoman_nickname">${mtmVo.nickname }</span>
+					<span class="mantoman_grade">${mtmVo.grade }</span>
 				</div>
-				<div class="mantoman_Phrases">안녕하세요! 코린이입니다.</div>
+				<div class="mantoman_Phrases">${mtmVo.introduce }</div>
 				<div class="mantoman_nav">
 					<nav class="mantoman_atags">
 						<div id="horizontal-underline"></div>
@@ -35,6 +35,9 @@
 			<div id="mantoman_innerSection">
 			</div>
 		</div>
+	</div>
+	<div class='test'>
+		<input type='button' value='m00111' class='btnTest'>
 	</div>
 </div>
 </body>
