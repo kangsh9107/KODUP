@@ -35,3 +35,10 @@ $('#btnChatList').on('click', function() {
 
 document.querySelector('#btnMentorList').click();
 
+var nickname = document.querySelector(".mantoman_nickname");
+
+$('.btnTest').on('click', function() {
+	var html = `<div class='calling_message'>${nickname}님이 멘토 요청하였습니다.</div>`;
+	
+	$(opener.document).find("#parentId").append(html);
+});
