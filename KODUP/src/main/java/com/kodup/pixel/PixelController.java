@@ -26,20 +26,24 @@ public class PixelController {
 	}
 		
 	@RequestMapping("/pixel/pixel_buy_complete")
-	public synchronized String buy(MemberVo mVo, PixelBuyVo buyVo) {
+	public synchronized String buy(MemberVo mVo, PixelBuyVo buyVo, PixelHistoryVo hVo) {
 		String msg="";
 		String msg1="";
+		String msg2="";
 		
-		boolean listflag = service.buylist(buyVo);
-		if(listflag) {
+		boolean addlist = service.buylist(buyVo);
+		if(addlist) {
 			msg = "리스트 추가 완료. ";
-		}else msg ="리스트 추가 중 오류 발생";
+		}else msg ="리스트 추가중 오류 발생 ";
 		
-		boolean buyflag = service.addpixel(mVo);
+		boolean addpixel = service.addpixel(mVo);
 		
-		if(buyflag) msg1=" 정상적으로 충전되었습니다.";
-		else msg1="충전 중 오류 발생";		
-			
-		return msg+msg1;
+		if(addpixel) msg1=" 정상적으로 충전되었습니다.";
+		else msg1=" 충전중 오류 발생";		
+		
+		boolean buylog = service.buylog(hVo);
+		if(buylog) msg2= " 로그 추가 완료.";
+		else msg2 = " 로그 추가중 오류 발생";
+		return msg+msg1+msg2;
 	}		
 }

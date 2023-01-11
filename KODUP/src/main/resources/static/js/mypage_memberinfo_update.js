@@ -15,4 +15,23 @@ $('.mypage_update_complete').on('click', function(){
 	//$('#m_section2').load('/board/mypage_memberinfo');
 	$('#m_section2').load('/board/mypage_memberinfo_update_complete');
 });
+
+ $('.mypage_update_complete').on('click', function(){
+        var frm = $('.frm')[0];
+        var param = new FormData(frm);
+       
+        $.ajax({
+            type : 'POST',
+            url : '/board/mypage_memberinfo_update_complete',
+            contentType : false,
+            processData : false,
+            data : param,
+            dataType : 'html',
+            success : function(data){
+				param=$(frm).serialize();
+				$('#m_section2').load('/board/mypage_memberinfo_update_complete',param);
+                //$('#m_section2').html(data);
+            }
+        })
+    })
  

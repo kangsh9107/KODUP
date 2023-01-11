@@ -1,6 +1,7 @@
 package com.kodup.login;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,17 +19,39 @@ public class LoginController {
 	@Autowired
 	LoginService service;
 	
-	//최신글, 베스트 글, HOT TAG, TOP WRITER
-	@RequestMapping("/login/main")
-	public ModelAndView main() {
+	//TOP WRITER
+	@RequestMapping("/login/top_writer")
+	public ModelAndView topWriter() {
 		ModelAndView mv = new ModelAndView();
-		
 		List<MemberVo> listTopWriter = service.topWriter();
-		for(MemberVo vo : listTopWriter) {
-			System.out.println(vo.profile_img);
-		}
 		mv.addObject("listTopWriter", listTopWriter);
-		mv.setViewName("/login/main");
+		mv.setViewName("/login/top_writer");
+		return mv;
+	}
+	
+	//HOT TAG
+	@RequestMapping("/login/hot_tag")
+	public ModelAndView hotTag() {
+		ModelAndView mv = new ModelAndView();
+		List<CommonBoardVo> listHotTag = service.hotTag();
+		
+		HashMap<String, Integer> countHashTag = new HashMap<>();
+		for(CommonBoardVo cbVo : listHotTag) {
+			if(countHashTag.get(cbVo.hashtag) == null & !cbVo.hashtag.equals("")) {
+				countHashTag.put(cbVo.hashtag, 1);
+			} else {
+				countHashTag.put(cbVo.hashtag, countHashTag.get(cbVo.hashtag)+1);
+			}
+		}
+		
+//        for (HashMap.Entry<String, Integer> entry : countHashTag.entrySet()) {
+//            System.out.println("Key: " + entry.getKey() + ", "
+//                    + "Value: " + entry.getValue());
+//        }
+        listHotTag = null;
+		
+		mv.addObject("listHotTag", listHotTag);
+		mv.setViewName("/login/hot_tag");
 		return mv;
 	}
 
@@ -123,7 +146,7 @@ public class LoginController {
 		boolean b = false;
 		
 		//ID 중복체크 후 중복아니면 INSERT하고 로그인, 중복이면 LOGIN
-		b = service.checkId(id);
+		b = service.checkId(id); //true면 중복
 		
 		//b = true; //테스트용
 		//ID중복

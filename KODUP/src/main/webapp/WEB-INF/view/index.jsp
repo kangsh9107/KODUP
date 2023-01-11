@@ -10,6 +10,7 @@
 <!-- FAVICON -->
 
 
+
 <!-- CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
@@ -114,32 +115,13 @@
 					<div class="container">
 						<div class="row">
 							<!-- HOT TAG -->
-							<div class="col-md-12" id="index_hashtag">
-								<span style="font-weight: 600;">#인기 태그</span>
-								<hr/>
-								<c:forEach var="list" begin="0" end="4">
-									<a href="#" class="text-decoration-none" style="float: left;"><span>#JAVA</span></a>
-									<span style="float: right; color: #bb2649;">53</span>
-									<br/><br/>
-								</c:forEach>
-							</div>
+							<div class="col-md-12" id="index_hashtag"></div>
 							<!-- HONOR -->
 							<div class="col-md-12" id="index_honor" style="padding: 0;">
 								<img src="images/index_ad4.png" style="width: 100%; float: left;">
 							</div>
 							<!-- TOP WRITER -->
-							<div class="col-md-12" id="index_top_writer">
-								<br/><br/>
-								<span style="font-weight: 600;">#Top Writer</span>
-								<hr/>
-								<c:forEach items="${listTopWriter }" var="twVo">
-									<a href="#" class="text-decoration-none" style="float: left;">
-										<img id="index_top_writer_profile" src="${'images/' + twVo.profile_img }">
-										<span id="index_top_writer_nickname">${twVo.id }</span>
-									</a>
-									<br/><br/>
-								</c:forEach>
-							</div>
+							<div class="col-md-12" id="index_top_writer"></div>
 						</div>
 					</div>
 				</aside>

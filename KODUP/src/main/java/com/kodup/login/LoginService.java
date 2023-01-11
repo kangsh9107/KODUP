@@ -96,5 +96,14 @@ public class LoginService {
 		
 		return listTopWriter;
 	}
+	
+	//HOT TAG
+	public List<CommonBoardVo> hotTag() {
+		List<CommonBoardVo> listHotTag = null;
+		
+		listHotTag = loginMapper.hotTag();
+		
+		return listHotTag;
+	}
 
 }

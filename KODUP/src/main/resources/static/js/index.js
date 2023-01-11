@@ -4,11 +4,16 @@
 
 /***** 강수형 *****/
 /***** MAIN *****/
-var main = function() {
-	$('#center').load('/login/main');
-	var id = $('.sessionId_hidden').val();
+var id = $('.sessionId_hidden').val();
+
+var topWriter = function() {
+	$('#index_top_writer').load('/login/top_writer');
 }
-main();
+var hotTag = function() {
+	$('#index_hashtag').load('/login/hot_tag');
+}
+topWriter();
+hotTag();
 
 
 /***** NAV *****/

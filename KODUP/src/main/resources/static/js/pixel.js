@@ -2,35 +2,28 @@
  * 
  */
 
-var memberid = document.querySelectorAll('.member_id');
 var param;
-for(let i=0; i<memberid.length; i++){
-	memberid[i].value = sessionId;	
-}
-
+var frm;
+var memberid = document.querySelectorAll('.member_id');
 var pixel_price = document.querySelectorAll('.price');
 var pixel_amount = document.querySelectorAll('.amount');
 
-var pixel_frm1 = $('.pixel_frm1')[0];
-var pixel_frm2 = $('.pixel_frm2')[0];
-var pixel_frm3 = $('.pixel_frm3')[0];
-var pixel_frm4 = $('.pixel_frm4')[0];
-var pixel_frm5 = $('.pixel_frm5')[0];
-var pixel_frm6 = $('.pixel_frm6')[0];
-
+for(let i=0; i<memberid.length; i++){
+	memberid[i].value = sessionId;
+}
 
 // 카드결제 api -------------------------------------------------
 var IMP = window.IMP;    //안해도 괜찮다
 IMP.init("imp68151717"); //본인 아임포트 가맹점 식별코드
 function requestPay1() {
-	pixel_frm = $('.pixel_frm1')[0];
-	param = new FormData(pixel_frm1);
+	frm = $('.pixel_frm1')[0];
+	param = new FormData(frm);
 	//IMP.request_pay(param, callback) 결제창 호출
 	IMP.request_pay({ //param
 	    pg : 'html5_inicis',
 	    pay_method : 'card',
 	    merchant_uid: "merchant_" + new Date().getTime(),
-	    amount : (pixel_price[0].innerHTML).replace(/,/g , ''),
+	    amount : 100 /*(pixel_price[0].innerHTML).replace(/,/g , '') <- 주석삭제하면 DB에맞는 가격으로 결제됨*/,
 	    name : '픽셀 구매'
 	    }, function(rsp) { //callback
 	    if ( rsp.success ) { //결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
@@ -45,8 +38,8 @@ function requestPay1() {
 	    		dataType: 'html',
 	    		success : function(data){
 					if(data != '') alert(data);
-					param = $(pixel_frm1).serialize();
-					$('#center').load('/mypage/mypage_mypixel',param);
+					param = $(frm).serialize();
+					$('#center').load('/mypage/mypage_mypixel');
 				}	
 
 	    	}).done(function(data) {
@@ -78,14 +71,14 @@ function requestPay1() {
 var IMP = window.IMP;    //안해도 괜찮다
 IMP.init("imp68151717"); //본인 아임포트 가맹점 식별코드
 function requestPay2() {
-	pixel_frm2 = $('.pixel_frm2')[0];
-	param = new FormData(pixel_frm2);
+	frm = $('.pixel_frm2')[0];
+	param = new FormData(frm);
 	//IMP.request_pay(param, callback) 결제창 호출
 	IMP.request_pay({ //param
 	    pg : 'html5_inicis',
 	    pay_method : 'card',
 	    merchant_uid: "merchant_" + new Date().getTime(),
-	    amount : (pixel_price[1].innerHTML).replace(/,/g , ''),
+	    amount : 100/*(pixel_price[1].innerHTML).replace(/,/g , '')*/,
 	    name : '픽셀 구매'
 	    }, function(rsp) { //callback
 	    if ( rsp.success ) { //결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
@@ -100,8 +93,8 @@ function requestPay2() {
 	    		dataType: 'html',
 	    		success : function(data){
 					if(data != '') alert(data);
-					param = $(pixel_frm2).serialize();
-					$('#center').load('/mypage/mypage_mypixel',param);
+					param = $(frm).serialize();
+					$('#center').load('/mypage/mypage_mypixel');
 				}	
 
 	    	}).done(function(data) {
@@ -132,14 +125,14 @@ function requestPay2() {
 var IMP = window.IMP;    //안해도 괜찮다
 IMP.init("imp68151717"); //본인 아임포트 가맹점 식별코드
 function requestPay3() {
-	pixel_frm3 = $('.pixel_frm3')[0];
-	param = new FormData(pixel_frm3);
+	frm = $('.pixel_frm3')[0];
+	param = new FormData(frm);
 	//IMP.request_pay(param, callback) 결제창 호출
 	IMP.request_pay({ //param
 	    pg : 'html5_inicis',
 	    pay_method : 'card',
 	    merchant_uid: "merchant_" + new Date().getTime(),
-	    amount : (pixel_price[2].innerHTML).replace(/,/g , ''),
+	    amount : 100 /*(pixel_price[2].innerHTML).replace(/,/g , '')*/,
 	    name : '픽셀 구매'
 	    }, function(rsp) { //callback
 	    if ( rsp.success ) { //결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
@@ -154,8 +147,8 @@ function requestPay3() {
 	    		dataType: 'html',
 	    		success : function(data){
 					if(data != '') alert(data);
-					param = $(pixel_frm3).serialize();
-					$('#center').load('/mypage/mypage_mypixel',param);
+					param = $(frm).serialize();
+					$('#center').load('/mypage/mypage_mypixel');
 				}	
 
 	    	}).done(function(data) {
@@ -186,14 +179,14 @@ function requestPay3() {
 var IMP = window.IMP;    //안해도 괜찮다
 IMP.init("imp68151717"); //본인 아임포트 가맹점 식별코드
 function requestPay4() {
-	pixel_frm4 = $('.pixel_frm4')[0];
-	param = new FormData(pixel_frm4);
+	frm = $('.pixel_frm4')[0];
+	param = new FormData(frm);
 	//IMP.request_pay(param, callback) 결제창 호출
 	IMP.request_pay({ //param
 	    pg : 'html5_inicis',
 	    pay_method : 'card',
 	    merchant_uid: "merchant_" + new Date().getTime(),
-	    amount : (pixel_price[3].innerHTML).replace(/,/g , ''),
+	    amount : 100 /*(pixel_price[3].innerHTML).replace(/,/g , '')*/,
 	    name : '픽셀 구매'
 	    }, function(rsp) { //callback
 	    if ( rsp.success ) { //결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
@@ -208,8 +201,8 @@ function requestPay4() {
 	    		dataType: 'html',
 	    		success : function(data){
 					if(data != '') alert(data);
-					param = $(pixel_frm4).serialize();
-					$('#center').load('/mypage/mypage_mypixel',param);
+					param = $(frm).serialize();
+					$('#center').load('/mypage/mypage_mypixel');
 				}	
 
 	    	}).done(function(data) {
@@ -240,14 +233,14 @@ function requestPay4() {
 var IMP = window.IMP;    //안해도 괜찮다
 IMP.init("imp68151717"); //본인 아임포트 가맹점 식별코드
 function requestPay5() {
-	pixel_frm5 = $('.pixel_frm5')[0];
-	param = new FormData(pixel_frm5);
+	frm = $('.pixel_frm5')[0];
+	param = new FormData(frm);
 	//IMP.request_pay(param, callback) 결제창 호출
 	IMP.request_pay({ //param
 	    pg : 'html5_inicis',
 	    pay_method : 'card',
 	    merchant_uid: "merchant_" + new Date().getTime(),
-	    amount : (pixel_price[4].innerHTML).replace(/,/g , ''),
+	    amount : 100 /*(pixel_price[4].innerHTML).replace(/,/g , '')*/,
 	    name : '픽셀 구매'
 	    }, function(rsp) { //callback
 	    if ( rsp.success ) { //결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
@@ -262,8 +255,8 @@ function requestPay5() {
 	    		dataType: 'html',
 	    		success : function(data){
 					if(data != '') alert(data);
-					param = $(pixel_frm5).serialize();
-					$('#center').load('/mypage/mypage_mypixel',param);
+					param = $(frm).serialize();
+					$('#center').load('/mypage/mypage_mypixel');
 				}	
 
 	    	}).done(function(data) {
@@ -294,14 +287,14 @@ function requestPay5() {
 var IMP = window.IMP;    //안해도 괜찮다
 IMP.init("imp68151717"); //본인 아임포트 가맹점 식별코드
 function requestPay6() {
-	pixel_frm6 = $('.pixel_frm6')[0];
-	param = new FormData(pixel_frm6);
+	frm = $('.pixel_frm6')[0];
+	param = new FormData(frm);
 	//IMP.request_pay(param, callback) 결제창 호출
 	IMP.request_pay({ //param
 	    pg : 'html5_inicis',
 	    pay_method : 'card',
 	    merchant_uid: "merchant_" + new Date().getTime(),
-	    amount :100 /*(pixel_price[5].innerHTML).replace(/,/g , '')*/,
+	    amount : 100 /*(pixel_price[5].innerHTML).replace(/,/g , '')*/,
 	    name : '픽셀 구매'
 	    }, function(rsp) { //callback
 	    if ( rsp.success ) { //결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
@@ -316,8 +309,8 @@ function requestPay6() {
 	    		dataType: 'html',
 	    		success : function(data){
 					if(data != '') alert(data);
-					param = $(pixel_frm6).serialize();
-					$('#center').load('/mypage/mypage_mypixel',param);
+					param = $(frm).serialize();
+					$('#center').load('/mypage/mypage_mypixel');
 				}	
 
 	    	}).done(function(data) {

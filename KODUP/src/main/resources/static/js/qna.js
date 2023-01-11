@@ -76,29 +76,36 @@ $('.btnBoardtype').on('click', function() {
 });
 
 function insertFormToggle(repl_sno){
-        var replInsertSectionId = "repl_insert_section"+repl_sno;
-        var insertCon = $('#' + replInsertSectionId).css("display");
-        
-        if( insertCon == "none"){
-            $('#' +replInsertSectionId).css('display','block');
-        }
-        else {
-            $('#' +replInsertSectionId).css('display','none');
-        }
+    var replInsertSectionId = "repl_insert_section"+repl_sno;
+    var insertCon = $('#' + replInsertSectionId).css("display");
+    
+    if( insertCon == "none"){
+        $('#' +replInsertSectionId).css('display','block');
+    }
+    else {
+        $('#' +replInsertSectionId).css('display','none');
+    }
 }
 
 function innerReplToggle(grp){
-        var replInnerSectionId = "repl_inner_section"+grp;
-        var replInnerCon = $('#' + replInnerSectionId).css("display");
-        console.log("리플섹션:"+replInnerSectionId);
-        console.log("클릭된grp:"+grp);
-        if( replInnerCon == "none"){
-            $('#' +replInnerSectionId).css('display','block');
-        }
-        else {
-            $('#' +replInnerSectionId).css('display','none');
-        }
+    var replInnerSectionId = "repl_inner_section"+grp;
+    var replInnerCon = $('#' + replInnerSectionId).css("display");
+    console.log("리플섹션:"+replInnerSectionId);
+    console.log("클릭된grp:"+grp);
+    if( replInnerCon == "none"){
+        $('#' +replInnerSectionId).css('display','block');
+    }
+    else {
+        $('#' +replInnerSectionId).css('display','none');
+    }
 }
+
+$('#btn_viewpage_thumbup').on('click', function(){
+	    param = $(frm).serialize();
+	    $.post("/board/board_update", param, function(data){
+	        $('#section').html(data);
+	    })
+	})
 
 
 
