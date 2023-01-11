@@ -24,7 +24,7 @@ public class MantomanController {
 		
 		String sessionId = req.getParameter("sessionId");
 		MantomanVo mtmVo = service.selectId(sessionId);
-		
+		System.out.println("sessionId : " + sessionId);
 		mv.addObject("mtmVo", mtmVo);
 
 		mv.setViewName("mantoman/mantoman_index");
