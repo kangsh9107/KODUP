@@ -7,7 +7,7 @@
 			   pixel_5_price,pixel_5_amount,pixel_6_price,pixel_6_amount
 		from pixel_price
 	</select>
-	<insert id="addlist" parameterType="com.kodup.login.MemberVo">
+	<insert id="addlist" parameterType="com.kodup.pixel.PixelBuyVo">
 		insert into pixel_buy_list(id,pixel_buy_date,pixel_buy_amount)
 		values(#{id},now(),#{pixel_buy_amount})
 	</insert>
@@ -15,4 +15,8 @@
 		update member set pixel = pixel+(select pixel_buy_amount from pixel_buy_list order by pixel_buy_date desc limit 0,1)
 		where id = #{id}
 	</update>
+	<insert id="buylog" parameterType="com.kodup.pixel.PixelHistoryVo">
+		insert into pixel_history(id,pixel_log,history_date)
+		values(#{id},(select pixel_buy_amount from pixel_buy_list order by pixel_buy_date desc limit 0,1),now())
+	</insert>
 </mapper>

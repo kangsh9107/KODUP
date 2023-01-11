@@ -20,7 +20,7 @@
 		<div class="item_pixel container text-center">
 			<div class="st_area st1">
 				<form class='pixel_frm1' method='post'>
-					<input type='text' class='member_id' name='id' value=''/>
+					<input type='hidden' class='member_id' name='id' value=''/>
 					<input type='hidden' name="pixel_buy_amount" value="${vo.pixel_1_amount }">
 					<input type='hidden' name="pixel_buy_price" value="${vo.pixel_1_price }">				
 					<div class="buy">
@@ -34,8 +34,8 @@
 				</form>	
 			</div>
 			<div class="st_area st2">
-				<form name='pixel_frm2' method='post'>
-					<input type='text' class='member_id' name='id' value=''/>				
+				<form class='pixel_frm2' method='post'>
+					<input type='hidden' class='member_id' name='id' value=''/>				
 					<input type='hidden' name="pixel_buy_amount" value="${vo.pixel_2_amount }">
 					<input type='hidden' name="pixel_buy_price" value="${vo.pixel_2_price }">
 					<div class="buy">
@@ -48,8 +48,8 @@
 				</form>
 			</div>
 			<div class="st_area st3">
-				<form name='pixel_frm3' method='post'>
-					<input type='text' class='member_id' name='id' value=''/>
+				<form class='pixel_frm3' method='post'>
+					<input type='hidden' class='member_id' name='id' value=''/>
 					<input type='hidden' name="pixel_buy_amount" value="${vo.pixel_3_amount }">
 					<input type='hidden' name="pixel_buy_price" value="${vo.pixel_3_price }">
 					<div class="buy">
@@ -63,8 +63,8 @@
 			</div>
 
 			<div class="st_area st4">
-				<form name='pixel_frm4' method='post'>
-					<input type='text' class='member_id' name='id' value=''/>
+				<form class='pixel_frm4' method='post'>
+					<input type='hidden' class='member_id' name='id' value=''/>
 					<input type='hidden' name="pixel_buy_amount" value="${vo.pixel_4_amount }">
 					<input type='hidden' name="pixel_buy_price" value="${vo.pixel_4_price }">
 								
@@ -79,8 +79,8 @@
 			</div>
 
 			<div class="st_area st5">
-				<form name='pixel_frm5' method='post'>
-					<input type='text' class='member_id' name='id' value=''/>
+				<form class='pixel_frm5' method='post'>
+					<input type='hidden' class='member_id' name='id' value=''/>
 					<input type='hidden' name="pixel_buy_amount" value="${vo.pixel_5_amount }">
 					<input type='hidden' name="pixel_buy_price" value="${vo.pixel_5_price }">
 					<div class="buy">
@@ -94,8 +94,8 @@
 			</div>
 
 			<div class="st_area st6">
-				<form name='pixel_frm6' method='post'>
-					<input type='text' class='member_id' name='id' value=''/>
+				<form class='pixel_frm6' method='post'>
+					<input type='hidden' class='member_id' name='id' value=''/>
 					<input type='hidden' name="pixel_buy_amount" value="${vo.pixel_6_amount }">
 					<input type='hidden' name="pixel_buy_price" value="${vo.pixel_6_price }">				
 					<div class="buy">

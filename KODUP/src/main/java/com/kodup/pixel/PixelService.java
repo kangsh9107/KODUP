@@ -56,4 +56,19 @@ public class PixelService {
 		return b;
 	}
 	
+	public boolean buylog(PixelHistoryVo hVo) {
+		boolean b = true;
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		int cnt = mapper.buylog(hVo);
+		if(cnt<1) {
+			b=false;
+		}
+		if(b) {
+			manager.commit(status);
+		}else status.rollbackToSavepoint(savePoint);
+
+		return b;
+	}
+	
 }
