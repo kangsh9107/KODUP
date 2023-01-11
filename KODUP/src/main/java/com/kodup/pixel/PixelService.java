@@ -14,6 +14,7 @@ import com.kodup.login.MemberVo;
 @Service
 @Transactional
 public class PixelService {
+	MemberVo mVo;
 
 	@Autowired
 	PixelMapper mapper;
@@ -28,25 +29,25 @@ public class PixelService {
 		return list;
 	}
 	
-	public PixelBuyVo buylist(MemberVo mVo) {
-		PixelBuyVo buyVo = null;
-		buyVo = mapper.addlist(mVo);
-		return buyVo;
+	public boolean buylist(PixelBuyVo buyVo) {
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		int cnt = mapper.addlist(buyVo);
+		boolean flag=true;
+		if(cnt<1) {
+			status.rollbackToSavepoint(savePoint);
+			flag=false; 		
+		}
+		return flag;
 	}
 	
 	public boolean addpixel(MemberVo mVo) {
 		boolean b = true;
 		status = manager.getTransaction(new DefaultTransactionDefinition());
 		savePoint = status.createSavepoint();
-		int cnt = mapper.pixeladd(mVo);
-		if(cnt<1) {
-			b=false;
-		}
-		if(b) {
-			manager.commit(status);
-		}else {
-			status.rollbackToSavepoint(savePoint);
-		}
+		int cnt = mapper.addpixel(mVo);
+
 		return b;
 	}
+	
 }

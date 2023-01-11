@@ -25,14 +25,23 @@ public class PixelController {
 
 	}
 		
-	@RequestMapping("/pixel/buy_complete")
-	public ModelAndView buy(MemberVo mVo) {
-		ModelAndView mv = new ModelAndView();
-		PixelBuyVo buyVo = service.buylist(mVo);
-//		mVo = service.addpixel(mVo.getId());
-		mv.addObject("buyVo",buyVo);
-		mv.setViewName("mypage/mypage_mypixel");
+	@RequestMapping("/pixel/pixel_buy_complete")
+	public synchronized String buy(MemberVo mVo, PixelBuyVo buyVo) {
+		String msg="";
+		
+		boolean listflag = service.buylist(buyVo);
+		if(listflag) {
+			msg = "정상적으로 충전되었습니다.";
+		}else msg ="충전 중 오류 발생";
+		
+		boolean buyflag = service.addpixel(mVo);
+//		mVo = service.addpixel(buyVo);
+		
+		
+//		mv.addObject("buyVo",buyVo);
+//		mv.addObject("mVo", mVo);
+//		mv.setViewName("mypage/mypage_mypixel");
 			
-		return mv;
+		return msg;
 	}		
 }

@@ -14,67 +14,93 @@
 <title>pixel/pixel_buy.jsp</title>
 </head>
 <body>
-<input type='hidden' class='member_id' value=''/>
 	<h3 class="pg_title">픽셀충전</h3>
 	<div class="inwrap">
 	<c:forEach var="vo" items="${list }">
 		<div class="item_pixel container text-center">
 			<div class="st_area st1">
-				<div class="buy">
-					<div class="area">
-						<span class="num">픽셀<strong><fmt:formatNumber value="${vo.pixel_1_amount }" pattern="#,###"/></strong>개
-						</span> <span class="price"><fmt:formatNumber value="${vo.pixel_1_price }" pattern="#,###"/>원</span>
+				<form class='pixel_frm1' method='post'>
+					<input type='hidden' class='member_id' name='id' value=''/>
+					<input type='hidden' name="pixel_buy_amount" value="${vo.pixel_1_amount }">
+					<input type='hidden' name="pixel1_price" value="${vo.pixel_1_price }">				
+					<div class="buy">
+						<div class="area">
+							<span class='pixelfont'>픽셀</span>
+							<span class="num num1"><strong><fmt:formatNumber value="${vo.pixel_1_amount }" pattern="#,###"/></strong>
+							</span><span class='pixelfont'>개</span> <span class="price price1"><fmt:formatNumber value="${vo.pixel_1_price }" pattern="#,###"/></span>원
+						</div>
+						<button type="button" class="btn_buy btn_buy1" onclick="requestPay1()">구매하기</button>
 					</div>
-					<button type="button" class="btn_buy btn_buy1" onclick="requestPay()">구매하기</button>
-				</div>
+				</form>	
 			</div>
 			<div class="st_area st2">
-				<div class="buy">
-					<div class="area">
-						<span class="num">픽셀<strong><fmt:formatNumber value="${vo.pixel_2_amount }" pattern="#,###"/></strong>개
-						</span> <span class="price"><fmt:formatNumber value="${vo.pixel_2_price }" pattern="#,###"/>원</span>
+				<form name='pixel_frm2' method='post'>
+					<input type='hidden' name="pixel2_amount" value="${vo.pixel_2_amount }">
+					<input type='hidden' name="pixel2_price" value="${vo.pixel_2_price }">
+					<div class="buy">
+						<div class="area">
+							<span class='pixelfont'>픽셀</span><span class="num num2"><strong><fmt:formatNumber value="${vo.pixel_2_amount }" pattern="#,###"/></strong>
+							</span><span class='pixelfont'>개</span> <span class="price price2"><fmt:formatNumber value="${vo.pixel_2_price }" pattern="#,###"/></span>원
+						</div>
+						<button type="button" class="btn_buy btn_buy2" onclick="requestPay2()">구매하기</button>
 					</div>
-					<button type="button" class="btn_buy btn_buy2" onclick="requestPay()">구매하기</button>
-				</div>
+				</form>
 			</div>
 			<div class="st_area st3">
-				<div class="buy">
-					<div class="area">
-						<span class="num">픽셀<strong><fmt:formatNumber value="${vo.pixel_3_amount }" pattern="#,###"/></strong>개
-						</span> <span class="price"><fmt:formatNumber value="${vo.pixel_3_price }" pattern="#,###"/>원</span>
+				<form name='pixel_frm3' method='post'>
+					<input type='hidden' name="pixel3_amount" value="${vo.pixel_3_amount }">
+					<input type='hidden' name="pixel3_price" value="${vo.pixel_3_price }">
+					<div class="buy">
+						<div class="area">
+							<span class='pixelfont'>픽셀</span><span class="num num3"><strong><fmt:formatNumber value="${vo.pixel_3_amount }" pattern="#,###"/></strong>
+							</span><span class='pixelfont'>개</span> <span class="price price3"><fmt:formatNumber value="${vo.pixel_3_price }" pattern="#,###"/></span>원
+						</div>
+						<button type="button" class="btn_buy btn_buy3" onclick="requestPay3()">구매하기</button>
 					</div>
-					<button type="button" class="btn_buy btn_buy3" onclick="requestPay()">구매하기</button>
-				</div>
+				</form>
 			</div>
 
 			<div class="st_area st4">
-				<div class="buy">
-					<div class="area">
-						<span class="num">픽셀<strong><fmt:formatNumber value="${vo.pixel_4_amount }" pattern="#,###"/></strong>개
-						</span> <span class="price"><fmt:formatNumber value="${vo.pixel_4_price }" pattern="#,###"/>원</span>
+				<form name='pixel_frm4' method='post'>
+					<input type='hidden' name="pixel4_amount" value="${vo.pixel_4_amount }">
+					<input type='hidden' name="pixel4_price" value="${vo.pixel_4_price }">
+								
+					<div class="buy">
+						<div class="area">
+							<span class='pixelfont'>픽셀</span><span class="num num4"><strong><fmt:formatNumber value="${vo.pixel_4_amount }" pattern="#,###"/></strong></span>
+							<span class='pixelfont'>개</span><span class="price price4"><fmt:formatNumber value="${vo.pixel_4_price }" pattern="#,###"/></span>원
+						</div>
+						<button type="button" class="btn_buy btn_buy4" onclick="requestPay4()">구매하기</button>
 					</div>
-					<button type="button" class="btn_buy btn_buy4" onclick="requestPay()">구매하기</button>
-				</div>
+				</form>
 			</div>
 
 			<div class="st_area st5">
-				<div class="buy">
-					<div class="area">
-						<span class="num">픽셀<strong><fmt:formatNumber value="${vo.pixel_5_amount }" pattern="#,###"/></strong>개
-						</span> <span class="price"><fmt:formatNumber value="${vo.pixel_5_price }" pattern="#,###"/>원</span>
+				<form name='pixel_frm5' method='post'>
+					<input type='hidden' name="pixel5_amount" value="${vo.pixel_5_amount }">
+					<input type='hidden' name="pixel5_price" value="${vo.pixel_5_price }">
+					<div class="buy">
+						<div class="area">
+							<span class='pixelfont'>픽셀</span><span class="num num5"><strong><fmt:formatNumber value="${vo.pixel_5_amount }" pattern="#,###"/></strong>
+							</span><span class='pixelfont'>개</span> <span class="price price5"><fmt:formatNumber value="${vo.pixel_5_price }" pattern="#,###"/></span>원
+						</div>
+						<button type="button" class="btn_buy btn_buy5" onclick="requestPay5()">구매하기</button>
 					</div>
-					<button type="button" class="btn_buy btn_buy5" onclick="requestPay()">구매하기</button>
-				</div>
+				</form>
 			</div>
 
 			<div class="st_area st6">
-				<div class="buy">
-					<div class="area">
-						<span class="num">픽셀<strong><fmt:formatNumber value="${vo.pixel_6_amount }" pattern="#,###"/></strong>개
-						</span> <span class="price"><fmt:formatNumber value="${vo.pixel_6_price }" pattern="#,###"/>원</span>
+				<form name='pixel_frm6' method='post'>
+					<input type='hidden' name="pixel6_amount" value="${vo.pixel_6_amount }">
+					<input type='hidden' name="pixel6_price" value="${vo.pixel_6_price }">				
+					<div class="buy">
+						<div class="area">
+							<span class='pixelfont'>픽셀</span><span class="num num6"><strong><fmt:formatNumber value="${vo.pixel_6_amount }" pattern="#,###"/></strong>
+							</span><span class='pixelfont'>개</span> <span class="price price6"><fmt:formatNumber value="${vo.pixel_6_price }" pattern="#,###"/></span>원
+						</div>
+						<button type="button" class="btn_buy btn_buy6" onclick="requestPay6()">구매하기</button>
 					</div>
-					<button type="button" class="btn_buy btn_buy6" onclick="requestPay()">구매하기</button>
-				</div>
+				</form>
 			</div>
 		</div>
 		</c:forEach>
