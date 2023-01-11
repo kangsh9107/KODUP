@@ -159,33 +159,53 @@ $('#btnMantoman').on('click',function() {
 let sessionId = document.querySelector('.sessionId_hidden').value;
 console.log("sessionId : " + sessionId);
 
+var dataArray = {};//전송 데이터(JSON)
+
+var ws;
+
 if(sessionId != ""){
 	ws = new WebSocket("ws://" + location.host + "/socket_login");
 	ws.onopen = () => { //webSocket이 맺어지고 난 후, 실행
 		console.log(ws.readyState);
-    	ws.send(sessionId);
+    	
+    	dataArray.job = "login";
+		dataArray.msg = sessionId;
+		
+		var temp = JSON.stringify(dataArray);
+		ws.send(temp);
 	}
 	
 	ws.onmessage = function(msg){
-		var id = msg.data;
-/*		var input = `<input type='text' value='${mento}' class='mentoes'>`;
-		var mentoList = document.querySelector('.mentoList');
-		mentoList.innerHTML += input; */
+		var data = JSON.parse(msg.data);
+		/* job이 로그인일떄 */
+		if(data.job=="login"){
+			var id = data.msg;
 		
-		$.ajax({
-			type: 'POST',
-			url: '/login/chat?id=' + id,
-			contentType: false,
-			processData: false,
-			dataType: 'html',
-			success: function(data) {
-				if(data == 'false') {
-					alert('채팅서버 연결에 실패했습니다.');
-				} else {
-					$('#center').html(data);
+			$.ajax({
+				type: 'POST',
+				url: '/login/chat?id=' + id,
+				contentType: false,
+				processData: false,
+				dataType: 'html',
+				success: function(data) {
+					if(data == 'false') {
+						alert('채팅서버 연결에 실패했습니다.');
+					} else {
+						$('#center').html(data);
+					}
 				}
+			});
+		}
+		/* job이 멘토요청일때 */
+		if(data.job=="mentoCall"){
+			console.log("mentoId : " + data.mentoId);
+			if(data.mentoId==sessionId){
+				alert(data.mentiNickname+"님이 멘토요청하였습니다.");
+				//var popupCall = `<div`
+				
 			}
-		});
+		}
+		
 	}
 }
 

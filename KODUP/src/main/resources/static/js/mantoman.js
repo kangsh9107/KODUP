@@ -35,10 +35,19 @@ $('#btnChatList').on('click', function() {
 
 document.querySelector('#btnMentorList').click();
 
-var nickname = document.querySelector(".mantoman_nickname");
+var nickname = document.querySelector(".mantoman_nickname").value;
 
 $('.btnTest').on('click', function() {
-	var html = `<div class='calling_message'>${nickname}님이 멘토 요청하였습니다.</div>`;
+	console.log(nickname);
+	var mentoId = this.value;
 	
-	$(opener.document).find("#parentId").append(html);
+	var html = `<script>
+				dataArray.job = "mentoCall";
+				dataArray.mentiNickname = "${nickname}";
+				dataArray.mentoId = "${this.value}";
+				var temp = JSON.stringify(dataArray);
+				ws.send(temp);
+				</script>`;
+	
+	$(opener.document).find("#sockectController").append(html);
 });
