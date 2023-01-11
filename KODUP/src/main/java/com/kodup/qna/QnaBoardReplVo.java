@@ -1,9 +1,14 @@
 package com.kodup.qna;
 
 public class QnaBoardReplVo {
-	int grp,seq,deep,repl_status,repl_sno;
+	int grp,seq,deep,repl_status,repl_sno,countinnerrepl;
 	String repl_nal,repl_doc,profile_img,nickname;
 	
+	//countinnerrepl:댓글에 달려있는 대댓글의 수 ; 쿼리문 서브쿼리를통해 셀렉트함
+	//qna.jsp에서 button id:repl_inner_display_onkey2 , c:if조건문걸기위해 필요
+	
+	public int getCountinnerrepl() {return countinnerrepl;}
+	public void setCountinnerrepl(int countinnerrepl) {this.countinnerrepl = countinnerrepl;}
 	//댓글테이블(repl)
 	public int getRepl_sno() {	return repl_sno;}
 	public void setRepl_sno(int repl_sno) {	this.repl_sno = repl_sno;}

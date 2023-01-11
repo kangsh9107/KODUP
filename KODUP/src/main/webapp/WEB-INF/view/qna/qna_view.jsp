@@ -121,7 +121,7 @@
 					 onclick="insertFormToggle(${replList.repl_sno})">
 					대댓입력</button>
 					
-					<c:if test="">
+					<c:if test="${replList.countinnerrepl >0 }">
 						<button id="repl_inner_display_onkey2" 
 						 type="button" 
 						 style="width:70px; height:20px; position:absolute; bottom:0; left:80px; 						 border:0;" 
