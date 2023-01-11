@@ -6,14 +6,18 @@
 		SELECT nickname, email, gender, age, profile_img FROM member WHERE id= #{_parameter}
 	</select>
 
-	<!-- <select id='info_update'>
-		SELECT nickname = #{nickname}, email, gender, age, profile_img FROM member WHERE id = #{_parameter}
-	</select> -->
+	<update id='info_update_complete'>
+		UPDATE member SET nickname = #{mpVo.nickname }, email= #{mpVo.email }, gender= #{mpVo.gender }, 
+			   			  age= #{mpVo.age }, profile_img = #{mpVo.profile_img} 
+		FROM member WHERE id = #{_parameter}
+	</update>
 	
 	<!-- 회원 탈퇴 -->
 	<delete id='member_quit' parameterType='String'>
 		delete from member where id= #{_parameter}
 	</delete> 
+	
+	
 	
 	<!-- resultType='com.kodup.mypage.MypageQuitVo' -->
 	

@@ -16,7 +16,7 @@
 	<span class='mm_text'>닉네임</span><input type='text' class='name' value=${mpVo.nickname }><br/>
 	<span class='mm_text'>이메일</span><input type='text' class='name' value=${mpVo.email }><br/>
 	<span class='mm_text'>나이</span><input type='text' class='name' value=${mpVo.age }><br/>
-	<span class='mm_text'>성별</span><input type='text' class='name' value=${mpVo.gender }><br/>
+	<span class='mm_text'>성별</span><input type='text' class='name' value=${mpVo.gender } readonly><br/>
 	<br>
 	<span class='mm_text'></span><button class='mypage_update_complete'>수정완료</button>
 	<button type='button' class='mypage_update_cancel'>수정취소</button>
