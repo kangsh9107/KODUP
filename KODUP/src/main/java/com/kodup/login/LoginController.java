@@ -140,10 +140,8 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/login/login_kakao")
-	public ModelAndView loginKakao(MemberVo mVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+	public ModelAndView loginKakao() {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("mVo", mVo);
-		mv.setViewName("/login/main");
 		return mv;
 	}
 	

@@ -29,7 +29,7 @@
 <title>코드 레벨업 - 코덥!</title>
 </head>
 <body>
-	<input type="text" class="sessionId_hidden" value="${sessionScope.sessionId }">
+	<input type="hidden" class="sessionId_hidden" value="${sessionScope.sessionId }">
 	<input type="hidden" value="${sessionScope.grade }">
 	<!-- NAV -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0 index_nav">
