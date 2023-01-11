@@ -13,9 +13,9 @@
 </head>
 <body>
 <form id="qna_view">
-<input type='text' id="sno" name='sno' value='3' style="visibility: hidden;"/><!-- style="visibility: hidden;" -->
-<input type='text' id="" name='nowPage' value='2'style="visibility: hidden;"/>
-<input type='text' name='nowPage' value='3'style="visibility: hidden;"/>
+	<input type='text' id="sno" name='sno' value='${qbVo.sno}' /><!-- style="visibility: hidden;" -->
+	<input type='text' id="" name='nowPage' value='2'/>
+	<input type='text' name='nowPage' value='3'/>
 
 	<!-- boardtype  /  horsehead -->
 	<div id="qna_view_horsehead">
@@ -54,11 +54,17 @@
 	<span id="qna_view_doc" style="font-size:15px; display:inline-block; min-height:300px; margin-top:20px;">
 		${qbVo.doc}
 	</span>
-	
+	<!-- 추천,비추천 -->
+	<div>
+		<div style="text-align:right;">
+			<button id="btn_viewpage_thumbup" style="display:inline-block; text-align:right;" >추천</button>
+				<span>${qbVo.thumbup-qbVo.thumbdown}</span>
+			<button id="btn_viewpage_thumbdown" style="display:inline-block; text-align:right;" >비추천</button>
+		</div>
+	</div>
 	<!-- 본문 해시태그 --><!-- 해당해시태그를 누를경우 findStr로 해당 태그가 들어간 글들을 셀렉트 -->
 		
 	<div id="qna_view_hashtag">
-		
 		<c:forEach var='vo' items='${qbVo.hashtaglist}'>
 			<span>
 				<a href="#" onclick="qna_view_findHashtag(${vo.hashtag})">${vo.hashtag}</a>
@@ -71,6 +77,7 @@
 		<input type="button" class="btnDeleteR  qna_view_originalBtn"style="vertical-align:top;" value="삭제">
 		<input type="button" class="btnList  qna_view_originalBtn" style="vertical-align:top;"value="목록">
 	</div>
+	
 	
 	<hr/>
 	<!-- 댓글insert-->
