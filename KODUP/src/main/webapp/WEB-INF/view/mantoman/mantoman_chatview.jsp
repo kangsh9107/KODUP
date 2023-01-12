@@ -328,6 +328,7 @@ if(roomCode=="emptyRoom"){
 	msg.readOnly = true;
 	document.getElementById('msg').style.background = "#aaa";
 	msg.value='현재는 대화가 불가능합니다';
+	btnSend.disabled=true;
 }
  
 </script>

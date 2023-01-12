@@ -21,7 +21,7 @@
 				
 				<div class="mantoman_nicknameDiv">
 					<input type='hidden' class="mentiId_hidden" value='${mtmVo.id }'>
-					<input type='text' class="mantoman_nickname" value='${mtmVo.nickname }' readonly size='3'>
+					<input type='text' class="mantoman_nickname" value='${mtmVo.nickname }' readonly size='4'>
 					<span class="mantoman_grade">${mtmVo.grade }</span>
 				</div>
 				<div class="mantoman_Phrases">${mtmVo.introduce }</div>
@@ -39,6 +39,7 @@
 	</div>
 	<div class='test'>
 		<input type='button' value='m00111' class='btnTest'>
+		<input type='button' value='m00112' class='btnTest'>
 	</div>
 </div>
 </body>
