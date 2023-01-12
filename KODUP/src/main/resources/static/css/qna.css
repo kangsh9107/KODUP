@@ -465,5 +465,7 @@
 	border-radius:20px;
 	padding:5px;
 }
-
-
+/*채택댓글 클래스(qna_view_repl_selected${replList.repl_status})*/
+.reward_class1{
+	border : 10px solid #bb2649 !important;
+}

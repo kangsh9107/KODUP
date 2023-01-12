@@ -15,5 +15,6 @@ public interface QnaBoardMapper {
 	public void thumbdown(int sno);
 	public int replCheck(QnaBoardVo qbVo);
 	public int qnaDeleteR(QnaBoardVo qbVo);
-	public int qnaReplDeleteR(int sno);
+	public int qnaReplDeleteR(int repl_sno);
+	public int replChaetaek(int repl_sno);
 }

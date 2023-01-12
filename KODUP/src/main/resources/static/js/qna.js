@@ -156,10 +156,22 @@ function view_repl_deleteR(repl_sno){
     $.post("/qna/qna_view/ReplDeleteR", param, function(data){
        $('#center').html(data);
     })
-    
 }
 
-
+function reward_chaetaek(repl_sno){
+	var nickname = $('#chaetaek_nickname'+repl_sno).text();
+	console.log(nickname);
+	var yn = confirm(nickname+'님의 댓글을 채택하시겠습니까?');
+    if( !yn ) return;
+    
+	var frm = $('#qna_view')[0];
+    frm.repl_sno.value=repl_sno;
+    
+    var param = $('#qna_view').serialize();
+    $.post("/qna/qna_view/ReplChaetaek", param, function(data){
+       $('#center').html(data);
+    })
+}
 
 
 
