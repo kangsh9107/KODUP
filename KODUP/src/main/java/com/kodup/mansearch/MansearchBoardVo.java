@@ -25,10 +25,16 @@ public class MansearchBoardVo {
 	String manager_name;
 	String manager_phone;
 	String manager_email;
-	
+	String id;
 	// 마감일을 구하기 위한 필드
 	String deadlinecount;
-	
+
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}	
 	public String getDeadlinecount() {
 		return deadlinecount;
 	}

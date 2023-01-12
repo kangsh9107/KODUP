@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.kodup.board.BoardVo;
 import com.kodup.board.PageVo;
@@ -34,6 +35,37 @@ public class MansearchService {
 		MansearchBoardVo mbVo = null;
 		mbVo = mapper.view(sno);
 		return mbVo;
+	}
+	
+	public boolean boardinsert(MansearchBoardVo mbVo) {
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		int cnt = mapper.boardinsert(mbVo);
+		boolean flag = true;
+		if (cnt<1) {
+			status.rollbackToSavepoint(savePoint);
+			flag = false;
+		}
+		return flag;
+	}
+	
+	public boolean mansearchinsert(MansearchBoardVo mbVo) {
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		int cnt = mapper.mansearchinsert(mbVo);
+		boolean flag = true;
+		if (cnt<1) {
+			status.rollbackToSavepoint(savePoint);
+			flag = false;
+		}
+		return flag;
+	}
+	
+	public void insertAttList(List<MansearchAttVo> attList) {
+		int cnt = mapper.insertAttList(attList);
+		if(cnt>0) {
+			manager.commit(status);
+		}else status.rollbackToSavepoint(savePoint);
 	}
 
 }
