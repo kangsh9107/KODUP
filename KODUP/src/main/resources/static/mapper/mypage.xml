@@ -6,10 +6,11 @@
 		SELECT id, nickname, email, gender, age, profile_img FROM member WHERE id= #{_parameter}
 	</select>
 
+	<!-- 회원정보 업데이트 -->
 	<update id='mypage_memberinfo_update_complete' parameterType="com.kodup.mypage.MypageVo" >
 		UPDATE member SET nickname = #{nickname }, email= #{email }, gender= #{gender }, 
-			   			  age= #{age }, profile_img = #{profile_img} 
-		FROM member WHERE id = #{id}
+			   			  age= #{age }, profile_img = #{profile_img}
+		WHERE id = #{id} 
 	</update>
 	
 	<!-- 회원 탈퇴 -->
