@@ -18,6 +18,11 @@ public interface LoginMapper {
 	
 	public List<MemberVo> topWriter();
 	public List<CommonBoardVo> hotTag();
+	public List<IndexBoardVo> qna5();
+	public List<IndexBoardVo> freetalking5();
+	public List<IndexBoardVo> infoshare5();
+	public List<IndexBoardVo> notification5();
+	public List<IndexBoardVo> weeklyBest5();
 	
 	public int checkNickname(String nickname);
 	public int insertMemberKakao(MemberVo mVo);

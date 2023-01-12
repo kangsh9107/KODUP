@@ -29,6 +29,18 @@ public class LoginController {
 	@RequestMapping("/login/main")
 	public ModelAndView main() {
 		ModelAndView mv = new ModelAndView();
+		
+		List<IndexBoardVo> qna5 = service.qna5();
+		List<IndexBoardVo> freetalking5 = service.freetalking5();
+		List<IndexBoardVo> infoshare5 = service.infoshare5();
+		List<IndexBoardVo> notification5 = service.notification5();
+		List<IndexBoardVo> weeklyBest5 = service.weeklyBest5();
+		
+		mv.addObject("qna5", qna5);
+		mv.addObject("freetalking5", freetalking5);
+		mv.addObject("infoshare5", infoshare5);
+		mv.addObject("notification5", notification5);
+		mv.addObject("weeklyBest5", weeklyBest5);
 		mv.setViewName("/login/main");
 		return mv;
 	}
@@ -300,19 +312,23 @@ public class LoginController {
 		boolean b = false;
 		boolean c = false;
 		
-		//chat테이블에 존재하는지 확인
-		c = service.checkChatId(req.getParameter("id")); //존재하면 false
+		//chat테이블에 존재하는지 확인. true면 중복
+		c = service.checkChatId(req.getParameter("id"));
+		//grade가 0인 회원(멘티)는 로그인시 chat테이블에 추가하지 않음
+		int grade = 0;
+		grade = service.checkGrade(req.getParameter("id"));
 		
-		if(c) {
+		if( !c && grade != 0 ) {
 			b = service.chatInsert(req.getParameter("id"));
 			
 			if( !b ) {
 				mv.addObject("error", "error_chat");
 				mv.setViewName("/login/error");
 			}
+		} else {
+			mv.setViewName("/login/main");
 		}
 		
-		mv.setViewName("/login/main");
 		return mv;
 	}
 	

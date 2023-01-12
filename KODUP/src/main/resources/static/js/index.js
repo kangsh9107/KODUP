@@ -6,6 +6,7 @@
 /***** MAIN *****/
 var id = $('.sessionId_hidden').val();
 
+//qna, freetalking, weeklybest, editors, infoshare, notification
 var main = function() {
 	$('#center').load('/login/main');
 }
@@ -18,7 +19,6 @@ var topWriter = function() {
 main();
 hotTag();
 topWriter();
-
 
 /***** NAV *****/
 const nonClick = document.querySelectorAll('.non-click');
@@ -199,7 +199,7 @@ if(sessionId != ''){
 				processData: false,
 				dataType: 'html',
 				success: function(data) {
-					if(data == 'false') {
+					if(data == 'error_chat') {
 						alert('채팅서버 연결에 실패했습니다.');
 					} else {
 						$('#center').html(data);
