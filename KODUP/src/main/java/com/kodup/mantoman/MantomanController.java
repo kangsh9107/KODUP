@@ -1,6 +1,7 @@
 package com.kodup.mantoman;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,7 +36,8 @@ public class MantomanController {
 	@RequestMapping("/mantoman/mantoman_mentorlist")
 	public ModelAndView mentorlist() {
 		ModelAndView mv = new ModelAndView();
-		
+		List<MantomanVo> list = service.partnerMentoList();
+		mv.addObject(list);
 		mv.setViewName("mantoman/mantoman_mentorlist");
 		return mv;
 	}

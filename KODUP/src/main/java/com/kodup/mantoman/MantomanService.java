@@ -1,5 +1,7 @@
 package com.kodup.mantoman;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,5 +16,10 @@ public class MantomanService {
 	public MantomanVo selectId(String sessionId) {
 		MantomanVo mtmVo = mapper.selectId(sessionId);
 		return mtmVo;
+	}
+	
+	public List<MantomanVo> partnerMentoList() {
+		List<MantomanVo> list = mapper.partnerMentoList();
+		return list;
 	}
 }
