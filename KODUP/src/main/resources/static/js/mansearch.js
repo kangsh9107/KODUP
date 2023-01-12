@@ -1,15 +1,8 @@
 /**
  * mansearch.js
  */
-$('.index_doc').on('click',function(){
-   $('#center').load('/mansearch/mansearch_view');
-});
-$('.mansearch_insert').on('click',function(){
-   $('#center').load('/mansearch/mansearch_insert');
-});
-$('.mansearch_update').on('click',function(){
-   $('#center').load('/mansearch/mansearch_update');
-});
+var frm;
+var param;
 
 $(document).ready(function () {
 	$('#summernote').summernote({
@@ -24,10 +17,51 @@ $(document).ready(function () {
 	});
 });
 
+mansearch_view = function(mansearch_sno){
+	frm = $('.mansearch_search')[0];
+	frm.mansearch_sno.value = mansearch_sno;
+	param = $(frm).serialize();
+	$.post("/mansearch/mansearch_view", param, function(data){
+	    $('#center').html(data);
+	})	
+}
+
+$('.mansearch_insert').on('click',function(){
+	param = $('.mansearch_search').serialize();
+	$.post('/mansearch/mansearch_insert',param, function(data){
+		$('#center').html(data);
+	})
+});
+
+$('.mansearch_update').on('click',function(){
+   $('#center').load('/mansearch/mansearch_update');
+});
+
 $('.mansearch_board_cancel').on('click',function(){
 	window.scrollTo(0,0);
 	$('#center').load('/mansearch/mansearch');
 });
+
 $('.mansearch_update').on('click',function(){
 	$('#center').load('/mansearch/mansearch_update');
 });
+
+$('.mansearch_board_insertR').on('click',function(){
+	frm = $('.mansearch_input_form')[0];
+	param = new FormData(frm);
+	$.ajax({
+		type :'post',
+		url : '/mansearch/mansearch_insertR',
+		contentType : false,
+    	processData : false,
+    	data : param,
+    	dataType : 'html',
+    	success : function(data){
+			if(data != '') alert(data);
+			frm.enctype='';
+			param = $(frm).serialize();
+	 		$('#center').load('/mansearch/mansearch',param);
+		}
+	})
+	
+})

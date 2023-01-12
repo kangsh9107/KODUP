@@ -38,8 +38,11 @@
 		</div>
 	</div>
 </div>
-<form name="mansearch_input_form">
+<form class="mansearch_input_form" method='post' enctype='multipart/form-data'>
 	<label class="info_label">회사로고 등록</label><br/>
+	<input type='hidden' name='id' value=''/>
+	<input type='hidden' name='nowPage' value='${pVo.nowPage }'>
+	<input type='hidden' name='findStr' value='${pVo.findStr }'>
 	<input type="file" name="corp_logo" class="corp_logo_insert" onchange='preview()'/>
 	<img src='/images/corp_logo_insert.png' id='corp_logo' style="width:144px; height:144px; margin:0 0 20px 0; border:2px double #d2d4d9; cursor:pointer;"/>		
 	<div class="container text-left" style="padding-left:0;">
