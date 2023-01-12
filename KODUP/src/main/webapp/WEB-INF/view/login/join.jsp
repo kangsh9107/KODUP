@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- JS -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script defer src="js/join.js"></script>
 <title>login/join.jsp</title>
 </head>
 <body>
@@ -17,16 +20,24 @@
 					<!-- FORM -->
 					<form name="index_join_form" class="index_join_form" method="post">
 						<!-- ID -->
-						<input type="hidden" name="id" class="form-control">
+						<div class="input-group form-group index_login_input">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+							<input type="text" name="id" class="form-control" placeholder="id" autocomplete="off" value="asd1234">
+						</div>
+						<!-- PASSWORD -->
+						<div class="input-group form-group index_login_input">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+							<input type="password" name="pwd" class="form-control" placeholder="password" autocomplete="off" value="asd123!@#123">
+						</div>
 						<!-- EMAIL -->
 						<div class="input-group form-group index_login_input">
 							<span class="input-group-text"><i class="fas fa-envelope"></i></span>
-							<input type="text" name="email" class="form-control" readOnly>
+							<input type="text" name="email" class="form-control" placeholder="email" autocomplete="off" value="kodup123@naver.com">
 						</div>
 						<!-- NICKNAME -->
 						<div class="input-group form-group index_login_input">
 							<span class="input-group-text"><i class="fas fa-file-signature"></i></span>
-							<input type="text" name="nickname" class="form-control" placeholder="nickname" autocomplete="off">
+							<input type="text" name="nickname" class="form-control" placeholder="nickname" autocomplete="off" value="힐따기요1">
 						</div>
 						<!-- GENDER -->
 						<div class="input-group form-group index_login_input">
@@ -41,11 +52,14 @@
 						<!-- AGE -->
 						<div class="input-group form-group index_login_input">
 							<span class="input-group-text"><i class="fas fa-cake-candles"></i></span>
-							<input type="date" name="age" class="form-control" autocomplete="off">
+							<input type="date" name="date" class="form-control" autocomplete="off" value="2022-02-02">
 						</div>
 						<div class="input-group form-group index_login_input">
 							<span class="input-group-text"><i class="fas fa-keyboard"></i></span>
 							<input type="button" value="가입완료" class="btn index_btnJoinR">
+						</div>
+						<div class="input-group form-group index_login_input" style="justify-content: center; margin: 25px 0 -5px 0;">
+							<div class="g-recaptcha" data-sitekey="6LffpnoUAAAAAABgLv2eqcQ34mSpD70nkO9V1LRo"></div>
 						</div>
 					</form>
 				</div>

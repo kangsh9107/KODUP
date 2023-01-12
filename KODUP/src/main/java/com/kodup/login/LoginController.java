@@ -1,8 +1,14 @@
 package com.kodup.login;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,13 +25,11 @@ public class LoginController {
 	@Autowired
 	LoginService service;
 	
-	//TOP WRITER
-	@RequestMapping("/login/top_writer")
-	public ModelAndView topWriter() {
+	//MAIN
+	@RequestMapping("/login/main")
+	public ModelAndView main() {
 		ModelAndView mv = new ModelAndView();
-		List<MemberVo> listTopWriter = service.topWriter();
-		mv.addObject("listTopWriter", listTopWriter);
-		mv.setViewName("/login/top_writer");
+		mv.setViewName("/login/main");
 		return mv;
 	}
 	
@@ -35,23 +39,74 @@ public class LoginController {
 		ModelAndView mv = new ModelAndView();
 		List<CommonBoardVo> listHotTag = service.hotTag();
 		
-		HashMap<String, Integer> countHashTag = new HashMap<>();
+		//hashtag를 #기준으로 뜯고 Map구조에 key,value로 담아서 카운트
+		Map<String, Integer> countHashTag = new HashMap<>();
 		for(CommonBoardVo cbVo : listHotTag) {
-			if(countHashTag.get(cbVo.hashtag) == null & !cbVo.hashtag.equals("")) {
-				countHashTag.put(cbVo.hashtag, 1);
-			} else {
-				countHashTag.put(cbVo.hashtag, countHashTag.get(cbVo.hashtag)+1);
+			String[] tag = cbVo.hashtag.split("#");
+			
+			for(String t : tag) {
+				if(t.equals("")) {
+					continue;
+				} else if(countHashTag.get(t) == null) {
+					try {
+						countHashTag.put(t.toUpperCase(), 1);
+					} catch(Exception e) {
+						countHashTag.put(t, 1);
+					}
+				} else {
+					try {
+						countHashTag.put(t.toUpperCase(), countHashTag.get(t.toUpperCase())+1);
+					} catch(Exception e) {
+						countHashTag.put(t, countHashTag.get(t)+1);
+					}
+				}
 			}
 		}
 		
-//        for (HashMap.Entry<String, Integer> entry : countHashTag.entrySet()) {
-//            System.out.println("Key: " + entry.getKey() + ", "
-//                    + "Value: " + entry.getValue());
-//        }
-        listHotTag = null;
+		//value 내림차순으로 정렬하고, value가 같으면 key 오름차순으로 정렬
+        List<Map.Entry<String, Integer>> list = new LinkedList<>(countHashTag.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
+            @Override
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                if (o1.getValue() > o2.getValue())      return -1;
+                else if (o1.getValue() < o2.getValue()) return 1;
+ 
+                return o1.getKey().compareTo(o2.getKey());
+            }
+        });
+ 
+        //순서유지를 위해 LinkedHashMap을 사용
+        Map<String, Integer> sortedMap = new LinkedHashMap<>();
+        for(Iterator<Map.Entry<String, Integer>> iter = list.iterator(); iter.hasNext();) {
+            Map.Entry<String, Integer> entry = iter.next();
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+        
+        //정렬된 hashtag 중 상위 5개로 다시 listHotTagTemp를 만든다
+        int cnt = 0;
+        List<HotTagVo> listHotTagTemp = new LinkedList<>();
+		for(HashMap.Entry<String, Integer> entry : sortedMap.entrySet()) {
+			cnt++;
+			HotTagVo htVo = new HotTagVo();
+			htVo.setHotTag(entry.getKey());
+			htVo.setTagCount(entry.getValue());
+			
+			listHotTagTemp.add(htVo);
+			if(cnt == 5) break;
+		}
 		
-		mv.addObject("listHotTag", listHotTag);
+		mv.addObject("listHotTagTemp", listHotTagTemp);
 		mv.setViewName("/login/hot_tag");
+		return mv;
+	}
+	
+	//TOP WRITER
+	@RequestMapping("/login/top_writer")
+	public ModelAndView topWriter() {
+		ModelAndView mv = new ModelAndView();
+		List<MemberVo> listTopWriter = service.topWriter();
+		mv.addObject("listTopWriter", listTopWriter);
+		mv.setViewName("/login/top_writer");
 		return mv;
 	}
 
@@ -100,28 +155,12 @@ public class LoginController {
 	public ModelAndView loginR(MemberVo mVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		boolean b = false;
-//		mVo.setAccount_type(0);
-//		mVo.setAge(20);
-//		mVo.setBan_status(0);
-//		mVo.setCorp_status(0);
-//		mVo.setEmail("hong@naver.com");
-//		mVo.setGender("m");
-//		mVo.setGrade("normal");
-//		mVo.setJoin_date("2023-01-09");
-//		mVo.setMento_status(0);
-//		mVo.setNickname("a001");
-//		mVo.setPixel(1000);
-//		mVo.setProfile_img("default.png");
-//		mVo.setPwd("1111");
 		b = service.login(mVo); //ID&PWD체크
 		
-		//b = true;  //테스트용
-		//b = false; //테스트용
-		
-		if( !b ) {
-			mv.addObject("b", b);
-			mv.setViewName("/login/login_false");
-		} else {
+		if( !b ) { //로그인 실패
+			mv.addObject("error", "wrong_id");
+			mv.setViewName("/login/error");
+		} else {   //로그인 성공
 			HttpSession session = req.getSession();
 			session.setAttribute("sessionId", mVo.getId());
 			
@@ -144,18 +183,9 @@ public class LoginController {
 		String email = req.getParameter("email");
 		String img = req.getParameter("img");
 		boolean b = false;
+		b = service.checkId(id); //ID 중복체크. true면 중복
 		
-		//ID 중복체크 후 중복아니면 INSERT하고 로그인, 중복이면 LOGIN
-		b = service.checkId(id); //true면 중복
-		
-		//b = true; //테스트용
-		//ID중복
-		if( b ) {
-			mv.addObject("id", id);
-			mv.addObject("email", email);
-			mv.addObject("img", img);
-			mv.setViewName("/login/join_kakao");
-		} else { //ID중복 아님
+		if( b ) { //ID중복. 로그인 성공
 			HttpSession session = req.getSession();
 			session.setAttribute("sessionId", id);
 			
@@ -165,14 +195,13 @@ public class LoginController {
 			session.setAttribute("grade", grade);
 			
 			mv.setViewName("/login/main");
+		} else {  //ID중복 아님. 카카오 회원가입 폼으로.
+			mv.addObject("id", id);
+			mv.addObject("email", email);
+			mv.addObject("img", img);
+			mv.setViewName("/login/join_kakao");
 		}
 		
-		return mv;
-	}
-	
-	@RequestMapping("/login/login_kakao")
-	public ModelAndView loginKakao() {
-		ModelAndView mv = new ModelAndView();
 		return mv;
 	}
 	
@@ -180,15 +209,87 @@ public class LoginController {
 	@RequestMapping("/login/join_kakao")
 	public ModelAndView joinKako(MemberVo mVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
-		HttpSession session = req.getSession();
-		session.setAttribute("sessionId", mVo.getId());
 		
-		//grade가져옴
-		int grade = 0;
-		grade = service.checkGrade(mVo.getId());
-		session.setAttribute("grade", grade);
+		//NICKNAME 중복체크. true면 중복.
+		boolean b = false;
+		b = service.checkNickname(mVo.getNickname());
 		
-		mv.setViewName("/login/main");
+		if( !b ) {
+			boolean c = false; //true면 가입완료
+			String[] dateTemp = req.getParameter("date").split("-");
+			String date = "";
+			for(String dt : dateTemp) {
+				date += dt;
+			}
+			mVo.setAge(Integer.parseInt(date));
+			c = service.insertMemberKakao(mVo);
+			
+			if( !c ) { //member테이블 INSERT 오류
+				mv.addObject("error", "error_join");
+				mv.setViewName("/login/error");
+			} else {   //member테이블 INSERT 성공
+				HttpSession session = req.getSession();
+				session.setAttribute("sessionId", mVo.getId());
+				
+				//grade가져옴
+				int grade = 0;
+				grade = service.checkGrade(mVo.getId());
+				session.setAttribute("grade", grade);
+				
+				mv.setViewName("/login/main");
+			}
+		} else { //NICKNAME 중복
+			mv.addObject("error", "duplicate_nickname");
+			mv.setViewName("/login/error");
+		}
+		
+		return mv;
+	}
+	
+	//코덥 회원가입 후 로그인
+	@RequestMapping("/login/joinR")
+	public ModelAndView join(MemberVo mVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		boolean b = false;
+		b = service.checkId(mVo.getId()); //true면 id중복
+		
+		if( !b ) { //id 중복아님
+			boolean c = false;
+			c = service.checkNickname(mVo.getNickname()); //true면 nickname중복
+			
+			if( !c ) { //nickname 중복아님. member테이블에 INSERT 후 로그인
+				String[] dateTemp = req.getParameter("date").split("-");
+				String date = "";
+				for(String dt : dateTemp) {
+					date += dt;
+				}
+				mVo.setAge(Integer.parseInt(date));
+				boolean i = false; //true면 가입 성공. false면 가입 오류.
+				i = service.insertMember(mVo);
+				
+				if( !i ) { //가입 오류
+					mv.addObject("error", "error_join");
+					mv.setViewName("/login/error");
+				} else {   //가입 성공
+					HttpSession session = req.getSession();
+					session.setAttribute("sessionId", mVo.getId());
+					
+					//grade가져옴
+					int grade = 0;
+					grade = service.checkGrade(mVo.getId());
+					session.setAttribute("grade", grade);
+					
+					mv.setViewName("/login/main");
+				}
+			} else {   //nickname 중복
+				mv.addObject("error", "duplicate_nickname");
+				mv.setViewName("/login/error");
+			}
+		} else { //id 중복
+			mv.addObject("error", "duplicate_id");
+			mv.setViewName("/login/error");
+		}
+		
 		return mv;
 	}
 	
@@ -204,10 +305,10 @@ public class LoginController {
 		
 		if(c) {
 			b = service.chatInsert(req.getParameter("id"));
-			//b = false; //테스트용
+			
 			if( !b ) {
-				mv.addObject("b", b);
-				mv.setViewName("/login/chat_false");
+				mv.addObject("error", "error_chat");
+				mv.setViewName("/login/error");
 			}
 		}
 		

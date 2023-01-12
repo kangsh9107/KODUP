@@ -4,13 +4,13 @@
 	
 	<!-- LOGIN -->
 	<select id="login" parameterType="com.kodup.login.MemberVo" resultType="Integer">
-		SELECT count(id) FROM member
+		SELECT COUNT(id) FROM member
 		WHERE id = #{id} AND pwd = #{pwd}
 	</select>
 	
 	<!-- CHECK ID -->
 	<select id="checkId" parameterType="String" resultType="Integer">
-		SELECT count(id) FROM member
+		SELECT COUNT(id) FROM member
 		WHERE account_type = 1 AND id = #{_parameter}
 	</select>
 	
@@ -27,7 +27,7 @@
 	
 	<!-- CHECK CHAT ID -->
 	<select id="checkChatId" parameterType="String" resultType="Integer">
-		SELECT count(id) FROM chat WHERE id = #{_parameter}
+		SELECT COUNT(id) FROM chat WHERE id = #{_parameter}
 	</select>
 	
 	<!-- CHAT DELETE -->
@@ -38,12 +38,29 @@
 	<!-- TOP WRITER -->
 	<select id="topWriter" resultType="com.kodup.login.MemberVo">
 		SELECT b.id, m.profile_img FROM board b JOIN member m ON b.id = m.id
-		GROUP BY b.id ORDER BY count(b.id) DESC, b.id ASC LIMIT 0,5
+		GROUP BY b.id ORDER BY COUNT(b.id) DESC, b.id ASC LIMIT 0,5
 	</select>
 	
 	<!-- HOT TAG -->
 	<select id="hotTag" resultType="com.kodup.login.CommonBoardVo">
 		SELECT hashtag FROM board
 	</select>
+	
+	<!-- CHECK NICKNAME -->
+	<select id="checkNickname" parameterType="String" resultType="Integer">
+		SELECT COUNT(nickname) FROM member WHERE nickname = #{_parameter}
+	</select>
+	
+	<!-- INSERT MEMBER KAKAO -->
+	<insert id="insertMemberKakao" parameterType="com.kodup.login.MemberVo">
+		INSERT INTO member(id, pwd, email, nickname, gender, age, profile_img, account_type, join_date)
+		VALUES(#{id}, #{pwd}, #{email}, #{nickname}, #{gender}, #{age}, #{profile_img}, 0, NOW())
+	</insert>
+	
+	<!-- INSERT MEMBER -->
+	<insert id="insertMember" parameterType="com.kodup.login.MemberVo">
+		INSERT INTO member(id, email, nickname, gender, age, account_type, join_date)
+		VALUES(#{id}, #{email}, #{nickname}, #{gender}, #{age}, 1, NOW())
+	</insert>
 	
 </mapper>

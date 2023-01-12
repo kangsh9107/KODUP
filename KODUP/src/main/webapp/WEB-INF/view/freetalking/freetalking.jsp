@@ -20,7 +20,7 @@
 				<div class="list-group">
 					<label class="list-group-item list-group-item-action" id="index_board_boardtype">
 						커뮤니티
-						<img id="index_boardtype_background" src="images/index_boardtype_background2.png">
+						<img id="index_boardtype_background" src="images/index_boardtype_freetalking.png">
 					</label>
 				</div>
 			</div>

@@ -6,14 +6,18 @@
 /***** MAIN *****/
 var id = $('.sessionId_hidden').val();
 
-var topWriter = function() {
-	$('#index_top_writer').load('/login/top_writer');
+var main = function() {
+	$('#center').load('/login/main');
 }
 var hotTag = function() {
 	$('#index_hashtag').load('/login/hot_tag');
 }
-topWriter();
+var topWriter = function() {
+	$('#index_top_writer').load('/login/top_writer');
+}
+main();
 hotTag();
+topWriter();
 
 
 /***** NAV *****/
@@ -163,12 +167,14 @@ $('#btnMantoman').on('click',function() {
 
 let sessionId = document.querySelector('.sessionId_hidden').value;
 
+console.log('sessionId : ' + sessionId);
+
 var dataArray = {};//전송 데이터(JSON)
 
 var ws;
 
-if(sessionId != ""){
-	ws = new WebSocket("ws://" + location.host + "/socket_login");
+if(sessionId != ''){
+	ws = new WebSocket('ws://' + location.host + '/socket_login');
 	ws.onopen = () => { //webSocket이 맺어지고 난 후, 실행
 		console.log(ws.readyState);
     	

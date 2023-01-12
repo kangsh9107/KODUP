@@ -20,7 +20,7 @@
 				<div class="list-group">
 					<label class="list-group-item list-group-item-action" id="index_board_boardtype">
 						공지사항
-						<img id="index_boardtype_background" src="images/index_boardtype_background5.png">
+						<img id="index_boardtype_background" src="images/index_boardtype_notification.png">
 					</label>
 				</div>
 			</div>

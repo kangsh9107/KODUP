@@ -19,4 +19,7 @@ public interface LoginMapper {
 	public List<MemberVo> topWriter();
 	public List<CommonBoardVo> hotTag();
 	
+	public int checkNickname(String nickname);
+	public int insertMemberKakao(MemberVo mVo);
+	public int insertMember(MemberVo mVo);
 }

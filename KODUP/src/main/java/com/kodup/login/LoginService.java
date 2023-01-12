@@ -63,7 +63,7 @@ public class LoginService {
 		if(cnt > 0) {
 			manager.commit(status);
 			b = true;
-			System.out.println("인서트완료");
+			System.out.println("chat테이블 인서트완료");
 		} else {
 			status.rollbackToSavepoint(savePoint);
 		}
@@ -104,6 +104,53 @@ public class LoginService {
 		listHotTag = loginMapper.hotTag();
 		
 		return listHotTag;
+	}
+	
+	//CHECK NICKNAME
+	public boolean checkNickname(String nickname) {
+		boolean b = false;
+		
+		int cnt = 0;
+		cnt = loginMapper.checkNickname(nickname);
+		if(cnt > 0) b = true;
+		
+		return b;
+	}
+	
+	//INSERT MEMBER KAKAO
+	public boolean insertMemberKakao(MemberVo mVo) {
+		boolean c = false; //true면 가입완료
+		
+		int cnt = 0;
+		cnt = loginMapper.insertMemberKakao(mVo);
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		if(cnt > 0) {
+			manager.commit(status);
+			c = true;
+		} else {
+			status.rollbackToSavepoint(savePoint);
+		}
+		
+		return c;
+	}
+	
+	//INSERT MEMBER
+	public boolean insertMember(MemberVo mVo) {
+		boolean i = false; //true면 가입완료
+		
+		int cnt = 0;
+		cnt = loginMapper.insertMember(mVo);
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		if(cnt > 0) {
+			manager.commit(status);
+			i = true;
+		} else {
+			status.rollbackToSavepoint(savePoint);
+		}
+		
+		return i;
 	}
 
 }
