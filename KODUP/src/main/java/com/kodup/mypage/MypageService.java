@@ -7,8 +7,6 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
-import kr.jobtc.springboot.board.BoardVo;
-
 
 @Service
 @Transactional
@@ -51,7 +49,7 @@ public class MypageService {
 		return mpVo;
 	}
 	
-	
+	/* 이한나
 	public boolean mypage_memberinfo_update_complete(MypageVo mpVo, String[] delFile) {
 		System.out.println("service.update");
 		System.out.println(mpVo.getId());
@@ -91,7 +89,7 @@ public class MypageService {
 
 		return b;
 	}
-	
+	이한나 */
 	
 	/* 파일 업로드....수정..
 	public boolean mypage_memberinfo_update_complete(MypageVo mpVo) {

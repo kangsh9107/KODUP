@@ -31,16 +31,16 @@ public class LoginController {
 		ModelAndView mv = new ModelAndView();
 		
 		List<IndexBoardVo> qna5 = service.qna5();
-		List<IndexBoardVo> freetalking5 = service.freetalking5();
-		List<IndexBoardVo> infoshare5 = service.infoshare5();
-		List<IndexBoardVo> notification5 = service.notification5();
-		List<IndexBoardVo> weeklyBest5 = service.weeklyBest5();
+//		List<IndexBoardVo> freetalking5 = service.freetalking5();
+//		List<IndexBoardVo> infoshare5 = service.infoshare5();
+//		List<IndexBoardVo> notification5 = service.notification5();
+//		List<IndexBoardVo> weeklyBest5 = service.weeklyBest5();
 		
 		mv.addObject("qna5", qna5);
-		mv.addObject("freetalking5", freetalking5);
-		mv.addObject("infoshare5", infoshare5);
-		mv.addObject("notification5", notification5);
-		mv.addObject("weeklyBest5", weeklyBest5);
+//		mv.addObject("freetalking5", freetalking5);
+//		mv.addObject("infoshare5", infoshare5);
+//		mv.addObject("notification5", notification5);
+//		mv.addObject("weeklyBest5", weeklyBest5);
 		mv.setViewName("/login/main");
 		return mv;
 	}

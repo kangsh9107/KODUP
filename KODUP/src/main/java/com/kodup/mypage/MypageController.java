@@ -1,26 +1,15 @@
 package com.kodup.mypage;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
-import kr.jobtc.springboot.board.AttVo;
-import kr.jobtc.springboot.board.BoardVo;
-import kr.jobtc.springboot.board.PageVo;
 
 
 @RestController
@@ -98,6 +87,9 @@ public class MypageController {
 	}
 	*/
 	
+	
+	
+	/* 이한나
 	@RequestMapping("/board/mypage_memberinfo_update_complete") ////회원정보 수정 완료
 	public String mypage_memberinfo_update_complete(@RequestParam("attFile") MultipartFile mul,
 						 @ModelAttribute MypageVo mpVo, @RequestParam(name = "delFile", required = false, defaultValue="") String[] delFile) {		
@@ -119,7 +111,6 @@ public class MypageController {
 		
 		return msg;
 	}
-	
 	
 //파일 업로드 공통부분(중복코드 제거: insertR, updateR, replR에서 공통으로 들어감)
 	public List<AttVo> fileUpload(List<MultipartFile> mul) throws Exception{
@@ -146,6 +137,7 @@ public class MypageController {
 		
 		return attList;
 	}
+	이한나 */
 
 	
 	/*
