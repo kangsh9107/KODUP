@@ -4,10 +4,10 @@
 	
 	<select id='view' parameterType="Integer" resultType="com.kodup.qna.QnaBoardVo">
 		SELECT b.board_delete, b.id,b.sno, b.boardtype, b.nal, b.subject, b.viewcount, b.thumbup,b.thumbdown, b.doc,
-	    q.QnA_horsehead,
+	    q.QnA_horsehead,q.qna_pixel_reward,
 	    m.profile_img, m.nickname
 		FROM board b LEFT JOIN QnA_board q ON b.sno = q.sno
-	    LEFT JOIN member m    ON m.id = b.id
+	   				 LEFT JOIN member m    ON m.id = b.id
 	    WHERE b.sno = ${_parameter}
     </select>
     
@@ -36,7 +36,10 @@
     <update id='qnaDeleteR' parameterType="com.kodup.qna.QnaBoardVo">
     	update board set board_delete=1 where sno=${sno}
     </update>
-     <update id='qnaReplDeleteR' parameterType="Integer">
+    <update id='qnaReplDeleteR' parameterType="Integer">
     	update repl set repl_delete=1 where repl_sno=${repl_sno}
     </update>
+    <insert id='replChaetaek' parameterType="Integer">
+    	insert into repl_selected values(${repl_sno},1)
+    </insert>
 </mapper>

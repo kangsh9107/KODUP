@@ -111,8 +111,26 @@ public class QnaBoardController {
 		return mv;
 		
 	}
+	@RequestMapping("/qna/qna_view/ReplChaetaek")
+	public ModelAndView replChaetaek(QnaBoardVo qbVo, QnaBoardReplVo qbrVo){
+		String msg="";
+		ModelAndView mv = new ModelAndView();
+		
+		boolean b = service.replChaetaek(qbrVo.getRepl_sno());
+		if(!b) {
+			msg = "삭제중 오류 발생";
+		}
+		
+		qbVo = service.view(qbVo.getSno());
 	
-	
+		List<QnaBoardReplVo> replList = service.replList(qbVo.getSno());
+		mv.addObject("msg",msg);
+		mv.addObject("qbVo",qbVo);
+		mv.addObject("replList",replList);
+		mv.setViewName("/qna/qna_view");
+		return mv;
+		
+	}
 	
 	
 	

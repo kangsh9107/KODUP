@@ -45,19 +45,16 @@
 					<span>채택픽셀:${qbVo.qna_pixel_reward}</span>
 				</div>	
 			</div>
-		
 			<!-- 본문 글제목 -->
 			<div id="qna_view_subject">
 				<span style="font-size:1.5rem; font-weight:600;">
 					${qbVo.subject}
 				</span>
 			</div>
-			
-			<!-- 본문 글내용 --> <!--  -->
+			<!-- 본문 글내용 -->
 			<span id="qna_view_doc" style="font-size:15px; display:inline-block; min-height:300px; margin-top:20px;">
 				${qbVo.doc}
 			</span>
-			
 			<!-- 추천,비추천 -->
 			<div>
 				<div style="text-align:right;">
@@ -67,7 +64,6 @@
 				</div>
 			</div>
 			<!-- 본문 해시태그 --><!-- 해당해시태그를 누를경우 findStr로 해당 태그가 들어간 글들을 셀렉트 -->
-				
 			<div id="qna_view_hashtag">
 				<c:forEach var='vo' items='${qbVo.hashtaglist}'>
 					<span>
@@ -81,7 +77,6 @@
 				<input type="button" class="btnDeleteR  qna_view_originalBtn"style="vertical-align:top;" value="삭제">
 				<input type="button" class="btnList  qna_view_originalBtn" style="vertical-align:top;"value="목록">
 			</div>
-			
 			
 			<hr/>
 			<!-- 댓글insert-->
@@ -99,8 +94,6 @@
 			</div>
 			<hr/>
 			
-			
-			
 			<!-- 댓글리스트 -->
 			<div id="qna_view_repl_list" style="margin-top:50px;"> 
 				<c:forEach var='replList' items='${replList}'>
@@ -110,15 +103,20 @@
 							<span class="qna_view_repl_profile_profileimage"><!--댓글작성자프로필사진+닉네임+댓글작성시간 한줄로 붙이기위해 inline요소인 span태그사용 -->
 								<img class="qna_view_repl_profile_profileimage_file" src="images/${replList.profile_img}"style="border-radius:50%;" >
 							</span>
-							<span class="qna_view_repl_profile_nickname">
-								<span>${replList.nickname}</span>
-							</span>
+							
+							<span class="qna_view_repl_profile_nickname" 
+							id="chaetaek_nickname${replList.repl_sno}">${replList.nickname}</span>
+							
 							<span class="qna_view_repl_nal">
 								<span>${replList.repl_nal}</span>
 							</span>
 						</div>
 						<!-- 댓글내용 -->
-						<div class="qna_view_repl_doc" style="position:relative; font-size:13px; border:1px solid #E6E6E6; border-radius:10px; padding:2px;">
+						<!-- 댓글이뿌려지고 reward_class1로 채택댓글을 가릴수있다-->
+						<!-- reward_class${replList.repl_status}->reward_class1 : 채택댓글클래스-->
+						<div class="qna_view_repl_doc reward_class${replList.repl_status}" 
+						style="position:relative; font-size:13px; border:1px solid #E6E6E6;
+						border-radius:10px; padding:2px;">
 							<div>
 								<span>
 									<c:choose>
@@ -156,7 +154,9 @@
 								<input type="button" class="qna_view_originalBtn" value="수정"><!-- 댓글작성자가 세션아이디와 똑같은 경우에만 활성화;수정,삭제버튼 -->
 								<input type="button" class="qna_view_originalBtn" value="삭제"
 								onclick="view_repl_deleteR(${replList.repl_sno})">
-								<input type="button" class="qna_view_originalBtn" value="채택"><!-- 본문글작성자가 세션아이디와 똑같은 경우에만 활성화;채택버튼 JS:cf)confirm-->
+								 <!-- 본문글작성자가 세션아이디와 똑같은 경우에만 활성화;채택버튼 JS:cf)confirm-->
+								<input type="button" class="qna_view_originalBtn" value="채택"
+								 onclick="reward_chaetaek(${replList.repl_sno})">
 							</c:if>
 						</div>
 						<!-- (ON/OFF)display ; 대댓글입력폼 -->

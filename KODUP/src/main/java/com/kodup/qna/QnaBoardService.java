@@ -74,7 +74,22 @@ public class QnaBoardService {
 		return b;
 	}
 	
-	
+	public boolean replChaetaek(int repl_sno) {
+		boolean b = true;
+		
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		Object savePoint = status.createSavepoint();
+		
+		
+		int cnt = mapper.replChaetaek(repl_sno); //sno에 해당하는 테이블의 board_status를 1로 바꿈
+		if(cnt<1) {	b=false; }
+		
+		if(b) manager.commit(status);
+		else status.rollbackToSavepoint(savePoint);
+		
+		
+		return b;
+	}
 }
 
 
