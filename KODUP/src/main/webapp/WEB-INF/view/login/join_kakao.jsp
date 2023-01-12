@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- JS -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script defer src="js/join.js"></script>
 <title>login/join_kakao.jsp</title>
 </head>
 <body>
@@ -40,11 +43,14 @@
 						<!-- AGE -->
 						<div class="input-group form-group index_login_input">
 							<span class="input-group-text"><i class="fas fa-cake-candles"></i></span>
-							<input type="date" name="age" class="form-control" autocomplete="off">
+							<input type="date" name="date" class="form-control" autocomplete="off">
 						</div>
 						<div class="input-group form-group index_login_input">
 							<span class="input-group-text kakao"><i class="fas fa-comment"></i></span>
 							<input type="button" value="가입완료" class="btn index_btnKakaoJoinR">
+						</div>
+						<div class="input-group form-group index_login_input" style="justify-content: center; margin: 25px 0 -5px 0;">
+							<div class="g-recaptcha" data-sitekey="6LffpnoUAAAAAABgLv2eqcQ34mSpD70nkO9V1LRo"></div>
 						</div>
 					</form>
 				</div>

@@ -6,14 +6,18 @@
 /***** MAIN *****/
 var id = $('.sessionId_hidden').val();
 
-var topWriter = function() {
-	$('#index_top_writer').load('/login/top_writer');
+var main = function() {
+	$('#center').load('/login/main');
 }
 var hotTag = function() {
 	$('#index_hashtag').load('/login/hot_tag');
 }
-topWriter();
+var topWriter = function() {
+	$('#index_top_writer').load('/login/top_writer');
+}
+main();
 hotTag();
+topWriter();
 
 
 /***** NAV *****/
@@ -162,10 +166,10 @@ $('#btnMantoman').on('click',function() {
 });
 
 let sessionId = document.querySelector('.sessionId_hidden').value;
-console.log("sessionId : " + sessionId);
+console.log('sessionId : ' + sessionId);
 
-if(sessionId != ""){
-	ws = new WebSocket("ws://" + location.host + "/socket_login");
+if(sessionId != ''){
+	ws = new WebSocket('ws://' + location.host + '/socket_login');
 	ws.onopen = () => { //webSocket이 맺어지고 난 후, 실행
 		console.log(ws.readyState);
     	ws.send(sessionId);
@@ -184,7 +188,7 @@ if(sessionId != ""){
 			processData: false,
 			dataType: 'html',
 			success: function(data) {
-				if(data == 'false') {
+				if(data == 'error_chat') {
 					alert('채팅서버 연결에 실패했습니다.');
 				} else {
 					$('#center').html(data);

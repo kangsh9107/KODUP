@@ -11,13 +11,12 @@
 	<!-- CONTENT -->
 	<div class="container" style="padding: 0;">
 		<div class="row">
-			<c:forTokens var="list" items="images/index_boardtype_background0.png,
-										   images/index_boardtype_background1.png,
-										   images/index_boardtype_background2.png,
-										   images/index_boardtype_background3.png,
-										   images/index_boardtype_background4.png,
-										   images/index_boardtype_background5.png" delims=",">
-				
+			<c:forTokens var="list" items="images/index_boardtype_qna.png,
+										   images/index_boardtype_freetalking.png,
+										   images/index_boardtype_weeklybest.png,
+										   images/index_boardtype_editors.png,
+										   images/index_boardtype_infoshare.png,
+										   images/index_boardtype_notification.png" delims=",">
 				<!-- BORADTYPE -->
 				<div class="col-md-6" style="padding-left: 10px; padding-right: 10px;">
 					<div class="list-group">
@@ -26,7 +25,6 @@
 							<img id="index_boardtype_background" src="${list }">
 						</a>
 					</div>
-					
 					<!-- LIST -->
 					<ul class="list-group list-group-flush" style="margin-bottom: 40px;">
 						<c:forEach var="vo" begin="0" end="4">

@@ -20,7 +20,7 @@
 				<div class="list-group">
 					<label class="list-group-item list-group-item-action" id="index_board_boardtype">
 						정보공유
-						<img id="index_boardtype_background" src="images/index_boardtype_background1.png">
+						<img id="index_boardtype_background" src="images/index_boardtype_infoshare.png">
 					</label>
 				</div>
 			</div>

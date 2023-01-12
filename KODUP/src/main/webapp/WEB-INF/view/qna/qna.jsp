@@ -20,7 +20,7 @@
 				<div class="list-group">
 					<label class="list-group-item list-group-item-action" id="index_board_boardtype">
 						Q&A
-						<img id="index_boardtype_background" src="images/index_boardtype_background0.png">
+						<img id="index_boardtype_background" src="images/index_boardtype_qna.png">
 					</label>
 				</div>
 			</div>

@@ -10,9 +10,9 @@
 <body>
 	<span style="font-weight: 600;">#인기 태그</span>
 	<hr/>
-	<c:forEach items="${listHotTag }" var="htVo">
-		<a href="#" class="text-decoration-none" style="float: left;"><span>#JAVA</span></a>
-		<span style="float: right; color: #bb2649;">53</span>
+	<c:forEach items="${listHotTagTemp }" var="htVo">
+		<label href="#" class="text-decoration-none" style="float: left;"><span>${htVo.hotTag }</span></label>
+		<span style="float: right; color: #bb2649;">${htVo.tagCount }</span>
 		<br/><br/>
 	</c:forEach>
 </body>
