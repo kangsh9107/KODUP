@@ -3,22 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<script>
-
-
-$('.btnQuit_Irreversible').on('click', function(){
-	alert("탈퇴완료");
-	$('#center').load('/board/mypage_memberinfo_quit_real');
-	/* $('#center').load('/login/main'); */
-	
-});
-</script>
-
+<script src="js/mypage_memberinfo_quit.js"></script>
 <meta charset="UTF-8">
 <title>member_quit</title>
 </head>
 <body>
+
+<form class='member_quit_frm'>
+	<span class='mm_text' hidden="hidden">아이디</span><input type='text' name='id' class='name' value=${mpVo.id } readonly><br/>
+	<span class='mm_text'>닉네임</span><input type='text' name='nickname' class='name' value=${mpVo.nickname }><br/>
+	<span class='mm_text'>이메일</span><input type='text' name='email' class='name' value=${mpVo.email }><br/>
+	<span class='mm_text'>나이</span><input type='text' name='age' class='name' value=${mpVo.age }><br/>
+	<span class='mm_text'>성별</span><input type='text' name='gender' class='name' value=${mpVo.gender } readonly><br/>
+	<br>
+</form>
 
 <div id='member_quit'>
 	<span class='mypage_subject_text'>탈퇴 안내</span><br><br>

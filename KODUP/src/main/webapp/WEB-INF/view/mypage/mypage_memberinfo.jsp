@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,13 +16,18 @@
 
 <div id="mypage_memberinfo">
 	<span class='mypage_subject_text'>회원정보</span>
-		<br><br>
+	<%-- <c:set var="grade" value="abc"/>
+	<c:choose>
+	
+	</c:choose> --%>
+	<span>${mpVo.id } 님의 회원 등급은 <%-- ${grade } --%> 입니다. </span>
+	<br><br>
+	
 		<div class='mypage_member_profile'>
 			<div class='mypage_member_profile_item'>
-					<img src="https://s3.orbi.kr/data/file/united2/ee9383d48d17470daf04007152b83dc0.png" alt='asdfasdf' style='width: 280px;' >
-<!-- 				<img src="https://previews.123rf.com/images/sudakasi/sudakasi1405/sudakasi140500174/28673467-%EC%95%84%EB%A6%84%EB%8B%A4%EC%9A%B4-%EC%9E%90%EC%97%B0-%EB%B0%B0%EA%B2%BD.jpg">
- -->			</div>
-
+				<img src='/upload/${mpVo.profile_img }' style='width: 280px;'>
+			</div>
+	
 			<div class='mypage_member_profile_item'>
 				<span class='mm_text'>닉네임</span><span>${mpVo.nickname }</span><br>
 				<span class='mm_text'>이메일</span><span>${mpVo.email }</span><br>

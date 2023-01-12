@@ -2,11 +2,13 @@ package com.kodup.mypage;
 
 public class MypageVo {
 	String id;
-	String nickname;
 	String email;
+	String nickname;
 	String gender;
 	int age;
 	String profile_img;
+	//int grade;
+	
 	
 	
 	
