@@ -10,7 +10,11 @@
 @import url('https://webfontworld.github.io/BMJua/BMJua.css');
 @import url('https://webfontworld.github.io/sebang/SebangGothic.css');
 
+::-webkit-scrollbar {
+  display: none;
+}
 body{
+	-ms-overflow-style: none;
 	padding:0;
 	margin:0;
 }
@@ -213,6 +217,7 @@ body{
 
 </style>
 </head>
+<input type='hidden' value='${param.roomCode }' class="roomCode_hidden">
 <div class='slide_in'>
 	<div id='chatt'>
 		<div class='chattNav'>
@@ -243,51 +248,55 @@ var btnLogin = getId('btnLogin');
 var btnSend = getId('btnSend');
 var talk = getId('talk');
 var msg = getId('msg');
+var roomCode = document.querySelector(".roomCode_hidden").value;
 
 btnLogin.onclick = function(){
 	ws = new WebSocket("ws://" + location.host + "/chatt");
 	
 	ws.onmessage = function(msg){
-		
 		var data = JSON.parse(msg.data);
-		var css;
-		var item="";
-		
-		if(data.mid == mid.value){
-			css = 'class=me';
+		if(data.roomCode==roomCode){
+			var css;
+			var item="";
 			
-			item = `<div \${css} >
-						<span class='myId'>\${data.mid}</span>
-						<img src='../images/basic_profile.jpg' class='myPicture'>
-						<div>
-							<div class='myBalloon'>
-								<span>\${data.msg}</span>
-							</div><br/><br/>
-							<div style="text-align: right; margin-top: 6px;">
-								<span class='dateTime'>\${data.date}</span>
+			if(data.mid == mid.value){
+				css = 'class=me';
+				
+				item = `<div \${css} >
+							<span class='myId'>\${data.mid}</span>
+							<img src='../images/basic_profile.jpg' class='myPicture'>
+							<div>
+								<div class='myBalloon'>
+									<span>\${data.msg}</span>
+								</div><br/><br/>
+								<div style="text-align: right; margin-top: 6px;">
+									<span class='dateTime'>\${data.date}</span>
+								</div>
 							</div>
-						</div>
-						
-					</div>`;
-		}else{
-			css = 'class=other';
+							
+						</div>`;
+			}else{
+				css = 'class=other';
+				
+				item = `<div \${css} >
+							<span class='yourId'>\${data.mid}</span>
+							<img src='../images/fox_profile.png' class='yourPicture'>
+							<div class='yourBalloon'><span>\${data.msg}</span></div><br/>
+							<span class='dateTime'>\${data.date}</span>
+						</div>`;
+			}
 			
-			item = `<div \${css} >
-						<span class='yourId'>\${data.mid}</span>
-						<img src='../images/fox_profile.png' class='yourPicture'>
-						<div class='yourBalloon'><span>\${data.msg}</span></div><br/>
-						<span class='dateTime'>\${data.date}</span>
-					</div>`;
+	
+			console.log(item);			
+			talk.innerHTML += item;
+			talk.scrollTop=talk.scrollHeight;//스크롤바 하단으로 이동
 		}
-		
-
-		console.log(item);			
-		talk.innerHTML += item;
-		talk.scrollTop=talk.scrollHeight;//스크롤바 하단으로 이동
 	}
 	btnLogin.disabled=true;
 	btnLogin.value='접속됨';
 }
+		
+
 
 msg.onkeyup = function(ev){
 	if(ev.keyCode == 13){
@@ -304,10 +313,21 @@ function send(){
 		data.mid = getId('mid').value;
 		data.msg = msg.value;
 		data.date = new Date().toLocaleString();
+		data.roomCode = roomCode;
 		var temp = JSON.stringify(data);
 		ws.send(temp);
 	}
 	msg.value ='';
+}
+
+/* 빈방을 열어볼때(지난 대화) */
+console.log(roomCode);
+if(roomCode=="emptyRoom"){
+	console.log("확인");
+	var msg = document.querySelector('#msg');
+	msg.readOnly = true;
+	document.getElementById('msg').style.background = "#aaa";
+	msg.value='현재는 대화가 불가능합니다';
 }
  
 </script>

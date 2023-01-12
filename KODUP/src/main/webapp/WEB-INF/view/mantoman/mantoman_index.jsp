@@ -20,6 +20,7 @@
 				</div>
 				
 				<div class="mantoman_nicknameDiv">
+					<input type='hidden' class="mentiId_hidden" value='${mtmVo.id }'>
 					<input type='text' class="mantoman_nickname" value='${mtmVo.nickname }' readonly size='3'>
 					<span class="mantoman_grade">${mtmVo.grade }</span>
 				</div>

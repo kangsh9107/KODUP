@@ -221,7 +221,7 @@
 		</div>
 	</footer>
 	<div id='sockectController'>
-		
+
 	</div>
 </body>
 </html>

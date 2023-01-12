@@ -162,7 +162,6 @@ $('#btnMantoman').on('click',function() {
 });
 
 let sessionId = document.querySelector('.sessionId_hidden').value;
-console.log("sessionId : " + sessionId);
 
 var dataArray = {};//전송 데이터(JSON)
 
@@ -178,6 +177,7 @@ if(sessionId != ""){
 		
 		var temp = JSON.stringify(dataArray);
 		ws.send(temp);
+		dataArray = {};
 	}
 	
 	ws.onmessage = function(msg){
@@ -203,18 +203,59 @@ if(sessionId != ""){
 		}
 		/* job이 멘토요청일때 */
 		if(data.job=="mentoCall"){
-			console.log("mentoId : " + data.mentoId);
 			if(data.mentoId==sessionId){
-				alert(data.mentiNickname+"님이 멘토요청하였습니다.");
-				//var popupCall = `<div`
+				var popupCall = `<div class='popupCallDiv'>
+									<br/>
+									<span>${data.mentiNickname}님이 멘토요청하였습니다.</span><br/><br/>
+									<input type="hidden" value="${data.mentiId}" class="mentiId_hidden">
+									<input type="text" value="보상픽셀 : 5000픽셀" readonly>
+									<input type="text" value="상담내용 : css동적 적용시 오류" size=30 readonly><br/><br/>
+									<input type="button" value="수락" class="btnAccessCall">
+									<input type="button" value="거절" class="btnRefuseCall">			
+								</div>`;
 				
+				$("#sockectController").append(popupCall);
 			}
 		}
-		
+		/* job이 채팅시작일때 */
+		if(data.job=="startChat"){
+			console.log(data.mentiId);
+			if(data.mentoId==sessionId || data.mentiId==sessionId){
+				var title  = 'popup';
+				var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=350, height=500, top=400, left=1300';
+				window.open("/mantoman/mantoman_chatview?roomCode=" + data.roomCode , title, status);
+			}
+		}
 	}
 }
+/*거절 버튼 클릭시 디브 삭제 */
+$(document).on("click", ".btnRefuseCall", function() {
+    $(this).parent().remove();
+});
 
+/* 수락 버튼 클릭시 채팅방 이동 */
 
+$(document).on("click", ".btnAccessCall", function() {
+	function uuidv4(){
+		return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+			(c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+		);
+	}
+	
+	var roomCode = uuidv4();
+	
+	dataArray.job = "startChat";
+	dataArray.mentiId = $('.mentiId_hidden').val();
+	dataArray.mentoId = sessionId;
+	dataArray.roomCode = roomCode;
+	
+	$(this).parent().remove();
+	
+	var temp = JSON.stringify(dataArray);
+	ws.send(temp);
+	dataArray = {};
+});
+	
 
 /***** 박요한 *****/
 $('.mansearch').on('click',function(){

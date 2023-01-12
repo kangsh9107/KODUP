@@ -35,16 +35,21 @@ $('#btnChatList').on('click', function() {
 
 document.querySelector('#btnMentorList').click();
 
-var nickname = document.querySelector(".mantoman_nickname").value;
+
+
+
 
 $('.btnTest').on('click', function() {
 	console.log(nickname);
 	var mentoId = this.value;
+	var mentiId = $('.mentiId_hidden').val();
+	var nickname = document.querySelector(".mantoman_nickname").value;
 	
 	var html = `<script>
 				dataArray.job = "mentoCall";
+				dataArray.mentiId = "${mentiId}";
+				dataArray.mentoId = "${mentoId}";
 				dataArray.mentiNickname = "${nickname}";
-				dataArray.mentoId = "${this.value}";
 				var temp = JSON.stringify(dataArray);
 				ws.send(temp);
 				</script>`;
