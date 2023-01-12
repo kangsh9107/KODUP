@@ -393,6 +393,7 @@
 
 #index_doc:hover {
 	color: #bb2649;
+	cursor: pointer;
 }
 
 /***** FOOTER *****/
