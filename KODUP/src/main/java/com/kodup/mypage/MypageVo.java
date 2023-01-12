@@ -1,13 +1,14 @@
 package com.kodup.mypage;
 
 public class MypageVo {
-	String id;
-	String email;
-	String nickname;
-	String gender;
+	String id = "";
+	String email = "";
+	String nickname = "";
+	String gender = "";
 	int age;
-	String profile_img;
+	String profile_img = "";
 	//int grade;
+	
 	
 	
 	

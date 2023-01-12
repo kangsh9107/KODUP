@@ -7,6 +7,8 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import kr.jobtc.springboot.board.BoardVo;
+
 
 @Service
 @Transactional
@@ -50,9 +52,48 @@ public class MypageService {
 	}
 	
 	
+	public boolean mypage_memberinfo_update_complete(MypageVo mpVo, String[] delFile) {
+		System.out.println("service.update");
+		System.out.println(mpVo.getId());
+
+		boolean b = true;
+
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		int cnt = mypageMapper.update(mpVo); // 내용 업데이트
+		if (cnt < 1) {
+			b = false;
+		} else if (mpVo.getAttFile().size() > 0) {
+			int attCnt = mypageMapper.attUpdate(mpVo); // 첨부파일 추가
+			if (attCnt < 1)
+				b = false;
+		}
+
+		if (b) {
+			manager.commit(status);
+			if (delFile != null && delFile.length > 0) {
+				// 첨부 파일 데이터 삭제
+				cnt = mypageMapper.attDelete(delFile);
+				if (cnt > 0) {
+					fileDelete(delFile); // 파일 삭제
+				} else {
+					b = false;
+				}
+			}
+		} else {
+			status.rollbackToSavepoint(savePoint);
+			delFile = new String[bVo.getAttList().size()];
+			for (int i = 0; i < bVo.getAttList().size(); i++) {
+				delFile[i] = bVo.getAttList().get(i).getSysFile();
+			}
+			fileDelete(delFile);
+		}
+
+		return b;
+	}
 	
 	
-	/*
+	/* 파일 업로드....수정..
 	public boolean mypage_memberinfo_update_complete(MypageVo mpVo) {
 		boolean b=true;
 

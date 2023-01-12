@@ -5,7 +5,7 @@
 <html>
 <head>
 <script>
-	window scrollTo(0,0);
+	//window scrollTo(0,0);
 </script>
 <script defer src='js/mypage_memberinfo_update.js'></script>
 <meta charset="UTF-8">
@@ -18,8 +18,10 @@
 		<form name='update_complete' class="memberinfo_update_complete" method='post' enctype='multypart/form-data'>
 			<div class='mypage_member_profile' style='display: inline-block;'>
 				<div class='mypage_member_profile_item'>
-					<input type='file' name='attFile' accept="image/*" >
-				</div>
+					<img src="" class="mypage_member_profile_img" style="width:300px; height:300px;">
+					<input type='file' class='mypage_member_profile_btn' name='attFile' accept='image/*'
+					style='display: none;'>
+				</div>                        
 			</div>		
 		
 			<div class='mypage_member_profile_item' style='display: inline-block;'>
