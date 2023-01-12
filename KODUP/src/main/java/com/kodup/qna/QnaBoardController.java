@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -52,9 +53,8 @@ public class QnaBoardController {
 		 String temp = qbVo.getDoc();
 		  qbVo.setDoc(temp.replace("\n","<br/>"));
 		 */
-		qbVo.setSno(3);
+		qbVo.setSno(3); //qna.jsp 에서 해당리스트를 눌렀을때 작동하는것으로 해당 리스트마다 
 		qbVo = service.view(qbVo.getSno());
-		
 	
 		List<QnaBoardReplVo> replList = service.replList(qbVo.getSno());//본문의sno를 넣어줌
 		
@@ -64,5 +64,59 @@ public class QnaBoardController {
 		mv.setViewName("/qna/qna_view");
 		return mv;
 	}
+	
+	
+	@RequestMapping("/qna/qna_view/thumbup")
+	public void qnaThumbup(@RequestParam(name="sno") int sno) {
+		service.thumbup(sno);
+	}
+	
+	@RequestMapping("/qna/qna_view/thumbdown")
+	public void qnaThumbdown(@RequestParam(name="sno") int sno) {
+		service.thumbdown(sno);
+	}
+	
+	@RequestMapping("/qna/qna_view/deleteR")
+	public ModelAndView qnaDeleteR(QnaBoardVo qbVo) {
+		String msg="";
+		ModelAndView mv = new ModelAndView();
+		
+		boolean b = service.qnaDeleteR(qbVo);
+		if(!b) {
+			msg = "삭제중 오류 발생";
+		}
+		//mv = qna(qbVo);	//담겨진 데이터들을 들고 qna()를 통해  qna.jsp로 넘어가게 하려고
+		mv.addObject("msg",msg);
+		mv.setViewName("/qna/qna");
+		return mv;
+	}
+	
+	@RequestMapping("/qna/qna_view/ReplDeleteR")
+	public ModelAndView qnaReplDeleteR(QnaBoardVo qbVo, QnaBoardReplVo qbrVo){
+		String msg="";
+		ModelAndView mv = new ModelAndView();
+		
+		boolean b = service.qnaReplDeleteR(qbrVo.getRepl_sno());
+		if(!b) {
+			msg = "삭제중 오류 발생";
+		}
+		
+		qbVo = service.view(qbVo.getSno());
+	
+		List<QnaBoardReplVo> replList = service.replList(qbVo.getSno());
+		mv.addObject("msg",msg);
+		mv.addObject("qbVo",qbVo);
+		mv.addObject("replList",replList);
+		mv.setViewName("/qna/qna_view");
+		return mv;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 }

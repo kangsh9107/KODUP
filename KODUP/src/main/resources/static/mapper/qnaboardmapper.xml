@@ -3,7 +3,7 @@
 <mapper namespace="com.kodup.qna.QnaBoardMapper">
 	
 	<select id='view' parameterType="Integer" resultType="com.kodup.qna.QnaBoardVo">
-		SELECT b.id,b.sno, b.boardtype, b.nal, b.subject, b.viewcount, b.thumbup,b.thumbdown, b.doc,
+		SELECT b.board_delete, b.id,b.sno, b.boardtype, b.nal, b.subject, b.viewcount, b.thumbup,b.thumbdown, b.doc,
 	    q.QnA_horsehead,
 	    m.profile_img, m.nickname
 		FROM board b LEFT JOIN QnA_board q ON b.sno = q.sno
@@ -16,7 +16,7 @@
     </select>
     
     <select id="replList" parameterType="Integer" resultType="com.kodup.qna.QnaBoardReplVo">
-		SELECT r.repl_sno, r.grp, r.seq, r.deep, r.repl_nal, r.repl_doc, rs.repl_status,
+		SELECT r.repl_delete, r.repl_sno, r.grp, r.seq, r.deep, r.repl_nal, r.repl_doc, rs.repl_status,
 		m.profile_img, m.nickname,
 		(select count(*) from repl where grp=r.grp and seq>r.seq) countinnerrepl
 		FROM repl r LEFT JOIN repl_selected rs ON r.repl_sno = rs.repl_sno
@@ -24,4 +24,19 @@
 		where r.sno = ${_parameter}
 		ORDER BY rs.repl_status DESC, r.grp DESC, r.deep ASC, r.seq ASC;
     </select>
+    
+    <update id="thumbup"  parameterType="Integer">
+    	update board set thumbup= thumbup+1 where sno=${sno};
+    </update>
+    
+     <update id="thumbdown"  parameterType="Integer">
+    	update board set thumbdown= thumbdown+1 where sno=${sno};
+    </update>
+   
+    <update id='qnaDeleteR' parameterType="com.kodup.qna.QnaBoardVo">
+    	update board set board_delete=1 where sno=${sno}
+    </update>
+     <update id='qnaReplDeleteR' parameterType="Integer">
+    	update repl set repl_delete=1 where repl_sno=${repl_sno}
+    </update>
 </mapper>

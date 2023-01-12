@@ -6,13 +6,15 @@ import java.util.List;
 public class QnaBoardVo {
 	int sno,viewcount,thumbup,thumbdown;
 	String id,boardtype, nal, subject,doc,nickname,profile_img;
-	int qna_sno,qna_pixel_reward;
+	int qna_sno,qna_pixel_reward,board_delete;
 	String qna_horsehead;
 	
-	//대댓이 있는지 체크
-	int checkinner;
-	public int getCheckinner() {return checkinner;}
-	public void setCheckinner(int checkinner) {this.checkinner = checkinner;}
+	//board_delete-삭제상태값 : 이 값에 따라 출력되는 페이지가 달라짐
+	//0:일반글 , 1:작성자가삭제한글 , 2:관리자가삭제한글
+	public int getBoard_delete() {return board_delete;}
+	public void setBoard_delete(int board_delete) {	this.board_delete = board_delete;}
+	
+	
 	//해시태그; sno 1개에 해시태그 여러개달릴 수 있는데 1로우로 한줄로 저장하고 자바단에서 샵# 단위로 데이터포맷?
 	//아니면 sno에 맞는 해시태그 테이블을 만들어서 로우 1개에 해시태그 1개씩저장?
 	List<QnaHashVo> hashtaglist = new ArrayList<QnaHashVo>();

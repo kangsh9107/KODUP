@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 @Transactional
 @Service
@@ -33,6 +34,47 @@ public class QnaBoardService {
 		replList = mapper.replList(sno);
 		return replList;
 	}
+	
+	public void thumbup(int sno) {
+		mapper.thumbup(sno);
+	}
+	public void thumbdown(int sno) {
+		mapper.thumbdown(sno);
+	}
+	
+	public boolean qnaDeleteR(QnaBoardVo qbVo) {
+		boolean b = true;
+		
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		Object savePoint = status.createSavepoint();
+		
+		
+		int cnt = mapper.qnaDeleteR(qbVo); //sno에 해당하는 테이블의 board_status를 1로 바꿈
+		if(cnt<1) {	b=false; }
+		
+		if(b) manager.commit(status);
+		else status.rollbackToSavepoint(savePoint);
+		
+		return b;
+	}
+	public boolean qnaReplDeleteR(int repl_sno) {
+		boolean b = true;
+		
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		Object savePoint = status.createSavepoint();
+		
+		
+		int cnt = mapper.qnaReplDeleteR(repl_sno); //sno에 해당하는 테이블의 board_status를 1로 바꿈
+		if(cnt<1) {	b=false; }
+		
+		if(b) manager.commit(status);
+		else status.rollbackToSavepoint(savePoint);
+		
+		
+		return b;
+	}
+	
+	
 }
 
 

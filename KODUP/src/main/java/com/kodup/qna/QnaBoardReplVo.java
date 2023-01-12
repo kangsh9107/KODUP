@@ -1,14 +1,22 @@
 package com.kodup.qna;
 
 public class QnaBoardReplVo {
-	int grp,seq,deep,repl_status,repl_sno,countinnerrepl;
+	int grp,seq,deep,repl_status,repl_sno,countinnerrepl,repl_delete;
 	String repl_nal,repl_doc,profile_img,nickname;
+	
+	
+	
+	
+	//repl_delete-댓글삭제상태값 : 이 값에 따라 출력되는 페이지가 달라짐
+	//0:일반글 , 1:작성자가삭제한댓글 , 2:관리자가삭제한댓글
+	public int getRepl_delete() {return repl_delete;}
+	public void setRepl_delete(int repl_delete) {this.repl_delete = repl_delete;}
 	
 	//countinnerrepl:댓글에 달려있는 대댓글의 수 ; 쿼리문 서브쿼리를통해 셀렉트함
 	//qna.jsp에서 button id:repl_inner_display_onkey2 , c:if조건문걸기위해 필요
-	
 	public int getCountinnerrepl() {return countinnerrepl;}
 	public void setCountinnerrepl(int countinnerrepl) {this.countinnerrepl = countinnerrepl;}
+	
 	//댓글테이블(repl)
 	public int getRepl_sno() {	return repl_sno;}
 	public void setRepl_sno(int repl_sno) {	this.repl_sno = repl_sno;}
