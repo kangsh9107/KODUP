@@ -57,9 +57,10 @@ public class MantomanController {
 	}
 	
 	@RequestMapping("/mantoman/mantoman_chatview")
-	public ModelAndView chatView() {
+	public ModelAndView chatView(MemberVo mVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
-		
+		String roomCode = (String)req.getParameter("roomCode");
+		mv.addObject(roomCode);
 		mv.setViewName("mantoman/mantoman_chatview");
 		return mv;
 	}

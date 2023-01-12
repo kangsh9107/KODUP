@@ -4,7 +4,7 @@
 	
 	<!-- LOGIN -->
 	<select id="selectId" parameterType="String" resultType="com.kodup.mantoman.MantomanVo">
-		SELECT m.profile_img, m.nickname, m.grade, mi.introduce
+		SELECT m.id, m.profile_img, m.nickname, m.grade, mi.introduce
 		FROM member m LEFT JOIN member_introduce mi ON m.id = mi.id
 		WHERE m.id = #{_parameter}
 	</select>

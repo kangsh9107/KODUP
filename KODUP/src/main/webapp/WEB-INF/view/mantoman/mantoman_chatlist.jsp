@@ -43,7 +43,7 @@ $('.mentor_profileImg').on('click',function() {
 });
 
 $('.clickSection').on('click', function() {
-	$(".slide").load('/mantoman/mantoman_chatview');
+	$(".slide").load("/mantoman/mantoman_chatview?roomCode=emptyRoom");
 });
 </script>
 </body>
