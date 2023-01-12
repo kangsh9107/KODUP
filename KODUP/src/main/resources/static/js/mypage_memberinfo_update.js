@@ -45,11 +45,26 @@ $('.mypage_update_cancel').on('click', function(){
 	 
  })
  
- 
- 
- 
- 
- 
- 
- 
+//멤버 프로필 클릭 시 첨부 파일 창이 뜨는 코드.
+var logofile = document.querySelector('.mypage_member_profile_btn');
+var logo = document.querySelector('.mypage_member_profile_img');
+logo.onclick = function(){
+	logofile.click();
+	console.log('첨부파일')
+}
+
+logofile.onchange=preview;
+function preview(ev){
+	let event = ev || window.event;
+	let file = event.srcElement.files[0];
+	
+	let reader = new FileReader();
+	reader.onload = function(){
+		let pre_img = logo
+		let img = new Image();
+		img.src = reader.result;
+		pre_img.src = img.src;
+	}
+	reader.readAsDataURL(file);
+}
  

@@ -1,7 +1,10 @@
 package com.kodup.mypage;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +15,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import kr.jobtc.springboot.board.AttVo;
+import kr.jobtc.springboot.board.BoardVo;
+import kr.jobtc.springboot.board.PageVo;
 
 
 @RestController
@@ -70,7 +78,7 @@ public class MypageController {
 	
 	
 	//회원 정보 글 수정 되는 코드.
-	
+	/*
 	@RequestMapping("/board/mypage_memberinfo_update_complete") //회원정보 수정 완료
 	public ModelAndView mypage_memberinfo_update_complete(MypageVo mpVo){
 		String msg = "";
@@ -88,6 +96,57 @@ public class MypageController {
 		 //왜 인덱스로 연결...???
 		return mv;
 	}
+	*/
+	
+	@RequestMapping("/board/mypage_memberinfo_update_complete") ////회원정보 수정 완료
+	public String mypage_memberinfo_update_complete(@RequestParam("attFile") MultipartFile mul,
+						 @ModelAttribute MypageVo mpVo, @RequestParam(name = "delFile", required = false, defaultValue="") String[] delFile) {		
+		// attFile이라는 파라미터가 들어온 경우에는 MultipartFile로 받고 나머지는 BoardVo로 받는다?
+		// getter setter가 있을 때 ModelAttribute 사용, String같이 기본형일 때 RequestParam 사용
+		String msg="";
+		boolean flag = service.mypage_memberinfo_update_complete(mpVo, delFile);
+		if(flag) {
+			msg = "정상적으로 수정되었습니다.";
+			try {		
+				List<AttVo> attList = fileUpload(mul);
+				mpVo.setAttList(attList);				
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+		}else msg="수정중 오류 발생";
+		
+		return msg;
+	}
+	
+	
+//파일 업로드 공통부분(중복코드 제거: insertR, updateR, replR에서 공통으로 들어감)
+	public List<AttVo> fileUpload(List<MultipartFile> mul) throws Exception{
+		List<AttVo> attList = new ArrayList<AttVo>();
+		for(MultipartFile m : mul) {
+			if(m.isEmpty()) continue;
+			UUID uuid = UUID.randomUUID();
+			String oriFile = m.getOriginalFilename();
+			String sysFile = ""; 
+			File temp = new File(path + oriFile); 	// 임시저장 경로
+			m.transferTo(temp);
+			sysFile =(uuid.getLeastSignificantBits()*-1) + "-" + oriFile;
+			File f = new File(path + sysFile);
+			temp.renameTo(f);
+			
+			AttVo attVo = new AttVo();
+			attVo.setOriFile(oriFile);
+			attVo.setSysFile(sysFile);
+			
+			attList.add(attVo);
+			System.out.println(m.getOriginalFilename());
+			System.out.println(uuid.getLeastSignificantBits());
+		}
+		
+		return attList;
+	}
+
 	
 	/*
 	 * @RequestMapping("/board/mypage_memberinfo_update_complete") //회원정보 수정 완료
@@ -107,6 +166,7 @@ public class MypageController {
 	 * 
 	 * return msg; }
 	 */
+	
 	
 	@RequestMapping("/board/mypage_dailycheck") //출석체크
 	public ModelAndView mypage_dailycheck() {

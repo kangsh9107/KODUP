@@ -10,4 +10,7 @@ public interface MypageMapper {
 	public MypageVo info(String id);
 	public int mypage_memberinfo_update_complete(MypageVo mpVo);
 	public MypageQuitVo member_quit(String id);
+	
+	public int update(MypageVo mpVo);
+	public int attUpdate(MypageVo mpVo);
 }
