@@ -12,4 +12,7 @@ import com.kodup.board.PageVo;
 public interface MansearchMapper {
 	public List<MansearchBoardVo> select(PageVo pVo);
 	public MansearchBoardVo view(int sno);
+	public int boardinsert(MansearchBoardVo mbVo);
+	public int mansearchinsert(MansearchBoardVo mbVo);
+	public int insertAttList(List<MansearchAttVo> attVo);
 }

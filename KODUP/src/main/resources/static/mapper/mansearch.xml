@@ -21,7 +21,20 @@
                                 LEFT JOIN member m      ON b.id = m.id
                         		LEFT JOIN corperation c ON m.id = c.id
         WHERE b.boardtype = 'mansearch' and mb.mansearch_sno = ${mansearch_sno} 	
-	</select>
-	
-	
+	</select>	
+	<insert id='boardinsert' parameterType='com.kodup.mansearch.MansearchBoardVo'>
+		insert into board(id,boardtype,nal,subject,doc)
+		values(#{id},'mansearch',now(),#{subject},#{doc})
+	</insert>
+<!-- 	<insert id='mansearchinsert' parameterType='com.kodup.mansearch.MansearchBoardVo'>
+		insert into mansearch_board(
+	</insert> -->
+    <insert id='insertAttList' parameterType='com.kodup.mansearch.MansearchAttVo'>
+        insert into board_att(sno, sysFile, oriFile)
+        values
+        <foreach collection="list" item="vo" separator=",">
+            ((select sno from board order by sno desc limit 0,1),#{vo.sysFile}, #{vo.oriFile} )
+        </foreach>
+    </insert>
+    	
 </mapper>
