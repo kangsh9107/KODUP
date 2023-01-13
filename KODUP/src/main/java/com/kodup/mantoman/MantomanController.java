@@ -20,24 +20,38 @@ public class MantomanController {
 	MantomanService service;
 	
 	@RequestMapping("/mantoman/mantoman_index")
-	public ModelAndView mantomanIndex(MemberVo mVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+	public ModelAndView mantomanIndex(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		
 		String sessionId = req.getParameter("sessionId");
 		MantomanVo mtmVo = service.selectId(sessionId);
+		String grade = mtmVo.getGrade();
+		if(grade.equals("3")) {
+			mtmVo.setGrade("파트너멘토");
+		}else if(grade.equals("2")) {
+			mtmVo.setGrade("플러스멘토");
+		}else if(grade.equals("1")) {
+			mtmVo.setGrade("퍼스널멘토");
+		}else if(grade.equals("0")) {
+			mtmVo.setGrade("멘티");
+		}
+		
+		System.out.println("grade : " + grade);
 		System.out.println("sessionId : " + sessionId);
+		
 		mv.addObject("mtmVo", mtmVo);
-
 		mv.setViewName("mantoman/mantoman_index");
 		return mv;
 	}
 	
 
 	@RequestMapping("/mantoman/mantoman_mentorlist")
-	public ModelAndView mentorlist() {
+	public ModelAndView mentorlist(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
-		List<MantomanVo> list = service.partnerMentoList();
-		mv.addObject(list);
+		List<MantomanVo> list = service.selectMentoList();
+		String mentiId = req.getParameter("mentiId");
+		mv.addObject("list", list);
+		mv.addObject("mentiId", mentiId);
 		mv.setViewName("mantoman/mantoman_mentorlist");
 		return mv;
 	}
@@ -59,10 +73,16 @@ public class MantomanController {
 	}
 	
 	@RequestMapping("/mantoman/mantoman_chatview")
-	public ModelAndView chatView(MemberVo mVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+	public ModelAndView chatView(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		String roomCode = (String)req.getParameter("roomCode");
-		mv.addObject(roomCode);
+		String yourNickname = (String)req.getParameter("yourNickname");
+		String myNickname = (String)req.getParameter("myNickname");
+		String sessionId = (String)req.getParameter("sessionId");
+		mv.addObject("roomCode", roomCode);
+		mv.addObject("yourNickname", yourNickname);
+		mv.addObject("myNickname", myNickname);
+		mv.addObject("sessionId", sessionId);
 		mv.setViewName("mantoman/mantoman_chatview");
 		return mv;
 	}

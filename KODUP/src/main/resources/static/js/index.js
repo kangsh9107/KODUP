@@ -167,7 +167,6 @@ $('#btnMantoman').on('click',function() {
 
 let sessionId = document.querySelector('.sessionId_hidden').value;
 
-console.log('sessionId : ' + sessionId);
 
 var dataArray = {};//전송 데이터(JSON)
 
@@ -213,9 +212,11 @@ if(sessionId != ''){
 				var popupCall = `<div class='popupCallDiv'>
 									<br/>
 									<span>${data.mentiNickname}님이 멘토요청하였습니다.</span><br/><br/>
+									<input type="hidden" value="${data.mentiNickname}" class="mentiNickname_hidden">
 									<input type="hidden" value="${data.mentiId}" class="mentiId_hidden">
-									<input type="text" value="보상픽셀 : 5000픽셀" readonly>
-									<input type="text" value="상담내용 : css동적 적용시 오류" size=30 readonly><br/><br/>
+									<input type="hidden" value="${data.mentoNickname}" class="mentoNickname_hidden">
+									<input type="text" value="보상픽셀 : ${data.rewardPixel}픽셀" readonly>
+									<input type="text" value="상담내용 : ${data.question}" size=30 readonly><br/><br/>
 									<input type="button" value="수락" class="btnAccessCall">
 									<input type="button" value="거절" class="btnRefuseCall">			
 								</div>`;
@@ -223,20 +224,46 @@ if(sessionId != ''){
 				$("#sockectController").append(popupCall);
 			}
 		}
-		/* job이 채팅시작일때 */
+		/* job이 채팅시작일때(yourId와 myId를 구분해서 파라미터로 넘긴다) */
 		if(data.job=="startChat"){
-			console.log(data.mentiId);
-			if(data.mentoId==sessionId || data.mentiId==sessionId){
+			if(data.mentoId==sessionId){
 				var title  = 'popup';
 				var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=350, height=500, top=400, left=1300';
-				window.open("/mantoman/mantoman_chatview?roomCode=" + data.roomCode , title, status);
+				window.open("/mantoman/mantoman_chatview?roomCode="+data.roomCode+"&yourNickname="+data.mentiNickname+"&myNickname="+data.mentoNickname+"&sessionId="+sessionId, title, status);
+			}else if(data.mentiId==sessionId){
+				var title  = 'popup';
+				var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=350, height=500, top=400, left=1300';
+				window.open("/mantoman/mantoman_chatview?roomCode="+data.roomCode+"&yourNickname="+data.mentoNickname+"&myNickname="+data.mentiNickname+"&sessionId="+sessionId, title, status);
+			}
+		}
+		/* job이 채팅취소일때 */
+		if(data.job=="CancelCall"){
+			if(data.mentoId==sessionId){
+				$('.popupCallDiv').remove();
+				alert(data.mentiNickname+"님이 멘토요청을 취소하였습니다.");
+			}
+		}
+		/* job이 요청거절일때 */
+		if(data.job=="refuseCall"){
+			if(data.mentiId==sessionId){
+				alert("멘토요청이 거절되었습니다.");
+				var title  = 'popup';
+				var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=350, height=500, top=400, left=1300'; 
+				window.open('/mantoman/mantoman_index?sessionId=' + sessionId, title, status);
 			}
 		}
 	}
 }
-/*거절 버튼 클릭시 디브 삭제 */
+/*거절 버튼 클릭시*/
 $(document).on("click", ".btnRefuseCall", function() {
-    $(this).parent().remove();
+    dataArray.job = "refuseCall";
+	dataArray.mentiId = $('.mentiId_hidden').val();
+	
+	$(this).parent().remove();
+	
+	var temp = JSON.stringify(dataArray);
+	ws.send(temp);
+	dataArray = {};
 });
 
 /* 수락 버튼 클릭시 채팅방 이동 */
@@ -251,6 +278,8 @@ $(document).on("click", ".btnAccessCall", function() {
 	var roomCode = uuidv4();
 	
 	dataArray.job = "startChat";
+	dataArray.mentiNickname = $('.mentiNickname_hidden').val();
+	dataArray.mentoNickname = $('.mentoNickname_hidden').val();
 	dataArray.mentiId = $('.mentiId_hidden').val();
 	dataArray.mentoId = sessionId;
 	dataArray.roomCode = roomCode;
