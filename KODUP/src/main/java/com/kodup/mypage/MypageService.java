@@ -1,5 +1,7 @@
 package com.kodup.mypage;
 
+import java.io.File;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -49,47 +51,55 @@ public class MypageService {
 		return mpVo;
 	}
 	
-	/* 이한나
-	public boolean mypage_memberinfo_update_complete(MypageVo mpVo, String[] delFile) {
-		System.out.println("service.update");
-		System.out.println(mpVo.getId());
+
+	public boolean updateR(MypageVo mpVo, String[] delFile) {
+//		System.out.println("service.update");
+//		System.out.println(mpVo.getId());
 
 		boolean b = true;
 
 		status = manager.getTransaction(new DefaultTransactionDefinition());
-		savePoint = status.createSavepoint();
+		savePoint = status.createSavepoint(); //롤백을위해
 		int cnt = mypageMapper.update(mpVo); // 내용 업데이트
-		if (cnt < 1) {
-			b = false;
-		} else if (mpVo.getAttFile().size() > 0) {
-			int attCnt = mypageMapper.attUpdate(mpVo); // 첨부파일 추가
-			if (attCnt < 1)
-				b = false;
-		}
+		if (cnt < 1) b = false;
 
 		if (b) {
 			manager.commit(status);
+			fileDelete(delFile); // 파일 삭제
+			/*
 			if (delFile != null && delFile.length > 0) {
 				// 첨부 파일 데이터 삭제
 				cnt = mypageMapper.attDelete(delFile);
 				if (cnt > 0) {
-					fileDelete(delFile); // 파일 삭제
+					
 				} else {
 					b = false;
 				}
 			}
+			*/
 		} else {
 			status.rollbackToSavepoint(savePoint);
-			delFile = new String[bVo.getAttList().size()];
-			for (int i = 0; i < bVo.getAttList().size(); i++) {
-				delFile[i] = bVo.getAttList().get(i).getSysFile();
-			}
+			delFile = new String[1];
+			delFile[0] = mpVo.getProfile_img();
 			fileDelete(delFile);
 		}
 
 		return b;
 	}
-	이한나 */
+	
+	
+	public void fileDelete(String[] delFile) {
+		/*
+		for(int i=0; i<delFile.length; i++) {
+			f = delFile[i];
+		}
+		*/
+		for (String f : delFile) {
+			File file = new File(MypageController.path + f);
+			if (file.exists())
+				file.delete();
+		}
+	}
 	
 	/* 파일 업로드....수정..
 	public boolean mypage_memberinfo_update_complete(MypageVo mpVo) {

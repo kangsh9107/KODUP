@@ -13,6 +13,30 @@
 		WHERE id = #{id} 
 	</update>
 	
+	<!-- 회원정보 수정..  -->
+	<update id='update' parameterType='com.kodup.mypage.MypageVo'>
+		UPDATE member SET nickname = #{nickname }, email= #{email }, gender= #{gender }, 
+			   			  age= #{age }, profile_img = #{profile_img}
+		WHERE id = #{id} 
+	</update>
+	
+	<!-- <insert id='attUpdate' parameterType='com.kodup.mypage.MypageVo'>
+		insert into - 테이블이 없음..
+		insert into member(profile_img)
+		
+    	insert into member(profile_img)
+        values (#{profile_img}) where id = #{id}
+	</insert>	 -->
+	
+	<!-- <delete id='attDelete' parameterType="String">
+		delete from boardAtt where sysFile in(
+			<foreach collection='attList' item='vo' separator=','>
+				#{file}
+			</foreach>
+	)	
+	</delete> -->
+	
+	
 	<!-- 회원 탈퇴 -->
 	<delete id='member_quit' parameterType='String'>
 		delete from member where id= #{_parameter}

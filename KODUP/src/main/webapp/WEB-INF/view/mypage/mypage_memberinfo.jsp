@@ -25,7 +25,7 @@
 	
 		<div class='mypage_member_profile'>
 			<div class='mypage_member_profile_item'>
-				<img src='/upload/${mpVo.profile_img }' style='width: 280px;'>
+				<img src='/upload/${mpVo.profile_img }' style='width: 300px; height: 300px;'>
 			</div>
 	
 			<div class='mypage_member_profile_item'>

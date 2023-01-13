@@ -1,20 +1,28 @@
 package com.kodup.mypage;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 
 @RestController
 public class MypageController {
-
+	static String path="C:\\Users\\N\\git\\KODUP\\KODUP\\src\\main\\resources\\static\\upload\\"
+;
 	//리퀘스트 매핑 주소 = mypage 폴더 내 jsp 파일명
 	/*
 	 * @RequestMapping("/board/mypage") public ModelAndView mypage() { ModelAndView
@@ -34,7 +42,7 @@ public class MypageController {
 		return mv;
 	}
 	
-	@RequestMapping("/board/mypage_memberinfo") //회원정보
+	@RequestMapping("/board/mypage_memberinfo") //회원정보. select
 	public ModelAndView mypage_info(HttpServletRequest req, HttpServletResponse res) throws IOException{
 		ModelAndView mv = new ModelAndView();
 		
@@ -49,7 +57,9 @@ public class MypageController {
 		return mv;
 	}
 	
-	@RequestMapping("/board/mypage_memberinfo_update") //회원정보 수정
+	
+	//회원정보 수정화면. 기존 정보 보여주는 거라 이것도 select
+	@RequestMapping("/board/mypage_memberinfo_update") 
 	public ModelAndView mypage_memberinfo_update(HttpServletRequest req, HttpServletResponse res)throws IOException {
 		ModelAndView mv = new ModelAndView();
 		
@@ -87,34 +97,39 @@ public class MypageController {
 	}
 	*/
 	
-	
-	
-	/* 이한나
-	@RequestMapping("/board/mypage_memberinfo_update_complete") ////회원정보 수정 완료
-	public String mypage_memberinfo_update_complete(@RequestParam("attFile") MultipartFile mul,
-						 @ModelAttribute MypageVo mpVo, @RequestParam(name = "delFile", required = false, defaultValue="") String[] delFile) {		
-		// attFile이라는 파라미터가 들어온 경우에는 MultipartFile로 받고 나머지는 BoardVo로 받는다?
-		// getter setter가 있을 때 ModelAttribute 사용, String같이 기본형일 때 RequestParam 사용
-		String msg="";
-		boolean flag = service.mypage_memberinfo_update_complete(mpVo, delFile);
-		if(flag) {
-			msg = "정상적으로 수정되었습니다.";
-			try {		
-				List<AttVo> attList = fileUpload(mul);
-				mpVo.setAttList(attList);				
+	//파일 업로드
+	//회원정보 수정 후 수정완료 버튼 클릭 시 작동. (이미지 파일 첨부, 수정한 입력 정보 반영)
+	@RequestMapping("/board/mypage_memberinfo_update_complete") 
+	public ModelAndView updateR(@RequestParam("attFile")List<MultipartFile> mul, // t선택한파일
+						 @ModelAttribute MypageVo mpVo, //폼태그로 날린 정보
+						 @RequestParam(name = "delFile", required = false, defaultValue="") String[] delFile) {		
+		ModelAndView mv = new ModelAndView();
+		boolean b = false;
+		
+		if(mul.size() > 0) {
+			try {
+				List<MypageAttVo> attList = fileUpload(mul);
+				mpVo.setProfile_img(attList.get(0).getSysFile());
+				System.out.println(mpVo.getProfile_img()); //1234-1.png
 				
-			}catch(Exception e) {
+				b = service.updateR(mpVo, delFile);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-		}else msg="수정중 오류 발생";
-		
-		return msg;
+		}
+		/*
+		String msg = "";
+		if(b) msg = "정상적으로 수정되었습니다.";
+		else  msg = "수정중 오류 발생";
+		*/
+		mv.addObject("mpVo", mpVo);
+		mv.setViewName("mypage/mypage_memberinfo");
+		return mv;
 	}
 	
 //파일 업로드 공통부분(중복코드 제거: insertR, updateR, replR에서 공통으로 들어감)
-	public List<AttVo> fileUpload(List<MultipartFile> mul) throws Exception{
-		List<AttVo> attList = new ArrayList<AttVo>();
+	public List<MypageAttVo> fileUpload(List<MultipartFile> mul) throws Exception{
+		List<MypageAttVo> attList = new ArrayList<MypageAttVo>();
 		for(MultipartFile m : mul) {
 			if(m.isEmpty()) continue;
 			UUID uuid = UUID.randomUUID();
@@ -126,19 +141,16 @@ public class MypageController {
 			File f = new File(path + sysFile);
 			temp.renameTo(f);
 			
-			AttVo attVo = new AttVo();
-			attVo.setOriFile(oriFile);
+			MypageAttVo attVo = new MypageAttVo();
 			attVo.setSysFile(sysFile);
 			
 			attList.add(attVo);
-			System.out.println(m.getOriginalFilename());
-			System.out.println(uuid.getLeastSignificantBits());
+//			System.out.println(m.getOriginalFilename());
+//			System.out.println(uuid.getLeastSignificantBits());
 		}
 		
 		return attList;
 	}
-	이한나 */
-
 	
 	/*
 	 * @RequestMapping("/board/mypage_memberinfo_update_complete") //회원정보 수정 완료
