@@ -51,8 +51,8 @@ public class LoginService {
 	
 	//ID&PWD 체크후 로그인여부 판단
 	public boolean login(MemberVo mVo) {
-		String encPwd = enc(mVo.getPwd());
-		mVo.setPwd(encPwd);
+//		String encPwd = enc(mVo.getPwd());
+//		mVo.setPwd(encPwd);
 		
 		boolean b = false; //true면 로그인 성공
 		int cnt = 0;
@@ -272,8 +272,8 @@ public class LoginService {
 	
 	//비밀번호 변경
 	public boolean updatePwd(MemberVo mVo) {
-		String encPwd = enc(mVo.getPwd());
-		mVo.setPwd(encPwd);
+//		String encPwd = enc(mVo.getPwd());
+//		mVo.setPwd(encPwd);
 		
 		boolean b = false; //false면 비밀번호 변경오류
 		int cnt = 0;

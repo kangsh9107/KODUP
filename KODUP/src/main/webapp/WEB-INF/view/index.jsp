@@ -65,7 +65,7 @@
 				       			<a href="#" class="nav-link active non-click btnNotification" aria-current="page" style="cursor: pointer;">공지사항</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a href="#" class="nav-link active non-click" aria-current="page" href="/intro">INTRO</a>
+				       			<a class="nav-link active non-click" aria-current="page" href="/intro">INTRO</a>
 				       		</li>
 				       	</ul>
 			       	</div>

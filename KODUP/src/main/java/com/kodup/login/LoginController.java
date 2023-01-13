@@ -84,22 +84,25 @@ public class LoginController {
 		//hashtag를 #기준으로 뜯고 Map구조에 key,value로 담아서 카운트
 		Map<String, Integer> countHashTag = new HashMap<>();
 		for(CommonBoardVo cbVo : listHotTag) {
-			String[] tag = cbVo.hashtag.split("#");
-			
-			for(String t : tag) {
-				if(t.equals("")) {
-					continue;
-				} else if(countHashTag.get(t) == null) {
-					try {
-						countHashTag.put(t.toUpperCase(), 1);
-					} catch(Exception e) {
-						countHashTag.put(t, 1);
-					}
-				} else {
-					try {
-						countHashTag.put(t.toUpperCase(), countHashTag.get(t.toUpperCase())+1);
-					} catch(Exception e) {
-						countHashTag.put(t, countHashTag.get(t)+1);
+			if(cbVo != null) {
+				String temp = cbVo.hashtag.substring(1);
+				String[] tag = temp.split("#");
+				
+				for(String t : tag) {
+					if(t.equals("")) {
+						continue;
+					} else if(countHashTag.get(t) == null) {
+						try {
+							countHashTag.put(t.toUpperCase(), 1);
+						} catch(Exception e) {
+							countHashTag.put(t, 1);
+						}
+					} else {
+						try {
+							countHashTag.put(t.toUpperCase(), countHashTag.get(t.toUpperCase())+1);
+						} catch(Exception e) {
+							countHashTag.put(t, countHashTag.get(t)+1);
+						}
 					}
 				}
 			}
