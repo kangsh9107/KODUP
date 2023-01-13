@@ -63,14 +63,25 @@
 	
 	<!-- WEEKLYBEST5 -->
 	<select id="weeklyBest5" resultType="com.kodup.login.IndexBoardVo">
-		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb,
-		       m.profile_img, m.nickname,
-		       COUNT(r.repl_sno) AS countRepl
+		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb, b.viewcount,
+			   m.profile_img, m.nickname,
+			   COUNT(r.repl_sno) AS countRepl
 		FROM board b LEFT JOIN member m ON b.id = m.id
-		             LEFT JOIN repl r   ON b.sno = r.sno
-		WHERE 
-		GROUP BY b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown), m.profile_img, m.nickname
-		ORDER BY b.viewcount DESC LIMIT 0, 5
+					 LEFT JOIN repl r   ON b.sno = r.sno
+		WHERE b.nal > DATE_ADD(NOW(), INTERVAL -7 DAY)
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, thumb, b.viewcount, m.profile_img, m.nickname
+		ORDER BY thumb DESC, viewcount DESC, sno DESC LIMIT 0, 5
+	</select>
+	
+	<!-- EDITOR5 -->
+	<select id="editor5" resultType="com.kodup.login.IndexBoardVo">
+		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb, b.viewcount,
+			   m.profile_img, m.nickname,
+			   COUNT(r.repl_sno) AS countRepl
+		FROM board b LEFT JOIN member m ON b.id = m.id
+					 LEFT JOIN repl r   ON b.sno = r.sno
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, thumb, b.viewcount, m.profile_img, m.nickname
+		ORDER BY RAND() LIMIT 0, 5
 	</select>
 	
 	<!-- LOGIN -->
@@ -91,6 +102,21 @@
 		WHERE id = #{_parameter}
 	</select>
 	
+	<!-- CHECK NICKNAME -->
+	<select id="checkNickname" parameterType="String" resultType="Integer">
+		SELECT COUNT(nickname) FROM member WHERE nickname = #{_parameter}
+	</select>
+	
+	<!-- CHECK EMAIL -->
+	<select id="checkEmail" parameterType="String" resultType="Integer">
+		SELECT COUNT(email) FROM member WHERE email = #{_parameter} AND account_type = 0
+	</select>
+	
+	<!-- GET ID -->
+	<select id="getId" parameterType="String" resultType="String">
+		SELECT id FROM member WHERE email = #{_parameter}
+	</select>
+	
 	<!-- CHECK CHAT ID -->
 	<select id="checkChatId" parameterType="String" resultType="Integer">
 		SELECT COUNT(id) FROM chat WHERE id = #{_parameter}
@@ -106,21 +132,21 @@
 		DELETE FROM chat WHERE id = #{_parameter}
 	</delete>
 	
-	<!-- CHECK NICKNAME -->
-	<select id="checkNickname" parameterType="String" resultType="Integer">
-		SELECT COUNT(nickname) FROM member WHERE nickname = #{_parameter}
-	</select>
-	
 	<!-- INSERT MEMBER KAKAO -->
 	<insert id="insertMemberKakao" parameterType="com.kodup.login.MemberVo">
 		INSERT INTO member(id, pwd, email, nickname, gender, age, profile_img, account_type, join_date)
-		VALUES(#{id}, #{pwd}, #{email}, #{nickname}, #{gender}, #{age}, #{profile_img}, 0, NOW())
+		VALUES(#{id}, #{pwd}, #{email}, #{nickname}, #{gender}, #{age}, #{profile_img}, 1, NOW())
 	</insert>
 	
 	<!-- INSERT MEMBER KODUP -->
 	<insert id="insertMember" parameterType="com.kodup.login.MemberVo">
-		INSERT INTO member(id, email, nickname, gender, age, account_type, join_date)
-		VALUES(#{id}, #{email}, #{nickname}, #{gender}, #{age}, 1, NOW())
+		INSERT INTO member(id, pwd, email, nickname, gender, age, account_type, join_date)
+		VALUES(#{id}, #{pwd}, #{email}, #{nickname}, #{gender}, #{age}, 0, NOW())
 	</insert>
+	
+	<!-- UPDATE PWD -->
+	<update id="updatePwd" parameterType="com.kodup.login.MemberVo">
+		UPDATE member SET pwd = #{pwd} WHERE id = #{id}
+	</update>
 	
 </mapper>

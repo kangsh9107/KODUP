@@ -4,6 +4,7 @@
 
 /***** 강수형 *****/
 /***** JOIN & LOGIN *****/
+//KODUP LOGIN FORM
 $('.index_btnJoin').on('click', function() {
 	$('#center').load('/login/join');
 });
@@ -170,7 +171,95 @@ $('.index_find_account').on('click', function() {
 	$('#center').load('/login/find_account');
 });
 
-/***** CHANGE PASSWORD ******/
 $('.index_find_accountR').on('click', function() {
-	$('#center').load('/login/change_pwd');
+	var frm = $('.index_find_account_form')[0];
+	
+	var regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	
+	if(frm.email.value == '') {
+		alert('이메일을 입력해주세요.');
+	} else if( !regExpEmail.test(frm.email.value) ) {
+		alert('이메일을 양식에 맞게 입력해주세요. ex)kodup@naver.com');
+    } else {
+		var param = new FormData(frm);
+		
+		$.ajax({
+			type: 'POST',
+			url: '/login/find_accountR',
+			contentType: false,
+			processData: false,
+			data: param,
+			dataType: 'html',
+			success: function(data) {
+				if(data == 'not_found_email') {
+					alert('가입하신 이메일을 입력해주세요.');
+				} else if(data == 'error_send_email') {
+					alert('이메일 발송 오류입니다. 잠시후 다시 시도해주세요.');
+				} else {
+					$('#center').html(data);
+				}
+			}
+		});
+	}
+});
+
+$('.index_find_account_keyR').on('click', function() {
+	var frm = $('.index_find_account_key_form')[0];
+	
+	if(frm.keyR.value == '') {
+		alert('인증키를 입력해주세요.');
+	} else {
+		var param = new FormData(frm);
+		
+		$.ajax({
+			type: 'POST',
+			url: '/login/find_account_keyR',
+			contentType: false,
+			processData: false,
+			data: param,
+			dataType: 'html',
+			success: function(data) {
+				if(data == 'error_send_email') {
+					alert('메일전송에 실패했습니다. 잠시후 다시 시도해주세요.');
+				} else if(data == 'error_key') {
+					alert('인증키를 확인해주세요.');
+				} else {
+					$('#center').html(data);
+				}
+			}
+		});
+	}
+});
+
+/***** CHANGE PASSWORD ******/
+$('.index_change_passwordR').on('click', function() {
+	var frm = $('.index_change_password_form')[0];
+	
+	var regExpPwd = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+	
+	if(frm.pwd.value == '') {
+		alert('새로운 비밀번호를 입력해주세요.');
+	} else if( !regExpPwd.test(frm.pwd.value) ) {
+		alert('비밀번호는 8~16자로 영문, 숫자, 특수문자를 최소 한가지씩 조합해주세요.');
+    } else {
+		var param = new FormData(frm);
+		
+		$.ajax({
+			type: 'POST',
+			url: '/login/update_passwordR',
+			contentType: false,
+			processData: false,
+			data: param,
+			dataType: 'html',
+			success: function(data) {
+				if(data == 'error_pwd') {
+					alert('비밀번호 변경에 실패했습니다. 잠시후 다시 시도해주세요.');
+				} else {
+					alert('비밀번호 변경 성공!');
+					$('#center').html(data);
+					location.replace('/');
+				}
+			}
+		});
+	}
 });

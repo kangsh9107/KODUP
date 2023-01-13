@@ -9,7 +9,6 @@
 <meta charset="UTF-8">
 <!-- FAVICON -->
 
-
 <!-- CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
@@ -48,25 +47,25 @@
 		        	<div class="col-md-8 index_nav_items">
 				   		<ul class="navbar-nav me-auto mb-2 mb-lg-0 index_nav_ul" style="padding-left: 10px">
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click btnQna" aria-current="page" href="#">Q&A</a>
+				       			<a href="#" class="nav-link active non-click btnQna" aria-current="page" style="cursor: pointer;">Q&A</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click btnInfoshare" aria-current="page" href="#">정보공유</a>
+				       			<a href="#" class="nav-link active non-click btnInfoshare" aria-current="page" style="cursor: pointer;">정보공유</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click btnFreetalking" aria-current="page" href="#">커뮤니티</a>
+				       			<a href="#" class="nav-link active non-click btnFreetalking" aria-current="page" style="cursor: pointer;">커뮤니티</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click mansearch" aria-current="page" href="#">구인</a>
+				       			<a href="#" class="nav-link active non-click mansearch" aria-current="page" style="cursor: pointer;">구인</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click btnJobsearch" aria-current="page" href="#">구직</a>
+				       			<a href="#" class="nav-link active non-click btnJobsearch" aria-current="page" style="cursor: pointer;">구직</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click btnNotification" aria-current="page" href="#">공지사항</a>
+				       			<a href="#" class="nav-link active non-click btnNotification" aria-current="page" style="cursor: pointer;">공지사항</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click" aria-current="page" href="/intro">INTRO</a>
+				       			<a href="#" class="nav-link active non-click" aria-current="page" href="/intro">INTRO</a>
 				       		</li>
 				       	</ul>
 			       	</div>
@@ -206,9 +205,8 @@
 					<ul class="list-inline mt-4">
 						<li class="list-inline-item"><a href="https://twitter.com/?lang=ko" target="_blank" title="twitter"><i class="xi-twitter xi-2x"></i></a></li>
 						<li class="list-inline-item"><a href="https://ko-kr.facebook.com/facebook/" target="_blank" title="facebook"><i class="xi-facebook xi-2x"></i></a></li>
-						<li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank" title="instagram"><i class="xi-instagram xi-2x"></i></a></li>
-						<li class="list-inline-item"><a href="https://www.pinterest.co.kr/" target="_blank" title="pinterest"><i class="xi-pinterest xi-2x"></i></a></li>
 						<li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank" title="youtube"><i class="xi-youtube-play xi-2x"></i></a></li>
+						<li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank" title="instagram"><i class="xi-instagram xi-2x"></i></a></li>
 					</ul>
 				</div>
 			</div>

@@ -555,7 +555,7 @@
 }
 
 /***** FIND ACCOUNT *****/
-.index_find_account_form {
+.index_find_account_form, .index_find_account_key_form {
 	padding: 30px;
 	border-radius: 10px 10px 10px 10px;
 	box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
@@ -572,7 +572,7 @@
 	margin: 0 0 5px 0;
 }
 
-.index_find_accountR {
+.index_find_accountR, .index_find_account_keyR {
 	width: 303px;
 	color: white;
 	background-color: #bb2649;
@@ -581,7 +581,7 @@
 	font-weight: 600;
 }
 
-.index_find_accountR:hover {
+.index_find_accountR:hover, .index_find_account_keyR:hover {
 	color: #bb2649;
 	background-color: white;
 	border: 1px solid #bb2649;
