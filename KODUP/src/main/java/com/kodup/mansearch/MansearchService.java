@@ -61,11 +61,22 @@ public class MansearchService {
 		return flag;
 	}
 	
-	public void insertAttList(List<MansearchAttVo> attList) {
-		int cnt = mapper.insertAttList(attList);
-		if(cnt>0) {
+	public void corpinsert(MansearchBoardVo mbVo) {
+		int cnt = mapper.corpinsert(mbVo);
+		if (cnt > 0) {
 			manager.commit(status);
-		}else status.rollbackToSavepoint(savePoint);
+		}else {
+			status.rollbackToSavepoint(savePoint);
+		}
 	}
+	
+//	public void insertAttList(List<MansearchAttVo> attList) {
+//		int cnt = mapper.insertAttList(attList);
+//		if(cnt>0) {
+//			manager.commit(status);
+//		}else {
+//			status.rollbackToSavepoint(savePoint);
+//		}
+//	}
 
 }

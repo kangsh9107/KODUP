@@ -40,30 +40,30 @@
 </div>
 <form class="mansearch_input_form" method='post' enctype='multipart/form-data'>
 	<label class="info_label">회사로고 등록</label><br/>
-	<input type='hidden' name='id' value=''/>
+	<input type='hidden' name='id' class='member_id' value=''/>
 	<input type='hidden' name='nowPage' value='${pVo.nowPage }'>
 	<input type='hidden' name='findStr' value='${pVo.findStr }'>
-	<input type="file" name="corp_logo" class="corp_logo_insert" onchange='preview()'/>
+ 	<input type="file"   name="attFile" class="corp_logo_insert" onchange='preview()' multiple="multiple"/>
 	<img src='/images/corp_logo_insert.png' id='corp_logo' style="width:144px; height:144px; margin:0 0 20px 0; border:2px double #d2d4d9; cursor:pointer;"/>		
 	<div class="container text-left" style="padding-left:0;">
 		<div class="row corp_info" style="padding:0; margin-left:0;">
 			<label class="info_label">회사정보</label>
+			<div class="col-sm" style="padding-left:0;">
+	    		<label>제목</label>
+	    		<br/><input type="text" name="subject" value='가족같은 분위기에서 일하실 분 구합니다' class="form-control mansearch_board_insert_form" autocomplete="off">    		
+	    	</div>			
 	    	<div class="col-12 col-sm-6" style="padding-left:0;">
 	    		<label>회사명</label>
-	    		<br/><input type="text" name="corp_name" class="form-control mansearch_board_insert_form" autocomplete="off">    		
+	    		<br/><input type="text" name="corp_name" value='(주)이꼬르' class="form-control mansearch_board_insert_form" autocomplete="off">    		
 	    	</div>
-	    	<div class="col-12 col-sm-6" >
+	    	<div class="col-12 col-sm-6" style="padding-left:0;">
 	    		<label>대표 연락처</label>
-	    		<br/><input type="text" name="corp_phone" class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<br/><input type="text" name="corp_phone" value='010-1111-2222' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>
 	    	<div class="col-12 col-sm-6" style="padding-left:0;">
 	    		<label>대표 이메일</label>
-	    		<br/><input type="text" name="corp_email" class="form-control mansearch_board_insert_form" autocomplete="off">
-	    	</div>
-	    	<div class="col-12 col-sm-6" style="margin-bottom:20px;">
-	    		<label>사업자 등록증</label>
-	    		<br/><input type="file" name="corp_license" class="form-control mansearch_board_insert_form" autocomplete="off">
-	    	</div>    	
+	    		<br/><input type="text" name="corp_email" value='asdf@asdf.com' class="form-control mansearch_board_insert_form" autocomplete="off">
+	    	</div>   	
 	  	</div>
 	</div>
 	<div class="container text-left">
@@ -71,15 +71,15 @@
 			<label class="info_label">담당자정보</label>
 	    	<div class="col-12 col-sm-6" style="padding-left:0;">
 	    		<label>담당자명</label>
-	    		<br/><input type="text" name="manager_name" class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<br/><input type="text" name="manager_name" value='담당자' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>
-	    	<div class="col-12 col-sm-6">
+	    	<div class="col-12 col-sm-6" style="padding-left:0;">
 	    		<label>담당자 연락처</label>
-	    		<br/><input type="text" name="manager_phone" class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<br/><input type="text" name="manager_phone" value='010-3333-3333' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>
 	    	<div class="col-12 col-sm-6" style="margin-bottom:20px; padding-left:0;">
 	    		<label>담당자 이메일</label>
-	    		<br/><input type="text" name="manager_email" class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<br/><input type="text" name="manager_email" value='asfsdf@sfddsf.com' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>   	
 	    	<div class="col-12 col-sm-6" style="visibility:hidden;">hidden이라 안보임!</div>
 	  	</div>
@@ -89,43 +89,70 @@
 			<label class="info_label">근무정보</label>
 	    	<div class="col-12 col-sm-6" style="padding-left:0;">
 	    		<label>근무시작일</label>
-	    		<br/><input type="date" name="work_start" class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<br/><input type="date" name="work_start" value='2023-02-25' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>
-	    	<div class="col-12 col-sm-6">
+	    	<div class="col-12 col-sm-6" style="padding-left:0;">
+	    		<label>지원마감일</label>
+	    		<br/><input type="date" name="deadline" value='2023-02-10' class="form-control mansearch_board_insert_form" autocomplete="off">
+	    	</div>
+	    	<div class="col-12 col-sm-6" style="padding-left:0;">
+	    		<label>메인직무</label><br/>
+				<div class="form-floating">
+					<select class="form-select" name='main_task' id="floatingSelect" aria-label="Floating label select example">
+				    	<option value="SI">SI</option>
+				    	<option value="SM" selected>SM</option>
+				  	</select>
+				  	<label for="floatingSelect">메인직무를 선택하세요</label>
+				</div>
+	    	</div>
+	    	<div class="col-12 col-sm-6" style="padding-left:0;">
+	    		<label>서브직무</label><br/>
+				<div class="form-floating">
+					<select class="form-select" name='sub_task' id="floatingSelect" aria-label="Floating label select example">
+				    	<option value="금융">금융</option>
+				    	<option value="인터넷/서비스">인터넷/서비스</option>
+				    	<option value="교육" selected>교육</option>
+				    	<option value="통신">통신</option>
+				    	<option value="제조">제조</option>
+				  	</select>
+				  	<label for="floatingSelect">서브직무를 선택하세요</label>
+				</div>
+	    	</div>	    	
+	    	<div class="col-12 col-sm-6" style="padding-left:0;">
 	    		<label>급여</label>
-	    		<br/><input type="text" name="pay" class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<br/><input type="text" name="pay" value='500' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>
 	    	<div class="col-12 col-sm-6" style="padding-left:0;">
 	    		<label>근무지역</label>
-	    		<br/><input type="text" name="corp_location" class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<br/><input type="text" name="corp_location" value='서울 서초구' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>
-	    	<div class="col-12 col-sm-6">
+	    	<div class="col-12 col-sm-6" style="padding-left:0;">
 	    		<label>포지션</label>
-	    		<br/><input type="text" name="position" class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<br/><input type="text" name="position" value='백엔드개발, 팀원' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>
 	    	<div class="col-12 col-sm-6" style="padding-left:0;">
 	    		<label>계약형태</label>
-	    		<br/><input type="text" name="job_type" class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<br/><input type="text" name="job_type" value='계약직' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>
-	    	<div class="col-12 col-sm-6">
+	    	<div class="col-12 col-sm-6" style="padding-left:0;">
 	    		<label>필요경력</label>
-	    		<br/><input type="text" name="required_career" class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<br/><input type="text" name="required_career" value='경력무관' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>
 	    	<div class="col-12 col-sm-6" style="padding-left:0;">
 	    		<label>학력사항</label>
-	    		<br/><input type="text" name="education_level" class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<br/><input type="text" name="education_level" value='학력무관' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>
-	    	<div class="col-12 col-sm-6">
+	    	<div class="col-12 col-sm-6" style="padding-left:0;">
 	    		<label>근무방식</label>
-	    		<br/><input type="text" name="work_type" class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<br/><input type="text" name="work_type" value='상근' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>
 	    	<div class="col-12 col-sm-6" style="padding-left:0;">
 		    		<label>급여지급일</label>
-	    		<br/><input type="text" name="pay_date" class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<br/><input type="text" name="pay_date" value='매월 32일' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div> 
-	    	<div class="col-12 col-sm-6" style="margin-bottom:20px;">
+	    	<div class="col-12 col-sm-6" style="margin-bottom:20px; padding-left:0;">
 	    		<label>필수스킬</label>
-		    		<br/><input type="text" name="required_skill" class="form-control mansearch_board_insert_form" place autocomplete="off">
+		    		<br/><input type="text" name="required_skill" value='고기굽기' class="form-control mansearch_board_insert_form" place autocomplete="off">
 	    	</div>       	    	     	    	
 	  	</div>
 	</div>

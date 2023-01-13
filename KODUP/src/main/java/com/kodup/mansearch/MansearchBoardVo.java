@@ -1,6 +1,23 @@
 package com.kodup.mansearch;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MansearchBoardVo {
+	public String getCorp_phone() {
+		return corp_phone;
+	}
+	public void setCorp_phone(String corp_phone) {
+		this.corp_phone = corp_phone;
+	}
+	public String getCorp_email() {
+		return corp_email;
+	}
+	public void setCorp_email(String corp_email) {
+		this.corp_email = corp_email;
+	}
+	List<MansearchAttVo> attList = new ArrayList<MansearchAttVo>();
+
 	int mansearch_sno;
 	int sno;
 	String work_start;
@@ -18,16 +35,21 @@ public class MansearchBoardVo {
 	String pay_date;
 	// 다중 JOIN을 위한 필드	
 	String boardtype;
-	String corp_name;
-	String corp_logo;
 	String subject;
 	String doc;
+	String id;
 	String manager_name;
 	String manager_phone;
 	String manager_email;
-	String id;
+	String corp_name;
+	String corp_logo;
+	String corp_phone;
+	String corp_email;
+	
 	// 마감일을 구하기 위한 필드
 	String deadlinecount;
+
+    public List<MansearchAttVo> getAttList() {return attList;    }
 
 	public String getId() {
 		return id;
