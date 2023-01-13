@@ -17,4 +17,6 @@ public interface QnaBoardMapper {
 	public int qnaDeleteR(QnaBoardVo qbVo);
 	public int qnaReplDeleteR(int repl_sno);
 	public int replChaetaek(int repl_sno);
+	public int insertRepl(QnaBoardReplVo qbrVo);
+	public int insertInnerRepl(QnaBoardReplVo qbrVo);
 }

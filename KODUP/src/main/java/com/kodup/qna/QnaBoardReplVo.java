@@ -1,12 +1,19 @@
 package com.kodup.qna;
 
 public class QnaBoardReplVo {
-	int grp,seq,deep,repl_status,repl_sno,countinnerrepl,repl_delete;
-	String repl_nal,repl_doc,profile_img,nickname;
+	int repl_sno,sno,grp,seq,deep,repl_status,countinnerrepl,repl_delete;
+	String id,repl_nal,repl_doc,profile_img,nickname,sessionid;
 	
 	
 	
+	public String getId() {	return id;	}
+	public void setId(String id) {	this.id = id;	}
+	//qnaboardmapper.xml 에서 insertRepl의 파라미터 타입 QnaBoardReplVo로 한번에 받아서 처리할려고 그냥추가함,시간부족
+	public String getSessionid() {	return sessionid;}
+	public void setSessionid(String sessionid) {	this.sessionid = sessionid;}
 	
+	public int getSno() {	return sno;}
+	public void setSno(int sno) {	this.sno = sno;	}
 	//repl_delete-댓글삭제상태값 : 이 값에 따라 출력되는 페이지가 달라짐
 	//0:일반글 , 1:작성자가삭제한댓글 , 2:관리자가삭제한댓글
 	public int getRepl_delete() {return repl_delete;}

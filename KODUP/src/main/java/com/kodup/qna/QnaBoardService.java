@@ -90,6 +90,44 @@ public class QnaBoardService {
 		
 		return b;
 	}
+	
+	public boolean insertRepl(QnaBoardReplVo qbrVo) {
+		boolean b = true;
+		
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		Object savePoint = status.createSavepoint();
+		
+		
+		int cnt = mapper.insertRepl(qbrVo); //sno에 해당하는 테이블의 board_status를 1로 바꿈
+		if(cnt<1) {	b=false; }
+		
+		if(b) manager.commit(status);
+		else status.rollbackToSavepoint(savePoint);
+		
+		return b;
+	}
+	
+	
+	
+	public boolean insertInnerRepl(QnaBoardReplVo qbrVo) {
+		boolean b = true;
+		
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		Object savePoint = status.createSavepoint();
+		
+		
+		int cnt = mapper.insertInnerRepl(qbrVo); //sno에 해당하는 테이블의 board_status를 1로 바꿈
+		if(cnt<1) {	b=false; }
+		
+		if(b) manager.commit(status);
+		else status.rollbackToSavepoint(savePoint);
+		
+		return b;
+	}
+	
+	
+	
+	
 }
 
 

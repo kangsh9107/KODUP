@@ -124,16 +124,56 @@ public class QnaBoardController {
 		qbVo = service.view(qbVo.getSno());
 	
 		List<QnaBoardReplVo> replList = service.replList(qbVo.getSno());
-		mv.addObject("msg",msg);
+		mv.addObject("msg",msg);	//고도화시 이 msg를 가공해서 jsp에 뿌려주자
 		mv.addObject("qbVo",qbVo);
 		mv.addObject("replList",replList);
 		mv.setViewName("/qna/qna_view");
 		return mv;
 		
 	}
+	@RequestMapping("/qna/qna_view/insertRepl")
+	public ModelAndView insertRepl(QnaBoardReplVo qbrVo, QnaBoardVo qbVo) {
+		String msg="";
+		ModelAndView mv = new ModelAndView();
+		boolean b = service.insertRepl(qbrVo);
+		
+		if(!b) {
+			msg = "댓글 입력 중 오류 발생";
+		}
+		
+		qbVo = service.view(qbVo.getSno());
+		
+		List<QnaBoardReplVo> replList = service.replList(qbVo.getSno());
+		
+		//mv.addObject("attList",attlist);
+		mv.addObject("msg",msg);	//고도화시 이 msg를 가공해서 jsp에 뿌려주자jsp에서 스크립틀릿열고 alert(${msg})등 할수있음
+		mv.addObject("qbVo",qbVo);
+		mv.addObject("replList",replList);
+		mv.setViewName("/qna/qna_view");
+		return mv;
+	}
 	
-	
-	
+	@RequestMapping("/qna/qna_view/insertInnerRepl")
+	public ModelAndView insertInnerRepl(QnaBoardReplVo qbrVo, QnaBoardVo qbVo) {
+		String msg="";
+		ModelAndView mv = new ModelAndView();
+		boolean b = service.insertInnerRepl(qbrVo);
+		
+		if(!b) {
+			msg = "댓글 입력 중 오류 발생";
+		}
+		
+		qbVo = service.view(qbVo.getSno());
+		
+		List<QnaBoardReplVo> replList = service.replList(qbVo.getSno());
+		
+		//mv.addObject("attList",attlist);
+		mv.addObject("msg",msg);	//고도화시 이 msg를 가공해서 jsp에 뿌려주자jsp에서 스크립틀릿열고 alert(${msg})등 할수있음
+		mv.addObject("qbVo",qbVo);
+		mv.addObject("replList",replList);
+		mv.setViewName("/qna/qna_view");
+		return mv;
+	}
 	
 	
 	

@@ -16,7 +16,7 @@
     </select>
     
     <select id="replList" parameterType="Integer" resultType="com.kodup.qna.QnaBoardReplVo">
-		SELECT r.repl_delete, r.repl_sno, r.grp, r.seq, r.deep, r.repl_nal, r.repl_doc, rs.repl_status,
+		SELECT r.id, r.repl_delete, r.repl_sno, r.grp, r.seq, r.deep, r.repl_nal, r.repl_doc, rs.repl_status,
 		m.profile_img, m.nickname,
 		(select count(*) from repl where grp=r.grp and seq>r.seq) countinnerrepl
 		FROM repl r LEFT JOIN repl_selected rs ON r.repl_sno = rs.repl_sno
@@ -41,5 +41,19 @@
     </update>
     <insert id='replChaetaek' parameterType="Integer">
     	insert into repl_selected values(${repl_sno},1)
+    </insert>
+    <insert id='insertRepl' parameterType="com.kodup.qna.QnaBoardReplVo">
+    	insert into repl(repl_doc,id,sno, grp,seq,deep,repl_nal) 
+		values("${repl_doc}","${sessionid}",${sno},
+		(select grp from ( select count(*) as grp from repl where deep=0) as repl_temp),
+		(select seq from ( select count(*) as seq from repl) as repl_temp),
+		0,sysdate())
+    </insert>
+    <insert id='insertInnerRepl' parameterType="com.kodup.qna.QnaBoardReplVo">
+    	insert into repl(repl_doc,id,sno, grp,seq,deep,repl_nal) 
+		values("${repl_doc}","${sessionid}",${sno},
+		${grp},
+		(select seq from ( select count(*) as seq from repl) as repl_temp),
+		1,sysdate()) 
     </insert>
 </mapper>
