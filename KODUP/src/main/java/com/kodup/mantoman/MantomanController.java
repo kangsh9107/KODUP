@@ -29,7 +29,7 @@ public class MantomanController {
 		if(grade.equals("3")) {
 			mtmVo.setGrade("파트너멘토");
 		}else if(grade.equals("2")) {
-			mtmVo.setGrade("플러스멘토");
+			mtmVo.setGrade("플러스멘토"); 
 		}else if(grade.equals("1")) {
 			mtmVo.setGrade("퍼스널멘토");
 		}else if(grade.equals("0")) {
