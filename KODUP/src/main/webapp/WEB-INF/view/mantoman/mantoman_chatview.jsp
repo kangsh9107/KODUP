@@ -45,7 +45,7 @@ body{
 	background-color:#3a3a3a;
 }
 
-#chatt>.chattNav>#mid{
+#chatt>.chattNav>#yid{
 	position:absolute;
 	top:13px;
 	left:60px;
@@ -57,7 +57,7 @@ body{
 	text-align:center;
 	font-family: 'SebangGothic';
 }
-
+/* 
 #chatt>.chattNav>#btnLogin{
 	position:absolute;
 	background-color:#c89d9d;
@@ -69,7 +69,7 @@ body{
 	border:1.5px solid #534444;
 	font-family: 'BMJua';
 	vertical-align: center;
-}
+} */
 
 #chatt>.chattNav .btnBack{
 	position:absolute;
@@ -218,18 +218,20 @@ body{
 </style>
 </head>
 <input type='hidden' value='${param.roomCode }' class="roomCode_hidden">
+<input type='hidden' value='${param.sessionId }' class="sessionId_hidden">
 <div class='slide_in'>
 	<div id='chatt'>
 		<div class='chattNav'>
 			<img src='../images/basic_profile.jpg' class='profileImg'>
-			<input type='text' id='mid' value='옥다방고양이' size='9'>
-			<input type='button' value='로그인' id='btnLogin'>
-			<a href='/mantoman/mantoman_index'><img src='../images/back_button.png' class='btnBack'></a>
+			<input type='text' id='yid' value='${param.yourNickname }' size='9'>
+			<input type='hidden' id='mid' value='${param.myNickname }'>
+			<!-- <input type='button' value='로그인' id='btnLogin'> -->
+			<a href='/mantoman/mantoman_index?sessionId=${param.sessionId }'><img src='../images/back_button.png' class='btnBack'></a>
 		</div>
 		<br/>
 		<div id='talk'></div>
 		<div id='sendZone'>
-			<input type='text' id='msg'>
+			<input type='text' id='msg' autocomplete='off'>
 			<input type='button' value='전 송' id='btnSend'>
 		</div>
 	</div>
@@ -244,13 +246,13 @@ var data = {};//전송 데이터(JSON)
 
 var ws;
 var mid = getId('mid');
-var btnLogin = getId('btnLogin');
+//var btnLogin = getId('btnLogin');
 var btnSend = getId('btnSend');
 var talk = getId('talk');
 var msg = getId('msg');
 var roomCode = document.querySelector(".roomCode_hidden").value;
 
-btnLogin.onclick = function(){
+window.onload = function(){
 	ws = new WebSocket("ws://" + location.host + "/chatt");
 	
 	ws.onmessage = function(msg){
@@ -292,8 +294,8 @@ btnLogin.onclick = function(){
 			talk.scrollTop=talk.scrollHeight;//스크롤바 하단으로 이동
 		}
 	}
-	btnLogin.disabled=true;
-	btnLogin.value='접속됨';
+/* 	btnLogin.disabled=true;
+	btnLogin.value='접속됨'; */
 }
 		
 
@@ -311,6 +313,7 @@ btnSend.onclick = function(){
 function send(){
 	if(msg.value.trim() != ''){
 		data.mid = getId('mid').value;
+		console.log("mid : " + data.mid);
 		data.msg = msg.value;
 		data.date = new Date().toLocaleString();
 		data.roomCode = roomCode;

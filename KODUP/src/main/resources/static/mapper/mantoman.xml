@@ -14,6 +14,6 @@
 		SELECT m.id, m.nickname, m.profile_img, m.grade,
         c.chat_sno, c.chat_status, mi.introduce
 		FROM member m JOIN chat c ON m.id = c.id
-                 LEFT JOIN member_introduce mi ON m.id = mi.id;
+        LEFT JOIN member_introduce mi ON m.id = mi.id;
 	</select>
 </mapper>

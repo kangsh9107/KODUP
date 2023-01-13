@@ -18,8 +18,8 @@ public class MantomanService {
 		return mtmVo;
 	}
 	
-	public List<MantomanVo> partnerMentoList() {
-		List<MantomanVo> list = mapper.partnerMentoList();
+	public List<MantomanVo> selectMentoList() {
+		List<MantomanVo> list = mapper.selectMentoList();
 		return list;
 	}
 }

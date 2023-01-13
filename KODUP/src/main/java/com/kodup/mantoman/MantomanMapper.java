@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface MantomanMapper {
 	public MantomanVo selectId(String sessionId);
-	public List<MantomanVo> partnerMentoList();
+	public List<MantomanVo> selectMentoList();
 }

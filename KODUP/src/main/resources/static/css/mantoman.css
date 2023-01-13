@@ -93,6 +93,7 @@ body{
 .mantoman_wrapper>.mantoman_main .mantoman_nickname{
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size:17px;
+	border:none;
 }
 
 .mantoman_wrapper>.mantoman_main .mantoman_grade{
@@ -153,6 +154,7 @@ body{
 	top:16px;
 	left:65px;
 	font-size:16px;
+	
 }
 
 .chat_user .profile_phrases{
@@ -213,8 +215,48 @@ body{
   }
 }
 
+
 .clickSection{
 	cursor:pointer;
 }
 
+.chat_user{
+	position:relative;
+}
 
+.mentorCallDiv{
+	z-index: 20;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:80px;
+	padding:0;
+	background-color:white;
+	box-shadow: rgba(1, 0, 0, 0.1) 0px 10px 5px -5px;
+	animation: slideIn 0.7s ease forwards;
+}
+
+.mentorCallDiv>.wrapper{
+	margin:10px;
+}
+
+.mentorCallDiv>.wrapper>input[type=text]{
+	width:45%;
+}
+
+.mentorCallDiv>.wrapper>input[type=button]{
+	margin-left:10px;
+}
+
+.CancelAlertDiv{
+	z-index: 20;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:80px;
+	padding:0;
+	background-color:white;
+	animation: slideIn 0.7s ease forwards;
+}

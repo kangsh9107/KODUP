@@ -37,10 +37,6 @@
 			</div>
 		</div>
 	</div>
-	<div class='test'>
-		<input type='button' value='m00111' class='btnTest'>
-		<input type='button' value='m00112' class='btnTest'>
-	</div>
 </div>
 </body>
 </html>
