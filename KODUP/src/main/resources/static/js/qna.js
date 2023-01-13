@@ -70,11 +70,14 @@ $(document).ready(function () {
 	        link: [],
 	        air: []
 	    }
+	   
 	});
 });
 $('.btnBoardtype').on('click', function() {
 	$('#center').load('/qna/qna');
 });
+
+
 
 //게시글 본문 토글함수(대댓입력,댓글접기)
 function insertFormToggle(repl_sno){
@@ -91,16 +94,19 @@ function insertFormToggle(repl_sno){
 
 function innerReplToggle(grp){
     var replInnerSectionId = "repl_inner_section"+grp;
-    var replInnerCon = $('#' + replInnerSectionId).css("display");
+    var replInnerCon = $("." + replInnerSectionId).css("display");
     console.log("리플섹션:"+replInnerSectionId);
     console.log("클릭된grp:"+grp);
     if( replInnerCon == "none"){
-        $('#' +replInnerSectionId).css('display','block');
+        $('.' +replInnerSectionId).css('display','block');
     }
     else {
-        $('#' +replInnerSectionId).css('display','none');
+        $('.' +replInnerSectionId).css('display','none');
     }
 }
+
+
+
 
 //추천,비추천
 $('#btn_viewpage_thumbup').on('click', function(){
@@ -132,19 +138,6 @@ $('.btnDeleteR').on('click', function(){
 
 
 //댓글Btn
-//btnReplDeleteR
-/*
-$('.btnReplDeleteR').on('click', function(){
-    var yn = confirm('댓글을 삭제하시겠습니까 ?');
-    if( !yn ) return;
-    
-    var param = $('#qna_view').serialize();
-    $.post("/qna/qna_view/ReplDeleteR", param, function(data){
-       $('#center').html(data);
-    })
-})
-*/
-
 function view_repl_deleteR(repl_sno){
 	var yn = confirm('댓글을 삭제하시겠습니까 ?');
     if( !yn ) return;
@@ -173,6 +166,84 @@ function reward_chaetaek(repl_sno){
     })
 }
 
+//본문 댓글 입력
+function view_insert_repl(){
+  	//메인서머노트 값 가져오기
+    var summernoteContent = $('#view_main_summernote').summernote('code'); 
+    var sessionId = $('.sessionId_hidden').val();
+    var sno = $('#view_sno').val();	//없어도될듯 콘솔찍어보기위함
+    
+    //가져온 서머노트 값을 폼태그안에 히든태그로 넣어줌
+    $('#view_summer_code').text(summernoteContent);
+    
+    console.log("서머노트내용: "+ summernoteContent);
+	console.log("sessionId: "+ sessionId);
+	console.log("sno:"+ sno)//없어도될듯 콘솔찍어보기위함
+    
+	
+	var param = $('#qna_view').serialize();
+    $.post("/qna/qna_view/insertRepl", param, function(data){
+       $('#center').html(data);
+    })
+	
+}
+
+//본문 대댓글 입력
+
+function view_insert_innerRepl(grp){
+//대댓서머노트 코드 가져오기
+  	var summernoteSerial = "view_inner_summernote"+grp;
+    var summernoteContent = $('#' + summernoteSerial).summernote('code'); 
+    var sessionId = $('#sessionId_hidden').val();
+    var sno = $('#view_sno').val();
+    
+    //매개변수로 받아온 grp를 폼태그안에 히든태그에 넣어줌
+    $('#insert_inner_repl_grp').attr("value",grp);
+    
+    
+    //가져온 서머노트 코드를 폼태그안에 히든태그에 넣어줌
+    $('#view_summer_code').text(summernoteContent);
+    
+    console.log("서머노트내용: "+ summernoteContent);
+	console.log("sessionId: "+ sessionId);
+	console.log("sno:"+ sno);
+	console.log("grp:"+grp);
+	
+	var param = $('#qna_view').serialize();
+    $.post("/qna/qna_view/insertInnerRepl", param, function(data){
+       $('#center').html(data);
+    })
+	
+}
+
+function view_update_innerRepl_open(repl_sno){
+	// 서머노트 함수가 있었다.....
+	// 서머노트에 text 쓰기
+	//$('#summernote').summernote('insertText', 써머노트에 쓸 텍스트);
+	console.log("te수정버튼, repl_sno:"+repl_sno)
+	var summernoteSerial = "view_update_innerRepl_summernote"+repl_sno;
+	var summernoteContent = $('#'+summernoteSerial);
+
+	if(summernoteContent.css("display") == "none"){		
+		summernoteContent.css('display','block');
+	}
+	else{
+		summernoteContent.css('display','none');
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+	
 
 
 

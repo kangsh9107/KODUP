@@ -13,10 +13,16 @@
 </head>
 <body>
 <form id="qna_view">
-	sno<input type='text' id="sno" name='sno' size="2"value='${qbVo.sno}' /><!-- style="visibility: hidden;" -->
-	board_delete<input type='text' id="" name='board_delete' size="2" value='${qbVo.board_delete}'/>
-	repl_sno<input type='text' id="" name='repl_sno' size="2" value='0'/>
-	nowPage<input type='text' id="" name='nowPage' value='0'/>
+	<div style=" height:20px; visibility:hidden;">
+	sno<input type='text' id="view_sno" name='sno' size="2" value='${qbVo.sno}' />      <!-- style="visibility: hidden;" -->
+	repl_sno<input type='text' name='repl_sno' size="2" value='0'/>
+	board_delete<input type='text'  name='board_delete' size="2" value='${qbVo.board_delete}'/>
+	nowPage<input type='text' name='nowPage' value='0' size="2"/>
+	sessionID<input type="text" name='sessionid' value="${sessionScope.sessionId}" size="4"/> <!-- index.jsp의 세션아이디를 그대로 el문으로 받아옴 -->
+	summerCODE<textarea name="repl_doc" id="view_summer_code" ></textarea>
+	insertInnerReplgrp<input type='text' id="insert_inner_repl_grp" name='grp' size='2' value='0'/>
+	
+	</div>
 	
 	<!-- boardtype  /  horsehead -->
 	<div id="qna_view_horsehead">
@@ -86,17 +92,28 @@
 					<span>
 						<img id="qna_view_repl_insert_profileimage_file" src="images/${qbVo.profile_img}" style="border-radius:50%;">
 					</span>
-					<div class="view_summernote"></div>
+					<textarea id="view_main_summernote" class="view_summernote"></textarea>
 				</div>
 				<div>
-					<input type="button" value="댓글입력" id="qna_view_repl_btnInsert" class="qna_view_originalBtn" style="margin-top:5px; width:100px;" >
+					<input type="button" value="댓글입력"
+					id="qna_view_repl_btnInsert" 
+					class="qna_view_originalBtn" 
+					style="margin-top:5px; width:100px;" 
+					onclick='view_insert_repl()'>
 				</div>
+				
 			</div>
 			<hr/>
 			
 			<!-- 댓글리스트 -->
 			<div id="qna_view_repl_list" style="margin-top:50px;"> 
 				<c:forEach var='replList' items='${replList}'>
+				
+				<div style="visibility:hidden;">
+					repl_doc<input type="text" size="4" value="${replList.repl_doc}"/>
+					repl_sno<input type="text"size="2" value="${replList.repl_sno}"/>
+					id<input type="text"size="2" value="${replList.id}"/>
+				</div>
 					<c:if test ='${replList.deep eq 0}'>
 						<!-- 댓글작성자프로필사진+닉네임+댓글작성시간 -->
 						<div class="qna_view_repl_profile" style="font-size:13px; margin-top:30px;">
@@ -118,6 +135,7 @@
 						style="position:relative; font-size:13px; border:1px solid #E6E6E6;
 						border-radius:10px; padding:2px;">
 							<div>
+								
 								<span>
 									<c:choose>
 										<c:when test="${replList.repl_delete eq 0}">
@@ -151,7 +169,9 @@
 						<!-- 댓글(수정,삭제)btnzone -->
 						<div class="qna_view_repl_btnzone">
 							<c:if test="${replList.repl_delete eq 0}">
-								<input type="button" class="qna_view_originalBtn" value="수정"><!-- 댓글작성자가 세션아이디와 똑같은 경우에만 활성화;수정,삭제버튼 -->
+								<input type="button" class="qna_view_originalBtn" value="수정"
+								onclick="view_update_innerRepl_open(${replList.repl_sno})"
+								><!-- 댓글작성자가 세션아이디와 똑같은 경우에만 활성화;수정,삭제버튼 -->
 								<input type="button" class="qna_view_originalBtn" value="삭제"
 								onclick="view_repl_deleteR(${replList.repl_sno})">
 								 <!-- 본문글작성자가 세션아이디와 똑같은 경우에만 활성화;채택버튼 JS:cf)confirm-->
@@ -159,23 +179,29 @@
 								 onclick="reward_chaetaek(${replList.repl_sno})">
 							</c:if>
 						</div>
+						<div id="view_update_innerRepl_summernote${replList.repl_sno}" style="display:none;">
+							<textarea  class="view_summernote"></textarea>
+						</div>
 						<!-- (ON/OFF)display ; 대댓글입력폼 -->
 						<div id="repl_insert_section${replList.repl_sno}" style="display:none; font-size:15px; margin-left:50px;">
 							<span>
 								<img id="qna_view_repl_inner_insert_profileimage_file" src="images/ITtravel.png"><!-- 세션아이디의 프로필이미지가 들어감 -->
 							</span>
 							<!-- 대댓글인서트_내용 서머노트 -->
-							<div class="view_summernote"></div>
+							<div id="view_inner_summernote${replList.grp}"class="view_summernote"></div>
 							<!-- 대댓글인서트_버튼 -->
 							<div id="qna_view_repl_inner_btnInsert" >
-								<input type="button" class="qna_view_originalBtn"  value="대댓글입력" style="width:100px;" >
+								<input type="button" class="qna_view_originalBtn" value="대댓글입력"
+								style="width:100px;"
+								onclick="view_insert_innerRepl(${replList.grp})" >
 							</div>
+							<div style="border:1px solid #999;">${replList.grp}</div>
 						</div>
 						<!-- ----------------------------------- -->
 						
 					</c:if>
 					<c:if test ='${replList.deep ne 0}'>
-						<div id="repl_inner_section${replList.grp}"style="margin-left:50px; margin-top: -30px;">
+						<div class="repl_inner_section${replList.grp}"style="margin-left:50px; margin-top: -30px;">
 							<!-- 댓글작성자프로필사진+닉네임+댓글작성시간 -->
 							<div class="qna_view_repl_profile" style="font-size:13px; margin-top:30px;">
 								<span class="qna_view_repl_profile_profileimage"><!--댓글작성자프로필사진+닉네임+댓글작성시간 한줄로 붙이기위해 inline요소인 span태그사용 -->
@@ -209,10 +235,14 @@
 							<!-- 댓글(수정,삭제)btnzone -->
 							<div class="qna_view_repl_btnzone">    
 								<c:if test="${replList.repl_delete eq 0}">
-									<input type="button" class="qna_view_originalBtn" value="수정"><!-- 댓글작성자가 세션아이디와 똑같은 경우에만 활성화;수정,삭제버튼 -->
+									<input type="button" class="qna_view_originalBtn" value="수정"
+									onclick="view_update_innerRepl_open(${replList.repl_sno})"><!-- 댓글작성자가 세션아이디와 똑같은 경우에만 활성화;수정,삭제버튼 -->
 									<input type="button" class="qna_view_originalBtn" value="삭제"
 									onclick="view_repl_deleteR(${replList.repl_sno})">
 								</c:if>
+							</div>
+							<div id="view_update_innerRepl_summernote${replList.repl_sno}" style="display:none;">
+								<textarea  class="view_summernote"></textarea>
 							</div>
 						</div>	
 					</c:if>
