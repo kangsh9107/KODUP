@@ -20,18 +20,23 @@ main();
 hotTag();
 topWriter();
 
+var index_qna = function() {
+	
+}
+
 /***** NAV *****/
+//모든 .non-click 가져옴
 const nonClick = document.querySelectorAll('.non-click');
 
 function handleClick(event) {
-	// div에서 모든 'click' 클래스 제거
+	//모든 .non-click의 .click 제거
 	nonClick.forEach((e) => { //e는 element
 		e.classList.remove('click');
 	});
-	// 클릭한 span만 'click' 클래스 추가
+	//클릭한 .non-click의 .click 추가
 	event.target.classList.add('click');
 }
-
+//.non-click 클릭시 이벤트 실행
 nonClick.forEach((e) => {
 	e.addEventListener('click', handleClick);
 });

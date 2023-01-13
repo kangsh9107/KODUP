@@ -1,5 +1,7 @@
 package com.kodup.login;
 
+import java.util.Date;
+
 public class IndexBoardVo {
 
 	int sno;
@@ -16,7 +18,7 @@ public class IndexBoardVo {
 	public String getBoardtype() { return boardtype; }
 	public void setBoardtype(String boardtype) { this.boardtype = boardtype; }
 	public String getNal() { return nal; }
-	public void setNal(String nal) { this.nal = nal; }
+	public void setNal(Date nal) { this.nal = Time.calculateTime(nal); } //time계산
 	public String getSubject() { return subject; }
 	public void setSubject(String subject) { this.subject = subject; }
 	public String getThumb() { return thumb; }
