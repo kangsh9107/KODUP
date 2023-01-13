@@ -16,7 +16,7 @@ li {
 </head>
 <body>
 <span style="display:inline-block; margin-bottom:10px;">
-	<img src="/images/${mbVo.corp_logo }" class="view_corp_logo">
+	<img src="/images/mansearch_images/${mbVo.corp_logo }" class="view_corp_logo">
 	<label>${mbVo.corp_name }</label>
 </span><br/>
 <div id="task" style="margin-bottom:5px;">${mbVo.main_task }</div>

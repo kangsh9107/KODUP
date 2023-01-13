@@ -3,16 +3,14 @@
  */
 var frm;
 var param;
-
+var memberid = document.querySelector('.member_id');
 $(document).ready(function () {
 	$('#summernote').summernote({
 		placeholder: '내용을 입력해주세요.',
 		height: 400,
 		maxHeight: 300,
 		popover: { //footer 밑 쓸모 없는 메뉴 삭제
-			image: [],
-			link: [],
-			air: []
+		
 		}
 	});
 });
@@ -47,7 +45,10 @@ $('.mansearch_update').on('click',function(){
 });
 
 $('.mansearch_board_insertR').on('click',function(){
+	window.scrollTo(0,0);
+	memberid.value = sessionId;
 	frm = $('.mansearch_input_form')[0];
+	console.log($('.corp_logo_insert').val());
 	param = new FormData(frm);
 	$.ajax({
 		type :'post',

@@ -105,7 +105,7 @@ div.button:active { /*Clicked and held*/
 	<ul class="list-group list-group-flush" style="margin-bottom: 40px;">
 		<c:forEach var="vo" items="${list }">
 			<li class="list-group-item ListGroupItem" style="padding: 10px 0 10px 0;">
-				<img id="index_profile" src="images/${vo.corp_logo }" style="vertical-align:middle;">
+				<img id="index_profile" src="images/mansearch_images/${vo.corp_logo }" style="vertical-align:middle;">
 				<span id="index_corpname">${vo.corp_name }</span>
 				<div id="task">
 					${vo.main_task }
