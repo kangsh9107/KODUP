@@ -14,8 +14,8 @@
 	</select>
  	<select id="view" parameterType="Integer" resultType="com.kodup.mansearch.MansearchBoardVo">
 		SELECT DATEDIFF(deadline, DATE_FORMAT(now(),'%Y-%m-%d')) as deadlinecount, mb.pay, mb.pay_date, mb.education_level, mb.work_type, mb.corp_location, mb.position, mb.required_career, mb.job_type, mb.required_skill, mb.deadline, 
-			   mb.main_task, mb.sub_task, mb.work_start,
-       		   b.subject, b.doc,
+			   mb.main_task, mb.sub_task,mb.work_start,mb.sno,
+       		   b.subject, b.doc, b.id,
                c.corp_logo, c.corp_name, c.manager_name, c.manager_phone, c.manager_email
 	    FROM mansearch_board mb LEFT JOIN board b 		ON mb.sno = b.sno
                                 LEFT JOIN member m      ON b.id = m.id
@@ -29,10 +29,12 @@
  	<insert id='mansearchinsert' parameterType='com.kodup.mansearch.MansearchBoardVo'>
 		insert into mansearch_board(sno,work_start,pay,corp_location,position,job_type,required_career,education_level,work_type,pay_date,required_skill,deadline,main_task,sub_task)
 		values((select sno from board order by sno desc limit 0,1),#{work_start},#{pay},#{corp_location},#{position},#{job_type},#{required_career},#{education_level},#{work_type},#{pay_date},#{required_skill},#{deadline},#{main_task},#{sub_task})
-		
 	</insert>
-	<insert id='corpinsert' parameterType='com.kodup.mansearch.MansearchBoardVo'>
-		insert into corperation(id,corp_logo,corp_name,corp_phone,corp_email,manager_name,manager_phone,manager_email)
-		values(#{id},#{corp_logo},#{corp_name},#{corp_phone},#{corp_email},#{manager_name},#{manager_phone},#{manager_email})
-	</insert>	
+
+	<delete id='delete' parameterType='com.kodup.mansearch.MansearchBoardVo'>
+		DELETE FROM mb,b
+    		USING mansearch_board AS mb
+    		LEFT JOIN board AS b ON mb.sno = b.sno
+		WHERE mb.sno = ${sno}; 
+	</delete>
 </mapper>

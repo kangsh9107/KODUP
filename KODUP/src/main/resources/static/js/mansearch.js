@@ -32,7 +32,11 @@ $('.mansearch_insert').on('click',function(){
 });
 
 $('.mansearch_update').on('click',function(){
-   $('#center').load('/mansearch/mansearch_update');
+	param = $('.mansearch_frm')[0].serialize();
+	console.log('param:',param);
+	$.post("/mansearch/mansearch_update",param,function(data){
+	   $('#center').html(data);		
+	})
 });
 
 $('.mansearch_board_cancel').on('click',function(){
@@ -65,4 +69,13 @@ $('.mansearch_board_insertR').on('click',function(){
 		}
 	})
 	
+})
+
+$('.mansearch_deleteR').on('click',function(){
+	let yn = confirm('글을 삭제하시겠습니까?');
+	if(!yn) return;
+	param = $('.mansearch_frm').serialize();
+	$.post("/mansearch/mansearch_delete",param,function(){
+		$('#center').html(data);
+	})
 })

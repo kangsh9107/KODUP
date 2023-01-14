@@ -117,7 +117,7 @@ div.button:active { /*Clicked and held*/
 					<span id="work_start">${vo.work_start }(근무시작일) / </span>
 					<span id="deadline">마감 ${vo.deadlinecount }일 전</span>
 				</div><br/>
-				<div class="doc" onclick="mansearch_view(${vo.mansearch_sno})">
+				<div class="index" onclick="mansearch_view(${vo.mansearch_sno})">
 					<span id="index_doc" class="index_doc">${vo.position} | ${vo.subject }</span>
 				</div>
 				<div>

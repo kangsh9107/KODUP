@@ -218,7 +218,7 @@ div.mansearch_view_manager .col-md-2,.col-md-4{
 	padding:0;
 	margin:0;
 }
-button.mansearch_update,.mansearch_delete{
+button.mansearch_update,.mansearch_deleteR{
 	width:auto;
 	height:38px;
 	padding:6px 12px;
@@ -228,7 +228,7 @@ button.mansearch_update,.mansearch_delete{
 	border:2px solid #bb2642;
 	border-radius:5px;
 }
-button.mansearch_update:hover,.mansearch_delete:hover{
+button.mansearch_update:hover,.mansearch_deleteR:hover{
 	background-color:#871b30;
 }
 div.premium_review_title{

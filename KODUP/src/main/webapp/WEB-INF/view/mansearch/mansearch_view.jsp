@@ -15,156 +15,160 @@ li {
 </style>
 </head>
 <body>
-<span style="display:inline-block; margin-bottom:10px;">
-	<img src="/images/mansearch_images/${mbVo.corp_logo }" class="view_corp_logo">
-	<label>${mbVo.corp_name }</label>
-</span><br/>
-<div id="task" style="margin-bottom:5px;">${mbVo.main_task }</div>
-<div id="job_index" style="margin-bottom:5px;">${mbVo.sub_task }</div>
-<div class="container text-center">
-	<div class="row justify-content-md-center">
-		<div class="col mansearch_view_subject">
-			<span style="font-size:1.8rem; padding:0; margin:0;">
-				<label><strong>${mbVo.subject }</strong></label>
-			</span><br/>
-			<span class="deadline" style='font-weight:bold;'>
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2" viewBox="0 0 16 16">
-		  			 <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
-		  			 <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
-				</svg>
-				<span class="deadline_count">마감일 ${mbVo.deadline }</span>
-				
-			</span>
-			<button class='mansearch_delete' style="float:right; margin:5px;">삭제</button>
-			<button class='mansearch_update' style="float:right; margin:5px;">수정</button>
+<form class='mansearch_frm' method='post'>
+	<span style="display:inline-block; margin-bottom:10px;">
+		<img src="/images/mansearch_images/${mbVo.corp_logo }" class="view_corp_logo">
+		<label>${mbVo.corp_name }</label>
+		<input type='text' name='sno' value='${mbVo.sno }'>
+		<input type='text' name='id' class='member_id' value='${mbVo.id }'/>		
+	</span><br/>
+	<div id="task" style="margin-bottom:5px;">${mbVo.main_task }</div>
+	<div id="job_index" style="margin-bottom:5px;">${mbVo.sub_task }</div>
+	<div class="container text-center">
+		<div class="row justify-content-md-center">
+			<div class="col mansearch_view_subject">
+				<span style="font-size:1.8rem; padding:0; margin:0;">
+					<label><strong>${mbVo.subject }</strong></label>
+				</span><br/>
+				<span class="deadline" style='font-weight:bold;'>
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2" viewBox="0 0 16 16">
+			  			 <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+			  			 <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+					</svg>
+					<span class="deadline_count">마감일 ${mbVo.deadline }</span>
+					
+				</span>
+				<button type='button' class='mansearch_deleteR' style="float:right; margin:5px;">삭제</button>
+				<button type='button' class='mansearch_update' style="float:right; margin:5px;">수정</button>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="container text-left"style="margin-top:90px; padding-left:0;">
-	<div class="row">
-		<div class="col-sm datepaylocation_area">
-			<dl>
-				<dt>근무시작일</dt>
-				<dd>
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2" viewBox="0 0 16 16">
-		  				<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
-		  				<path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
-					</svg>${mbVo.work_start }
-				</dd>
-	      	</dl>	
-    	</div>
-    	<div class="col-sm datepaylocation_area">
-			<dl>
-				<dt>급여</dt>
-				<dd>
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-database" viewBox="0 0 16 16">
-  						<path d="M4.318 2.687C5.234 2.271 6.536 2 8 2s2.766.27 3.682.687C12.644 3.125 13 3.627 13 4c0 .374-.356.875-1.318 1.313C10.766 5.729 9.464 6 8 6s-2.766-.27-3.682-.687C3.356 4.875 3 4.373 3 4c0-.374.356-.875 1.318-1.313ZM13 5.698V7c0 .374-.356.875-1.318 1.313C10.766 8.729 9.464 9 8 9s-2.766-.27-3.682-.687C3.356 7.875 3 7.373 3 7V5.698c.271.202.58.378.904.525C4.978 6.711 6.427 7 8 7s3.022-.289 4.096-.777A4.92 4.92 0 0 0 13 5.698ZM14 4c0-1.007-.875-1.755-1.904-2.223C11.022 1.289 9.573 1 8 1s-3.022.289-4.096.777C2.875 2.245 2 2.993 2 4v9c0 1.007.875 1.755 1.904 2.223C4.978 15.71 6.427 16 8 16s3.022-.289 4.096-.777C13.125 14.755 14 14.007 14 13V4Zm-1 4.698V10c0 .374-.356.875-1.318 1.313C10.766 11.729 9.464 12 8 12s-2.766-.27-3.682-.687C3.356 10.875 3 10.373 3 10V8.698c.271.202.58.378.904.525C4.978 9.71 6.427 10 8 10s3.022-.289 4.096-.777A4.92 4.92 0 0 0 13 8.698Zm0 3V13c0 .374-.356.875-1.318 1.313C10.766 14.729 9.464 15 8 15s-2.766-.27-3.682-.687C3.356 13.875 3 13.373 3 13v-1.302c.271.202.58.378.904.525C4.978 12.71 6.427 13 8 13s3.022-.289 4.096-.777c.324-.147.633-.323.904-.525Z"/>
-					</svg>${mbVo.pay }만원
-				</dd>
-	      	</dl>
-    	</div>	
-    	<div class="col-sm datepaylocation_area">
-			<dl>
-				<dt>근무지역</dt>
-				<dd>
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
-  						<path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
-  						<path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-					</svg>${mbVo.corp_location }
-				</dd>
-	      	</dl>
-    	</div>
-  </div>
-</div>
-<div class="container text-right mansearch_view_element">
-  	<div class="row">
-    	<div class="col-sm element_left">
-      		<div class='element_left_title'>
-      			포지션
-      		</div>
-      		<div class='element_left_doc'>
-      			${mbVo.position }
-      		</div>      		
-    	</div>
-    	<div class="col-sm element_right">
-      		<div class='element_right_title'>
-      			계약형태
-      		</div>
-      		<div class='element_right_doc'>
-      			${mbVo.job_type }
-      		</div>      		
-    	</div>
+	<div class="container text-left"style="margin-top:90px; padding-left:0;">
+		<div class="row">
+			<div class="col-sm datepaylocation_area">
+				<dl>
+					<dt>근무시작일</dt>
+					<dd>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2" viewBox="0 0 16 16">
+			  				<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+			  				<path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+						</svg>${mbVo.work_start }
+					</dd>
+		      	</dl>	
+	    	</div>
+	    	<div class="col-sm datepaylocation_area">
+				<dl>
+					<dt>급여</dt>
+					<dd>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-database" viewBox="0 0 16 16">
+	  						<path d="M4.318 2.687C5.234 2.271 6.536 2 8 2s2.766.27 3.682.687C12.644 3.125 13 3.627 13 4c0 .374-.356.875-1.318 1.313C10.766 5.729 9.464 6 8 6s-2.766-.27-3.682-.687C3.356 4.875 3 4.373 3 4c0-.374.356-.875 1.318-1.313ZM13 5.698V7c0 .374-.356.875-1.318 1.313C10.766 8.729 9.464 9 8 9s-2.766-.27-3.682-.687C3.356 7.875 3 7.373 3 7V5.698c.271.202.58.378.904.525C4.978 6.711 6.427 7 8 7s3.022-.289 4.096-.777A4.92 4.92 0 0 0 13 5.698ZM14 4c0-1.007-.875-1.755-1.904-2.223C11.022 1.289 9.573 1 8 1s-3.022.289-4.096.777C2.875 2.245 2 2.993 2 4v9c0 1.007.875 1.755 1.904 2.223C4.978 15.71 6.427 16 8 16s3.022-.289 4.096-.777C13.125 14.755 14 14.007 14 13V4Zm-1 4.698V10c0 .374-.356.875-1.318 1.313C10.766 11.729 9.464 12 8 12s-2.766-.27-3.682-.687C3.356 10.875 3 10.373 3 10V8.698c.271.202.58.378.904.525C4.978 9.71 6.427 10 8 10s3.022-.289 4.096-.777A4.92 4.92 0 0 0 13 8.698Zm0 3V13c0 .374-.356.875-1.318 1.313C10.766 14.729 9.464 15 8 15s-2.766-.27-3.682-.687C3.356 13.875 3 13.373 3 13v-1.302c.271.202.58.378.904.525C4.978 12.71 6.427 13 8 13s3.022-.289 4.096-.777c.324-.147.633-.323.904-.525Z"/>
+						</svg>${mbVo.pay }만원
+					</dd>
+		      	</dl>
+	    	</div>	
+	    	<div class="col-sm datepaylocation_area">
+				<dl>
+					<dt>근무지역</dt>
+					<dd>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+	  						<path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+	  						<path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+						</svg>${mbVo.corp_location }
+					</dd>
+		      	</dl>
+	    	</div>
+	  </div>
 	</div>
-</div>
-<div class="container text-right mansearch_view_element">
-  	<div class="row">
-    	<div class="col-sm element_left">
-      		<div class='element_left_title'>
-      			필요경력
-      		</div>
-      		<div class='element_left_doc'>
-      			${mbVo.required_career }
-      		</div>
-    	</div>
-    	<div class="col-sm element_right">
-      		<div class='element_right_title'>
-      			학력사항
-      		</div>
-      		<div class='element_right_doc'>
-      			${mbVo.education_level }
-      		</div>
-    	</div>
+	<div class="container text-right mansearch_view_element">
+	  	<div class="row">
+	    	<div class="col-sm element_left">
+	      		<div class='element_left_title'>
+	      			포지션
+	      		</div>
+	      		<div class='element_left_doc'>
+	      			${mbVo.position }
+	      		</div>      		
+	    	</div>
+	    	<div class="col-sm element_right">
+	      		<div class='element_right_title'>
+	      			계약형태
+	      		</div>
+	      		<div class='element_right_doc'>
+	      			${mbVo.job_type }
+	      		</div>      		
+	    	</div>
+		</div>
 	</div>
-</div>
-<div class="container text-right mansearch_view_element">
-  	<div class="row">
-    	<div class="col-sm element_left">
-      		<div class='element_left_title'>
-      			근무방식
-      		</div>
-			<div class='element_left_doc'>
-      			${mbVo.work_type }
-      		</div>      		
-    	</div>
-    	<div class="col-sm element_right">
-      		<div class='element_right_title'>
-      			급여지급일
-      		</div>
-      		<div class='element_right_doc'>
-      			${mbVo.pay_date }
-      		</div>      		
-    	</div>
+	<div class="container text-right mansearch_view_element">
+	  	<div class="row">
+	    	<div class="col-sm element_left">
+	      		<div class='element_left_title'>
+	      			필요경력
+	      		</div>
+	      		<div class='element_left_doc'>
+	      			${mbVo.required_career }
+	      		</div>
+	    	</div>
+	    	<div class="col-sm element_right">
+	      		<div class='element_right_title'>
+	      			학력사항
+	      		</div>
+	      		<div class='element_right_doc'>
+	      			${mbVo.education_level }
+	      		</div>
+	    	</div>
+		</div>
 	</div>
-</div>
-<div class="container text-right mansearch_view_element">
-  	<div class="row">
-    	<div class="col-sm element_left">
-      		<div class='element_left_title'>
-      			필수스킬
-      		</div>
-			<div class='element_left_doc'>
-      			${mbVo.required_skill }
-      		</div>      		
-    	</div>
-    	<div class="col-sm element_right" style="border:none;">
-      		<div class='element_right_title'>
-      		
-      		</div>
-      		<div class='element_right_doc'>
-      		
-      		</div>      		
-    	</div>
+	<div class="container text-right mansearch_view_element">
+	  	<div class="row">
+	    	<div class="col-sm element_left">
+	      		<div class='element_left_title'>
+	      			근무방식
+	      		</div>
+				<div class='element_left_doc'>
+	      			${mbVo.work_type }
+	      		</div>      		
+	    	</div>
+	    	<div class="col-sm element_right">
+	      		<div class='element_right_title'>
+	      			급여지급일
+	      		</div>
+	      		<div class='element_right_doc'>
+	      			${mbVo.pay_date }
+	      		</div>      		
+	    	</div>
+		</div>
 	</div>
-</div>
-<br/>
-<div class="mansearch_view_doc">
-<label style="font-weight:bold; font-size:0.9rem; margin-bottom:10px; margin-top:-10px;">프로젝트 소개</label>
-<pre>
-
-
-${mbVo.doc }
-</pre>
-</div>
+	<div class="container text-right mansearch_view_element">
+	  	<div class="row">
+	    	<div class="col-sm element_left">
+	      		<div class='element_left_title'>
+	      			필수스킬
+	      		</div>
+				<div class='element_left_doc'>
+	      			${mbVo.required_skill }
+	      		</div>      		
+	    	</div>
+	    	<div class="col-sm element_right" style="border:none;">
+	      		<div class='element_right_title'>
+	      		
+	      		</div>
+	      		<div class='element_right_doc'>
+	      		
+	      		</div>      		
+	    	</div>
+		</div>
+	</div>
+	<br/>
+	<div class="mansearch_view_doc">
+	<label style="font-weight:bold; font-size:0.9rem; margin-bottom:10px; margin-top:-10px;">프로젝트 소개</label>
+	<pre>
+	
+	
+	${mbVo.doc }
+	</pre>
+	</div>
+</form>
 <div class="container text-center mansearch_view_manager">
 	<div class="row" style="vertical-align:middle;">
     	<div class="col-md-2 col-sm-12">담당자</div>
