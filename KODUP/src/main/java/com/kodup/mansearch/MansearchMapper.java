@@ -14,5 +14,7 @@ public interface MansearchMapper {
 	public MansearchBoardVo view(int sno);
 	public int boardinsert(MansearchBoardVo mbVo);
 	public int mansearchinsert(MansearchBoardVo mbVo);
+	public int boardupdate(MansearchBoardVo mbVo);
+	public int mansearchupdate(MansearchBoardVo mbVo);	
 	public int delete(MansearchBoardVo mbVo);	
 }

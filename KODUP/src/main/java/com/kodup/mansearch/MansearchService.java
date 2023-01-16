@@ -62,6 +62,30 @@ public class MansearchService {
 		return flag;
 	}
 	
+	public boolean boardupdate(MansearchBoardVo mbVo) {
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		int cnt = mapper.boardupdate(mbVo);
+		boolean flag = true;
+		if (cnt<1) {
+			status.rollbackToSavepoint(savePoint);
+			flag = false;
+		}
+		return flag;
+	}
+	
+	public boolean mansearchupdate(MansearchBoardVo mbVo) {
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		int cnt = mapper.mansearchupdate(mbVo);
+		boolean flag = true;
+		if (cnt<1) {
+			status.rollbackToSavepoint(savePoint);
+			flag = false;
+		}
+		return flag;
+	}	
+	
 
 	
 	public boolean delete(MansearchBoardVo mbVo) {

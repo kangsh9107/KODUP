@@ -14,8 +14,8 @@
 	</select>
  	<select id="view" parameterType="Integer" resultType="com.kodup.mansearch.MansearchBoardVo">
 		SELECT DATEDIFF(deadline, DATE_FORMAT(now(),'%Y-%m-%d')) as deadlinecount, mb.pay, mb.pay_date, mb.education_level, mb.work_type, mb.corp_location, mb.position, mb.required_career, mb.job_type, mb.required_skill, mb.deadline, 
-			   mb.main_task, mb.sub_task,mb.work_start,mb.sno,
-       		   b.subject, b.doc, b.id,
+			   mb.main_task, mb.sub_task,mb.work_start,mb.sno, mb.mansearch_sno,
+       		   b.subject, b.doc, b.id, b.sno,
                c.corp_logo, c.corp_name, c.manager_name, c.manager_phone, c.manager_email
 	    FROM mansearch_board mb LEFT JOIN board b 		ON mb.sno = b.sno
                                 LEFT JOIN member m      ON b.id = m.id
@@ -30,7 +30,13 @@
 		insert into mansearch_board(sno,work_start,pay,corp_location,position,job_type,required_career,education_level,work_type,pay_date,required_skill,deadline,main_task,sub_task)
 		values((select sno from board order by sno desc limit 0,1),#{work_start},#{pay},#{corp_location},#{position},#{job_type},#{required_career},#{education_level},#{work_type},#{pay_date},#{required_skill},#{deadline},#{main_task},#{sub_task})
 	</insert>
-
+	<update id='boardupdate' parameterType='com.kodup.mansearch.MansearchBoardVo'>
+		update board set subject = #{subject}, doc = #{doc}
+		where sno = #{sno}
+	</update>
+ 	<update id='mansearchupdate' parameterType='com.kodup.mansearch.MansearchBoardVo'>
+		update mansearch_board set work_start = #{work_start}, pay = #{pay}, corp_location = #{corp_location}, position = #{position}, job_type = #{job_type}, required_career = #{required_career}, education_level = #{education_level}, work_type = #{work_type}, pay_date = #{pay_date}, required_skill = #{required_skill}, deadline = #{deadline}, main_task = #{main_task}, sub_task = #{sub_task}
+	</update>	
 	<delete id='delete' parameterType='com.kodup.mansearch.MansearchBoardVo'>
 		DELETE FROM mb,b
     		USING mansearch_board AS mb

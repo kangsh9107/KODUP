@@ -12,8 +12,8 @@
 <h3 class="mansearch_insert_title">정보수정</h3>
 
 
-<form class="mansearch_input_form" method='post'>
-			
+<form class="mansearch_update_form" method='post'>
+<input type='hidden' name='sno' value='${mbVo.sno }'><input type='hidden' name='id' class='member_id' value='${mbVo.id }'/><input type='hidden' name='mansearch_sno' value="${mbVo.mansearch_sno }"/>			
 	<input type='hidden' name='id' class='member_id' value=''/>
 	<input type='hidden' name='nowPage' value='${pVo.nowPage }'>
 	<input type='hidden' name='findStr' value='${pVo.findStr }'>

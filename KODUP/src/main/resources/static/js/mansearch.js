@@ -32,8 +32,8 @@ $('.mansearch_insert').on('click',function(){
 });
 
 $('.mansearch_update').on('click',function(){
-	param = $('.mansearch_frm')[0].serialize();
-	console.log('param:',param);
+	frm = $('.mansearch_frm')[0];
+	param = $(frm).serialize();
 	$.post("/mansearch/mansearch_update",param,function(data){
 	   $('#center').html(data);		
 	})
@@ -44,9 +44,6 @@ $('.mansearch_board_cancel').on('click',function(){
 	$('#center').load('/mansearch/mansearch');
 });
 
-$('.mansearch_update').on('click',function(){
-	$('#center').load('/mansearch/mansearch_update');
-});
 
 $('.mansearch_board_insertR').on('click',function(){
 	window.scrollTo(0,0);
@@ -78,4 +75,26 @@ $('.mansearch_deleteR').on('click',function(){
 	$.post("/mansearch/mansearch_delete",param,function(){
 		$('#center').html(data);
 	})
+})
+
+$('.mansearch_board_updateR').on('click',function(){
+	window.scrollTo(0,0);
+	memberid.value = sessionId;
+	frm = $('.mansearch_update_form')[0];
+	param = new FormData(frm);
+	$.ajax({
+		type :'post',
+		url : '/mansearch/mansearch_updateR',
+		contentType : false,
+    	processData : false,
+    	data : param,
+    	dataType : 'html',
+    	success : function(data){
+			if(data != '') alert(data);
+			frm.enctype='';
+			param = $(frm).serialize();
+	 		$('#center').load('/mansearch/mansearch',param);
+		}
+	})
+	
 })

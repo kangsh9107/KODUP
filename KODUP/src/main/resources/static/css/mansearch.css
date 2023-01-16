@@ -393,7 +393,7 @@ input.mansearch_board_insert_form input:focus {
 	outline: 0 0 0 0 !important;
 	box-shadow: 0 0 0 0 !important;
 }
-.mansearch_board_insertR{
+.mansearch_board_insertR,.mansearch_board_updateR{
 	margin-right:20px;
 	width:100px;
 	height:40px;
@@ -410,6 +410,6 @@ input.mansearch_board_insert_form input:focus {
 	border:1px solid #bb2642;
 	border-radius:5px;
 }
-.mansearch_board_cancel:hover,.mansearch_board_insertR:hover{
+.mansearch_board_cancel:hover,.mansearch_board_insertR:hover,.mansearch_board_updateR:hover{
 	background-color:#871b30;
 }

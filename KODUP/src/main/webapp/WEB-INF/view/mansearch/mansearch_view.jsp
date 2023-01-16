@@ -19,9 +19,7 @@ li {
 	<span style="display:inline-block; margin-bottom:10px;">
 		<img src="/images/mansearch_images/${mbVo.corp_logo }" class="view_corp_logo">
 		<label>${mbVo.corp_name }</label>
-		<input type='text' name='sno' value='${mbVo.sno }'>
-		<input type='text' name='id' class='member_id' value='${mbVo.id }'/>		
-	</span><br/>
+	</span><br/>																																																																																																																																					<input type='hidden' name='sno' value='${mbVo.sno }'><input type='hidden' name='id' class='member_id' value='${mbVo.id }'/><input type='hidden' name='mansearch_sno' value="${mbVo.mansearch_sno }"/><input type='hidden' name='main_task' value='${mbVo.main_task }'/><input type='hidden' name='sub_task' value='${mbVo.sub_task }'/><input type='hidden' name='subject' value='${mbVo.subject }'/><input type='hidden' name='deadline' value='${mbVo.deadline }'/><input type='hidden' name='work_start' value='${mbVo.work_start }'/><input type='hidden' name='pay' value='${mbVo.pay }'/><input type='hidden' name='corp_location' value='${mbVo.corp_location }'/><input type='hidden' name='position' value='${mbVo.position }'/><input type='hidden' name='job_type' value='${mbVo.job_type }'/><input type='hidden' name='required_career' value='${mbVo.required_career }'/><input type='hidden' name='education_level' value='${mbVo.education_level }'/><input type='hidden' name='work_type' value='${mbVo.work_type }'/><input type='hidden' name='pay_date' value='${mbVo.pay_date }'/><input type='hidden' name='required_skill' value='${mbVo.required_skill }'/><input type='hidden' name='doc' value='${mbVo.doc }'/>
 	<div id="task" style="margin-bottom:5px;">${mbVo.main_task }</div>
 	<div id="job_index" style="margin-bottom:5px;">${mbVo.sub_task }</div>
 	<div class="container text-center">
