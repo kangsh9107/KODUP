@@ -12,7 +12,7 @@
 			   mb.main_task, mb.sub_task, mb.work_start,mb.education_level, mb.work_type, mb.pay_date,
        		   b.subject,b.id,b.sno,
                c.corp_logo, c.corp_name
-	    FROM mansearch_board mb LEFT JOIN board b 		ON mb.sno = b.sno
+        FROM mansearch_board mb LEFT JOIN board b 		ON mb.sno = b.sno
                                 LEFT JOIN member m      ON b.id = m.id
                         		LEFT JOIN corperation c ON m.id = c.id
         WHERE b.boardtype='mansearch' and b.subject LIKE '%${findStr}%' or mb.position LIKE '%${findStr}%'
