@@ -113,11 +113,11 @@ span#required_skill{
 	font-size:0.8rem;
 	color:#6b7280;
 }
-button.btnMove{
+button.btnMove,.btnFirst,.btnLast,.btnPrev,.btnNext{
 	border:none;
 	background-color:white;
 }
-button.btnMove:hover{
+button.btnMove:hover,.btnNext:hover,.btnPrev:hover,.btnFirst:hover,.btnLast:hover{
 	color:#bb2642;
 }
 .dropdown_row .dropdown_content{

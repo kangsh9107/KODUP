@@ -12,6 +12,7 @@ public class PageVo {
     int endNo;
     
     int sno;
+    int mansearch_sno;
     String findStr;
     
     public void pageCompute() {

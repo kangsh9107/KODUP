@@ -38,7 +38,7 @@
 		</div>
 	</div>
 </div>
-<form class="mansearch_input_form" method='post'>
+<form class="mansearch_input_form" method='post' enctype='multipart/form-data'>
 			
 	<input type='hidden' name='id' class='member_id' value=''/>
 	<input type='hidden' name='nowPage' value='${pVo.nowPage }'>
@@ -120,16 +120,12 @@
 	    	</div>       	    	     	    	
 	  	</div>
 	</div>
-	<div class="container text-left" style="padding-left:0;">
 		<label class="info_label" style="padding-left:0;">글 작성</label>
-		<div class="row">
-			<div class="col">
-				<div class="input-group form-group" style="margin:0 0 30px 0;">
-					<div id="summernote"></div>
-				</div>		
-			</div>
+		<div class="input-group form-group" style="margin:0 0 30px 0;">
+			<textarea id='summernote' name='doc' class='doc' style=""></textarea>
 		</div>
-	</div>
+		
+				
 </form>	
 <div class="grid text-center" style="--bs-columns: 1;">
 	<div>
@@ -137,26 +133,5 @@
   		<button type='button' class="mansearch_board_insertR">저장</button>
   	</div>
 </div>
-<script>
-var logofile = document.querySelector('.corp_logo_insert');
-var logo = document.querySelector('#corp_logo');
-logo.onclick = function(){
-	logofile.click();
-}
-
-function preview(ev){
-	let event = ev || window.event;
-	let file = event.srcElement.files[0];
-	
-	let reader = new FileReader();
-	reader.onload = function(){
-		let pre_img = logo
-		let img = new Image();
-		img.src = reader.result;
-		pre_img.src = img.src;
-	}
-	reader.readAsDataURL(file);
-}
-</script>
 </body>
 </html>

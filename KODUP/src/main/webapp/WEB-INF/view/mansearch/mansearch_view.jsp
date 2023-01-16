@@ -36,8 +36,10 @@ li {
 					<span class="deadline_count">마감일 ${mbVo.deadline }</span>
 					
 				</span>
-				<button type='button' class='mansearch_deleteR' style="float:right; margin:5px;">삭제</button>
-				<button type='button' class='mansearch_update' style="float:right; margin:5px;">수정</button>
+				<c:if test="${mbVo.id eq sessionId }">
+					<button type='button' class='mansearch_deleteR' style="float:right; margin:5px;">삭제</button>
+					<button type='button' class='mansearch_update' style="float:right; margin:5px;">수정</button>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -158,11 +160,10 @@ li {
 		</div>
 	</div>
 	<br/>
-	<div class="mansearch_view_doc">
 	<label style="font-weight:bold; font-size:0.9rem; margin-bottom:10px; margin-top:-10px;">프로젝트 소개</label>
+	<div class="mansearch_view_doc">
 	<pre>
-	
-	
+	<textarea name="doc" style="display:none;">${mbVo.doc }</textarea>
 	${mbVo.doc }
 	</pre>
 	</div>

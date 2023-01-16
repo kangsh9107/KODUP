@@ -1,19 +1,6 @@
 package com.kodup.mansearch;
 
 public class MansearchBoardVo {
-	public String getCorp_phone() {
-		return corp_phone;
-	}
-	public void setCorp_phone(String corp_phone) {
-		this.corp_phone = corp_phone;
-	}
-	public String getCorp_email() {
-		return corp_email;
-	}
-	public void setCorp_email(String corp_email) {
-		this.corp_email = corp_email;
-	}
-	
 	int mansearch_sno;
 	int sno;
 	String work_start;
@@ -46,6 +33,18 @@ public class MansearchBoardVo {
 	String deadlinecount;
 
 
+	public String getCorp_phone() {
+		return corp_phone;
+	}
+	public void setCorp_phone(String corp_phone) {
+		this.corp_phone = corp_phone;
+	}
+	public String getCorp_email() {
+		return corp_email;
+	}
+	public void setCorp_email(String corp_email) {
+		this.corp_email = corp_email;
+	}
 	public String getId() {
 		return id;
 	}

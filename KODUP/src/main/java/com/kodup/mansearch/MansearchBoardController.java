@@ -18,6 +18,7 @@ public class MansearchBoardController {
 	public ModelAndView select(PageVo pVo) {
 		ModelAndView mv = new ModelAndView();
 		List<MansearchBoardVo> list = service.select(pVo);
+		pVo = service.getpVo();
 		mv.addObject("pVo",pVo);
 		mv.addObject("list",list);
 		mv.setViewName("mansearch/mansearch");
@@ -67,7 +68,7 @@ public class MansearchBoardController {
 		}
 		mv.addObject("pVo",pVo);
 		mv.addObject("msg",msg);
-		mv.setViewName("/mansearch/mansearch");
+		mv.setViewName("mansearch/mansearch");
 		
 		return mv;
 	

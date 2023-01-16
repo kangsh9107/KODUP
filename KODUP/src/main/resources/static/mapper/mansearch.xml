@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kodup.mansearch.MansearchMapper">
-	<select id="select" resultType="com.kodup.mansearch.MansearchBoardVo">
+	<select id="totList" parameterType="com.kodup.board.PageVo" resultType="Integer">
+		SELECT COUNT(mb.mansearch_sno) totSize FROM board b LEFT JOIN mansearch_board mb 	on b.sno = mb.sno											
+											                LEFT JOIN corperation c 		on b.id = c.id 
+        WHERE b.boardtype='mansearch' and b.subject LIKE '%${findStr}%' or mb.position LIKE '%${findStr}%'
+        or mb.main_task LIKE '%${findStr}%' or mb.required_skill LIKE '%${findStr}%' or c.corp_name LIKE '%${findStr}%'
+	</select>
+	<select id="select" parameterType="com.kodup.board.PageVo" resultType="com.kodup.mansearch.MansearchBoardVo">
 		SELECT DATEDIFF(deadline, DATE_FORMAT(now(),'%Y-%m-%d')) as deadlinecount, mb.mansearch_sno, mb.pay, mb.corp_location, mb.position, mb.required_career, mb.job_type, mb.required_skill, mb.deadline, 
 			   mb.main_task, mb.sub_task, mb.work_start,mb.education_level, mb.work_type, mb.pay_date,
-       		   b.subject,
+       		   b.subject,b.id,b.sno,
                c.corp_logo, c.corp_name
 	    FROM mansearch_board mb LEFT JOIN board b 		ON mb.sno = b.sno
                                 LEFT JOIN member m      ON b.id = m.id
                         		LEFT JOIN corperation c ON m.id = c.id
-        WHERE b.boardtype = 'mansearch'                		
+        WHERE b.boardtype='mansearch' and b.subject LIKE '%${findStr}%' or mb.position LIKE '%${findStr}%'
+        or mb.main_task LIKE '%${findStr}%' or mb.required_skill LIKE '%${findStr}%' or c.corp_name LIKE '%${findStr}%'           		
 		ORDER BY b.sno desc
+		limit ${startNo}, ${listSize}
 	</select>
  	<select id="view" parameterType="Integer" resultType="com.kodup.mansearch.MansearchBoardVo">
 		SELECT DATEDIFF(deadline, DATE_FORMAT(now(),'%Y-%m-%d')) as deadlinecount, mb.pay, mb.pay_date, mb.education_level, mb.work_type, mb.corp_location, mb.position, mb.required_career, mb.job_type, mb.required_skill, mb.deadline, 

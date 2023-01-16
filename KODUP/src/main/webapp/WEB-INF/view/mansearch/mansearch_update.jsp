@@ -99,7 +99,7 @@
 		<div class="row">
 			<div class="col">
 				<div class="input-group form-group" style="margin:0 0 30px 0;">
-					<div id="summernote"></div>
+					<textarea id="summernote" name='doc'>${mbVo.doc }</textarea>
 				</div>		
 			</div>
 		</div>

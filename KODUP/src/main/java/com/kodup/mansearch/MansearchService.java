@@ -28,6 +28,9 @@ public class MansearchService {
 	
 
 	public List<MansearchBoardVo> select(PageVo pVo){
+		int totSize = mapper.totList(pVo);
+		pVo.setTotSize(totSize);
+		this.pVo = pVo;
 		List<MansearchBoardVo> list = mapper.select(pVo);
 		return list;
 	}
