@@ -217,31 +217,43 @@ if(sessionId != ''){
 				var popupCall = `<div class='popupCallDiv'>
 									<br/>
 									<span>${data.mentiNickname}님이 멘토요청하였습니다.</span><br/><br/>
-									<input type="hidden" value="${data.mentiNickname}" class="mentiNickname_hidden">
-									<input type="hidden" value="${data.mentiId}" class="mentiId_hidden">
-									<input type="hidden" value="${data.mentoNickname}" class="mentoNickname_hidden">
 									<input type="text" value="보상픽셀 : ${data.rewardPixel}픽셀" readonly>
 									<input type="text" value="상담내용 : ${data.question}" size=30 readonly><br/><br/>
 									<input type="button" value="수락" class="btnAccessCall">
 									<input type="button" value="거절" class="btnRefuseCall">			
+									
+									<input type="hidden" value="${data.mentiId}" class="mentiId_hidden">
+									<input type="hidden" value="${data.mentiNickname}" class="mentiNickname_hidden">
+									<input type="hidden" value="${data.mentiProfile_img}" class="mentiProfile_img_hidden">
+									
+									<input type="hidden" value="${data.mentoId}" class="mentoId_hidden">
+									<input type="hidden" value="${data.mentoNickname}" class="mentoNickname_hidden">
+									<input type="hidden" value="${data.mentoProfile_img}" class="mentoProfile_img_hidden">
+									
+									<input type="hidden" value="${data.rewardPixel}" class="rewardPixel_hidden">
 								</div>`;
-				
+				console.log("요청 : " + data.mentoProfile_img);			
+				console.log("요청 : " +data.mentiProfile_img);			
 				$("#sockectController").append(popupCall);
 			}
 		}
-		/* job이 채팅시작일때(yourId와 myId를 구분해서 파라미터로 넘긴다) */
+		/* job이 채팅시작일때(yourId와 sessionId를 구분해서 파라미터로 넘긴다) */
 		if(data.job=="startChat"){
 			if(data.mentoId==sessionId){
 				var title  = 'popup';
 				var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=350, height=500, top=400, left=1300';
-				window.open("/mantoman/mantoman_chatview?roomCode="+data.roomCode+"&yourNickname="+data.mentiNickname+"&myNickname="+data.mentoNickname+"&sessionId="+sessionId, title, status);
+				window.open("/mantoman/mantoman_chatview?roomCode="+data.roomCode+"&yourNickname="+data.mentiNickname+"&myNickname="+data.mentoNickname
+							+"&sessionId="+sessionId+"&yourId="+data.mentiId+"&mantoman_pixel_reward="+data.mantoman_pixel_reward
+							+"&myProfile_img="+data.mentoProfile_img+"&yourProfile_img="+data.mentiProfile_img, title, status);
 			}else if(data.mentiId==sessionId){
 				var title  = 'popup';
 				var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=350, height=500, top=400, left=1300';
-				window.open("/mantoman/mantoman_chatview?roomCode="+data.roomCode+"&yourNickname="+data.mentoNickname+"&myNickname="+data.mentiNickname+"&sessionId="+sessionId, title, status);
+				window.open("/mantoman/mantoman_chatview?roomCode="+data.roomCode+"&yourNickname="+data.mentoNickname+"&myNickname="+data.mentiNickname
+							+"&sessionId="+sessionId+"&yourId="+data.mentoId+"&mantoman_pixel_reward="+data.mantoman_pixel_reward
+							+"&myProfile_img="+data.mentiProfile_img+"&yourProfile_img="+data.mentoProfile_img, title, status);
 			}
 		}
-		/* job이 채팅취소일때 */
+		/* job이 멘토 요청 취소일때 */
 		if(data.job=="CancelCall"){
 			if(data.mentoId==sessionId){
 				$('.popupCallDiv').remove();
@@ -259,7 +271,7 @@ if(sessionId != ''){
 		}
 	}
 }
-/*거절 버튼 클릭시*/
+/*요청 거절 버튼 클릭시*/
 $(document).on("click", ".btnRefuseCall", function() {
     dataArray.job = "refuseCall";
 	dataArray.mentiId = $('.mentiId_hidden').val();
@@ -271,7 +283,7 @@ $(document).on("click", ".btnRefuseCall", function() {
 	dataArray = {};
 });
 
-/* 수락 버튼 클릭시 채팅방 이동 */
+/* 요청 수락 버튼 클릭시 채팅방 이동 */
 
 $(document).on("click", ".btnAccessCall", function() {
 	function uuidv4(){
@@ -283,12 +295,20 @@ $(document).on("click", ".btnAccessCall", function() {
 	var roomCode = uuidv4();
 	
 	dataArray.job = "startChat";
-	dataArray.mentiNickname = $('.mentiNickname_hidden').val();
-	dataArray.mentoNickname = $('.mentoNickname_hidden').val();
-	dataArray.mentiId = $('.mentiId_hidden').val();
-	dataArray.mentoId = sessionId;
 	dataArray.roomCode = roomCode;
 	
+	dataArray.mentoId = $('.mentoId_hidden').val();
+	dataArray.mentoNickname = $('.mentoNickname_hidden').val();
+	dataArray.mentoProfile_img = $('.mentoProfile_img_hidden').val();
+	
+	dataArray.mentiId = $('.mentiId_hidden').val();
+	dataArray.mentiNickname = $('.mentiNickname_hidden').val();
+	dataArray.mentiProfile_img = $('.mentiProfile_img_hidden').val();
+	
+	dataArray.mantoman_pixel_reward = $('.rewardPixel_hidden').val();
+	
+	console.log("수락 멘토이미지 : " + dataArray.mentoProfile_img);
+	console.log("수락 멘티이미지 : " + dataArray.mentiProfile_img);
 	$(this).parent().remove();
 	
 	var temp = JSON.stringify(dataArray);

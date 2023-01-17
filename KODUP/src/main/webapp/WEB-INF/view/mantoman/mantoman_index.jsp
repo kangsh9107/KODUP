@@ -15,6 +15,7 @@
 		<div class="mantoman_wrapper">
 			<div class="mantoman_main">
 				<img src="../images/${mtmVo.profile_img}" class="profileImg">
+				<input type='hidden' class='mentiProfile_img_hidden' value='${mtmVo.profile_img}'>
 				<div class="setting_iconDiv">
 					<img src="../images/setting_icon.png" class="setting_icon">
 				</div>

@@ -13,12 +13,15 @@ public class MantomanVo {
 	int ban_status;
 	int pixel;
 	String grade;       //0: 일반회원, 1: 퍼스널멘토, 2: 플러스멘토, 3: 파트너멘토, 4: 게시판지기, 5: 관리자
-	String join_date;
-	int email_status;   //0: 비인증(글,댓글,추천X), 1: 인증신청, 2: 인증승인
 	int mento_status;   //0: 비인증(멘토활동X),    1: 인증신청, 2: 인증승인
-	int corp_status;    //0: 비인증(구인글X),      1: 인증신청, 2: 인증승인
 	
 	String introduce; //소개글
+	String your_id;
+	String doc;
+	String last_talktime;
+	String last_talk;
+	int mantoman_pixel_reward;
+	String roomCode;
 	
 	public String getId() { return id; }
 	public void setId(String id) { this.id = id; }
@@ -42,15 +45,23 @@ public class MantomanVo {
 	public void setPixel(int pixel) { this.pixel = pixel; }
 	public String getGrade() { return grade; }
 	public void setGrade(String grade) { this.grade = grade; }
-	public String getJoin_date() { return join_date; }
-	public void setJoin_date(String join_date) { this.join_date = join_date; }
-	public int getEmail_status() { return email_status; }
-	public void setEmail_status(int email_status) { this.email_status = email_status; }
 	public int getMento_status() { return mento_status; }
 	public void setMento_status(int mento_status) { this.mento_status = mento_status; }
-	public int getCorp_status() { return corp_status; }
-	public void setCorp_status(int corp_status) { this.corp_status = corp_status; }
 	
 	public String getIntroduce() { return introduce; }
 	public void setIntroduce(String introduce) { this.introduce = introduce; }
+	public String getYour_id() { return your_id; }
+	public void setYour_id(String your_id) { this.your_id = your_id; }
+	public String getDoc() { return doc; }
+	public void setDoc(String doc) { this.doc = doc; }
+	public String getLast_talktime() { return last_talktime; }
+	public void setLast_talktime(String last_talktime) { this.last_talktime = last_talktime; }
+	
+	public String getLast_talk() { return last_talk; }
+	public void setLast_talk(String last_talk) { this.last_talk = last_talk; }
+	public int getMantoman_pixel_reward() { return mantoman_pixel_reward; }
+	public void setMantoman_pixel_reward(int mantoman_pixel_reward) { this.mantoman_pixel_reward = mantoman_pixel_reward; }
+	public String getRoomCode() { return roomCode; }
+	public void setRoomCode(String roomCode) { this.roomCode = roomCode; }
+	
 }

@@ -31,7 +31,8 @@ $('#btnMentorList').on('click', function() {
 });
 
 $('#btnChatList').on('click', function() {
-	$('#mantoman_innerSection').load('/mantoman/mantoman_chatlist'); 
+	var mentiId = $('.mentiId_hidden').val();
+	$('#mantoman_innerSection').load('/mantoman/mantoman_chatlist?id='+mentiId);
 });
 
 document.querySelector('#btnMentorList').click();
@@ -40,14 +41,14 @@ document.querySelector('#btnMentorList').click();
 $(document).on("click", ".btnCall", function() {
 	var html = `<div class="mentorCallDiv">
 					<div class='wrapper'>
-					<span>보상픽셀</span>
-						<input type="text" class="rewardPixel">
-						<input type="button" class="btnAccess" value="확인">
+					<span>보상 픽셀</span>
+					<input type="text" class="rewardPixel">
+					<input type="button" class="btnAccess" value="확 인">
 					</div>
 					<div class='wrapper'>
-					<span>질문내용</span>
+					<span>질문 내용</span>
 						<input type="text" class="question">
-						<input type="button" class="btnCancel" value="취소">
+						<input type="button" class="btnCancel" value="취 소">
 					</div>
 				</div>`;
 	$(this).parent("form").append(html);
@@ -59,24 +60,33 @@ $(document).on("click", ".btnAccess", function() {
 	var btnAccess = document.querySelector(".btnAccess");
 	btnAccess.disabled=true;
 	btnAccess.value='요청중';
-	
+	btnAccess.style.backgroundColor = "#d08a9a";
 	var btnCancel = document.querySelector(".btnCancel");
 	btnCancel.value="요청취소";
 	
 	
 	var mentoId = this.form.mentorId.value;
 	var mentoNickname = this.form.mentoNickname.value;
+	var mentoProfile_img = this.form.mentoProfile_img_hidden.value;
+	
 	var mentiId = $('.mentiId_hidden').val();
 	var mentiNickname = $('.mantoman_nickname').val();
+	var mentiProfile_img = $('.mentiProfile_img_hidden').val();
+	
 	var rewardPixel = $('.rewardPixel').val();
 	var question = $('.question').val();
 	
 	var html2 = `<script>
 				dataArray.job = "mentoCall";
+				
 				dataArray.mentiId = "${mentiId}";
-				dataArray.mentoId = "${mentoId}";
 				dataArray.mentiNickname = "${mentiNickname}";
+				dataArray.mentiProfile_img = "${mentiProfile_img}";
+				
+				dataArray.mentoId = "${mentoId}";
 				dataArray.mentoNickname = "${mentoNickname}";
+				dataArray.mentoProfile_img = "${mentoProfile_img}";
+				
 				dataArray.rewardPixel = "${rewardPixel}";
 				dataArray.question = "${question}";
 				
@@ -110,10 +120,9 @@ $(document).on("click", ".btnCancel", function() {
 				</script>`;
 				
 	$(opener.document).find("#sockectController").append(html3);
-	console.log("확인");
-	var html4 = `<div class='CancelAlertDiv'>
-				<span>멘토요청이 취소되었습니다.</span><br/>
-				<input type='button' class='CancelCheck' value='확인'>
+	var html4 = `<div class='cancelAlertDiv'>
+					<span class='cancelMsg'>멘토요청이 취소되었습니다.</span>
+					<input type='button' class='CancelCheck' value='확인'>
 				</div>`;
 				
 	$(this).parent("div").parent("div").parent("form").append(html4);

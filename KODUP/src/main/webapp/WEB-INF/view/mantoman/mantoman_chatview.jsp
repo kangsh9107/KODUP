@@ -13,6 +13,7 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
 body{
 	-ms-overflow-style: none;
 	padding:0;
@@ -216,20 +217,25 @@ body{
 } */
 
 </style>
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 </head>
 <input type='hidden' value='${param.roomCode }' class="roomCode_hidden">
 <input type='hidden' value='${param.sessionId }' class="sessionId_hidden">
+<input type='hidden' value='${param.myProfile_img }' class='myProfile_img_hidden'>
+<input type='hidden' value='${param.yourProfile_img }' class='yourProfile_img_hidden'>
 <div class='slide_in'>
 	<div id='chatt'>
 		<div class='chattNav'>
-			<img src='../images/basic_profile.jpg' class='profileImg'>
+			<img src='../images/${param.yourProfile_img }' class='profileImg'>
 			<input type='text' id='yid' value='${param.yourNickname }' size='9'>
 			<input type='hidden' id='mid' value='${param.myNickname }'>
 			<!-- <input type='button' value='로그인' id='btnLogin'> -->
 			<a href='/mantoman/mantoman_index?sessionId=${param.sessionId }'><img src='../images/back_button.png' class='btnBack'></a>
 		</div>
 		<br/>
-		<div id='talk'></div>
+		<form id='talk' method="post" enctype="multipart/form-data" name="doc">
+			<div class='before_chat'>${param.doc }</div>
+		</form>
 		<div id='sendZone'>
 			<input type='text' id='msg' autocomplete='off'>
 			<input type='button' value='전 송' id='btnSend'>
@@ -251,6 +257,11 @@ var btnSend = getId('btnSend');
 var talk = getId('talk');
 var msg = getId('msg');
 var roomCode = document.querySelector(".roomCode_hidden").value;
+var myProfile_img = document.querySelector(".myProfile_img_hidden").value;
+var yourProfile_img = document.querySelector(".yourProfile_img_hidden").value;
+
+console.log("myProfile_img : " + myProfile_img);
+console.log("yourProfile_img : " + yourProfile_img);
 
 window.onload = function(){
 	ws = new WebSocket("ws://" + location.host + "/chatt");
@@ -266,7 +277,7 @@ window.onload = function(){
 				
 				item = `<div \${css} >
 							<span class='myId'>\${data.mid}</span>
-							<img src='../images/basic_profile.jpg' class='myPicture'>
+							<img src='../images/\${myProfile_img }' class='myPicture'>
 							<div>
 								<div class='myBalloon'>
 									<span>\${data.msg}</span>
@@ -282,7 +293,7 @@ window.onload = function(){
 				
 				item = `<div \${css} >
 							<span class='yourId'>\${data.mid}</span>
-							<img src='../images/fox_profile.png' class='yourPicture'>
+							<img src='../images/\${yourProfile_img }' class='yourPicture'>
 							<div class='yourBalloon'><span>\${data.msg}</span></div><br/>
 							<span class='dateTime'>\${data.date}</span>
 						</div>`;
@@ -292,6 +303,28 @@ window.onload = function(){
 			console.log(item);			
 			talk.innerHTML += item;
 			talk.scrollTop=talk.scrollHeight;//스크롤바 하단으로 이동
+			
+	        var frmData = talk.innerHTML;
+			var last_talk = data.msg;
+	        $.ajax({
+	            url : "/updateTalk",
+	            type : "GET",
+	            data : {
+	            	frmData : frmData
+	            	,last_talk : last_talk
+	            	,roomCode : roomCode
+	            },
+	            contentType: "application/json",
+	            dataType: "json",
+	            success : function(data){
+					if(data=="fail"){
+						alert("저장중 오류 발생");
+					}
+					//frm.enctype='';
+					//param= $(frm).serialize();
+					//$('.sectionInner').load('/board/board_select', param);
+	            }
+	        })
 		}
 	}
 /* 	btnLogin.disabled=true;
@@ -320,7 +353,8 @@ function send(){
 		var temp = JSON.stringify(data);
 		ws.send(temp);
 	}
-	msg.value ='';
+	
+    msg.value ='';
 }
 
 /* 빈방을 열어볼때(지난 대화) */
