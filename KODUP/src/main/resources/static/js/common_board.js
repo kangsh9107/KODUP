@@ -394,10 +394,11 @@ $('.btnUpdate').on('click', function() {
 var temp = $('.board_update_form')[0];
 if(temp != null) {
 	var frm = $('.board_update_form')[0];
+	var addHashtag = frm.hashtag.value.substring(1);
 	
 	var input = document.querySelector('input[name=basic]');
 	var tagify = new Tagify(input);
-	tagify.addTags(["banana", "orange", "apple"]);
+	tagify.addTags(addHashtag);
 	
 	tagify.on('add', function() {
 		console.log(tagify.value);
