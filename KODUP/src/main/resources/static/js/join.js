@@ -74,7 +74,7 @@ $('.index_btnKakaoJoinR').on('click', function() {
 					$('#center').html(data);
 					setTimeout(() => {
 						location.replace('/');
-					}, 800);
+					}, 200);
 				}
 			}
 		});
@@ -106,7 +106,7 @@ $('.index_btnLoginR').on('click', function() {
 					$('#center').html(data);
 					setTimeout(() => {
 						location.replace('/');
-					}, 1000);
+					}, 200);
 				}
 			}
 		});
@@ -165,7 +165,7 @@ $('.index_btnJoinR').on('click', function() {
 					$('#center').html(data);
 					setTimeout(() => {
 						location.replace('/');
-					}, 800);
+					}, 200);
 				}
 			}
 		});
@@ -265,7 +265,7 @@ $('.index_change_passwordR').on('click', function() {
 					$('#center').html(data);
 					setTimeout(() => {
 						location.replace('/');
-					}, 800);
+					}, 200);
 				}
 			}
 		});

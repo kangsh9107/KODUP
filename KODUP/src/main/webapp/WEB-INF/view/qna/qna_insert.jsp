@@ -94,9 +94,11 @@
 		var input = document.querySelector('input[name=basic]');
 		var tagify = new Tagify(input);
 		
+		/*
 		tagify.on('add', function() {
-			//console.log(tagify.value); //입력된 태그 확인용
+			console.log(tagify.value); //입력된 태그 확인용
 		});
+		*/
 	</script>
 </body>
 </html>

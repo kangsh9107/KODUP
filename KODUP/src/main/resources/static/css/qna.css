@@ -66,7 +66,7 @@
 	box-shadow: 0 0 0 0 !important;
 }
 
-.btnQnaInsertR, .btnQnaUpdateR, .btnList {
+.btnQnaInsertR, .btnQnaUpdateR, .btnList, .btnListView {
 	width: 60px;
 	height: 40px;
 	color: white;
@@ -76,7 +76,7 @@
 	font-weight: 600;
 }
 
-.btnQnaInsertR:hover, .btnQnaUpdateR:hover, .btnList:hover {
+.btnQnaInsertR:hover, .btnQnaUpdateR:hover, .btnList:hover, .btnListView:hover {
 	background-color: #ff3363;
 	color: white;
 }

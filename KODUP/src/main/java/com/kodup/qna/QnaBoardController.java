@@ -1,12 +1,18 @@
 package com.kodup.qna;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.kodup.common.CommonBoardPageVo;
 
 @RestController
 public class QnaBoardController {
@@ -21,16 +27,9 @@ public class QnaBoardController {
 		return mv;
 	}
 	
-	@RequestMapping("/qna/qna_update")
-	public ModelAndView qnaUpdate() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/qna/qna_update");
-		return mv;
-	}
-	
 	//성호
 	@RequestMapping("/qna/qna_view")
-	public ModelAndView qnaView(QnaBoardVo qbVo, QnaBoardReplVo qbrVo) {
+	public ModelAndView qnaView(QnaBoardVo qbVo, QnaBoardReplVo qbrVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		
 		/*
@@ -41,7 +40,9 @@ public class QnaBoardController {
 		qbVo = service.view(qbVo.getSno());
 		int checkChaeTaek =service.checkChaeTaek(qbVo.getSno());
 		List<QnaBoardReplVo> replList = service.replList(qbVo.getSno());//본문의sno를 넣어줌
+		qbVo.getHashtaglist();
 		
+		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("checkChaeTaek",checkChaeTaek);
 		System.out.println("채택스테이터스 서비스단:"+checkChaeTaek);
 		mv.addObject("qbVo",qbVo);

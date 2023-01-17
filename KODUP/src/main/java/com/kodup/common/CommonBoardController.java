@@ -34,6 +34,23 @@ public class CommonBoardController {
 		return mv;
 	}
 	
+	//Q&A 리스트 출력 back
+	@RequestMapping("/qna/qna_list_back")
+	public ModelAndView qnaListBack(CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		List<SelectBoardVo> listQna = cbService.listQna(cbpVo);
+		cbpVo = cbService.getCbpVo();
+		
+		mv.addObject("cbpVo", cbpVo);
+		mv.addObject("listQna", listQna);
+		mv.setViewName("/qna/qna");
+		return mv;
+	}
+	
 	//hashtag search
 	@RequestMapping("/login/find_hashtag")
 	public ModelAndView hashtagList(CommonBoardPageVo cbpVo) {
@@ -95,6 +112,35 @@ public class CommonBoardController {
 			mv.setViewName("/qna/qna");
 		}
 		
+		return mv;
+	}
+	
+	//UPDATE 폼 출력
+	@RequestMapping("/qna/qna_update")
+	public ModelAndView qnaUpdate(CommonBoardPageVo cbpVo, InsertBoardVo ibVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		ibVo.setQna_horsehead(req.getParameter("horsehead"));
+		ibVo.setSubject(req.getParameter("subject"));
+		ibVo.setDoc(req.getParameter("doc"));
+		
+		mv.addObject("cbpVo", cbpVo);
+		mv.addObject("ibVo", ibVo);
+		mv.setViewName("/qna/qna_update");
+		return mv;
+	}
+	
+	//UPDATER
+	@RequestMapping("/qna/qna_updateR")
+	public ModelAndView qnaUpdateR(CommonBoardPageVo cbpVo, InsertBoardVo ibVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("cbpVo", cbpVo);
+		mv.addObject("ibVo", ibVo);
+		mv.setViewName("/qna/qna_view");
 		return mv;
 	}
 	

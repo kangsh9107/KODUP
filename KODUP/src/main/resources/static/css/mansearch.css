@@ -413,3 +413,14 @@ input.mansearch_board_insert_form input:focus {
 .mansearch_board_cancel:hover,.mansearch_board_insertR:hover,.mansearch_board_updateR:hover{
 	background-color:#871b30;
 }
+span#index_doc {
+   font-size: 1rem;
+   font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+   font-weight: 600;
+   color: #111827;
+}
+
+span#index_doc:hover {
+   color: #bb2649;
+   cursor: pointer;
+}
