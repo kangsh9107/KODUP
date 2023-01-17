@@ -5,9 +5,9 @@ public class PageVo {
     int totPage;
     int startPage;
     int endPage;
-    int blockSize=5;
-    int nowPage=1;
-    int listSize=10;
+	int blockSize = 4;
+	int nowPage   = 1;
+	int listSize  = 10;
     int startNo;
     int endNo;
     

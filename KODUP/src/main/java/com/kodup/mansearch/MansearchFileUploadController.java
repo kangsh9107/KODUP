@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MansearchFileUploadController {
-	static String path="C:\\Users\\82109\\git\\KODUP\\KODUP\\src\\main\\resources\\static\\images\\mansearch_images\\";
 	
 	MansearchBoardVo mbVo = new MansearchBoardVo();
 

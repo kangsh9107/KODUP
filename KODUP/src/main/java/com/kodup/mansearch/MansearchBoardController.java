@@ -61,11 +61,12 @@ public class MansearchBoardController {
 	@RequestMapping("/mansearch/mansearch_delete")
 	public ModelAndView delete(MansearchBoardVo mbVo,PageVo pVo) {
 		ModelAndView mv = new ModelAndView();
-		String msg="";
+		String msg="삭제되었습니다.";
 		boolean b = service.delete(mbVo);
 		if(!b) {
 			msg = "삭제 중 오류 발생";
 		}
+		mv = select(pVo);
 		mv.addObject("pVo",pVo);
 		mv.addObject("msg",msg);
 		mv.setViewName("mansearch/mansearch");

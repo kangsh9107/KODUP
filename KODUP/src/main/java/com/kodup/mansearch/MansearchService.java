@@ -1,6 +1,5 @@
 package com.kodup.mansearch;
 
-import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
-import com.kodup.board.BoardVo;
 import com.kodup.board.PageVo;
 
 @Service
@@ -89,12 +87,10 @@ public class MansearchService {
 		return flag;
 	}	
 	
-
-	
 	public boolean delete(MansearchBoardVo mbVo) {
 		boolean b = true;
 		status = manager.getTransaction(new DefaultTransactionDefinition());
-		Object savePoint = status.createSavepoint();
+		savePoint = status.createSavepoint();
 		
 		System.out.println("mbVo.getSno : " + mbVo.getSno());
 
@@ -107,11 +103,6 @@ public class MansearchService {
 		else status.rollbackToSavepoint(savePoint);
 		
 		return b;
-	}
-	
-	public void fileDelete(String delFile) {
-		File file = new File(MansearchFileUploadController.path + delFile);
-		if (file.exists()) file.delete();
 	}
 	
 	public PageVo getpVo() {
