@@ -89,6 +89,7 @@ public class MypageController {
 						 @RequestParam(name = "delFile", required = false, defaultValue="") String[] delFile) {		
 		ModelAndView mv = new ModelAndView();
 		boolean b = false;
+		System.out.println("grade : " + mpVo.getGrade());
 		
 		System.out.println("mul size : " + mul.size());
 		for(MultipartFile m : mul) {

@@ -19,14 +19,14 @@
 	<!-- 회원정보 수정..파일첨부했을 때  -->
 	<update id='updateR' parameterType='com.kodup.mypage.MypageVo'>
 		UPDATE member SET nickname = #{nickname }, email= #{email }, gender= #{gender }, 
-			   			  age= #{age }, profile_img = #{profile_img}, grade = #{grade}
+			   			  age= #{age }, profile_img = #{profile_img}
 		WHERE id = #{id} 
 	</update>
 	
 	<!-- 회원정보 수정..파일첨부 안했을때  -->
 	<update id='update' parameterType='com.kodup.mypage.MypageVo'>
 		UPDATE member SET nickname = #{nickname }, email= #{email }, gender= #{gender }, 
-			   			  age= #{age }, grade = #{grade}
+			   			  age= #{age }
 		WHERE id = #{id} 
 	</update>
 	

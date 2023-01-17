@@ -24,7 +24,6 @@
 					style='display: none;'>
 				</div>                        
 			</div>		
-		
 			<div class='mypage_member_profile_item' style='display: inline-block;'>
 				<span class='mm_text'>아이디</span><input type='text' name='id' class='name' value=${mpVo.id } readonly><br/>
 				<span class='mm_text'>닉네임</span><input type='text' name='nickname' class='name' value=${mpVo.nickname }><br/>
