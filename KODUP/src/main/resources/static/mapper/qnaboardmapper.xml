@@ -32,16 +32,24 @@
      <update id="thumbdown"  parameterType="Integer">
     	update board set thumbdown= thumbdown+1 where sno=${sno};
     </update>
-   
+    
     <update id='qnaDeleteR' parameterType="com.kodup.qna.QnaBoardVo">
     	update board set board_delete=1 where sno=${sno}
     </update>
+    
     <update id='qnaReplDeleteR' parameterType="Integer">
     	update repl set repl_delete=1 where repl_sno=${repl_sno}
     </update>
-    <insert id='replChaetaek' parameterType="Integer">
-    	insert into repl_selected values(${repl_sno},1)
-    </insert>
+    
+    <update id='replChaetaek' parameterType="com.kodup.qna.QnaBoardReplVo">
+    	UPDATE repl_selected rs JOIN repl r ON rs.repl_sno = r.repl_sno
+		SET rs.repl_status = 1 WHERE r.grp = ${grp} and r.sno = ${sno};
+    </update>
+    
+    <update id="giveRewardPixel" parameterType="com.kodup.qna.QnaBoardVo">
+    	update member set pixel = pixel+${qna_pixel_reward} where id="${id}"
+    </update>
+    
     <insert id='insertRepl' parameterType="com.kodup.qna.QnaBoardReplVo">
     	insert into repl(repl_doc,id,sno, grp,seq,deep,repl_nal) 
 		values("${repl_doc}","${sessionid}",${sno},
@@ -49,6 +57,15 @@
 		(select seq from ( select count(*) as seq from repl) as repl_temp),
 		0,sysdate())
     </insert>
+    
+    <select id="insertRepl2" parameterType="com.kodup.qna.QnaBoardReplVo" resultType="Integer">
+    	select repl_sno from repl where repl_doc="${repl_doc}" and id="${sessionid}" and sno="${sno}"
+    </select>
+    
+    <insert id="insertRepl3" parameterType="Integer">
+    	insert into repl_selected(repl_sno,repl_status) values("${_parameter}",0)
+    </insert>
+    
     <insert id='insertInnerRepl' parameterType="com.kodup.qna.QnaBoardReplVo">
     	insert into repl(repl_doc,id,sno, grp,seq,deep,repl_nal) 
 		values("${repl_doc}","${sessionid}",${sno},
@@ -56,4 +73,22 @@
 		(select seq from ( select count(*) as seq from repl) as repl_temp),
 		1,sysdate()) 
     </insert>
+    
+    <select id="insertInnerRepl2" parameterType="com.kodup.qna.QnaBoardReplVo" resultType="Integer">
+    	select repl_sno from repl where repl_doc="${repl_doc}" and id="${sessionid}" and sno="${sno}" and grp=${grp}
+    </select>
+    
+     <insert id="insertInnerRepl3" parameterType="Integer">
+    	insert into repl_selected(repl_sno,repl_status) values("${_parameter}",0)
+    </insert>
+    
+    <select id="checkChaeTaek" parameterType="Integer" resultType="Integer">
+    	select count(*) from repl_selected rs join repl r on rs.repl_sno = r.repl_sno where r.sno=${_parameter} and rs.repl_status=1;
+    </select>
+    
+    <update id="ReplUpdateR" parameterType="com.kodup.qna.QnaBoardReplVo">
+    	update repl set repl_doc = "${repl_doc}" where repl_sno=${repl_sno}
+    </update>
+    
+    
 </mapper>

@@ -49,7 +49,7 @@ public class QnaBoardService {
 		Object savePoint = status.createSavepoint();
 		
 		
-		int cnt = mapper.qnaDeleteR(qbVo); //sno에 해당하는 테이블의 board_status를 1로 바꿈
+		int cnt = mapper.qnaDeleteR(qbVo); 
 		if(cnt<1) {	b=false; }
 		
 		if(b) manager.commit(status);
@@ -64,7 +64,7 @@ public class QnaBoardService {
 		Object savePoint = status.createSavepoint();
 		
 		
-		int cnt = mapper.qnaReplDeleteR(repl_sno); //sno에 해당하는 테이블의 board_status를 1로 바꿈
+		int cnt = mapper.qnaReplDeleteR(repl_sno); 
 		if(cnt<1) {	b=false; }
 		
 		if(b) manager.commit(status);
@@ -74,31 +74,67 @@ public class QnaBoardService {
 		return b;
 	}
 	
-	public boolean replChaetaek(int repl_sno) {
+	public boolean replChaetaek(QnaBoardReplVo qbrVo) {
 		boolean b = true;
-		
 		status = manager.getTransaction(new DefaultTransactionDefinition());
 		Object savePoint = status.createSavepoint();
 		
 		
-		int cnt = mapper.replChaetaek(repl_sno); //sno에 해당하는 테이블의 board_status를 1로 바꿈
-		if(cnt<1) {	b=false; }
+		int cnt = mapper.replChaetaek(qbrVo); 
+		if(cnt<1) {	b=false;}
+		
 		
 		if(b) manager.commit(status);
 		else status.rollbackToSavepoint(savePoint);
 		
+		
+		return b;
+	}
+	
+	public boolean giveRewardPixel(QnaBoardVo qbVo) {
+		boolean b = true;
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		Object savePoint = status.createSavepoint();
+		
+		int cnt = mapper.giveRewardPixel(qbVo);
+		if(cnt<1) { b=false; }
+		
+		if(b) manager.commit(status);
+		else status.rollbackToSavepoint(savePoint);
 		
 		return b;
 	}
 	
 	public boolean insertRepl(QnaBoardReplVo qbrVo) {
+		
 		boolean b = true;
 		
 		status = manager.getTransaction(new DefaultTransactionDefinition());
 		Object savePoint = status.createSavepoint();
 		
+		int cnt = mapper.insertRepl(qbrVo);
+		if(cnt<1) {	b=false; }
 		
-		int cnt = mapper.insertRepl(qbrVo); //sno에 해당하는 테이블의 board_status를 1로 바꿈
+		if(b) manager.commit(status);
+		else status.rollbackToSavepoint(savePoint);
+		
+		
+		return b;
+	}
+	/*
+	public void insertRepl_selected(QnaBoardReplVo qbrVo) {
+		String repl_sno = mapper.
+	}
+	*/
+	
+	
+	public boolean insertRepl2(QnaBoardReplVo qbrVo) {
+		boolean b = true;
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		Object savePoint = status.createSavepoint();
+		
+		int repl_sno=mapper.insertRepl2(qbrVo);//추가된 데이터의repl_sno를 string타입으로 가져옴
+		int cnt = mapper.insertRepl3(repl_sno);//가져온 repl_sno를 repl_selected테이블에추가
 		if(cnt<1) {	b=false; }
 		
 		if(b) manager.commit(status);
@@ -106,17 +142,13 @@ public class QnaBoardService {
 		
 		return b;
 	}
-	
-	
-	
 	public boolean insertInnerRepl(QnaBoardReplVo qbrVo) {
 		boolean b = true;
-		
 		status = manager.getTransaction(new DefaultTransactionDefinition());
 		Object savePoint = status.createSavepoint();
 		
 		
-		int cnt = mapper.insertInnerRepl(qbrVo); //sno에 해당하는 테이블의 board_status를 1로 바꿈
+		int cnt = mapper.insertInnerRepl(qbrVo);
 		if(cnt<1) {	b=false; }
 		
 		if(b) manager.commit(status);
@@ -125,9 +157,43 @@ public class QnaBoardService {
 		return b;
 	}
 	
+	public boolean insertInnerRepl2(QnaBoardReplVo qbrVo) {
+		boolean b = true;
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		Object savePoint = status.createSavepoint();
+		
+		int repl_sno=mapper.insertInnerRepl2(qbrVo);//추가된 데이터의repl_sno를 int타입으로 가져옴
+		int cnt = mapper.insertInnerRepl3(repl_sno);//가져온 repl_sno를 repl_selected테이블에 추가
+		if(cnt<1) {	b=false; }
+		
+		if(b) manager.commit(status);
+		else status.rollbackToSavepoint(savePoint);
+		
+		return b;
+	}
 	
+	public int checkChaeTaek(int sno) {
+		int ChaeTaekStatus=0;
+		ChaeTaekStatus = mapper.checkChaeTaek(sno);
+		System.out.println("채택스테이터스 서비스단:"+ChaeTaekStatus);
+		
+		return ChaeTaekStatus;
+	}
 	
-	
+	public boolean ReplUpdateR(QnaBoardReplVo qbrVo) {
+		boolean b = true;
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		Object savePoint = status.createSavepoint();
+		
+		int cnt = mapper.ReplUpdateR(qbrVo);
+		if(cnt<1) {	b=false; }
+		
+		if(b) manager.commit(status);
+		else status.rollbackToSavepoint(savePoint);
+		
+		return b;
+		
+	}
 }
 
 
