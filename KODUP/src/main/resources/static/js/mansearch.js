@@ -84,7 +84,7 @@ $('.mansearch_deleteR').on('click',function(){
 	let yn = confirm('글을 삭제하시겠습니까?');
 	if(!yn) return;
 	param = $('.mansearch_frm').serialize();
-	$.post("/mansearch/mansearch_delete",param,function(){
+	$.post("/mansearch/mansearch_delete",param,function(data){
 		$('#center').html(data);
 	})
 })

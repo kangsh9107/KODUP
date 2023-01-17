@@ -90,7 +90,7 @@ public class MansearchService {
 	public boolean delete(MansearchBoardVo mbVo) {
 		boolean b = true;
 		status = manager.getTransaction(new DefaultTransactionDefinition());
-		Object savePoint = status.createSavepoint();
+		savePoint = status.createSavepoint();
 		
 		System.out.println("mbVo.getSno : " + mbVo.getSno());
 
