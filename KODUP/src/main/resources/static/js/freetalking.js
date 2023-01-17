@@ -48,22 +48,22 @@ $('.btnList').on('click', function() {
 
 
 /*------------------------------------------------ */
-/*
+
 function freetalking_view(sno){
-	frm = $('.frm_search')[0];
+	frm = $('.board_search_form')[0];
     frm.sno.value = sno;
     param = $(frm).serialize();
     $.post("/freetalking/freetalking_view", param, function(data){
         $('#center').html(data);
     })
 }
-*/
 
 
+/*
 function freetalking_view(){
 	 $('#center').load('/freetalking/freetalking_view');
 }
-
+*/
 /*------------------------------------------------- */
 
 

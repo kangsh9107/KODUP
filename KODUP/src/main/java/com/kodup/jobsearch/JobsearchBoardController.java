@@ -44,7 +44,7 @@ public class JobsearchBoardController {
 		ModelAndView mv = new ModelAndView();
 
 		
-		jbVo.setSno(1103); 
+		
 		jbVo = service.view(jbVo.getSno());
 		List<JobsearchBoardReplVo> replList = service.replList(jbVo.getSno());//본문의sno를 넣어줌
 		

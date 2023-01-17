@@ -46,20 +46,21 @@ $('.btnList').on('click', function() {
 /***** jobsearch VIEW *****/
 
 /*------------------------------------------------ */
-/*
+
 function jobsearch_view(sno){
-	frm = $('.frm_search')[0];
+	frm = $('.board_search_form')[0];
     frm.sno.value = sno;
     param = $(frm).serialize();
     $.post("/jobsearch/jobsearch_view", param, function(data){
         $('#center').html(data);
     })
 }
-*/
 
+/*
 function jobsearch_view(){
 	 $('#center').load('/jobsearch/jobsearch_view');
 }
+*/
 /*------------------------------------------------- */
 
 
