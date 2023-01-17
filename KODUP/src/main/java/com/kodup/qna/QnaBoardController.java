@@ -20,27 +20,11 @@ public class QnaBoardController {
 		mv.setViewName("/qna/qna");
 		return mv;
 	}
-
-	@RequestMapping("/qna/qna_insert")
-	public ModelAndView qnaInsert() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/qna/qna_insert");
-		return mv;
-	}
 	
 	@RequestMapping("/qna/qna_update")
 	public ModelAndView qnaUpdate() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/qna/qna_update");
-		return mv;
-	}
-	
-	//INSERT
-	@RequestMapping("/qna/qna_insertR")
-	public ModelAndView qnaInsertR() {
-		ModelAndView mv = new ModelAndView();
-		
-		mv.setViewName("/qna/qna");
 		return mv;
 	}
 	

@@ -19,31 +19,11 @@ $(document).ready(function () {
 	});
 });
 
-/***** QNA INSERT *****/
-$('.btnQnaInsert').on('click', function() {
-	$('#center').load('/qna/qna_insert');
-});
-
 /***** QNA UPDATE *****/
 $('.btnUpdate').on('click', function() {
 	$('#center').load('/qna/qna_update');
 });
 
-/***** QNA SEARCH *****/
-$('.inputSearch').keyup(function(evnet) {
-	if(event.keyCode == 13) {
-		$('.btnSearch').click();
-	}
-});
-
-$('.btnSearch').click(function() {
-	console.log("검색");
-});
-
-/***** BACK TO LIST *****/
-$('.btnList').on('click', function() {
-	$('#center').load('/qna/qna');
-});
 
 
 

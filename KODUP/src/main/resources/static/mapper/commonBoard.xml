@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kodup.common.CommonBoardMapper">
+
+	<!-- totSize -->
+	<select id="totList" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.CommonBoardPageVo">
+		SELECT COUNT(b.sno) AS totSize, b.boardtype, qb.qna_horsehead AS horsehead
+		FROM board b LEFT JOIN member m     ON b.id = m.id
+		             LEFT JOIN qna_board qb ON b.sno = qb.sno
+		WHERE m.nickname LIKE '%${findStr}%'
+		OR    b.hashtag  LIKE '%${findStr}%'
+		OR    b.subject  LIKE '%${findStr}%'
+		OR    b.doc      LIKE '%${findStr}%'
+		GROUP BY b.boardtype, qb.qna_horsehead
+		HAVING b.boardtype = #{boardtype}
+		<if test="horsehead != ''">
+			AND qb.qna_horsehead = #{horsehead}
+		</if>
+	</select>
+
+	<!-- Q&A LIST -->
+	<select id="listQna" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.SelectBoardVo">
+		SELECT b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
+			   b.thumbup, b.thumbdown, (b.thumbup-b.thumbdown) AS thumb, board_delete,
+		       m.id, m.nickname, m.profile_img, qb.qna_horsehead AS horsehead,
+		       COUNT(r.repl_sno) AS countRepl
+		FROM board b LEFT JOIN member m     ON b.id = m.id
+		             LEFT JOIN repl r       ON b.sno = r.sno
+		             LEFT JOIN qna_board qb ON b.sno = qb.sno
+		WHERE m.nickname LIKE '%${findStr}%'
+		OR    b.hashtag  LIKE '%${findStr}%'
+		OR    b.subject  LIKE '%${findStr}%'
+		OR    b.doc      LIKE '%${findStr}%'
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
+				 b.thumbup, b.thumbdown, thumb, board_delete,
+				 m.id, m.nickname, m.profile_img, qb.qna_horsehead
+		HAVING b.boardtype = #{boardtype}
+		<if test="horsehead != '' and horsehead != null">
+			AND qb.qna_horsehead = #{horsehead}
+		</if>
+		<choose>
+			<when test="sort == 1">
+				ORDER BY b.nal DESC, b.sno DESC
+			</when>
+			<when test="sort == 2">
+				ORDER BY thumb DESC, b.nal DESC, b.sno DESC
+			</when>
+			<when test="sort == 3">
+				ORDER BY countRepl DESC, b.nal DESC, b.sno DESC
+			</when>
+			<otherwise>
+				ORDER BY b.viewcount DESC, b.nal DESC, b.sno DESC
+			</otherwise>
+		</choose>
+		LIMIT ${startNo}, ${listSize}
+	</select>
+	
+	<!-- totSizeHashtag -->
+	<select id="totListHashtag" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.CommonBoardPageVo">
+		SELECT COUNT(b.sno) AS totSize, b.boardtype, qb.qna_horsehead AS horsehead
+		FROM board b LEFT JOIN member m     ON b.id = m.id
+		             LEFT JOIN qna_board qb ON b.sno = qb.sno
+		WHERE b.hashtag LIKE '%${hashtag}%'
+		GROUP BY b.boardtype, qb.qna_horsehead
+	</select>
+
+	<!-- Hashtag LIST -->
+	<select id="listHashtag" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.SelectBoardVo">
+		SELECT b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
+			   b.thumbup, b.thumbdown, (b.thumbup-b.thumbdown) AS thumb, board_delete,
+		       m.id, m.nickname, m.profile_img, qb.qna_horsehead AS horsehead,
+		       COUNT(r.repl_sno) AS countRepl
+		FROM board b LEFT JOIN member m     ON b.id = m.id
+		             LEFT JOIN repl r       ON b.sno = r.sno
+		             LEFT JOIN qna_board qb ON b.sno = qb.sno
+		WHERE b.hashtag LIKE '%${hashtag}%'
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
+				 b.thumbup, b.thumbdown, thumb, board_delete,
+				 m.id, m.nickname, m.profile_img, qb.qna_horsehead
+		<choose>
+			<when test="sort == 1">
+				ORDER BY b.nal DESC, b.sno DESC
+			</when>
+			<when test="sort == 2">
+				ORDER BY thumb DESC, b.nal DESC, b.sno DESC
+			</when>
+			<when test="sort == 3">
+				ORDER BY countRepl DESC, b.nal DESC, b.sno DESC
+			</when>
+			<otherwise>
+				ORDER BY b.viewcount DESC, b.nal DESC, b.sno DESC
+			</otherwise>
+		</choose>
+		LIMIT ${startNo}, ${listSize}
+	</select>
+	
+	<!-- getSno -->
+	<select id="getSno" resultType="Integer">
+		SELECT sno FROM board ORDER BY sno DESC LIMIT 0,1
+	</select>
+	
+	<!-- INSERT -->
+	<insert id="insertBoard" parameterType="com.kodup.common.InsertBoardVo">
+		INSERT INTO board(id, boardtype, nal, subject, doc, hashtag)
+		VALUES(#{id}, #{boardtype}, NOW(), #{subject}, #{doc}, #{hashtag})
+	</insert>
+	
+	<!-- Q&A INSERT -->
+	<insert id="insertQnaBoard" parameterType="com.kodup.common.InsertBoardVo">
+		INSERT INTO qna_board(sno, qna_pixel_reward, qna_horsehead)
+		VALUES(${sno}, ${qna_pixel_reward}, #{qna_horsehead})
+	</insert>
+
+</mapper>
