@@ -25,6 +25,26 @@ $('.btn_mentor_certification').on('click', function(){
 $('.btn_corp_certification').on('click', function(){
 	console.log("기업인증");
 	
+	var frm = $('.corp_certification')[0];
+	var param = new FormData(frm);
+	 
+	 $.ajax({
+		 type : 'POST',
+		 url : '/board/mypage_corp_certification',
+		 contentType : false,
+		 processData : false,
+		 data : param,
+		 dataType : 'html',
+		 success: function(data){
+			 
+			setTimeout(() => {
+				$('#m_section2').load('/board/mypage_memberinfo');
+			}, 800)
+		 }						
+	 })
+	 
+ })
+	
 	$('#m_section2').load('/board/mypage_corp_certification');
 });
 

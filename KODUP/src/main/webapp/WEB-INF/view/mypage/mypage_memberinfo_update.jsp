@@ -18,8 +18,8 @@
 		<form name='update_complete' class="memberinfo_update_complete" method='post' enctype='multypart/form-data'>
 			<div class='mypage_member_profile' style='display: inline-block;'>
 				<div class='mypage_member_profile_item'>
-					<input type="hidden" name="delFile" value="${profile_img }">
-					<img src="upload/${profile_img }" class="mypage_member_profile_img" style="width:300px; height:300px;">
+					<input type="hidden" name="delFile" value="${mpVo.profile_img }">
+					<img src="upload/${mpVo.profile_img }" class="mypage_member_profile_img" style="width:300px; height:300px;">
 					<input type='file' class='mypage_member_profile_btn' name='attFile' accept='image/*'
 					style='display: none;'>
 				</div>                        

@@ -12,7 +12,8 @@ public class MypageVo {
 	
 	int age;
 	String profile_img = "";
-	//int grade;
+	int grade;
+	
 	
 	public MypageVo() {}
     List<MypageAttVo> attList = new ArrayList<MypageAttVo>();
@@ -32,4 +33,6 @@ public class MypageVo {
 	public void setProfile_img(String profile_img) { this.profile_img = profile_img; }
 	public List<MypageAttVo> getAttList() { return attList; }
 	public void setAttList(List<MypageAttVo> attList) { this.attList = attList; }
+	public int getGrade() { return grade; }
+	public void setGrade(int grade) { this.grade = grade; }
 }

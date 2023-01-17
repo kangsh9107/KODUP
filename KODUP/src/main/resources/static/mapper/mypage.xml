@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kodup.mypage.MypageMapper">
+
+<!-- 회원정보 페이지 쿼리 -->
+
 	<!-- 회원 정보 -->
 	<select id='info' parameterType="String" resultType="com.kodup.mypage.MypageVo">
-		SELECT id, nickname, email, gender, age, profile_img FROM member WHERE id= #{_parameter}
+		SELECT id, nickname, email, gender, age, profile_img, grade FROM member WHERE id= #{_parameter}
 	</select>
 
 	<!-- 회원정보 업데이트 -->
@@ -13,37 +16,33 @@
 		WHERE id = #{id} 
 	</update>
 	
-	<!-- 회원정보 수정..  -->
-	<update id='update' parameterType='com.kodup.mypage.MypageVo'>
+	<!-- 회원정보 수정..파일첨부했을 때  -->
+	<update id='updateR' parameterType='com.kodup.mypage.MypageVo'>
 		UPDATE member SET nickname = #{nickname }, email= #{email }, gender= #{gender }, 
-			   			  age= #{age }, profile_img = #{profile_img}
+			   			  age= #{age }, profile_img = #{profile_img}, grade = #{grade}
 		WHERE id = #{id} 
 	</update>
 	
-	<!-- <insert id='attUpdate' parameterType='com.kodup.mypage.MypageVo'>
-		insert into - 테이블이 없음..
-		insert into member(profile_img)
-		
-    	insert into member(profile_img)
-        values (#{profile_img}) where id = #{id}
-	</insert>	 -->
-	
-	<!-- <delete id='attDelete' parameterType="String">
-		delete from boardAtt where sysFile in(
-			<foreach collection='attList' item='vo' separator=','>
-				#{file}
-			</foreach>
-	)	
-	</delete> -->
+	<!-- 회원정보 수정..파일첨부 안했을때  -->
+	<update id='update' parameterType='com.kodup.mypage.MypageVo'>
+		UPDATE member SET nickname = #{nickname }, email= #{email }, gender= #{gender }, 
+			   			  age= #{age }, grade = #{grade}
+		WHERE id = #{id} 
+	</update>
 	
 	
 	<!-- 회원 탈퇴 -->
-	<delete id='member_quit' parameterType='String'>
-		delete from member where id= #{_parameter}
+	<delete id='mypage_memberinfo_quit_real' parameterType='com.kodup.mypage.MypageVo'>
+		DELETE from member WHERE id= #{id }
 	</delete> 
 	
 	
 	
-	<!-- resultType='com.kodup.mypage.MypageQuitVo' -->
+<!-- 픽셀페이지 쿼리 -->
+
+	<!-- 나의 픽셀 조회 -->
+	<select id='pixel' parameterType='String' resultType='com.kodup.mypage.MypagePixelVo'>
+		SELECT pixel FROM member WHERE id= #{_parameter }
+	</select>
 	
 </mapper>

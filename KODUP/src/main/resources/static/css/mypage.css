@@ -108,6 +108,14 @@
 }
 
 
+.member_quit_id{
+	font-weight: bolder;
+	color: green;
+	text-align:center; 
+	border: 0 solid black;
+}
+
+
 .btnQuit_Irreversible{
 	margin-left: 10px;
 }

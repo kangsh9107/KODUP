@@ -22,10 +22,20 @@ public class MypageService {
 	TransactionStatus status;
 	
 	MypageVo mpVo;
+	MypagePixelVo mPixelVo;
 	MypageQuitVo mqVo;
 	Object savePoint;
 	
 	
+	public MypageVo info(String id) {
+		mpVo = new MypageVo();
+		mpVo = mypageMapper.info(id);
+		
+		
+		return mpVo;
+	}
+	
+
 	public boolean mypage_memberinfo_update_complete(MypageVo mpVo) {
 		boolean b=true;
 
@@ -42,16 +52,8 @@ public class MypageService {
         return b;
       }
 
-	
-	public MypageVo info(String id) {
-		mpVo = new MypageVo();
-		mpVo = mypageMapper.info(id);
-		
-		
-		return mpVo;
-	}
-	
 
+	
 	public boolean updateR(MypageVo mpVo, String[] delFile) {
 //		System.out.println("service.update");
 //		System.out.println(mpVo.getId());
@@ -60,9 +62,9 @@ public class MypageService {
 
 		status = manager.getTransaction(new DefaultTransactionDefinition());
 		savePoint = status.createSavepoint(); //롤백을위해
-		int cnt = mypageMapper.update(mpVo); // 내용 업데이트
+		int cnt = mypageMapper.updateR(mpVo); // 내용 업데이트
 		if (cnt < 1) b = false;
-
+		
 		if (b) {
 			manager.commit(status);
 			fileDelete(delFile); // 파일 삭제
@@ -88,49 +90,62 @@ public class MypageService {
 	}
 	
 	
+	public boolean update(MypageVo mpVo) {
+		boolean b = true;
+
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint(); //롤백을위해
+		int cnt = mypageMapper.update(mpVo); // 내용 업데이트
+		if (cnt < 1) b = false;
+		return b;
+	}
+	
+	
 	public void fileDelete(String[] delFile) {
 		/*
 		for(int i=0; i<delFile.length; i++) {
 			f = delFile[i];
 		}
 		*/
-		for (String f : delFile) {
-			File file = new File(MypageController.path + f);
-			if (file.exists())
-				file.delete();
+		if( !delFile[0].equals("default.png") ) {
+			for (String f : delFile) {
+				File file = new File(MypageController.path + f);
+				if (file.exists())
+					file.delete();
+			}
 		}
 	}
 	
-	/* 파일 업로드....수정..
-	public boolean mypage_memberinfo_update_complete(MypageVo mpVo) {
-		boolean b=true;
-
+	
+	public boolean mypage_memberinfo_quit_real(MypageVo mpVo) {
+		System.out.println("서비스까지 값이 전달됨. 삭제될 아이디" + mpVo.id);
+		boolean b = true;
+		
 		status = manager.getTransaction(new DefaultTransactionDefinition());
-		this.savePoint = status.createSavepoint();
+		Object savePoint = status.createSavepoint();
 		
-        int cnt = mypageMapper.mypage_memberinfo_update_complete(mpVo);
-        if (attCnt < 1) {
-        	b= false;
-         }else if(mpVo.getProfile_img().size()>0) {
-        	 int attCnt = mypageMapper.attUpdate(mpVo);
-        	 if (attCnt <1)
-        		 b= false;
-         }
+		int cnt = mypageMapper.mypage_memberinfo_quit_real(mpVo);
+		
+		System.out.println("회원탈퇴 :" + cnt);
+		
+		if( cnt < 1) b= false;
+		
+		if(b)
 			manager.commit(status);
-
-		} else if (mpVo. getAttList().size()>0){ b=false;
+		else
 			status.rollbackToSavepoint(savePoint);
-		}
-        return b;
-      }
-	*/
-	
-	public MypageQuitVo member_quit(String id) {
-		mqVo = new MypageQuitVo();
-		mqVo = mypageMapper.member_quit(id);
 		
-		return mqVo;
+		return b;
 	}
 	
-
+	
+	//픽셀 조회
+	public MypagePixelVo pixel(String id) {
+		
+		mPixelVo = new MypagePixelVo();
+		mPixelVo = mypageMapper.pixel(id);
+		
+		return mPixelVo;
+	}
+	
 }

@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kodup.login.LoginService;
+
+
 
 @RestController
 public class MypageController {
@@ -32,6 +35,9 @@ public class MypageController {
 	 */
 	@Autowired
 	MypageService service;
+	
+	@Autowired
+	LoginService loginService;
 	
 	
 	@RequestMapping("/board/mypage") //회원정보 메뉴바
@@ -75,59 +81,41 @@ public class MypageController {
 	}
 	
 	
-	
-	//회원 정보 글 수정 되는 코드.
-	/*
-	@RequestMapping("/board/mypage_memberinfo_update_complete") //회원정보 수정 완료
-	public ModelAndView mypage_memberinfo_update_complete(MypageVo mpVo){
-		String msg = "";
-		ModelAndView mv = new ModelAndView();
-		
-		boolean b= service.mypage_memberinfo_update_complete(mpVo); // 데이터를 넘겨줌
-		if( !b ) msg = "수정 중 오류 발생";
-		
-		mpVo = service.info(mpVo.getId());
-		mv.addObject("mpVo", mpVo);
-		
-		mv.addObject("msg", msg);
-		//mv.setViewName("mypage/mypage_memberinfo_update");
-		mv.setViewName("mypage/mypage_memberinfo");
-		 //왜 인덱스로 연결...???
-		return mv;
-	}
-	*/
-	
-	//파일 업로드
+	//프로필 파일 업로드
 	//회원정보 수정 후 수정완료 버튼 클릭 시 작동. (이미지 파일 첨부, 수정한 입력 정보 반영)
 	@RequestMapping("/board/mypage_memberinfo_update_complete") 
-	public ModelAndView updateR(@RequestParam("attFile")List<MultipartFile> mul, // t선택한파일
+	public ModelAndView updateR(@RequestParam("attFile")List<MultipartFile> mul, // 선택한 파일 업로드
 						 @ModelAttribute MypageVo mpVo, //폼태그로 날린 정보
 						 @RequestParam(name = "delFile", required = false, defaultValue="") String[] delFile) {		
 		ModelAndView mv = new ModelAndView();
 		boolean b = false;
 		
-		if(mul.size() > 0) {
-			try {
-				List<MypageAttVo> attList = fileUpload(mul);
-				mpVo.setProfile_img(attList.get(0).getSysFile());
-				System.out.println(mpVo.getProfile_img()); //1234-1.png
-				
-				b = service.updateR(mpVo, delFile);
-			} catch (Exception e) {
-				e.printStackTrace();
+		System.out.println("mul size : " + mul.size());
+		for(MultipartFile m : mul) {
+			if(!m.isEmpty()) {
+				List<MypageAttVo> attList;
+				try {
+					attList = fileUpload(mul);
+					mpVo.setProfile_img(attList.get(0).getSysFile());
+					System.out.println(mpVo.getProfile_img()); //1234-1.png
+					
+					b = service.updateR(mpVo, delFile);				
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}else {
+				System.out.println("update 실행전");
+				b = service.update(mpVo);
+				System.out.println("update 실행완료");
 			}
-		}
-		/*
-		String msg = "";
-		if(b) msg = "정상적으로 수정되었습니다.";
-		else  msg = "수정중 오류 발생";
-		*/
-		mv.addObject("mpVo", mpVo);
+			
+		} 
+		
 		mv.setViewName("mypage/mypage_memberinfo");
 		return mv;
 	}
 	
-//파일 업로드 공통부분(중복코드 제거: insertR, updateR, replR에서 공통으로 들어감)
+	//회원정보 파일 업로드
 	public List<MypageAttVo> fileUpload(List<MultipartFile> mul) throws Exception{
 		List<MypageAttVo> attList = new ArrayList<MypageAttVo>();
 		for(MultipartFile m : mul) {
@@ -145,31 +133,12 @@ public class MypageController {
 			attVo.setSysFile(sysFile);
 			
 			attList.add(attVo);
-//			System.out.println(m.getOriginalFilename());
-//			System.out.println(uuid.getLeastSignificantBits());
 		}
 		
 		return attList;
 	}
 	
-	/*
-	 * @RequestMapping("/board/mypage_memberinfo_update_complete") //회원정보 수정 완료
-	 * public String mypage_memberinfo_update_complete(@RequestParam("attFile"),
-	 * 
-	 * @ModelAttribute MypageVo mpVo, @RequestParam(name = "delFile", required =
-	 * false, defaultValue="") String[] delFile) { // attFile이라는 파라미터가 들어온 경우에는
-	 * MultipartFile로 받고 나머지는 BoardVo로 받는다?
-	 * 
-	 * ) String msg = ""; boolean flag =
-	 * service.mypage_memberinfo_update_complete(mpVo, delFile);
-	 * 
-	 * boolean b= service.mypage_memberinfo_update_complete(mpVo); // 데이터를 넘겨줌 if(b)
-	 * { b="정상적으로 수정되었습니다"; try(b{ List<AttVo> })
-	 * 
-	 * }
-	 * 
-	 * return msg; }
-	 */
+
 	
 	
 	@RequestMapping("/board/mypage_dailycheck") //출석체크
@@ -180,13 +149,27 @@ public class MypageController {
 		return mv;
 	}
 	
+	
+	
+	
 	@RequestMapping("/board/mypage_mypixel") //나의 픽셀
-	public ModelAndView mypage_mypixel() {
+	public ModelAndView mypage_mypixel(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
+	
 		
+		HttpSession session = req.getSession();
+		String id = (String)session.getAttribute("sessionId");
+		
+		MypagePixelVo mPixelVo = service.pixel(id);
+		
+		System.out.println("보유픽셀:" + mPixelVo.getPixel());
+		
+		mv.addObject("mPixelVo", mPixelVo);
 		mv.setViewName("mypage/mypage_mypixel");
 		return mv;
 	}
+	
+	
 	
 	@RequestMapping("/board/mypage_certification") //인증
 	public ModelAndView mypage_certification() {
@@ -196,15 +179,69 @@ public class MypageController {
 		return mv;
 	}
 	
-	@RequestMapping("/board/mypage_corp_certification") //기업인증
-	public ModelAndView mypage_corp_certification() {
+	/*
+	@RequestMapping("/board/mypage_corp_certification") //기업인증. 폼 전송 시.
+	public ModelAndView mypage_corp_certification(@RequestParam("attFile") MultipartFile mul,
+			 @RequestParam("attFile2") MultipartFile mul_2,// 선택한 파일 업로드
+			 @ModelAttribute MypageCorpVo mpCVo,
+			 @RequestParam(name = "delFile", required = false, defaultValue="") String[] delFile) {		
+			 
 		ModelAndView mv = new ModelAndView();
 		
-		mv.setViewName("mypage/mypage_corp_certification");
-		return mv;
+		boolean b = false;
+		
+		//for(MultipartFile m : mul) {
+			if(!mul.isEmpty() && !mul_2.isEmpty()) {
+				List<MypageCorpAttVo> attList;
+				try {
+					attList = fileUpload_corp(mul, mul_2);
+					mpCVo.setCorp_license(attList.get(0))
+					System.out.println(mpCVo.getCorp_license());
+					
+					b = service.mypage_corp_certification(mpCVo, delFile);				
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}else {
+				System.out.println("update 실행전");
+				b = service.update(mpCVo);
+				System.out.println("update 실행완료");
+			}
+			
+			mv.setViewName("mypage/mypage_corp_certification");
+			return mv;
+		} 
+		
+	*/
+	
+	// 인증>기업인증 첨부파일 업로드
+	/*
+	public List<MypageCorpVo> fileUpload_corp(MultipartFile mul, MultipartFile mul_2) throws Exception{
+		List<MypageCorpAttVo> attList = new ArrayList<MypageCorpAttVo>();
+		for(MultipartFile m : mul) {
+			if(m.isEmpty()) continue;
+			UUID uuid = UUID.randomUUID();
+			String oriFile = m.getOriginalFilename();
+			String sysFile = ""; 
+			File temp = new File(path + oriFile); 	// 임시저장 경로
+			m.transferTo(temp);
+			sysFile =(uuid.getLeastSignificantBits()*-1) + "-" + oriFile;
+			File f = new File(path + sysFile);
+			temp.renameTo(f);
+			
+			MypageCorAttVo attCAVo = new MypageCorpAttVo();
+			attCVo.setSysFile(sysFile);
+			
+			attList.add(attCVo);
+		}
+		
+		return attList;
 	}
 	
-	@RequestMapping("/board/mypage_memberinfo_quit") //회원탈퇴 (단순버튼)
+	*/
+	
+	
+	@RequestMapping("/board/mypage_memberinfo_quit") //회원탈퇴 (단순 회원탈퇴 페이지 이동버튼)
 	public ModelAndView mypage_memberinfo_quit(HttpServletRequest req, HttpServletResponse res) throws IOException{
 		ModelAndView mv = new ModelAndView();
 		
@@ -221,36 +258,25 @@ public class MypageController {
 	
 	
 	@RequestMapping("/board/mypage_memberinfo_quit_real") // 찐 탈퇴
-	public ModelAndView mypage_memberinfo_quit_real(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		System.out.println("nickname");
-		
+	public ModelAndView mypage_memberinfo_quit_real(MypageVo mpVo, HttpServletRequest req) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		
-		HttpSession session = req.getSession();
-		String id = (String) session.getAttribute("sessionId");
+		String id = mpVo.getId();
+		System.out.println("탈퇴할 아이디:" + id);
+		System.out.println(mpVo.getEmail());
+		boolean b = service.mypage_memberinfo_quit_real(mpVo);
 		
-		MypageQuitVo mqVo = service.member_quit(id);
-		mv.addObject("mqVo", mqVo);
-				
+		//mv.addObject("mpVo", mpVo);
+		//로그아웃
+		HttpSession session = req.getSession();
+		loginService.chatDelete((String)session.getAttribute("sessionId"));
+		String str = null;
+		session.setAttribute("sessionId", str);
+		
+		
 		mv.setViewName("login/main");
 		return mv;
+		
 	}
-	
-	
-	/*
-	 * @RequestMapping("/board/mypage_memberinfo_quit_real") // 찐 탈퇴 public
-	 * ModelAndView mypage_memberinfo_quit_real(HttpServletRequest req,
-	 * HttpServletResponse res) throws IOException { ModelAndView mv = new
-	 * ModelAndView();
-	 * 
-	 * HttpSession session = req.getSession(); String id = (String)
-	 * session.getAttribute("sessionId");
-	 * 
-	 * MypageQuitVo mqVo = service.member_quit(id); mv.addObject("mqVo", mqVo);
-	 * 
-	 * mv.setViewName("login/main"); return mv; }
-	 */
-	
-	
-	
+
 }

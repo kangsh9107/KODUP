@@ -16,11 +16,34 @@
 
 <div id="mypage_memberinfo">
 	<span class='mypage_subject_text'>회원정보</span>
-	<%-- <c:set var="grade" value="abc"/>
-	<c:choose>
 	
-	</c:choose> --%>
-	<span>${mpVo.id } 님의 회원 등급은 <%-- ${grade } --%> 입니다. </span>
+	<span>${mpVo.id } 님의 회원 등급은 
+	<
+	<c:set var='grade' value="0"/>
+	<c:choose>
+		<c:when test ="${mpVo.grade == 0}">
+			일반회원
+		</c:when> 
+		<c:when test ="${mpVo.grade == 1}">
+			퍼스널멘토
+		</c:when> 
+		<c:when test ="${mpVo.grade == 2}">
+			플러스멘토
+		</c:when> 
+		<c:when test ="${mpVo.grade == 3}">
+			파트너멘토
+		</c:when> 
+		<c:when test ="${mpVo.grade == 4}">
+			게시판지기
+		</c:when> 
+		<c:when test ="${mpVo.grade == 5}">
+			관리자
+		</c:when> 
+		<c:otherwise> 
+			Who are you? 'ㅁ'? 혹시.. 탈퇴회원?  
+		</c:otherwise>
+	</c:choose>
+	> 입니다. </span>
 	<br><br>
 	
 		<div class='mypage_member_profile'>
@@ -34,7 +57,7 @@
 				<span class='mm_text'>나이</span><span>${mpVo.age }</span><br>
 				<span class='mm_text'>성별</span><span>${mpVo.gender }</span>
 				<br><br><br>
-				<button type="button" class="btn btn-outline-primary btnUpdate">내 정보수정</button><br>
+				<button type="button" class="btn btn-outline-primary btnUpdate">내 정보수정</button>
 				<button type="button" class="btn btn-outline-secondary btnQuit">탈퇴</button>
 			</div>		
 
