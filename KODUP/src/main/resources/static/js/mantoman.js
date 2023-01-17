@@ -101,7 +101,7 @@ $(document).on("click", ".btnAccess", function() {
 /* 요청 취소 버튼 클릭시 */
 $(document).on("click", ".btnCancel", function() {
     var btnCancel = document.querySelector(".btnCancel").value;
-    if(btnCancel=="취소"){
+    if(btnCancel=="취 소"){
 		$(this).parent("div").parent("div").remove();
 	}else{
 	var mentoId = this.form.mentorId.value;
@@ -133,5 +133,4 @@ $(document).on("click", ".btnCancel", function() {
 $(document).on("click", ".CancelCheck", function() {
 	$(this).parent("div").prev("div").remove();
 	$(this).parent("div").remove();
-	
 });

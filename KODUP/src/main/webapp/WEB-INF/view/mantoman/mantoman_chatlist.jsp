@@ -28,9 +28,9 @@
 		</c:forEach>
 			
 		<form class='chat_user separator'>
-			<img src="../images/basic_profile.jpg" class="mentoProfile_img">
+			<img src="../images/girlchar.png" class="mentoProfile_img">
 			<div class='clickSection'>
-				<span class='profile_nickname'>옥다방고양이</span>
+				<span class='profile_nickname'>이리나이</span>
 				<span class='nal'>2023-01-07 17:38:32</span><br>
 				<span class='last_talk'>네 다음에 또 얘기해요!</span>
 			</div>
@@ -39,7 +39,7 @@
 			<img src="../images/devil_profile.png" class="mentoProfile_img">
 			<div class='clickSection'>
 				<span class='profile_nickname'>딥러닝악마</span>
-				<span class='nal'>2023-01-07 17:38:13</span><br>
+				<span class='nal'>2023-01-06 12:30:13</span><br>
 				<span class='last_talk'>고생하셨습니다!</span>
 			</div>
 		</form>
@@ -47,7 +47,7 @@
 			<img src="../images/cat_profile.png" class="mentoProfile_img">
 			<div class='clickSection'>
 				<span class='profile_nickname'>min2us</span>
-				<span class='nal'>2023-01-07 17:38:35</span><br>
+				<span class='nal'>2023-01-01 21:36:21</span><br>
 				<span class='last_talk'>넹 안녕히주무세요!</span>
 			</div>
 		</form>
@@ -81,7 +81,7 @@ $(document).on("click", ".clickSection", function() {
 	var mentiProfile_img = $('.mentiProfile_img_hidden').val();
 	
 	var params = {
-    	roomCode : roomCode,
+    	roomCode : "emptyRoom",
     	yourNickname : mentoNickname,
     	myNickname : mentiNickname,
     	sessionId : mentiId,
