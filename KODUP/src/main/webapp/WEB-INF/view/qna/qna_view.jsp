@@ -9,6 +9,7 @@
 <link href="css/qna.css" rel="stylesheet">
 <!-- JS -->
 <script defer src="js/qna.js"></script>
+<script defer src="js/common_board.js"></script>
 <title>qna/qna_view.jsp</title>
 </head>
 <body>

@@ -332,3 +332,8 @@ $('.btnList').on('click', function() {
 		}
 	});
 });
+
+//update
+$('.btnUpdate').on('click', funtionc() {
+	
+});
