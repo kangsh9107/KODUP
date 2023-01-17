@@ -56,20 +56,21 @@ $('.btnList').on('click', function() {
 /***** infoshare VIEW *****/
 
 /*------------------------------------------------ */
-/*
+
 function infoshare_view(sno){
-	frm = $('.frm_search')[0];
+	frm = $('.board_search_form')[0];
     frm.sno.value = sno;
     param = $(frm).serialize();
     $.post("/infoshare/infoshare_view", param, function(data){
         $('#center').html(data);
     })
 }
-*/
 
+/*
 function infoshare_view(){
 	 $('#center').load('/infoshare/infoshare_view');
 }
+*/
 /*------------------------------------------------- */
 
 

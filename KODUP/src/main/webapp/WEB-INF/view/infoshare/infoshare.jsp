@@ -89,7 +89,7 @@
 						<i class="fas fa-circle-check" style="color: #555; font-size: 0.9rem;"></i>
 					</div>
 					<br/>
-					<a href="#" onclick="infoshare_view()" class="text-decoration-none">
+					<a href="#" onclick="infoshare_view(${listInfoshare.sno })" class="text-decoration-none">
 						<span id="index_doc">프로그래밍 언어 별 채용공고 통계</span>
 					</a>
 					<br/>

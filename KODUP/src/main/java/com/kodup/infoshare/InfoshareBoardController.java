@@ -42,7 +42,6 @@ public class InfoshareBoardController {
 		ModelAndView mv = new ModelAndView();
 
 		
-		ibVo.setSno(803); 
 		ibVo = service.view(ibVo.getSno());
 		List<InfoshareBoardReplVo> replList = service.replList(ibVo.getSno());//본문의sno를 넣어줌
 		

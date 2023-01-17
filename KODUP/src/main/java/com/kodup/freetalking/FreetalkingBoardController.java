@@ -35,13 +35,13 @@ public class FreetalkingBoardController {
 		return mv;
 	}
 	
+	
 	//성호
 	@RequestMapping("/freetalking/freetalking_view")
 	public ModelAndView freetalkingView(FreetalkingBoardVo fbVo, FreetalkingBoardReplVo fbrVo) {
 		ModelAndView mv = new ModelAndView();
 
 		
-		fbVo.setSno(303); 
 		fbVo = service.view(fbVo.getSno());
 		List<FreetalkingBoardReplVo> replList = service.replList(fbVo.getSno());//본문의sno를 넣어줌
 		

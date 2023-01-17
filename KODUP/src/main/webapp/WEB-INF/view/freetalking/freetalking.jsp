@@ -93,7 +93,7 @@
 						<i class="fas fa-circle-check" style="color: #555; font-size: 0.9rem;"></i>
 					</div>
 					<br/>
-					<a href="#" onclick="freetalking_view()" class="text-decoration-none">
+					<a href="#" onclick="freetalking_view(${listFreetalking.sno })" class="text-decoration-none">
 						<span id="index_doc">혹시 자소서 언제 보내실거에요?</span>
 					</a>
 					<br/>
