@@ -19,11 +19,6 @@ $(document).ready(function () {
 	});
 });
 
-/***** QNA UPDATE *****/
-$('.btnUpdate').on('click', function() {
-	$('#center').load('/qna/qna_update');
-});
-
 
 
 
@@ -44,7 +39,6 @@ listQna 데이터 셀렉트하는 xml문에서 sno도 추가로 셀렉트할수�
 infoshare,jobsearch,freetalking 도 수정必
 */
 function qna_view(sno){
-	console.log(sno);
 	frm = $('.board_search_form')[0];
     frm.sno.value = sno;
     param = $(frm).serialize();

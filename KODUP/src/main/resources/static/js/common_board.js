@@ -245,6 +245,7 @@ $('.btnQnaInsert').on('click', function() {
 	frm.sort.value = sort;
 	if(horse == '전체') horse = ''; //horsehead가 전체인 경우는 없다
 	frm.horsehead.value = horse;
+	
 	var param = new FormData(frm);
 	
 	$.ajax({
@@ -334,3 +335,92 @@ $('.btnList').on('click', function() {
 	});
 });
 
+$('.btnListU').on('click', function() {
+	var frm = $('#qna_view')[0];
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/qna/qna_list_back',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
+});
+
+$('.btnListView').on('click', function() {
+	var frm = $('.board_update_form')[0];
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/qna/qna_view',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
+});
+
+//update
+$('.btnUpdate').on('click', function() {
+	var frm = $('#qna_view')[0];
+	var hashtag = $('#qna_view_hashtag2').text().trim();
+	frm.hashtag.value = hashtag;
+	
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/qna/qna_update',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+			$('#summernote').summernote('code', $('textarea').text());
+		}
+	});
+});
+
+var temp = $('.board_update_form')[0];
+if(temp != null) {
+	var frm = $('.board_update_form')[0];
+	var addHashtag = frm.hashtag.value.substring(1);
+	
+	var input = document.querySelector('input[name=basic]');
+	var tagify = new Tagify(input);
+	tagify.addTags(addHashtag);
+	
+	tagify.on('add', function() {
+		console.log(tagify.value);
+	});
+
+	//updateR
+	$('.btnQnaUpdateR').on('click', function() {
+		var frm = $('.board_update_form')[0];
+		
+		var param = new FormData(frm);
+		
+		$.ajax({
+			type: 'POST',
+			url: '/qna/qna_updateR',
+			contentType: false,
+			processData: false,
+			data: param,
+			dataType: 'html',
+			success: function(data) {
+				$('#center').html(data);
+				$('#summernote').summernote('code', $('textarea').text());
+			}
+		});
+	});
+}

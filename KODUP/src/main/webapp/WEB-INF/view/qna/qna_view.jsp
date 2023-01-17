@@ -103,7 +103,7 @@
 					<input type="button" class="btnUpdate qna_view_originalBtn" style="vertical-align:top;"value="수정">
 					<input type="button" class="btnDeleteR  qna_view_originalBtn"style="vertical-align:top;" value="삭제">
 				</c:if>
-				<input type="button" class="btnList  qna_view_originalBtn" style="vertical-align:top;"value="목록">
+				<input type="button" class="btnListU  qna_view_originalBtn" style="vertical-align:top;"value="목록">
 			</div>
 			
 			<hr/>
@@ -385,6 +385,22 @@
 			</span>
 		</c:when>
 	</c:choose>		
+
+	<!-- HIDDEN -->
+	<input type="hidden" name="sortK" value="${cbpVo.sort }">
+	<input type="hidden" name="boardtypeK" value="${cbpVo.boardtype }">
+	<input type="hidden" name="horseheadK" value="${cbpVo.horsehead }">
+	<input type="hidden" name="horsehead" value="${qbVo.qna_horsehead}">
+	<input type="hidden" name="nowPageK" value="${cbpVo.nowPage }">
+	<input type="hidden" name="idK" value="${sessionScope.sessionId }">
+	<input type="hidden" name="subject" value="${qbVo.subject}">
+	<input type="hidden" name="doc" value="${qbVo.doc}">
+	<input type="hidden" name="hashtag" value="">
+	<div id="qna_view_hashtag2" style="display: none;">
+		<c:forEach var='vo' items='${qbVo.hashtaglist}'>
+			${vo.hashtag}
+		</c:forEach>
+	</div>
 </form>
 </body>
 </html>

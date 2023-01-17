@@ -119,7 +119,19 @@
 					</div>
 					<br/>
 					<a href="#" onclick="qna_view(${listQna.sno })" class="text-decoration-none">
-						<span id="index_subject">${listQna.subject }</span>
+						<span id="index_subject">
+							<c:choose>
+								<c:when test="${listQna.board_delete == 0 }">
+									${listQna.subject }
+								</c:when>
+								<c:when test="${listQna.board_delete == 1 }">
+									작성자가 삭제한 글입니다.
+								</c:when>
+								<c:otherwise>
+									관리자가 삭제한 글입니다.
+								</c:otherwise>
+							</c:choose>
+						</span>
 					</a>
 					<br/>
 					<div style="float: left;">
