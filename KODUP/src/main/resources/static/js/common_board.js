@@ -275,6 +275,7 @@ $('.btnQnaInsertR').on('click', function() {
 	//글 작성 내용
 	var summer = $('#summernote').summernote('code');
 	frm.doc.value = summer;
+	console.log(frm.qna_pixel_reward);
 	
 	var regNumber = /^[0-9]+$/;
 	if(qna_horsehead_selected == '말머리') {
@@ -333,7 +334,3 @@ $('.btnList').on('click', function() {
 	});
 });
 
-//update
-$('.btnUpdate').on('click', funtionc() {
-	
-});

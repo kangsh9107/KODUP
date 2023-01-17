@@ -16,4 +16,28 @@
 		FROM member m JOIN chat c ON m.id = c.id
         LEFT JOIN member_introduce mi ON m.id = mi.id;
 	</select>
+	
+	<!-- 채팅방 만들때 -->
+	<insert id="insertMantoman" parameterType="com.kodup.mantoman.MantomanVo">
+		INSERT INTO mantoman(roomCode, id, your_id, last_talktime, mantoman_pixel_reward)
+		VALUES(#{roomCode}, #{id}, #{your_id}, NOW(), #{mantoman_pixel_reward})
+	</insert>
+	
+	<!-- 채팅전송시 -->
+	<update id='updateTalk' parameterType="com.kodup.mantoman.MantomanVo">
+		UPDATE mantoman
+		<set>
+        	doc = #{doc},
+            last_talk = #{last_talk},
+            last_talktime = NOW()
+		</set>
+		WHERE roomCode = #{roomCode}
+	</update>
+	
+	<!-- 채팅리스트 -->
+	<select id="selectChatList" parameterType="String" resultType="com.kodup.mantoman.MantomanVo">
+		SELECT mtm.id, mtm.your_id, mtm.doc, mtm.last_talktime, mtm.last_talk, mtm.roomCode, mtm.mantoman_pixel_reward, m.profile_img, m.nickname
+		FROM mantoman mtm JOIN member m ON mtm.your_id = m.id WHERE mtm.id = #{_parameter} ORDER BY mtm.last_talktime DESC;
+	</select>
+	
 </mapper>

@@ -43,24 +43,25 @@ qna.jsp 리스트 부분에서 onclick="qna_view(${listQna.sno})"
 listQna 데이터 셀렉트하는 xml문에서 sno도 추가로 셀렉트할수있게 쿼리수정)
 infoshare,jobsearch,freetalking 도 수정必
 */
-/*
 function qna_view(sno){
-	frm = $('.frm_search')[0];
+	console.log(sno);
+	frm = $('.board_search_form')[0];
     frm.sno.value = sno;
     param = $(frm).serialize();
     $.post("/qna/qna_view", param, function(data){
         $('#center').html(data);
     })
 }
-*/
+/*
 function qna_view(){
 	$('#center').load('/qna/qna_view');
 }
+*/
 
 /*------------------------------------------------- */
 
 
-\
+
 function qna_view_findHashtag(hashtag){
 	//해시태그클릭시 해당태그로 검색된 검색결과리스트출력
 	//지금은 일단 콘솔로그만 찍어줌

@@ -37,7 +37,7 @@ public class QnaBoardController {
 		 String temp = qbVo.getDoc();
 		  qbVo.setDoc(temp.replace("\n","<br/>"));
 		 */
-		qbVo.setSno(3); //qna.jsp 에서 해당리스트를 눌렀을때 작동하는것으로 해당 리스트마다 
+		//qna.jsp 에서 해당리스트를 눌렀을때 작동하는것으로 해당 리스트마다 
 		qbVo = service.view(qbVo.getSno());
 		int checkChaeTaek =service.checkChaeTaek(qbVo.getSno());
 		List<QnaBoardReplVo> replList = service.replList(qbVo.getSno());//본문의sno를 넣어줌

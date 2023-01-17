@@ -86,6 +86,10 @@ public class CommonBoardController {
 			List<SelectBoardVo> listQna = cbService.listQna(cbpVo);
 			cbpVo = cbService.getCbpVo();
 			
+			for(SelectBoardVo l : listQna) {
+				System.out.println(l.qna_pixel_reward);
+			}
+			
 			mv.addObject("cbpVo", cbpVo);
 			mv.addObject("listQna", listQna);
 			mv.setViewName("/qna/qna");

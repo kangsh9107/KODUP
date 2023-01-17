@@ -118,7 +118,7 @@
 						<i class="fas fa-circle-check" style="color: #555; font-size: 0.9rem;"></i>
 					</div>
 					<br/>
-					<a href="#" onclick="qna_view()" class="text-decoration-none">
+					<a href="#" onclick="qna_view(${listQna.sno })" class="text-decoration-none">
 						<span id="index_subject">${listQna.subject }</span>
 					</a>
 					<br/>

@@ -8,8 +8,8 @@
 		from pixel_price
 	</select>
 	<insert id="addlist" parameterType="com.kodup.pixel.PixelBuyVo">
-		insert into pixel_buy_list(id,pixel_buy_date,pixel_buy_amount)
-		values(#{id},now(),#{pixel_buy_amount})
+			insert into pixel_buy_list(id,pixel_buy_date,pixel_buy_amount)
+			values(#{id},now(),#{pixel_buy_amount})
 	</insert>
 	<update id="addpixel" parameterType="com.kodup.login.MemberVo">
 		update member set pixel = pixel+(select pixel_buy_amount from pixel_buy_list order by pixel_buy_date desc limit 0,1)

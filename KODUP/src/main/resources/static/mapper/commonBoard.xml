@@ -4,14 +4,14 @@
 
 	<!-- totSize -->
 	<select id="totList" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.CommonBoardPageVo">
-		SELECT COUNT(b.sno) AS totSize, b.boardtype, qb.qna_horsehead AS horsehead
+		SELECT COUNT(b.sno) AS totSize, b.boardtype, qb.qna_horsehead AS horsehead, qb.qna_pixel_reward
 		FROM board b LEFT JOIN member m     ON b.id = m.id
 		             LEFT JOIN qna_board qb ON b.sno = qb.sno
 		WHERE m.nickname LIKE '%${findStr}%'
 		OR    b.hashtag  LIKE '%${findStr}%'
 		OR    b.subject  LIKE '%${findStr}%'
 		OR    b.doc      LIKE '%${findStr}%'
-		GROUP BY b.boardtype, qb.qna_horsehead
+		GROUP BY b.boardtype, qb.qna_horsehead, qb.qna_pixel_reward
 		HAVING b.boardtype = #{boardtype}
 		<if test="horsehead != ''">
 			AND qb.qna_horsehead = #{horsehead}
@@ -22,7 +22,7 @@
 	<select id="listQna" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.SelectBoardVo">
 		SELECT b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
 			   b.thumbup, b.thumbdown, (b.thumbup-b.thumbdown) AS thumb, board_delete,
-		       m.id, m.nickname, m.profile_img, qb.qna_horsehead AS horsehead,
+		       m.id, m.nickname, m.profile_img, qb.qna_horsehead AS horsehead, qb.qna_pixel_reward,
 		       COUNT(r.repl_sno) AS countRepl
 		FROM board b LEFT JOIN member m     ON b.id = m.id
 		             LEFT JOIN repl r       ON b.sno = r.sno
@@ -33,7 +33,7 @@
 		OR    b.doc      LIKE '%${findStr}%'
 		GROUP BY b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
 				 b.thumbup, b.thumbdown, thumb, board_delete,
-				 m.id, m.nickname, m.profile_img, qb.qna_horsehead
+				 m.id, m.nickname, m.profile_img, qb.qna_horsehead, qb.qna_pixel_reward
 		HAVING b.boardtype = #{boardtype}
 		<if test="horsehead != '' and horsehead != null">
 			AND qb.qna_horsehead = #{horsehead}
@@ -57,18 +57,18 @@
 	
 	<!-- totSizeHashtag -->
 	<select id="totListHashtag" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.CommonBoardPageVo">
-		SELECT COUNT(b.sno) AS totSize, b.boardtype, qb.qna_horsehead AS horsehead
+		SELECT COUNT(b.sno) AS totSize, b.boardtype, qb.qna_horsehead AS horsehead, qb.qna_pixel_reward
 		FROM board b LEFT JOIN member m     ON b.id = m.id
 		             LEFT JOIN qna_board qb ON b.sno = qb.sno
 		WHERE b.hashtag LIKE '%${hashtag}%'
-		GROUP BY b.boardtype, qb.qna_horsehead
+		GROUP BY b.boardtype, qb.qna_horsehead, qb.qna_pixel_reward
 	</select>
 
 	<!-- Hashtag LIST -->
 	<select id="listHashtag" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.SelectBoardVo">
 		SELECT b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
 			   b.thumbup, b.thumbdown, (b.thumbup-b.thumbdown) AS thumb, board_delete,
-		       m.id, m.nickname, m.profile_img, qb.qna_horsehead AS horsehead,
+		       m.id, m.nickname, m.profile_img, qb.qna_horsehead AS horsehead, qb.qna_pixel_reward,
 		       COUNT(r.repl_sno) AS countRepl
 		FROM board b LEFT JOIN member m     ON b.id = m.id
 		             LEFT JOIN repl r       ON b.sno = r.sno
@@ -76,7 +76,7 @@
 		WHERE b.hashtag LIKE '%${hashtag}%'
 		GROUP BY b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
 				 b.thumbup, b.thumbdown, thumb, board_delete,
-				 m.id, m.nickname, m.profile_img, qb.qna_horsehead
+				 m.id, m.nickname, m.profile_img, qb.qna_horsehead, qb.qna_pixel_reward
 		<choose>
 			<when test="sort == 1">
 				ORDER BY b.nal DESC, b.sno DESC

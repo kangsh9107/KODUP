@@ -14,11 +14,12 @@
 	<c:forEach var='mtmVo' items='${list }'>
 		<c:if test='${mtmVo.grade eq 3 }'>
 			<form class='chat_user separator' name='mentorForm'>
-				<img src="../images/${mtmVo.profile_img}" class="mentor_profileImg">
+				<img src="../images/${mtmVo.profile_img}" class="mentoProfile_img">
 				<span class='profile_nickname'>${mtmVo.nickname }</span>
 				<span class='profile_phrases'>${mtmVo.introduce }</span>
 				<input type='hidden' value='${mtmVo.id }' name='mentorId'>
 				<input type='hidden' value='${mtmVo.nickname }' name='mentoNickname'>
+				<input type='hidden' value='${mtmVo.profile_img}' name='mentoProfile_img_hidden'>
 				<c:if test='${param.mentiId ne mtmVo.id}'>
 					<input type='button' class='btnCall' value='멘토 요청'>
 				</c:if>
@@ -27,19 +28,19 @@
 	</c:forEach>
 	<!--파트너 멘토 공갈데이터  -->
 	<form class='chat_user separator'>
-		<img src="../images/basic_profile.jpg" class="mentor_profileImg">
+		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
 		<span class='profile_nickname'>옥다방고양이</span><br>
 		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
 		<input type='button' class='btnCall' value='멘토 요청'>
 	</form>
 	<form class='chat_user separator'>
-		<img src="../images/basic_profile.jpg" class="mentor_profileImg">
+		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
 		<span class='profile_nickname'>옥다방고양이</span><br>
 		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
 		<input type='button' class='btnCall' value='멘토 요청'>
 	</form>
 	<form class='chat_user separator'>
-		<img src="../images/basic_profile.jpg" class="mentor_profileImg">
+		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
 		<span class='profile_nickname'>옥다방고양이</span><br>
 		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
 		<input type='button' class='btnCall' value='멘토 요청'>
@@ -51,11 +52,12 @@
 	<c:forEach var='mtmVo' items='${list }'>
 		<c:if test='${mtmVo.grade eq 2 }'>
 			<form class='chat_user separator' name='mentorForm'>
-				<img src="../images/${mtmVo.profile_img}" class="mentor_profileImg">
+				<img src="../images/${mtmVo.profile_img}" class="mentoProfile_img">
 				<span class='profile_nickname'>${mtmVo.nickname }</span>
 				<span class='profile_phrases'>${mtmVo.introduce }</span>
 				<input type='hidden' value='${mtmVo.id }' name='mentorId'>
 				<input type='hidden' value='${mtmVo.nickname }' name='mentoNickname'>
+				<input type='hidden' value='${mtmVo.profile_img}' name='mentoProfile_img_hidden'>
 				<c:if test='${param.mentiId ne mtmVo.id}'>
 					<input type='button' class='btnCall' value='멘토 요청'>
 				</c:if>
@@ -64,19 +66,19 @@
 	</c:forEach>
 	<!--플러스 멘토 공갈데이터  -->
 	<form class='chat_user separator'>
-		<img src="../images/basic_profile.jpg" class="mentor_profileImg">
+		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
 		<span class='profile_nickname'>옥다방고양이</span><br>
 		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
 		<input type='button' class='btnCall' value='멘토 요청'>
 	</form>
 	<form class='chat_user separator'>
-		<img src="../images/basic_profile.jpg" class="mentor_profileImg">
+		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
 		<span class='profile_nickname'>옥다방고양이</span><br>
 		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
 		<input type='button' class='btnCall' value='멘토 요청'>
 	</form>
 	<form class='chat_user separator'>
-		<img src="../images/basic_profile.jpg" class="mentor_profileImg">
+		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
 		<span class='profile_nickname'>옥다방고양이</span><br>
 		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
 		<input type='button' class='btnCall' value='멘토 요청'>
@@ -88,11 +90,12 @@
 	<c:forEach var='mtmVo' items='${list }'>
 		<c:if test='${mtmVo.grade eq 1 }'>
 			<form class='chat_user separator' name='mentorForm'>
-				<img src="../images/${mtmVo.profile_img}" class="mentor_profileImg">
+				<img src="../images/${mtmVo.profile_img}" class="mentoProfile_img">
 				<span class='profile_nickname'>${mtmVo.nickname }</span>
 				<span class='profile_phrases'>${mtmVo.introduce }</span>
 				<input type='hidden' value='${mtmVo.id }' name='mentorId'>
 				<input type='hidden' value='${mtmVo.nickname }' name='mentoNickname'>
+				<input type='hidden' value='${mtmVo.profile_img}' name='mentoProfile_img_hidden'>
 				<c:if test='${param.mentiId ne mtmVo.id}'>
 					<input type='button' class='btnCall' value='멘토 요청'>
 				</c:if>
@@ -101,19 +104,19 @@
 	</c:forEach>
 	<!--퍼스널 멘토 공갈데이터  -->
 	<form class='chat_user separator'>
-		<img src="../images/basic_profile.jpg" class="mentor_profileImg">
+		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
 		<span class='profile_nickname'>옥다방고양이</span><br>
 		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
 		<input type='button' class='btnCall' value='멘토 요청'>
 	</form>
 	<form class='chat_user separator'>
-		<img src="../images/basic_profile.jpg" class="mentor_profileImg">
+		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
 		<span class='profile_nickname'>옥다방고양이</span><br>
 		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
 		<input type='button' class='btnCall' value='멘토 요청'>
 	</form>
 	<form class='chat_user separator'>
-		<img src="../images/basic_profile.jpg" class="mentor_profileImg">
+		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
 		<span class='profile_nickname'>옥다방고양이</span><br>
 		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
 		<input type='button' class='btnCall' value='멘토 요청'>
@@ -121,7 +124,7 @@
 </div>
 <script>
 
-$('.mentor_profileImg').on('click',function() {
+$('.mentoProfile_img').on('click',function() {
 	var title  = "member/member_profile_chat.jsp";
 	var status = "toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=400, height=500, top=400, left=870"; 
     window.open("/profile/member_profile_chat", title, status);
