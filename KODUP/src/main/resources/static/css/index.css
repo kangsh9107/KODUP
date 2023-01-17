@@ -654,7 +654,7 @@
 	position:fixed;
 	right:30px;
 	bottom:60px;
-	width:300px;
+	width:330px;
 	min-height:230px;
 	background-color:#b07280;
 	border:1px solid black;
@@ -665,7 +665,23 @@
 	height:auto;
 	box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
+#sockectController>.popupCallDiv input[type=text]{
+	width:95%;
+}
 
+#sockectController>.popupCallDiv input[type=button]{
+	border-radius:3px;
+	border:none;
+	border:0.3px solid #aaa;
+	padding:3.6px 0;
+	width:140px;
+	font-size:16px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+}
+
+#sockectController>.popupCallDiv input[type=button]:hover{
+	cursor:pointer;
+}
 
 /***** 박요한 *****/
 @media ( max-width :768px) {

@@ -28,21 +28,21 @@
 	</c:forEach>
 	<!--파트너 멘토 공갈데이터  -->
 	<form class='chat_user separator'>
-		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
+		<img src="../images/fox_profile.png" class="mentoProfile_img">
 		<span class='profile_nickname'>옥다방고양이</span><br>
+		<span class='profile_phrases'>주말 언제든 가능해요!</span>
+		<input type='button' class='btnCall' value='멘토 요청'>
+	</form>
+	<form class='chat_user separator'>
+		<img src="../images/devilcookie.png" class="mentoProfile_img">
+		<span class='profile_nickname'>자몽리</span><br>
 		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
 		<input type='button' class='btnCall' value='멘토 요청'>
 	</form>
 	<form class='chat_user separator'>
 		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
-		<span class='profile_nickname'>옥다방고양이</span><br>
-		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
-		<input type='button' class='btnCall' value='멘토 요청'>
-	</form>
-	<form class='chat_user separator'>
-		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
-		<span class='profile_nickname'>옥다방고양이</span><br>
-		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
+		<span class='profile_nickname'>Minojava</span><br>
+		<span class='profile_phrases'>주 활동시간 : 월수금 19:00~24:00</span>
 		<input type='button' class='btnCall' value='멘토 요청'>
 	</form>
 </div>
@@ -66,21 +66,21 @@
 	</c:forEach>
 	<!--플러스 멘토 공갈데이터  -->
 	<form class='chat_user separator'>
-		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
-		<span class='profile_nickname'>옥다방고양이</span><br>
-		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
+		<img src="../images/angel.png" class="mentoProfile_img">
+		<span class='profile_nickname'>작별왕바이킹</span><br>
+		<span class='profile_phrases'>주 활동시간 : 금~일 21:00~01:00</span>
 		<input type='button' class='btnCall' value='멘토 요청'>
 	</form>
 	<form class='chat_user separator'>
-		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
-		<span class='profile_nickname'>옥다방고양이</span><br>
-		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
+		<img src="../images/girlchar.png" class="mentoProfile_img">
+		<span class='profile_nickname'>이리나이</span><br>
+		<span class='profile_phrases'>요새 바빠져서 자주 못해요ㅠ</span>
 		<input type='button' class='btnCall' value='멘토 요청'>
 	</form>
 	<form class='chat_user separator'>
-		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
-		<span class='profile_nickname'>옥다방고양이</span><br>
-		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
+		<img src="../images/default.png" class="mentoProfile_img">
+		<span class='profile_nickname'>병맛나는병</span><br>
+		<span class='profile_phrases'>주 활동시간 : 그때그때 달라요</span>
 		<input type='button' class='btnCall' value='멘토 요청'>
 	</form>
 </div>
@@ -104,21 +104,21 @@
 	</c:forEach>
 	<!--퍼스널 멘토 공갈데이터  -->
 	<form class='chat_user separator'>
-		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
-		<span class='profile_nickname'>옥다방고양이</span><br>
-		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
+		<img src="../images/devilcookie.png" class="mentoProfile_img">
+		<span class='profile_nickname'>강하게개발맨</span><br>
+		<span class='profile_phrases'>무리한 요구 사절입니다.</span>
 		<input type='button' class='btnCall' value='멘토 요청'>
 	</form>
 	<form class='chat_user separator'>
 		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
-		<span class='profile_nickname'>옥다방고양이</span><br>
+		<span class='profile_nickname'>JD-pro</span><br>
 		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
 		<input type='button' class='btnCall' value='멘토 요청'>
 	</form>
 	<form class='chat_user separator'>
-		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
-		<span class='profile_nickname'>옥다방고양이</span><br>
-		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
+		<img src="../images/angel.png" class="mentoProfile_img">
+		<span class='profile_nickname'>미녕짱123</span><br>
+		<span class='profile_phrases'>주말 오후에 주로 접속함</span>
 		<input type='button' class='btnCall' value='멘토 요청'>
 	</form>
 </div>
