@@ -48,16 +48,18 @@ public class QnaBoardController {
 	@RequestMapping("/qna/qna_view")
 	public ModelAndView qnaView(QnaBoardVo qbVo, QnaBoardReplVo qbrVo) {
 		ModelAndView mv = new ModelAndView();
-		//doc안에 있는 \n 기호를 <br/>로 변경;수형이형 인서트부분과 말맞춰봐야함.
+		
 		/*
 		 String temp = qbVo.getDoc();
 		  qbVo.setDoc(temp.replace("\n","<br/>"));
 		 */
 		qbVo.setSno(3); //qna.jsp 에서 해당리스트를 눌렀을때 작동하는것으로 해당 리스트마다 
 		qbVo = service.view(qbVo.getSno());
-	
+		int checkChaeTaek =service.checkChaeTaek(qbVo.getSno());
 		List<QnaBoardReplVo> replList = service.replList(qbVo.getSno());//본문의sno를 넣어줌
 		
+		mv.addObject("checkChaeTaek",checkChaeTaek);
+		System.out.println("채택스테이터스 서비스단:"+checkChaeTaek);
 		mv.addObject("qbVo",qbVo);
 		mv.addObject("replList",replList);
 		System.out.println(replList);
@@ -116,14 +118,22 @@ public class QnaBoardController {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		
-		boolean b = service.replChaetaek(qbrVo.getRepl_sno());
-		if(!b) {
-			msg = "삭제중 오류 발생";
-		}
+		boolean b = service.replChaetaek(qbrVo);
+		
+		if(b) {
+			qbVo.setId(qbrVo.getId());
+			System.out.println("컨트롤러채택id:"+qbVo.getId());
+			System.out.println("보상픽셀:"+qbVo.getQna_pixel_reward());
+			b = service.giveRewardPixel(qbVo);
+			if(!b) {
+				msg = "보상픽셀 전달 중 오류 발생";
+			}
+		}else {msg = "채택 중 오류 발생";}
 		
 		qbVo = service.view(qbVo.getSno());
 	
 		List<QnaBoardReplVo> replList = service.replList(qbVo.getSno());
+		
 		mv.addObject("msg",msg);	//고도화시 이 msg를 가공해서 jsp에 뿌려주자
 		mv.addObject("qbVo",qbVo);
 		mv.addObject("replList",replList);
@@ -135,11 +145,18 @@ public class QnaBoardController {
 	public ModelAndView insertRepl(QnaBoardReplVo qbrVo, QnaBoardVo qbVo) {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
-		boolean b = service.insertRepl(qbrVo);
+		//댓글을 repl에 추가(service.insertRepl(qbrVo))->
+		//추가된댓글의repl_sno를 추출한 후 추출된repl_sno를 repl_selected테이블의 추가(service.insertRepl2(qbrVo)
+		boolean b = service.insertRepl(qbrVo);//repl테이블의 추가
 		
-		if(!b) {
-			msg = "댓글 입력 중 오류 발생";
-		}
+		if(b) {
+			b = service.insertRepl2(qbrVo);//repl_selected테이블의 추가
+			if(!b) {
+				msg = "댓글 입력(2/2) 중 오류 발생";
+			}
+		}else {msg = "댓글 입력(1/2) 중 오류 발생";}
+		
+		
 		
 		qbVo = service.view(qbVo.getSno());
 		
@@ -159,9 +176,13 @@ public class QnaBoardController {
 		ModelAndView mv = new ModelAndView();
 		boolean b = service.insertInnerRepl(qbrVo);
 		
-		if(!b) {
-			msg = "댓글 입력 중 오류 발생";
-		}
+		if(b) {
+			b = service.insertRepl2(qbrVo);//repl_selected테이블의 추가
+			if(!b) {
+				msg = "댓글 입력(2/2) 중 오류 발생";
+			}
+			
+		}else {msg = "댓글 입력(1/2) 중 오류 발생";}
 		
 		qbVo = service.view(qbVo.getSno());
 		
@@ -175,6 +196,31 @@ public class QnaBoardController {
 		return mv;
 	}
 	
+	
+	
+	@RequestMapping("/qna/qna_view/ReplUpdateR")
+	public ModelAndView ReplUpdateR(QnaBoardReplVo qbrVo, QnaBoardVo qbVo) {
+		String msg="";
+		ModelAndView mv = new ModelAndView();
+		boolean b = service.ReplUpdateR(qbrVo);
+		
+		
+		if(!b) {
+			msg = "수정 중 오류 발생";
+		}
+		
+		qbVo = service.view(qbVo.getSno());
+		
+		List<QnaBoardReplVo> replList = service.replList(qbVo.getSno());
+		
+		//mv.addObject("attList",attlist);
+		mv.addObject("msg",msg);	
+		mv.addObject("qbVo",qbVo);
+		mv.addObject("replList",replList);
+		
+		mv.setViewName("/qna/qna_view");
+		return mv;
+	}
 	
 	
 }

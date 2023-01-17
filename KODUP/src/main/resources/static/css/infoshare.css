@@ -360,71 +360,89 @@
 /***** 조성호 *****/
 /***** infoshare VIEW *****/
 #infoshare_view {
-	font-size: 0.875rem;
 	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
-	font-weight: 600;
 	color: #111827;
 }
-#infoshare_view #infoshare_view_doc {
-	min-height: 300px;
-	background: #eee;
-}
+
 #infoshare_view #infoshare_view_subject>.col{
 	min-height:45px;
+	font-weight: 600;
 	text-align:left;
 }
-#infoshare_view #infoshare_view_subject>.col>span{
-	font-size:2rem;
+
+#infoshare_view #infoshare_view_header{
+	display:inline-block; 
+	width:100%;
+	height:55px;
+	margin-top:10px;
+	
 }
-#infoshare_view #infoshare_view_profile_profileimage_file{
-	width:30px; height:30px;
-}
-#infoshare_view #infoshare_view_nalandhit {
-	text-align:right;
+
+
+#infoshare_view #infoshare_view_header {
+	text-align:left;
+	font-size:13px;
 }
 #infoshare_view #infoshare_view_doc{
 	min-height: 400px;
-	background: #DFDFDF;
 }
 #infoshare_view #infoshare_view_hashtag{
-	background: #DFDFDF;
-	font-size:20px;
+	
 }
-#infoshare_view #infoshare_view_hashtag>a{
+#infoshare_view #infoshare_view_hashtag a{
 	text-decoration : none;
+	font-weight: 600;
+	font-size:20px;
 	color:#bb2649;
 }
+
+#infoshare_view #infoshare_view_hashtag a:hover{
+	background-color: #ff3363;
+	color: white;
+}
+
 #infoshare_view #infoshare_view_btnzone{
 	text-align:right !important;
 }
-#infoshare_view #infoshare_view_btnzone>.btnUpdate,.btnDeleteR,.btnList{
+.infoshare_view_originalBtn{
 	width: 50px;
 	height: 30px;
 	color: white;
 	background-color: #bb2649;
 	border : 0px;
+	border-radius:5px;
 }
-#infoshare_view #infoshare_view_btnzone>.btnUpdate:hover,.btnDeleteR:hover,.btnList:hover{
+#infoshare_view .btnBoardtype{
+	width:30px;
+	height:30px;
+	
+}
+.infoshare_view_originalBtn:hover{
 	background-color: #ff3363;
 	color: white;
 }
 #infoshare_view #infoshare_view_repl_insert_profileimage_file{
-	width:40px;
-	height:40px;
+	width:50px;
+	height:50px;
 }
 #infoshare_view #infoshare_view_repl_btnInsert{
 	float:right;
+	
 }
+
+
 #infoshare_view .infoshare_view_repl_profile_profileimage_file{
 	width:20px;
 	height:20px;
 }
 #infoshare_view .infoshare_view_repl_doc{
 	min-height: 100px;
-	background: #F1F1F1;
+	background: #FAFAFA;
+	
 }
 #infoshare_view .infoshare_view_repl_btnzone{
 	text-align:right;
+	
 }
 #infoshare_view .infoshare_view_repl_inner{
 	margin-left: 50px;
@@ -435,7 +453,7 @@
 }
 #infoshare_view .infoshare_view_repl_inner_doc{
 	min-height: 50px;
-	background: #F1F1F1;
+	background: #FAFAFA;
 }
 #infoshare_view .infoshare_view_repl_inner_btnzone{
 	text-align:right;
@@ -447,4 +465,9 @@
 }
 #infoshare_view #infoshare_view_repl_inner_btnInsert {
 	text-align:right;
+}
+#infoshare_view .note-frame{
+	border: 1px solid #DCDCDC;
+	border-radius:20px;
+	padding:5px;
 }
