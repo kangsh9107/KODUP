@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kodup.mansearch.MansearchMapper">
-	<select id="select" resultType="com.kodup.mansearch.MansearchBoardVo">
+	<select id="totList" parameterType="com.kodup.board.PageVo" resultType="Integer">
+		SELECT COUNT(mb.mansearch_sno) totSize FROM board b LEFT JOIN mansearch_board mb 	on b.sno = mb.sno											
+											                LEFT JOIN corperation c 		on b.id = c.id 
+        WHERE b.boardtype='mansearch' and b.subject LIKE '%${findStr}%' or mb.position LIKE '%${findStr}%'
+        or mb.main_task LIKE '%${findStr}%' or mb.required_skill LIKE '%${findStr}%' or c.corp_name LIKE '%${findStr}%'
+	</select>
+	<select id="select" parameterType="com.kodup.board.PageVo" resultType="com.kodup.mansearch.MansearchBoardVo">
 		SELECT DATEDIFF(deadline, DATE_FORMAT(now(),'%Y-%m-%d')) as deadlinecount, mb.mansearch_sno, mb.pay, mb.corp_location, mb.position, mb.required_career, mb.job_type, mb.required_skill, mb.deadline, 
 			   mb.main_task, mb.sub_task, mb.work_start,mb.education_level, mb.work_type, mb.pay_date,
-       		   b.subject,
+       		   b.subject,b.id,b.sno,
                c.corp_logo, c.corp_name
-	    FROM mansearch_board mb LEFT JOIN board b 		ON mb.sno = b.sno
+        FROM mansearch_board mb LEFT JOIN board b 		ON mb.sno = b.sno
                                 LEFT JOIN member m      ON b.id = m.id
                         		LEFT JOIN corperation c ON m.id = c.id
-        WHERE b.boardtype = 'mansearch'                		
+        WHERE b.boardtype='mansearch' and b.subject LIKE '%${findStr}%' or mb.position LIKE '%${findStr}%'
+        or mb.main_task LIKE '%${findStr}%' or mb.required_skill LIKE '%${findStr}%' or c.corp_name LIKE '%${findStr}%'           		
 		ORDER BY b.sno desc
+		limit ${startNo}, ${listSize}
 	</select>
  	<select id="view" parameterType="Integer" resultType="com.kodup.mansearch.MansearchBoardVo">
 		SELECT DATEDIFF(deadline, DATE_FORMAT(now(),'%Y-%m-%d')) as deadlinecount, mb.pay, mb.pay_date, mb.education_level, mb.work_type, mb.corp_location, mb.position, mb.required_career, mb.job_type, mb.required_skill, mb.deadline, 
-			   mb.main_task, mb.sub_task, mb.work_start,
-       		   b.subject, b.doc,
+			   mb.main_task, mb.sub_task,mb.work_start,mb.sno, mb.mansearch_sno,
+       		   b.subject, b.doc, b.id, b.sno,
                c.corp_logo, c.corp_name, c.manager_name, c.manager_phone, c.manager_email
 	    FROM mansearch_board mb LEFT JOIN board b 		ON mb.sno = b.sno
                                 LEFT JOIN member m      ON b.id = m.id
@@ -29,10 +37,18 @@
  	<insert id='mansearchinsert' parameterType='com.kodup.mansearch.MansearchBoardVo'>
 		insert into mansearch_board(sno,work_start,pay,corp_location,position,job_type,required_career,education_level,work_type,pay_date,required_skill,deadline,main_task,sub_task)
 		values((select sno from board order by sno desc limit 0,1),#{work_start},#{pay},#{corp_location},#{position},#{job_type},#{required_career},#{education_level},#{work_type},#{pay_date},#{required_skill},#{deadline},#{main_task},#{sub_task})
-		
 	</insert>
-	<insert id='corpinsert' parameterType='com.kodup.mansearch.MansearchBoardVo'>
-		insert into corperation(id,corp_logo,corp_name,corp_phone,corp_email,manager_name,manager_phone,manager_email)
-		values(#{id},#{corp_logo},#{corp_name},#{corp_phone},#{corp_email},#{manager_name},#{manager_phone},#{manager_email})
-	</insert>	
+	<update id='boardupdate' parameterType='com.kodup.mansearch.MansearchBoardVo'>
+		update board set subject = #{subject}, doc = #{doc}
+		where sno = #{sno}
+	</update>
+ 	<update id='mansearchupdate' parameterType='com.kodup.mansearch.MansearchBoardVo'>
+		update mansearch_board set work_start = #{work_start}, pay = #{pay}, corp_location = #{corp_location}, position = #{position}, job_type = #{job_type}, required_career = #{required_career}, education_level = #{education_level}, work_type = #{work_type}, pay_date = #{pay_date}, required_skill = #{required_skill}, deadline = #{deadline}, main_task = #{main_task}, sub_task = #{sub_task}
+	</update>	
+	<delete id='delete' parameterType='com.kodup.mansearch.MansearchBoardVo'>
+		DELETE FROM mb,b
+    		USING mansearch_board AS mb
+    		LEFT JOIN board AS b ON mb.sno = b.sno
+		WHERE mb.sno = ${sno}; 
+	</delete>
 </mapper>

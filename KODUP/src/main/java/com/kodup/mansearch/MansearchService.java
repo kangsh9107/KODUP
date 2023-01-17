@@ -1,5 +1,6 @@
 package com.kodup.mansearch;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ import com.kodup.board.PageVo;
 @Service
 @Transactional
 public class MansearchService {
-	BoardVo bVo;
-	
+	MansearchBoardVo mbVo;
+	PageVo pVo;
 	@Autowired
 	MansearchMapper mapper;
 	Object savePoint;
@@ -27,6 +28,9 @@ public class MansearchService {
 	
 
 	public List<MansearchBoardVo> select(PageVo pVo){
+		int totSize = mapper.totList(pVo);
+		pVo.setTotSize(totSize);
+		this.pVo = pVo;
 		List<MansearchBoardVo> list = mapper.select(pVo);
 		return list;
 	}
@@ -61,22 +65,56 @@ public class MansearchService {
 		return flag;
 	}
 	
-	public void corpinsert(MansearchBoardVo mbVo) {
-		int cnt = mapper.corpinsert(mbVo);
-		if (cnt > 0) {
-			manager.commit(status);
-		}else {
+	public boolean boardupdate(MansearchBoardVo mbVo) {
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		int cnt = mapper.boardupdate(mbVo);
+		boolean flag = true;
+		if (cnt<1) {
 			status.rollbackToSavepoint(savePoint);
+			flag = false;
 		}
+		return flag;
 	}
 	
-//	public void insertAttList(List<MansearchAttVo> attList) {
-//		int cnt = mapper.insertAttList(attList);
-//		if(cnt>0) {
-//			manager.commit(status);
-//		}else {
-//			status.rollbackToSavepoint(savePoint);
-//		}
-//	}
+	public boolean mansearchupdate(MansearchBoardVo mbVo) {
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		int cnt = mapper.mansearchupdate(mbVo);
+		boolean flag = true;
+		if (cnt<1) {
+			status.rollbackToSavepoint(savePoint);
+			flag = false;
+		}
+		return flag;
+	}	
+	
 
+	
+	public boolean delete(MansearchBoardVo mbVo) {
+		boolean b = true;
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		Object savePoint = status.createSavepoint();
+		
+		System.out.println("mbVo.getSno : " + mbVo.getSno());
+
+		int cnt = mapper.delete(mbVo);
+		if(cnt < 1) {
+			b = false;
+		}	
+		
+		if(b) manager.commit(status);
+		else status.rollbackToSavepoint(savePoint);
+		
+		return b;
+	}
+	
+	public void fileDelete(String delFile) {
+		File file = new File(MansearchFileUploadController.path + delFile);
+		if (file.exists()) file.delete();
+	}
+	
+	public PageVo getpVo() {
+		return pVo;
+	}
 }

@@ -113,11 +113,11 @@ span#required_skill{
 	font-size:0.8rem;
 	color:#6b7280;
 }
-button.btnMove{
+button.btnMove,.btnFirst,.btnLast,.btnPrev,.btnNext{
 	border:none;
 	background-color:white;
 }
-button.btnMove:hover{
+button.btnMove:hover,.btnNext:hover,.btnPrev:hover,.btnFirst:hover,.btnLast:hover{
 	color:#bb2642;
 }
 .dropdown_row .dropdown_content{
@@ -218,7 +218,7 @@ div.mansearch_view_manager .col-md-2,.col-md-4{
 	padding:0;
 	margin:0;
 }
-button.mansearch_update,.mansearch_delete{
+button.mansearch_update,.mansearch_deleteR{
 	width:auto;
 	height:38px;
 	padding:6px 12px;
@@ -228,7 +228,7 @@ button.mansearch_update,.mansearch_delete{
 	border:2px solid #bb2642;
 	border-radius:5px;
 }
-button.mansearch_update:hover,.mansearch_delete:hover{
+button.mansearch_update:hover,.mansearch_deleteR:hover{
 	background-color:#871b30;
 }
 div.premium_review_title{
@@ -393,7 +393,7 @@ input.mansearch_board_insert_form input:focus {
 	outline: 0 0 0 0 !important;
 	box-shadow: 0 0 0 0 !important;
 }
-.mansearch_board_insertR{
+.mansearch_board_insertR,.mansearch_board_updateR{
 	margin-right:20px;
 	width:100px;
 	height:40px;
@@ -410,6 +410,6 @@ input.mansearch_board_insert_form input:focus {
 	border:1px solid #bb2642;
 	border-radius:5px;
 }
-.mansearch_board_cancel:hover,.mansearch_board_insertR:hover{
+.mansearch_board_cancel:hover,.mansearch_board_insertR:hover,.mansearch_board_updateR:hover{
 	background-color:#871b30;
 }

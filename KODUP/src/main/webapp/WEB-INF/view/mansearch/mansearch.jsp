@@ -73,13 +73,19 @@ div.button:active { /*Clicked and held*/
 		<div class="mansearch_findstr_zone">
 			<input type='hidden' name='id' value='${vo.id }'>
       		<input type='hidden' name='nowPage' value='${pVo.nowPage }'/>
-		    <input type='hidden' name='mansearch_sno' value='${vo.mansearch_sno }'/>
-			<input type='text' name='findStr' value='${pVo.findStr }' class='form-control' /> 
-			<input type="button" class="img-button" />
+      		<input type='hidden' name='sno' value='${pVo.sno }'/>
+		    <input type='hidden' name='mansearch_sno' value='${mbVo.mansearch_sno }'/>
+			<input type='text'   name='findStr' value='${pVo.findStr }' class='form-control' /> 
+			<input type="button" class="img-button mansearchBtnSearch" />
 		</div>
 	</form>
 	<div>
-		<button class="mansearch_insert">구인등록</button>
+	<c:if test="${sessionId eq null }">
+		<button type='button' style="visibility:hidden; margin-bottom:10px;"></button>
+	</c:if>
+	 <c:if test="${sessionId ne null }"> 
+			<button type='button' class="mansearch_insert">구인등록</button>
+ 	</c:if>
 		<div class="dropdown" style="float:right;">
 	  		<button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border:1px solid #000">검색필터</button>
 	  		<div class="dropdown-menu dropdown_row">
@@ -117,7 +123,7 @@ div.button:active { /*Clicked and held*/
 					<span id="work_start">${vo.work_start }(근무시작일) / </span>
 					<span id="deadline">마감 ${vo.deadlinecount }일 전</span>
 				</div><br/>
-				<div class="doc" onclick="mansearch_view(${vo.mansearch_sno})">
+				<div class="index" onclick="mansearch_view(${vo.mansearch_sno})">
 					<span id="index_doc" class="index_doc">${vo.position} | ${vo.subject }</span>
 				</div>
 				<div>
@@ -169,10 +175,17 @@ div.button:active { /*Clicked and held*/
 		</c:forEach>
 	</ul>
 	<div class='com-md-8 btnZone' style="border-top:1px solid #6b7280; padding:10px; text-align:center;">
-		<c:forEach var='i' begin='1' end='5'>
-        	<button type='button' class='btnMove'>${i }</button>
+		<c:if test="${pVo.startPage>1 }">
+	         <button type='button' class='btnFirst' onclick = 'mansearch_Move(1)'><<</button>
+	         <button type='button' class='btnPrev'  onclick = 'mansearch_Move(${pVo.startPage-1})'><</button>
+      	</c:if>
+		<c:forEach var='i' begin='${pVo.startPage }' end='${pVo.endPage }'>
+        	<button type='button' class='btnMove' onclick='mansearch_Move(${i})'>${i }</button>
       </c:forEach>
+      <c:if test="${pVo.totPage>pVo.endPage }">
+         <button type='button' class='btnNext' onclick = 'mansearch_Move(${pVo.endPage+1})'>></button>
+         <button type='button' class='btnLast' onclick = 'mansearch_Move(${pVo.totPage})'>>></button>
+      </c:if>      
 	</div>
-
 </body>
 </html>

@@ -18,6 +18,7 @@ public class MansearchBoardController {
 	public ModelAndView select(PageVo pVo) {
 		ModelAndView mv = new ModelAndView();
 		List<MansearchBoardVo> list = service.select(pVo);
+		pVo = service.getpVo();
 		mv.addObject("pVo",pVo);
 		mv.addObject("list",list);
 		mv.setViewName("mansearch/mansearch");
@@ -29,6 +30,7 @@ public class MansearchBoardController {
 	public ModelAndView view(MansearchBoardVo mbVo,PageVo pVo) {
 		ModelAndView mv = new ModelAndView();
 		mbVo = service.view(mbVo.getMansearch_sno());
+		System.out.println("mansearchSno:" + mbVo.getMansearch_sno());
 		mv.addObject("mbVo",mbVo);
 		mv.addObject("pVo", pVo);
 		mv.setViewName("mansearch/mansearch_view");
@@ -46,10 +48,29 @@ public class MansearchBoardController {
 	}
 	
 	@RequestMapping("/mansearch/mansearch_update")
-	public ModelAndView update() {
+	public ModelAndView update(MansearchBoardVo mbVo, PageVo pVo) {
 		ModelAndView mv = new ModelAndView();
+		mbVo = service.view(mbVo.getMansearch_sno());
+		mv.addObject("pVo", pVo);
+		mv.addObject("mbVo", mbVo);
 		mv.setViewName("mansearch/mansearch_update");
 
 		return mv;
-	}		
+	}
+	
+	@RequestMapping("/mansearch/mansearch_delete")
+	public ModelAndView delete(MansearchBoardVo mbVo,PageVo pVo) {
+		ModelAndView mv = new ModelAndView();
+		String msg="";
+		boolean b = service.delete(mbVo);
+		if(!b) {
+			msg = "삭제 중 오류 발생";
+		}
+		mv.addObject("pVo",pVo);
+		mv.addObject("msg",msg);
+		mv.setViewName("mansearch/mansearch");
+		
+		return mv;
+	
+	}
 }

@@ -23,7 +23,20 @@ mansearch_view = function(mansearch_sno){
 	    $('#center').html(data);
 	})	
 }
-
+mansearch_Move = function(nowPage){
+	frm = $('.mansearch_search')[0];
+	frm.nowPage.value = nowPage;
+	param = $(frm).serialize();
+	$.post("/mansearch/mansearch", param, function(data){
+	    $('#center').html(data);
+	})
+}
+$('.mansearchBtnSearch').on('click',function(){
+	frm = $('.mansearch_search')[0];
+	frm.nowPage.value = 1;
+	param = $(frm).serialize();
+	$('#center').load("/mansearch/mansearch", param);
+});
 $('.mansearch_insert').on('click',function(){
 	param = $('.mansearch_search').serialize();
 	$.post('/mansearch/mansearch_insert',param, function(data){
@@ -32,7 +45,11 @@ $('.mansearch_insert').on('click',function(){
 });
 
 $('.mansearch_update').on('click',function(){
-   $('#center').load('/mansearch/mansearch_update');
+	frm = $('.mansearch_frm')[0];
+	param = $(frm).serialize();
+	$.post("/mansearch/mansearch_update",param,function(data){
+	   $('#center').html(data);		
+	})
 });
 
 $('.mansearch_board_cancel').on('click',function(){
@@ -40,19 +57,46 @@ $('.mansearch_board_cancel').on('click',function(){
 	$('#center').load('/mansearch/mansearch');
 });
 
-$('.mansearch_update').on('click',function(){
-	$('#center').load('/mansearch/mansearch_update');
-});
 
 $('.mansearch_board_insertR').on('click',function(){
 	window.scrollTo(0,0);
 	memberid.value = sessionId;
 	frm = $('.mansearch_input_form')[0];
-	console.log($('.corp_logo_insert').val());
 	param = new FormData(frm);
 	$.ajax({
 		type :'post',
 		url : '/mansearch/mansearch_insertR',
+		contentType : false,
+    	processData : false,
+    	data : param,
+    	dataType : 'html',
+    	success : function(data){
+			if(data != '') alert(data);
+			frm.enctype='';
+			param = $(frm).serialize();
+	 		$('#center').load('/mansearch/mansearch',param);
+		}
+	})
+	
+})
+
+$('.mansearch_deleteR').on('click',function(){
+	let yn = confirm('글을 삭제하시겠습니까?');
+	if(!yn) return;
+	param = $('.mansearch_frm').serialize();
+	$.post("/mansearch/mansearch_delete",param,function(){
+		$('#center').html(data);
+	})
+})
+
+$('.mansearch_board_updateR').on('click',function(){
+	window.scrollTo(0,0);
+	memberid.value = sessionId;
+	frm = $('.mansearch_update_form')[0];
+	param = new FormData(frm);
+	$.ajax({
+		type :'post',
+		url : '/mansearch/mansearch_updateR',
 		contentType : false,
     	processData : false,
     	data : param,
