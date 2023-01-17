@@ -42,17 +42,17 @@
 	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
 }
 
-.board_insert_form input {
+.board_insert_form input, .qna_pixel_reward {
 	font-size: 0.875rem;
 	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
 }
 
-.board_insert_form input:focus {
+.board_insert_form input:focus, .qna_pixel_reward:focus {
 	outline: 0 0 0 0 !important;
 	box-shadow: 0 0 0 0 !important;
 }
 
-.board_insert_form input::placeholder {
+.board_insert_form input::placeholder, .qna_pixel_reward::placeholder {
 	color: #999;
 }
 
@@ -200,6 +200,15 @@
 	color: #bb2649;
 }
 
+.board_search_form .btnRefreshHashtag {
+	color: #555;
+	font-size: 1.1rem;
+}
+
+.board_search_form .btnRefreshHashtag:hover {
+	color: #bb2649;
+}
+
 #btnPrevious {
 	color: #555;
 	font-size: 1.1rem;
@@ -209,6 +218,20 @@
 	color: #bb2649;
 }
 
+#btnPrevious i:hover {
+	color: #bb2649 !important;
+}
+
+#btnPreviousNone {
+	color: #aaa;
+	font-size: 1.1rem;
+	pointer-events: none;
+}
+
+#btnPreviousNone:hover {
+	color: #aaa !important;
+}
+
 #btnNext {
 	color: #555;
 	font-size: 1.1rem;
@@ -216,6 +239,20 @@
 
 #btnNext:hover {
 	color: #bb2649;
+}
+
+#btnNext i:hover {
+	color: #bb2649 !important;
+}
+
+#btnNextNone {
+	color: #aaa;
+	font-size: 1.1rem;
+	pointer-events: none;
+}
+
+#btnNextNone:hover {
+	color: #aaa !important;
 }
 
 #board_btnZone .btn:hover {
@@ -324,6 +361,10 @@
 }
 
 #btnMove:hover {
+	color: #bb2649;
+}
+
+.btnMove {
 	color: #bb2649;
 }
 

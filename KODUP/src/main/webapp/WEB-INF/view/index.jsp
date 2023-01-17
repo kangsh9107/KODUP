@@ -28,6 +28,25 @@
 <title>코드 레벨업 - 코덥!</title>
 </head>
 <body>
+	<!-- HIDDEN -->
+	<form name="index_cb_form" class="index_cb_form" method="post">
+		<input type="hidden" name="sno" value="1">
+		<input type="hidden" name="sort" value="1">
+		<input type="hidden" name="boardtype" value="">
+		<input type="hidden" name="horsehead" value="">
+		<input type="hidden" name="hashtag" value="">
+		<input type="hidden" name="qna_pixel_reward" value="1">
+		<input type="hidden" name="nowPage" value="1">
+		<input type="hidden" name="findStr" value="">
+		<input type="hidden" name="id" value="${sessionScope.sessionId }">
+		<!-- SORT -->
+		<select id="sort" style="display: none;" name="sort" onchange="changeSort()" class="form-select" aria-label="Default select example">
+			<option value="1" ${cbpVo.sort == 1 ? 'selected' : '' }>최신순</option>
+			<option value="2" ${cbpVo.sort == 2 ? 'selected' : '' }>추천순</option>
+			<option value="3" ${cbpVo.sort == 3 ? 'selected' : '' }>댓글순</option>
+			<option value="4" ${cbpVo.sort == 4 ? 'selected' : '' }>조회순</option>
+		</select>
+	</form>
 	<input type="hidden" class="sessionId_hidden" value="${sessionScope.sessionId }">
 	<input type="hidden" value="${sessionScope.grade }">
 	<!-- NAV -->

@@ -13,9 +13,9 @@ public class Time {
 		public static final int MONTH = 12;
 	}
 	
-	public static String calculateTime(Date date) {
+	public static String calculateTime(Date nal) {
 		long curTime = System.currentTimeMillis();
-		long regTime = date.getTime();
+		long regTime = nal.getTime() - 32400000;
 		long diffTime = (curTime - regTime) / 1000;
 		String msg = null;
 		
@@ -32,7 +32,7 @@ public class Time {
 		} else {
 			SimpleDateFormat sdf = new SimpleDateFormat( "yyyy");
 			String curYear = sdf.format(curTime);
-			String passYear = sdf.format(date);
+			String passYear = sdf.format(nal);
 			int diffYear = Integer.parseInt(curYear) - Integer.parseInt(passYear);
 			msg = diffYear + "년 전";
 		}

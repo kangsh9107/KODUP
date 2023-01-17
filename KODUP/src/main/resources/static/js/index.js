@@ -20,13 +20,33 @@ main();
 hotTag();
 topWriter();
 
-var index_qna = function() {
+function runHashtagIndex(hashtag) {
+	nonClick.forEach((e) => { //e는 element
+		e.classList.remove('click');
+	});
 	
+	var frm = $('.index_cb_form')[0];
+	var sort = $('#sort option:selected').val();
+	frm.sort.value = sort;
+	frm.hashtag.value = hashtag;
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/login/find_hashtag',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
 }
 
 /***** NAV *****/
 //모든 .non-click 가져옴
-const nonClick = document.querySelectorAll('.non-click');
+var nonClick = document.querySelectorAll('.non-click');
 
 function handleClick(event) {
 	//모든 .non-click의 .click 제거
@@ -73,7 +93,9 @@ $('.btnLogoutR').on('click', function() {
 		dataType: 'html',
 		success: function(data) {
 			$('#center').html(data);
-			location.replace('/');
+			setTimeout(() => {
+				location.replace('/');
+			}, 500);
 		}
 	});
 });
@@ -96,6 +118,10 @@ $(document).ready(function() {
 
 /***** LOGIN *****/
 $('.index_btnLogin').on('click', function() {
+	nonClick.forEach((e) => {
+		e.classList.remove('click');
+	});
+	
 	$('#center').load('/login/login');
 });
 
@@ -110,17 +136,43 @@ $('.index_btnJoinKakaoR').on('click', function() {
 	$('#center').load('/login/login_kakao');
 });
 
-/***** QNA LIST *****/
+/***** LIST *****/
+var quick = function(sno, boardtype) {
+	var frm = $('.index_cb_form')[0];
+	frm.sno.value = sno;
+	frm.boardtype.value = boardtype;
+}
+//QNA LIST
 $('.btnQna').on('click', function() {
-	$('#center').load('/qna/qna');
+	var frm = $('.index_cb_form')[0];
+	frm.boardtype.value = 'qna';
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/qna/qna_list',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
 });
 
-function runQna() {
-	console.log('테스트');
-}
+$(document).on('click', '.btnMainQna', function() {
+	$('.btnQna').addClass('click');
+	$('.btnQna').click();
+});
 
-/***** INFOSHARE LIST *****/
+//INFOSHARE LIST
 $('.btnInfoshare').on('click', function() {
+	$('#center').load('/infoshare/infoshare');
+});
+
+$(document).on('click', '.btnMainInfoshare', function() {
+	$('.btnInfoshare').addClass('click');
 	$('#center').load('/infoshare/infoshare');
 });
 
@@ -128,16 +180,21 @@ function runInfoshare() {
 	console.log('테스트');
 }
 
-/***** FREETALKING LIST *****/
+//FREETALKING LIST
 $('.btnFreetalking').on('click', function() {
 	$('#center').load('/freetalking/freetalking');
+});
+
+$(document).on('click', '.btnMainFreetalking', function() {
+	$('.btnFreetalking').addClass('click');
+	$('.btnFreetalking').click();
 });
 
 function runFreetalking() {
 	console.log('테스트');
 }
 
-/***** JOBSEARCH LIST *****/
+//JOBSEARCH LIST
 $('.btnJobsearch').on('click', function() {
 	$('#center').load('/jobsearch/jobsearch');
 });
@@ -146,8 +203,13 @@ function runJobsearch() {
 	console.log('테스트');
 }
 
-/***** NOTIFICATION LIST *****/
+//NOTIFICATION LIST
 $('.btnNotification').on('click', function() {
+	$('#center').load('/notification/notification');
+});
+
+$(document).on('click', '.btnMainNotification', function() {
+	$('.btnNotification').addClass('click');
 	$('#center').load('/notification/notification');
 });
 

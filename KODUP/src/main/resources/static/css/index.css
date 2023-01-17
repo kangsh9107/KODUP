@@ -56,6 +56,14 @@
 	.index_footer {
 		margin-top: 165px !important;
 	}
+	
+	#textPrevious {
+		display: none;
+	}
+	
+	#textNext {
+		display: none;
+	}
 }
 
 @media all and (max-width: 576px) {
@@ -238,11 +246,11 @@
 	cursor: default;
 }
 
-#index_hashtag label {
+#index_hashtag a {
 	color: #555;
 }
 
-#index_hashtag label:hover {
+#index_hashtag a:hover {
 	color: #bb2649;
 }
 
@@ -379,14 +387,14 @@
 	cursor: default;
 }
 
-#index_doc {
+#index_subject {
 	font-size: 1rem;
 	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
 	font-weight: 600;
 	color: #111827;
 }
 
-#index_doc:hover {
+#index_subject:hover {
 	color: #bb2649;
 	cursor: pointer;
 }

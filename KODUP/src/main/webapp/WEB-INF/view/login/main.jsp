@@ -6,8 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- JS -->
-<script defer src="js/main.js"></script>
 <title>login/main.jsp</title>
 </head>
 <body>
@@ -17,7 +15,7 @@
 			<!-- QNA5 -->
 			<div class="col-md-6" style="padding-left: 10px; padding-right: 10px;">
 				<div class="list-group">
-					<a href="#" class="list-group-item list-group-item-action btnQna" id="index_main_boardtype" style="cursor: pointer;">
+					<a href="#" class="list-group-item list-group-item-action btnMainQna" id="index_main_boardtype" style="cursor: pointer;">
 						Q&A
 						<img id="index_boardtype_background" src="images/index_boardtype_qna.png">
 					</a>
@@ -39,7 +37,7 @@
 							</div>
 							<br/>
 							<a href="#" class="text-decoration-none">
-								<span id="index_doc">
+								<span id="index_subject" onclick="quick('${qna5.sno}', '${qna5.boardtype }')">
 									<c:choose>
 										<c:when test="${fn:length(qna5.subject) gt 16}">
 											<c:out value="${fn:substring(qna5.subject, 0, 15)}..."></c:out>
@@ -57,7 +55,7 @@
 			<!-- FREETALKING5 -->
 			<div class="col-md-6" style="padding-left: 10px; padding-right: 10px;">
 				<div class="list-group">
-					<a href="#" class="list-group-item list-group-item-action btnFreetalking" id="index_main_boardtype" style="cursor: pointer;">
+					<a href="#" class="list-group-item list-group-item-action btnMainFreetalking" id="index_main_boardtype" style="cursor: pointer;">
 						커뮤니티
 						<img id="index_boardtype_background" src="images/index_boardtype_freetalking.png">
 					</a>
@@ -79,7 +77,7 @@
 							</div>
 							<br/>
 							<a href="#" class="text-decoration-none">
-								<span id="index_doc">
+								<span id="index_subject">
 									<c:choose>
 										<c:when test="${fn:length(freetalking5.subject) gt 16}">
 											<c:out value="${fn:substring(freetalking5.subject, 0, 15)}..."></c:out>
@@ -119,7 +117,7 @@
 							</div>
 							<br/>
 							<a href="#" class="text-decoration-none">
-								<span id="index_doc">
+								<span id="index_subject">
 									<c:choose>
 										<c:when test="${fn:length(weeklyBest5.subject) gt 16}">
 											<c:out value="${fn:substring(weeklyBest5.subject, 0, 15)}..."></c:out>
@@ -159,7 +157,7 @@
 							</div>
 							<br/>
 							<a href="#" class="text-decoration-none">
-								<span id="index_doc">
+								<span id="index_subject">
 									<c:choose>
 										<c:when test="${fn:length(editor5.subject) gt 16}">
 											<c:out value="${fn:substring(editor5.subject, 0, 15)}..."></c:out>
@@ -177,7 +175,7 @@
 			<!-- INFOSHARE5 -->
 			<div class="col-md-6" style="padding-left: 10px; padding-right: 10px;">
 				<div class="list-group">
-					<a href="#" class="list-group-item list-group-item-action btnInfoshare" id="index_main_boardtype" style="cursor: pointer;">
+					<a href="#" class="list-group-item list-group-item-action btnMainInfoshare" id="index_main_boardtype" style="cursor: pointer;">
 						정보공유
 						<img id="index_boardtype_background" src="images/index_boardtype_infoshare.png">
 					</a>
@@ -199,7 +197,7 @@
 							</div>
 							<br/>
 							<a href="#" class="text-decoration-none">
-								<span id="index_doc">
+								<span id="index_subject">
 									<c:choose>
 										<c:when test="${fn:length(infoshare5.subject) gt 16}">
 											<c:out value="${fn:substring(infoshare5.subject, 0, 15)}..."></c:out>
@@ -217,7 +215,7 @@
 			<!-- NOTIFICATION5 -->
 			<div class="col-md-6" style="padding-left: 10px; padding-right: 10px;">
 				<div class="list-group">
-					<a href="#" class="list-group-item list-group-item-action btnNotification" id="index_main_boardtype" style="cursor: pointer;">
+					<a href="#" class="list-group-item list-group-item-action btnMainNotification" id="index_main_boardtype" style="cursor: pointer;">
 						공지사항
 						<img id="index_boardtype_background" src="images/index_boardtype_notification.png">
 					</a>
@@ -239,7 +237,7 @@
 							</div>
 							<br/>
 							<a href="#" class="text-decoration-none">
-								<span id="index_doc">
+								<span id="index_subject">
 									<c:choose>
 										<c:when test="${fn:length(notification5.subject) gt 16}">
 											<c:out value="${fn:substring(notification5.subject, 0, 15)}..."></c:out>

@@ -5,6 +5,7 @@
 	<!-- TOP WRITER -->
 	<select id="topWriter" resultType="com.kodup.login.MemberVo">
 		SELECT b.id, m.profile_img FROM board b JOIN member m ON b.id = m.id
+		WHERE nal BETWEEN DATE_ADD(NOW(),INTERVAL -1 WEEK ) AND NOW()
 		GROUP BY b.id ORDER BY COUNT(b.id) DESC, b.id ASC LIMIT 0,5
 	</select>
 	
@@ -22,7 +23,7 @@
 		             LEFT JOIN repl r   ON b.sno = r.sno
 		WHERE b.boardtype = 'qna'
 		GROUP BY b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown), m.profile_img, m.nickname
-		ORDER BY b.sno DESC LIMIT 0, 5
+		ORDER BY b.nal DESC, b.sno DESC LIMIT 0, 5
 	</select>
 	
 	<!-- FREETALKING5 -->
@@ -34,7 +35,7 @@
 		             LEFT JOIN repl r   ON b.sno = r.sno
 		WHERE b.boardtype = 'freetalking'
 		GROUP BY b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown), m.profile_img, m.nickname
-		ORDER BY b.sno DESC LIMIT 0, 5
+		ORDER BY b.nal DESC, b.sno DESC LIMIT 0, 5
 	</select>
 	
 	<!-- INFOSHARE5 -->
@@ -46,7 +47,7 @@
 		             LEFT JOIN repl r   ON b.sno = r.sno
 		WHERE b.boardtype = 'infoshare'
 		GROUP BY b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown), m.profile_img, m.nickname
-		ORDER BY b.sno DESC LIMIT 0, 5
+		ORDER BY b.nal DESC, b.sno DESC LIMIT 0, 5
 	</select>
 	
 	<!-- NOTIFICATION5 -->
@@ -58,7 +59,7 @@
 		             LEFT JOIN repl r   ON b.sno = r.sno
 		WHERE b.boardtype = 'notification'
 		GROUP BY b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown), m.profile_img, m.nickname
-		ORDER BY b.sno DESC LIMIT 0, 5
+		ORDER BY b.nal DESC, b.sno DESC LIMIT 0, 5
 	</select>
 	
 	<!-- WEEKLYBEST5 -->
@@ -70,7 +71,7 @@
 					 LEFT JOIN repl r   ON b.sno = r.sno
 		WHERE b.nal > DATE_ADD(NOW(), INTERVAL -7 DAY)
 		GROUP BY b.sno, b.boardtype, b.nal, b.subject, thumb, b.viewcount, m.profile_img, m.nickname
-		ORDER BY thumb DESC, viewcount DESC, sno DESC LIMIT 0, 5
+		ORDER BY thumb DESC, viewcount DESC, b.nal DESC, b.sno DESC LIMIT 0, 5
 	</select>
 	
 	<!-- EDITOR5 -->

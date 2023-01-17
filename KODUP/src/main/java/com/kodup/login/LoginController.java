@@ -26,6 +26,7 @@ public class LoginController {
 	@Autowired
 	LoginService service;
 
+	//로그인 폼 출력
 	@RequestMapping("/login/login")
 	public ModelAndView login() {
 		ModelAndView mv = new ModelAndView();
@@ -33,13 +34,7 @@ public class LoginController {
 		return mv;
 	}
 	
-	@RequestMapping("/login/change_pwd")
-	public ModelAndView changePwd() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/login/change_pwd");
-		return mv;
-	}
-	
+	//계정찾기 폼 출력
 	@RequestMapping("/login/find_account")
 	public ModelAndView findAccount() {
 		ModelAndView mv = new ModelAndView();
@@ -47,6 +42,7 @@ public class LoginController {
 		return mv;
 	}
 	
+	//코덥 회원가입 폼 출력
 	@RequestMapping("/login/join")
 	public ModelAndView join() {
 		ModelAndView mv = new ModelAndView();
@@ -89,9 +85,7 @@ public class LoginController {
 				String[] tag = temp.split("#");
 				
 				for(String t : tag) {
-					if(t.equals("")) {
-						continue;
-					} else if(countHashTag.get(t) == null) {
+					if(countHashTag.get(t) == null) {
 						try {
 							countHashTag.put(t.toUpperCase(), 1);
 						} catch(Exception e) {
@@ -339,7 +333,7 @@ public class LoginController {
 		return mv;
 	}
 	
-	//계정찾기
+	//인증키 이메일로 발송
 	@RequestMapping("/login/find_accountR")
 	public ModelAndView findAccount(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
@@ -365,7 +359,7 @@ public class LoginController {
 		return mv;
 	}
 	
-	//이메일 인증키
+	//인증키 인증 확인
 	@RequestMapping("/login/find_account_keyR")
 	public ModelAndView findAccountKey(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
@@ -383,11 +377,10 @@ public class LoginController {
 		return mv;
 	}
 	
-	//인증키 인증하고, 비밀번호 변경
+	//비밀번호 변경
 	@RequestMapping("/login/update_passwordR")
 	public ModelAndView updatePwdR(MemberVo mVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
-		
 		
 		boolean b = false; //false면 비밀번호 변경오류
 		b = service.updatePwd(mVo);
