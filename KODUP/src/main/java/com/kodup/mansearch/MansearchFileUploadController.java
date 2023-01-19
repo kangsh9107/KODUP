@@ -14,22 +14,19 @@ public class MansearchFileUploadController {
 	MansearchService service;
 	
 	@RequestMapping("/mansearch/mansearch_insertR")
-	public synchronized String insertR(@ModelAttribute MansearchBoardVo mbVo) {
-		 
-		
+	public synchronized String insertR(@ModelAttribute MansearchBoardVo mbVo) {	
 		String msg="";
-
-		try {
+		int corp_status = service.corp_status(mbVo);
+		if(corp_status == 2 ) {
 			boolean flag1 = service.boardinsert(mbVo);
 			boolean flag2 = service.mansearchinsert(mbVo);			
 			
 			if(flag1 && flag2) {
 				msg = "정상적으로 저장되었습니다.";
 			} else msg="저장중 오류 발생";
-	
-
-		}catch(Exception e) {
-			e.printStackTrace();
+			
+		}else if(corp_status !=2) {
+			msg="마이페이지에서 기업 인증 후 작성 가능합니다.";	
 		}
 		return msg;
 	}

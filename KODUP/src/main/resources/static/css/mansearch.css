@@ -2,6 +2,11 @@
 dd{
 	margin:0;
 }
+@media ( max-width :1145px) {
+	button.mansearch_dropdown{
+		visibility:hidden;
+	}
+}
 li.ListGroupItem{
 	list-style:none;
 	margin:0;
@@ -18,7 +23,7 @@ input.img-button {
     border: none;
 	cursor: pointer;
 }
-button.mansearch_insert{
+button.mansearch_insert,button.sort_save,button.sort_search,button.sort_reset{
 	width:93px;
 	height:38px;
 	padding:6px 12px;
@@ -28,7 +33,7 @@ button.mansearch_insert{
 	border:2px solid #bb2642;
 	border-radius:5px;
 }
-button.mansearch_insert:hover{
+button.mansearch_insert:hover,button.sort_save:hover,button.sort_search:hover,button.sort_reset:hover{
 	background-color:#871b30;
 }
 div.mansearch_title{

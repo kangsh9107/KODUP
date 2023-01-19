@@ -28,11 +28,45 @@ public class MansearchBoardVo {
 	String corp_logo;
 	String corp_phone;
 	String corp_email;
-	
+	int premium_review_sno;
+	String review;
+	String writer_id;
+	String buyer_id;
+	int pr_mansearch_sno;
 	// 마감일을 구하기 위한 필드
 	String deadlinecount;
 
-
+	
+	public int getPr_mansearch_sno() {
+		return pr_mansearch_sno;
+	}
+	public void setPr_mansearch_sno(int pr_mansearch_sno) {
+		this.pr_mansearch_sno = pr_mansearch_sno;
+	}
+	public int getPremium_review_sno() {
+		return premium_review_sno;
+	}
+	public void setPremium_review_sno(int premium_review_sno) {
+		this.premium_review_sno = premium_review_sno;
+	}
+	public String getReview() {
+		return review;
+	}
+	public void setReview(String review) {
+		this.review = review;
+	}
+	public String getWriter_id() {
+		return writer_id;
+	}
+	public void setWriter_id(String writer_id) {
+		this.writer_id = writer_id;
+	}
+	public String getBuyer_id() {
+		return buyer_id;
+	}
+	public void setBuyer_id(String buyer_id) {
+		this.buyer_id = buyer_id;
+	}
 	public String getCorp_phone() {
 		return corp_phone;
 	}

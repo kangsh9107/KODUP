@@ -4,6 +4,7 @@
 var frm;
 var param;
 var memberid = document.querySelector('.member_id');
+var subdivision = document.querySelector('#subdivision');
 $(document).ready(function () {
 	$('#summernote').summernote({
 		placeholder: '내용을 입력해주세요.',
@@ -15,6 +16,28 @@ $(document).ready(function () {
 	});
 });
 
+$('#mansearch_sort').on('change',function(){
+	var data = {
+		"포지션" : ["프론트엔드","백엔드","풀스택"],
+		"지역"  : ["서울","인천","충청도","전라도","경상도","강원도","제주도"],
+		"급여"  : ["300만원 이상","500만원 이상","700만원 이상","1000만원 이상","1500만원 이상"],
+		"경력"  : ["경력 무관","신입","3년 이상","5년 이상","7년 이상","10년 이상","15년 이상"],
+		"학력"  : ["학력 무관","고졸 이상","전문학사 이상","학사 이상","석사 이상"]
+	};
+	frm = document.querySelector('.mansearch_search');
+	var k = $('#mansearch_sort').val();
+	var sub = data[k];
+	var html;
+	for(s of sub){
+	html += `<option value="${s}"> ${s} </option>`;
+	} 
+	frm.subdivision.innerHTML = html;
+	
+})
+$("select[name=subdivision]").change(function(){
+	frm = document.querySelector('.mansearch_search');
+	frm.position.value = $("select[name=subdivision] option:selected").val();
+});
 mansearch_view = function(mansearch_sno){
 	frm = $('.mansearch_search')[0];
 	frm.mansearch_sno.value = mansearch_sno;
@@ -110,3 +133,15 @@ $('.mansearch_board_updateR').on('click',function(){
 	})
 	
 })
+
+premiumView = function(){
+	frm = $('.mansearch_frm')[0];
+	param = $(frm).serialize(); 
+	var img = document.querySelector('.blur');
+	img.style.display='none';
+	$('.doc_blind_wrap').remove();
+	$('.btn-close').click();
+	$.post("/mansearch/premium_review",param,function(data){
+	   $('.premium_review_doc').html(data);		
+	})
+}

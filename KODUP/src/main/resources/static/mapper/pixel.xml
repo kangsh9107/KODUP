@@ -15,15 +15,16 @@
 		update member set pixel = pixel+(select pixel_buy_amount from pixel_buy_list order by pixel_buy_date desc limit 0,1)
 		where id = #{id}
 	</update>
-<<<<<<< HEAD
 	<insert id="buylog" parameterType="com.kodup.pixel.PixelHistoryVo">
 		insert into pixel_history(id,pixel_log,history_date,history_detail)
 		values(#{id},(select pixel_buy_amount from pixel_buy_list order by pixel_buy_date desc limit 0,1),now(),'픽셀 구매')
 	</insert>
-=======
-   	<insert id="buylog" parameterType="com.kodup.pixel.PixelHistoryVo">
-   	   insert into pixel_history(id,pixel_log,history_date,history_detail)
-   	   values(#{id},(select pixel_buy_amount from pixel_buy_list order by pixel_buy_date desc limit 0,1),now(),'픽셀 구매')
-  	 </insert>
->>>>>>> refs/remotes/origin/yohan
+	<insert id="readlog" parameterType="com.kodup.pixel.PixelHistoryVo">
+		insert into pixel_history(id,pixel_log,history_date,history_detail)
+		values(#{id},-300,now(),'프리미엄리뷰 열람')
+	</insert>
+	<insert id="writelog" parameterType="com.kodup.pixel.PixelHistoryVo">
+		insert into pixel_history(id,pixel_log,history_date,history_detail)
+		values(#{id},300,now(),'프리미엄리뷰 작성')
+	</insert>	
 </mapper>

@@ -1,6 +1,7 @@
 package com.kodup.mansearch;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,16 @@ public class MansearchService {
 		List<MansearchBoardVo> list = mapper.select(pVo);
 		return list;
 	}
+	
+	public List<MansearchBoardVo> review(int sno){
+		List<MansearchBoardVo> list = mapper.review(sno);
+		return list;
+	}	
+	
+	public List<MansearchBoardVo> premiumlist(int sno){
+		List<MansearchBoardVo> premiumlist = mapper.premiumlist(sno);
+		return premiumlist;
+	}	
 	
 	public MansearchBoardVo view(int sno) {
 		MansearchBoardVo mbVo = null;
@@ -103,6 +114,11 @@ public class MansearchService {
 		else status.rollbackToSavepoint(savePoint);
 		
 		return b;
+	}
+	public int corp_status(MansearchBoardVo mbVo) {
+		int corp_status = mapper.corp_status(mbVo);
+
+		return corp_status;
 	}
 	
 	public PageVo getpVo() {

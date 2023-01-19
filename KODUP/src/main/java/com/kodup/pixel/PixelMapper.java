@@ -13,5 +13,10 @@ public interface PixelMapper {
 	public List<PixelPriceVo> select();
 	public int addlist(PixelBuyVo buyVo);
 	public int addpixel(MemberVo mVo);
+	public int readpixel(MemberVo mVo);
+	public int writepixel(MemberVo mVo);
+
 	public int buylog(PixelHistoryVo hVo);
+	public int readlog(PixelHistoryVo hVo);
+	public int writelog(PixelHistoryVo hVo);
 }
