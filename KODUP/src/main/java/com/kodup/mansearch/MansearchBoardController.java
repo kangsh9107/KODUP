@@ -1,6 +1,9 @@
 package com.kodup.mansearch;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,9 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kodup.board.PageVo;
+import com.kodup.login.MemberVo;
+import com.kodup.pixel.PixelHistoryVo;
+import com.kodup.pixel.PixelService;
 
 @RestController
 public class MansearchBoardController {
+	@Autowired
+	PixelService pixelservice;
 	
 	@Autowired
 	MansearchService service;
@@ -27,17 +35,36 @@ public class MansearchBoardController {
 	}
 	
 	@RequestMapping("/mansearch/mansearch_view")
-	public ModelAndView view(MansearchBoardVo mbVo,PageVo pVo) {
+	public ModelAndView view(MansearchBoardVo mbVo,PageVo pVo, MemberVo mVo) {
 		ModelAndView mv = new ModelAndView();
 		mbVo = service.view(mbVo.getMansearch_sno());
-		System.out.println("mansearchSno:" + mbVo.getMansearch_sno());
+//		List<MansearchBoardVo> review = service.review(mbVo.getMansearch_sno());
+		List<MansearchBoardVo> premiumlist = service.premiumlist(mbVo.getMansearch_sno(),mVo);
+		System.out.println("id : " + mbVo.getId());
+		mv.addObject("premiumlist",premiumlist);
+//		mv.addObject("review",review);
 		mv.addObject("mbVo",mbVo);
 		mv.addObject("pVo", pVo);
 		mv.setViewName("mansearch/mansearch_view");
 
 		return mv;
 	}
-	
+	@RequestMapping("/mansearch/premium_review")
+	public ModelAndView review(MemberVo mVo,MansearchBoardVo mbVo, PixelHistoryVo hVo) {
+		ModelAndView mv = new ModelAndView();
+		mbVo = service.view(mbVo.getMansearch_sno());
+		System.out.println("mansearch_sno : " + mbVo.getMansearch_sno());
+		List<MansearchBoardVo> review = service.review(mbVo.getPremium_review_sno());
+//		pixelservice.readlog(hVo);
+//		pixelservice.writelog(hVo);
+//		pixelservice.readpixel(mVo);
+//		pixelservice.writepixel(mVo);
+		
+		mv.addObject("review",review);
+//		mv.addObject("mbVo",mbVo);
+		mv.setViewName("/mansearch/mansearch_premium_review");
+		return mv;
+	}
 	@RequestMapping("/mansearch/mansearch_insert")
 	public ModelAndView insert(PageVo pVo) {
 		ModelAndView mv = new ModelAndView();

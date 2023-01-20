@@ -14,7 +14,7 @@ public class PageVo {
     int sno;
     int mansearch_sno;
     String findStr;
-    
+    String sort;
     public void pageCompute() {
         // 전체 건수를 사용하여 전체 페이지수 계산
         totPage = (int)Math.ceil(totSize/(double)listSize);

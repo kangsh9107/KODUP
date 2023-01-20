@@ -1,6 +1,8 @@
 package com.kodup.mansearch;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.kodup.board.PageVo;
+import com.kodup.login.MemberVo;
 
 @Service
 @Transactional
@@ -32,6 +35,24 @@ public class MansearchService {
 		List<MansearchBoardVo> list = mapper.select(pVo);
 		return list;
 	}
+	
+	public List<MansearchBoardVo> review(int sno){
+		List<MansearchBoardVo> list = mapper.review(sno);
+		return list;
+	}	
+	
+	public List<MansearchBoardVo> premiumlist(int sno, MemberVo mVo){
+		List<MansearchBoardVo> premiumlist = mapper.premiumlist(sno);
+		List<MansearchBoardVo> buylist = mapper.buylist(mVo);
+		for(MansearchBoardVo l : premiumlist) {
+			   for(MansearchBoardVo b : buylist) {
+			      if(l.premium_review_sno == b.premium_review_sno) l.setStatus(1);
+			   }
+			}
+		return premiumlist;
+	}
+	
+
 	
 	public MansearchBoardVo view(int sno) {
 		MansearchBoardVo mbVo = null;
@@ -103,6 +124,11 @@ public class MansearchService {
 		else status.rollbackToSavepoint(savePoint);
 		
 		return b;
+	}
+	public int corp_status(MansearchBoardVo mbVo) {
+		int corp_status = mapper.corp_status(mbVo);
+
+		return corp_status;
 	}
 	
 	public PageVo getpVo() {
