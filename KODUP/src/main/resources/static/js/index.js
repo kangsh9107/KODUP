@@ -281,8 +281,8 @@ if(sessionId != ''){
 									<span>${data.mentiNickname}님이 멘토요청하였습니다.</span><br/><br/>
 									<input type="text" value="보상픽셀 : ${data.rewardPixel}픽셀" readonly>
 									<input type="text" value="상담내용 : ${data.question}" size=30 readonly><br/><br/>
-									<input type="button" value="수락" class="btnAccessCall">
-									<input type="button" value="거절" class="btnRefuseCall">			
+									<input type="button" value="수 락" class="btnAccessCall">
+									<input type="button" value="거 절" class="btnRefuseCall">			
 									
 									<input type="hidden" value="${data.mentiId}" class="mentiId_hidden">
 									<input type="hidden" value="${data.mentiNickname}" class="mentiNickname_hidden">
