@@ -248,8 +248,8 @@ li {
 	</div>
 	<br />
 	<br />
-	<c:forEach var="vo" items="${premiumlist }">
-		<c:if test="${mbVo.mansearch_sno eq mbVo.pr_mansearch_sno }">
+	<c:forEach var="vo" items="${premiumlist }" varStatus="status">
+		<c:if test="${mbVo.mansearch_sno eq vo.pr_mansearch_sno }">
 			<form>
 				<div class="container" style="padding-left: 0;">
 					<div class="row">
@@ -257,26 +257,32 @@ li {
 							<div class="premium_review_writer">
 								<span> <img id="premium_review_writer_icon"
 									src="images/index_default.png">
-								</span> <span>|</span> <span> <label>${vo.writer_id }</label>
+								</span>
+								<span>|</span>
+								<span>
+									<label>${vo.writer_id }</label>
 								</span>
 							</div>
 							<div class="premium_review_doc_wrap">
 								<div class="premium_review_doc">
-									<c:if
-										test="${sessionId eq null || vo.buyer_id ne sessionId && vo.writer_id ne sessionId }">
-										<img src="/images/review_blur.png" class="blur">
-									</c:if>
-									<c:if
-										test="${sessionId ne null && vo.buyer_id eq sessionId || vo.writer_id eq sessionId}">
+<%-- 								<c:if test="${sessionId eq null || vo.buyer_id ne sessionId && vo.writer_id ne sessionId }"> </c:if>--%>
+									<c:choose>
+										<c:when test="${vo.status == 1 }">									
 											${vo.review }
-									</c:if>
+										</c:when>
+										<c:otherwise>
+											<img src="/images/review_blur.png" class="blur">
+										</c:otherwise>	
+									</c:choose>
+<%-- 									<c:if test="${sessionId ne null && vo.buyer_id eq sessionId || vo.writer_id eq sessionId}"></c:if> --%>
+									<input type='hidden' name='premium_review_sno' value='${vo.premium_review_sno }'>
 								</div>
 								<div class="doc_blind_wrap">
-									<c:if
-										test="${sessionId eq null || vo.buyer_id ne sessionId && vo.writer_id ne sessionId}">
+									<c:if test="${sessionId eq null || vo.status==0 && vo.writer_id ne sessionId}">
 										<button type="button" class="premium_review_payment"
 											data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-											프리미엄 리뷰 보기</button>
+											프리미엄 리뷰 보기
+										</button>
 									</c:if>
 								</div>
 							</div>

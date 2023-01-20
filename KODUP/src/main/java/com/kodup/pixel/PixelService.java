@@ -56,35 +56,35 @@ public class PixelService {
 		return b;
 	}
 
-	public boolean readpixel(MemberVo mVo) {
-		boolean b = true;
-		status = manager.getTransaction(new DefaultTransactionDefinition());
-		savePoint = status.createSavepoint();
-		int cnt = mapper.readpixel(mVo);
-		if(cnt<1) {
-			b=false;
-		}
-		if(b) {
-			manager.commit(status);
-		}else status.rollbackToSavepoint(savePoint);
-
-		return b;
-	}	
-
-	public boolean writepixel(MemberVo mVo) {
-		boolean b = true;
-		status = manager.getTransaction(new DefaultTransactionDefinition());
-		savePoint = status.createSavepoint();
-		int cnt = mapper.writepixel(mVo);
-		if(cnt<1) {
-			b=false;
-		}
-		if(b) {
-			manager.commit(status);
-		}else status.rollbackToSavepoint(savePoint);
-
-		return b;
-	}	
+//	public boolean readpixel(MemberVo mVo) {
+//		boolean b = true;
+//		status = manager.getTransaction(new DefaultTransactionDefinition());
+//		savePoint = status.createSavepoint();
+//		int cnt = mapper.readpixel(mVo);
+//		if(cnt<1) {
+//			b=false;
+//		}
+//		if(b) {
+//			manager.commit(status);
+//		}else status.rollbackToSavepoint(savePoint);
+//
+//		return b;
+//	}	
+//
+//	public boolean writepixel(MemberVo mVo) {
+//		boolean b = true;
+//		status = manager.getTransaction(new DefaultTransactionDefinition());
+//		savePoint = status.createSavepoint();
+//		int cnt = mapper.writepixel(mVo);
+//		if(cnt<1) {
+//			b=false;
+//		}
+//		if(b) {
+//			manager.commit(status);
+//		}else status.rollbackToSavepoint(savePoint);
+//
+//		return b;
+//	}	
 	
 	public boolean buylog(PixelHistoryVo hVo) {
 		boolean b = true;
@@ -100,33 +100,33 @@ public class PixelService {
 
 		return b;
 	}
-	public boolean readlog(PixelHistoryVo hVo) {
-		boolean b = true;
-		status = manager.getTransaction(new DefaultTransactionDefinition());
-		savePoint = status.createSavepoint();
-		int cnt = mapper.readlog(hVo);
-		if(cnt<1) {
-			b=false;
-		}
-		if(b) {
-			manager.commit(status);
-		}else status.rollbackToSavepoint(savePoint);
-
-		return b;
-	}
-	public boolean writelog(PixelHistoryVo hVo) {
-		boolean b = true;
-		status = manager.getTransaction(new DefaultTransactionDefinition());
-		savePoint = status.createSavepoint();
-		int cnt = mapper.writelog(hVo);
-		if(cnt<1) {
-			b=false;
-		}
-		if(b) {
-			manager.commit(status);
-		}else status.rollbackToSavepoint(savePoint);
-
-		return b;
-	}	
+//	public boolean readlog(PixelHistoryVo hVo) {
+//		boolean b = true;
+//		status = manager.getTransaction(new DefaultTransactionDefinition());
+//		savePoint = status.createSavepoint();
+//		int cnt = mapper.readlog(hVo);
+//		if(cnt<1) {
+//			b=false;
+//		}
+//		if(b) {
+//			manager.commit(status);
+//		}else status.rollbackToSavepoint(savePoint);
+//
+//		return b;
+//	}
+//	public boolean writelog(PixelHistoryVo hVo) {
+//		boolean b = true;
+//		status = manager.getTransaction(new DefaultTransactionDefinition());
+//		savePoint = status.createSavepoint();
+//		int cnt = mapper.writelog(hVo);
+//		if(cnt<1) {
+//			b=false;
+//		}
+//		if(b) {
+//			manager.commit(status);
+//		}else status.rollbackToSavepoint(savePoint);
+//
+//		return b;
+//	}	
 	
 }

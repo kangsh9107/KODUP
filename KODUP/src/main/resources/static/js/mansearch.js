@@ -41,6 +41,8 @@ $("select[name=subdivision]").change(function(){
 mansearch_view = function(mansearch_sno){
 	frm = $('.mansearch_search')[0];
 	frm.mansearch_sno.value = mansearch_sno;
+	frm.id.value = sessionId;
+	console.log(sessionId);
 	param = $(frm).serialize();
 	$.post("/mansearch/mansearch_view", param, function(data){
 	    $('#center').html(data);

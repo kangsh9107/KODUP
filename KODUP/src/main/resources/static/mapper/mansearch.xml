@@ -21,27 +21,23 @@
 		limit ${startNo}, ${listSize}
 	</select>
 	<select id="review" parameterType="Integer" resultType="com.kodup.mansearch.MansearchBoardVo">
-		select mb.mansearch_sno,pr.premium_review_sno,pr.mansearch_sno as pr_mansearch_sno,pr.id as writer_id, pr.review,prb.id as buyer_id 
-		from premium_review pr left join premium_review_buylist prb on pr.premium_review_sno = prb.premium_review_sno
-							   left join mansearch_board mb on pr.mansearch_sno = mb.mansearch_sno
-		where mb.mansearch_sno = ${mansearch_sno}
+		select pr.review from premium_review pr where pr.premium_review_sno = ${premium_review_sno}
 	</select>
  	<select id="view" parameterType="Integer" resultType="com.kodup.mansearch.MansearchBoardVo">
 		SELECT DATEDIFF(deadline, DATE_FORMAT(now(),'%Y-%m-%d')) as deadlinecount, mb.pay, mb.pay_date, mb.education_level, mb.work_type, mb.corp_location, mb.position, mb.required_career, mb.job_type, mb.required_skill, mb.deadline, 
 			   mb.main_task, mb.sub_task,mb.work_start,mb.sno, mb.mansearch_sno,
        		   b.subject, b.doc, b.id, b.sno,
-               c.corp_logo, c.corp_name, c.manager_name, c.manager_phone, c.manager_email,
-               pr.mansearch_sno pr_mansearch_sno
+               c.corp_logo, c.corp_name, c.manager_name, c.manager_phone, c.manager_email
 	    FROM mansearch_board mb LEFT JOIN board b 				ON mb.sno = b.sno
                                 LEFT JOIN member m      		ON b.id = m.id
                         		LEFT JOIN corperation c 		ON m.id = c.id
-                        		LEFT JOIN premium_review pr		ON pr.mansearch_sno = mb.mansearch_sno 
         WHERE b.boardtype = 'mansearch' and mb.mansearch_sno = ${mansearch_sno} 	
 	</select>
 	<select id="premiumlist" parameterType="Integer" resultType="com.kodup.mansearch.MansearchBoardVo">
-		select pr.id as writer_id, prb.id as buyer_id from premium_review pr 
-		LEFT JOIN premium_review_buylist prb ON pr.premium_review_sno = prb.premium_review_sno
-		where pr.mansearch_sno=${mansearch_sno}
+		select premium_review_sno,mansearch_sno as pr_mansearch_sno,id as writer_id,review from premium_review where mansearch_sno=${mansearch_sno}
+	</select>
+	<select id="buylist" parameterType="com.kodup.login.MemberVo" resultType="com.kodup.mansearch.MansearchBoardVo">
+		select premium_review_sno from premium_review_buylist where id = #{id}
 	</select>
 	<select id="corp_status" parameterType="com.kodup.mansearch.MansearchBoardVo" resultType="Integer">
 		select corp_status from member where id = #{id}

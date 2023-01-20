@@ -1,6 +1,7 @@
 package com.kodup.mansearch;
 
 public class MansearchBoardVo {
+	int status=0;
 	int mansearch_sno;
 	int sno;
 	String work_start;
@@ -37,6 +38,14 @@ public class MansearchBoardVo {
 	String deadlinecount;
 
 	
+	
+	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	public int getPr_mansearch_sno() {
 		return pr_mansearch_sno;
 	}
