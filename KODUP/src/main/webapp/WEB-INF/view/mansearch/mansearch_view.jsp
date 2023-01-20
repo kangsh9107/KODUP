@@ -251,7 +251,7 @@ li {
 	<c:forEach var="vo" items="${premiumlist }" varStatus="status">
 		<c:if test="${mbVo.mansearch_sno eq vo.pr_mansearch_sno }">
 			<form>
-				<div class="container" style="padding-left:0;">
+				<div class="container" style="padding-left: 0;">
 					<div class="row">
 						<div class="col premium_review_wrap">
 							<div class="premium_review_writer">
