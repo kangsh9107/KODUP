@@ -1,8 +1,6 @@
 package com.kodup.mansearch;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,11 +42,11 @@ public class MansearchService {
 	public List<MansearchBoardVo> premiumlist(int sno, MemberVo mVo){
 		List<MansearchBoardVo> premiumlist = mapper.premiumlist(sno);
 		List<MansearchBoardVo> buylist = mapper.buylist(mVo);
-		for(MansearchBoardVo l : premiumlist) {
-			   for(MansearchBoardVo b : buylist) {
-			      if(l.premium_review_sno == b.premium_review_sno) l.setStatus(1);
-			   }
+		for(MansearchBoardVo l : premiumlist){
+			for(MansearchBoardVo b : buylist){
+				if(l.premium_review_sno == b.premium_review_sno) l.setStatus(1);
 			}
+		}
 		return premiumlist;
 	}
 	
