@@ -19,7 +19,7 @@
 				<span>궁금증 해결하기</span>
 			</div>
 			<div class="col-md-12 board_menual">
-				<span>${sessionScope.sessionId }</span> 님 KODUP에서 최고의 개발자들과 함께 궁금증을 해결하세요.
+				<span>${sessionScope.nickname }</span> 님 KODUP에서 최고의 개발자들과 함께 궁금증을 해결하세요.
 			</div>
 		</div>
 	</div>
@@ -50,7 +50,9 @@
 		</div>
 		<div class="input-group form-group">
 			<!-- SUMMERNOTE -->
-			<div id="summernote"></div>
+			<div id="summer">
+				<div id="summernote"></div>
+			</div>
 		</div>
 		<div class="input-group form-group" style="justify-content: end;">
 			<span class="input-group-text">보상픽셀</span>

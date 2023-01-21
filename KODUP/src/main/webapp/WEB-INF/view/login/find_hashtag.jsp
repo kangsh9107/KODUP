@@ -98,7 +98,7 @@
 			<c:forEach items="${listHashtag }" var="listHashtag">
 				<li class="list-group-item" style="padding: 10px 0 10px 0;">
 					<a href="#" class="text-decoration-none">
-						<img id="index_profile" src="images/index_default.png">
+						<img id="index_profile" src="upload/${listHashtag.profile_img }">
 						<span id="index_nickname">${listHashtag.nickname }</span>
 					</a>
 					<span id="index_time">· ${listHashtag.nal }</span>
@@ -106,7 +106,7 @@
 						<i class="fas fa-circle-check" style="color: #555; font-size: 0.9rem;"></i>
 					</div>
 					<br/>
-					<a href="#" onclick="qna_view()" class="text-decoration-none">
+					<a href="#" onclick="qna_view(${listHashtag.sno })" class="text-decoration-none">
 						<span id="index_subject">${listHashtag.subject }</span>
 					</a>
 					<br/>

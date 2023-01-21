@@ -76,8 +76,39 @@ public class CommonBoardService {
 			sno = cbMapper.getSno(); //board테이블의 마지막 sno 가져옴
 			ibVo.setSno(sno);
 			
-			boolean c = false; //true면 qna_board테이불 insert 성공
+			boolean c = false; //true면 qna_board테이블 insert 성공
 			int cnt2 = cbMapper.insertQnaBoard(ibVo);
+			status = manager.getTransaction(new DefaultTransactionDefinition());
+			savePoint = status.createSavepoint();
+			if(cnt2 > 0) {
+				manager.commit(status);
+				c = true;
+			} else {
+				status.rollbackToSavepoint(savePoint);
+				b = false;
+			}
+		} else {
+			status.rollbackToSavepoint(savePoint);
+		}
+		
+		return b;
+	}
+	
+	//UPDATE
+	public boolean update(InsertBoardVo ibVo) {
+		boolean b = false; //true면 board테이블 update 성공
+		int sno = 0;
+		int cnt = cbMapper.updateBoard(ibVo);
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		if(cnt > 0) {
+			manager.commit(status);
+			b = true;
+			sno = cbMapper.getSno(); //board테이블의 마지막 sno 가져옴
+			ibVo.setSno(sno);
+			
+			boolean c = false; //true면 qna_board테이블 update 성공
+			int cnt2 = cbMapper.updateQnaBoard(ibVo);
 			status = manager.getTransaction(new DefaultTransactionDefinition());
 			savePoint = status.createSavepoint();
 			if(cnt2 > 0) {

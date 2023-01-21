@@ -31,7 +31,7 @@ div {
 		<div class="container">
 			<h2 class="section-title">Fade</h2>
 			<div class="code code--small code--left" data-aos="fade-up">
-				<img src="images/devil_profile.png">
+				<video src="images/코딩하조.mp4" width="600px" height="400px" autoplay muted loop></video>
 				<pre><code class="html">&lt;div data-aos="fade-up">&lt;/div></code></pre>
 			</div>
 			<div class="code code--small code--right" data-aos="fade-down">

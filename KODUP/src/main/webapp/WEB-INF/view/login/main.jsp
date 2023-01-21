@@ -25,7 +25,7 @@
 					<c:forEach items="${qna5 }" var="qna5">
 						<li class="list-group-item" style="padding: 10px 0 10px 0;">
 							<a href="#" class="text-decoration-none">
-								<img id="index_profile" src="images/index_default.png">
+								<img id="index_profile" src="upload/${qna5.profile_img }">
 								<span id="index_nickname">${qna5.nickname }</span>
 							</a>
 							<span id="index_time">· ${qna5.nal }</span>
@@ -65,7 +65,7 @@
 					<c:forEach items="${freetalking5 }" var="freetalking5">
 						<li class="list-group-item" style="padding: 10px 0 10px 0;">
 							<a href="#" class="text-decoration-none">
-								<img id="index_profile" src="images/index_default.png">
+								<img id="index_profile" src="upload/${freetalking5.profile_img }">
 								<span id="index_nickname">${freetalking5.nickname }</span>
 							</a>
 							<span id="index_time">· ${freetalking5.nal }</span>
@@ -105,7 +105,7 @@
 					<c:forEach items="${weeklyBest5 }" var="weeklyBest5">
 						<li class="list-group-item" style="padding: 10px 0 10px 0;">
 							<a href="#" class="text-decoration-none">
-								<img id="index_profile" src="images/index_default.png">
+								<img id="index_profile" src="upload/${weeklyBest5.profile_img }">
 								<span id="index_nickname">${weeklyBest5.nickname }</span>
 							</a>
 							<span id="index_time">· ${weeklyBest5.nal }</span>
@@ -145,7 +145,7 @@
 					<c:forEach items="${editor5 }" var="editor5">
 						<li class="list-group-item" style="padding: 10px 0 10px 0;">
 							<a href="#" class="text-decoration-none">
-								<img id="index_profile" src="images/index_default.png">
+								<img id="index_profile" src="upload/${editor5.profile_img }">
 								<span id="index_nickname">${editor5.nickname }</span>
 							</a>
 							<span id="index_time">· ${editor5.nal }</span>
@@ -185,7 +185,7 @@
 					<c:forEach items="${infoshare5 }" var="infoshare5">
 						<li class="list-group-item" style="padding: 10px 0 10px 0;">
 							<a href="#" class="text-decoration-none">
-								<img id="index_profile" src="images/index_default.png">
+								<img id="index_profile" src="upload/${infoshare5.profile_img }">
 								<span id="index_nickname">${infoshare5.nickname }</span>
 							</a>
 							<span id="index_time">· ${infoshare5.nal }</span>
@@ -225,7 +225,7 @@
 					<c:forEach items="${notification5 }" var="notification5">
 						<li class="list-group-item" style="padding: 10px 0 10px 0;">
 							<a href="#" class="text-decoration-none">
-								<img id="index_profile" src="images/index_default.png">
+								<img id="index_profile" src="upload/${notification5.profile_img }">
 								<span id="index_nickname">${notification5.nickname }</span>
 							</a>
 							<span id="index_time">· ${notification5.nal }</span>

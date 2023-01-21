@@ -44,6 +44,13 @@ function runHashtagIndex(hashtag) {
 	});
 }
 
+//Top Writer 프로필 팝업
+function runTopWriterProfile(nickname) {
+	var title  = "profile_popup";
+	var status = "toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=400, height=500, top=400, left=870"; 
+    window.open("/profile/member_profile_chat?nickname=" + nickname, title, status);
+}
+
 /***** NAV *****/
 //모든 .non-click 가져옴
 var nonClick = document.querySelectorAll('.non-click');
@@ -93,9 +100,7 @@ $('.btnLogoutR').on('click', function() {
 		dataType: 'html',
 		success: function(data) {
 			$('#center').html(data);
-			setTimeout(() => {
-				location.replace('/');
-			}, 500);
+			location.replace('/');
 		}
 	});
 });
@@ -227,9 +232,13 @@ $('#btnMyprofile').on('click', function() {
 });
 
 $('#btnMantoman').on('click',function() {
-	var title  = 'popup';
-	var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=350, height=500, top=400, left=1300'; 
-	window.open('/mantoman/mantoman_index?sessionId=' + sessionId, title, status);
+	if(sessionId != '') {
+		var title  = 'popup';
+		var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=350, height=500, top=400, left=1300'; 
+		window.open('/mantoman/mantoman_index?sessionId=' + sessionId, title, status);
+	} else {
+		$('.index_btnLogin').click();
+	}
 });
 
 let sessionId = document.querySelector('.sessionId_hidden').value;
@@ -268,7 +277,7 @@ if(sessionId != ''){
 					if(data == 'error_chat') {
 						alert('채팅서버 연결에 실패했습니다.');
 					} else {
-						$('#center').html(data);
+						//$('#center').html(data); //list를 만들지않고 main.jsp만 불러서 boardtype만 보이는 에러 생김.
 					}
 				}
 			});

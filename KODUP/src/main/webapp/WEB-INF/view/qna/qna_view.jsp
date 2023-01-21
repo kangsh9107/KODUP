@@ -113,7 +113,7 @@
 					<!-- 댓글인서트 서머노트 -->
 					<div class="view_summernote_section">
 						<span>
-							<img id="qna_view_repl_insert_profileimage_file" src="images/" style="border-radius:50%;">
+							<img id="qna_view_repl_insert_profileimage_file" src="images/default.png" style="border-radius:50%;">
 						</span>
 						<textarea id="view_main_summernote" class="view_summernote"></textarea>
 					</div>
@@ -252,7 +252,7 @@
 						<!-- (ON/OFF)display ; 대댓글입력폼 -->
 						<div id="repl_insert_section${replList.repl_sno}" style="display:none; font-size:15px; margin-left:50px;">
 							<span>
-								<img id="qna_view_repl_inner_insert_profileimage_file" src="images/ITtravel.png"><!-- 세션아이디의 프로필이미지가 들어감 -->
+								<img id="qna_view_repl_inner_insert_profileimage_file" src="images/default.png"><!-- 세션아이디의 프로필이미지가 들어감 -->
 							</span>
 							<!-- 대댓글인서트_내용 서머노트 -->
 							<div id="view_inner_summernote${replList.grp}"class="view_summernote"></div>
@@ -394,7 +394,7 @@
 	<input type="hidden" name="nowPageK" value="${cbpVo.nowPage }">
 	<input type="hidden" name="idK" value="${sessionScope.sessionId }">
 	<input type="hidden" name="subject" value="${qbVo.subject}">
-	<input type="hidden" name="doc" value="${qbVo.doc}">
+	<textarea style="display: none;" id="getDoc" name="doc">${qbVo.doc }</textarea>
 	<input type="hidden" name="hashtag" value="">
 	<div id="qna_view_hashtag2" style="display: none;">
 		<c:forEach var='vo' items='${qbVo.hashtaglist}'>

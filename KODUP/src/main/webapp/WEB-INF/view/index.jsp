@@ -84,7 +84,7 @@
 				       			<a href="#" class="nav-link active non-click btnNotification" aria-current="page" style="cursor: pointer;">공지사항</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click" aria-current="page" href="/intro">INTRO</a>
+				       			<a class="nav-link active" aria-current="page" href="/intro">INTRO</a>
 				       		</li>
 				       	</ul>
 			       	</div>
@@ -94,7 +94,7 @@
 				            	<c:when test="${sessionId ne null }">
 					                <div class="nav-item dropdown index_dropdown_wrap">
 					                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="padding: 4px;">
-					                    	<img src="images/index_default.png" class="d-inline-block align-text-top" style="width: 30px; height: 30px; border-radius: 50%;">
+					                    	<img src="upload/${sessionScope.profile_img }" class="d-inline-block align-text-top" style="width: 30px; height: 30px; border-radius: 50%;">
 					                    </a>
 					                    <div class="dropdown-menu fade-down m-0" id="index_dropdown">
 											<a class="dropdown-item pixelbuy" href="#">포인트충전</a>

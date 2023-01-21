@@ -9,6 +9,11 @@
 <!-- JS -->
 <script defer src="js/qna.js"></script>
 <script defer src="js/common_board.js"></script>
+<style>
+.panel-body {
+	min-height: 400px !important;
+}
+</style>
 <title>qna/qna_update.jsp</title>
 </head>
 <body>
@@ -30,7 +35,7 @@
 		<div class="input-group form-group">
 			<span class="input-group-text">말머리</span>
 			<br/>
-			<select name="qna_horsehead" class="form-select" aria-label="Default select example">
+			<select name="qna_horsehead" id="qna_horsehead" class="form-select" aria-label="Default select example">
 				<option value="말머리" ${ibVo.qna_horsehead eq '말머리' ? 'selected' : '' }>말머리를 선택해주세요.</option>
 				<option value="기술" ${ibVo.qna_horsehead eq '기술' ? 'selected' : '' }>기술</option>
 				<option value="커리어" ${ibVo.qna_horsehead eq '커리어' ? 'selected' : '' }>커리어</option>
@@ -55,7 +60,7 @@
 		</div>
 		<div class="input-group form-group" style="justify-content: end;">
 			<span class="input-group-text">보상픽셀</span>
-			<input type="text" readOnly name="qna_pixel_reward" class="qna_pixel_reward" value="500" style="margin-right: 60px; width: 60px !important; border-radius: 0 5px 5px 0; border: 1px solid #ccc; text-align: center;">
+			<input type="text" readOnly name="qna_pixel_reward" class="qna_pixel_reward" value="${cbpVo.qna_pixel_reward }" style="margin-right: 60px; width: 60px !important; border-radius: 0 5px 5px 0; border: 1px solid #ccc; text-align: center;">
 			<input type="button" value="취소" class="btn btnListView" style="border-radius: 5px 0 0 5px;">
 			<input type="button" value="수정" class="btn btnQnaUpdateR">
 		</div>
@@ -70,8 +75,8 @@
 		<input type="hidden" name="nowPage" value="${cbpVo.nowPage }">
 		<input type="hidden" name="findStr" value="${cbpVo.findStr }">
 		<input type="hidden" name="id" value="${sessionScope.sessionId }">
-		<input type="hidden" name="qna_horsehead" id="horsehead" value="">
-		<textarea name="doc" style="display: none;">${ibVo.doc }</textarea>
+		<input type="hidden" name="qna_horseheadK" id="horsehead" value="">
+		<textarea name="doc" id="getDoc" style="display: none;">${ibVo.doc }</textarea>
 		<!-- HORSEHEAD -->
 		<input style="display: none;" type="radio" onclick="runQna('기술')" class="btn-check" name="horsehead_radio" id="horsehead_radio1" ${cbpVo.horsehead eq '기술' ? 'checked' : '' }>
 		<label style="display: none;" for="horsehead_radio1">기술</label>

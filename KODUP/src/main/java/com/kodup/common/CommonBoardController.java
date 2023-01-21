@@ -79,7 +79,6 @@ public class CommonBoardController {
 		ModelAndView mv = new ModelAndView();
 		String basic = req.getParameter("basic");
 		StringBuilder sb = new StringBuilder();
-		
 		//[{"value":"hashtag"},{}]를 파싱해서 #hashtag#hashtag로 만든다
 		try {
 			JSONParser jParser = new JSONParser();
@@ -102,11 +101,6 @@ public class CommonBoardController {
 		} else {
 			List<SelectBoardVo> listQna = cbService.listQna(cbpVo);
 			cbpVo = cbService.getCbpVo();
-			
-			for(SelectBoardVo l : listQna) {
-				System.out.println(l.qna_pixel_reward);
-			}
-			
 			mv.addObject("cbpVo", cbpVo);
 			mv.addObject("listQna", listQna);
 			mv.setViewName("/qna/qna");
@@ -115,7 +109,7 @@ public class CommonBoardController {
 		return mv;
 	}
 	
-	//UPDATE 폼 출력
+	//update 폼 출력
 	@RequestMapping("/qna/qna_update")
 	public ModelAndView qnaUpdate(CommonBoardPageVo cbpVo, InsertBoardVo ibVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
@@ -133,14 +127,42 @@ public class CommonBoardController {
 		return mv;
 	}
 	
-	//UPDATER
+	//updateR
 	@RequestMapping("/qna/qna_updateR")
 	public ModelAndView qnaUpdateR(CommonBoardPageVo cbpVo, InsertBoardVo ibVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
+		String basic = req.getParameter("basic");
+		StringBuilder sb = new StringBuilder();
 		
-		mv.addObject("cbpVo", cbpVo);
-		mv.addObject("ibVo", ibVo);
-		mv.setViewName("/qna/qna_view");
+		//[{"value":"hashtag"},{}]를 파싱해서 #hashtag#hashtag로 만든다
+		try {
+			JSONParser jParser = new JSONParser();
+			JSONArray jArray = (JSONArray)jParser.parse(basic);
+			for(int i=0; i<jArray.size(); i++) {
+				JSONObject jObject = (JSONObject)jArray.get(i);
+				sb.append("#");
+				sb.append(jObject.get("value"));
+			}
+			ibVo.setHashtag(sb.toString());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		boolean b = false; //true면 글 수정 성공
+		ibVo.setQna_horsehead(req.getParameter("qna_horseheadK"));
+		b = cbService.update(ibVo);
+		if( !b ) {
+			mv.addObject("error", "error_update");
+			mv.setViewName("/login/error");
+		} else {
+			List<SelectBoardVo> listQna = cbService.listQna(cbpVo);
+			cbpVo = cbService.getCbpVo();
+			
+			mv.addObject("cbpVo", cbpVo);
+			mv.addObject("listQna", listQna);
+			mv.setViewName("/qna/qna");
+		}
+		
 		return mv;
 	}
 	

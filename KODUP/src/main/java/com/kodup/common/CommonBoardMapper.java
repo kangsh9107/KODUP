@@ -18,4 +18,9 @@ public interface CommonBoardMapper {
 	public int getSno();
 	public int insertQnaBoard(InsertBoardVo ibVo);
 	
+	public int updateBoard(InsertBoardVo ibVo);
+	public int updateQnaBoard(InsertBoardVo ibVo);
+	public void viewcountUp(int sno);
+	public int getViewcount(int sno);
+	
 }

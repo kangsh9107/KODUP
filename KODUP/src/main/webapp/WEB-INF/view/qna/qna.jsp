@@ -32,7 +32,14 @@
 			<div class="row">
 				<div class="col-md-12" style="padding-left: 10px; padding-right: 10px;">
 					<!-- INSERT -->
-					<input type="button" class="btn btnQnaInsert" value="&#xf304; 작성하기" style="font-family: FontAwesome; float: left;">
+					<c:choose>
+						<c:when test="${sessionScope.sessionId ne null }">
+							<input type="button" class="btn btnQnaInsert" value="&#xf304; 작성하기" style="font-family: FontAwesome; float: left;">
+						</c:when>
+						<c:otherwise>
+							<input type="button" style="visibility: hidden;" class="btn btnQnaInsert" value="&#xf304; 작성하기" style="font-family: FontAwesome; float: left;">
+						</c:otherwise>
+					</c:choose>
 					<!-- HORSEHEAD -->
 					<input type="radio" onclick="runQna('기술')" class="btn-check" name="horsehead_radio" id="horsehead_radio1" ${cbpVo.horsehead eq '기술' ? 'checked' : '' }>
 					<label for="horsehead_radio1">기술</label>
@@ -110,7 +117,7 @@
 			<c:forEach items="${listQna }" var="listQna">
 				<li class="list-group-item" style="padding: 10px 0 10px 0;">
 					<a href="#" class="text-decoration-none">
-						<img id="index_profile" src="images/index_default.png">
+						<img id="index_profile" src="upload/${listQna.profile_img }">
 						<span id="index_nickname">${listQna.nickname }</span>
 					</a>
 					<span id="index_time">· ${listQna.nal }</span>
@@ -136,7 +143,7 @@
 					<br/>
 					<div style="float: left;">
 						<!-- QNA PIXEL REWARD -->
-						<label id="qna_pixel_reward" style="background-color: #f0f6fa; color: rgb(0, 144, 249);">${listQna.qna_pixel_reward }</label>
+						<label id="qna_pixel_reward">${listQna.qna_pixel_reward }</label>
 						<!-- HORSEHEAD -->
 						<label id="board_horsehead">${listQna.horsehead }</label>
 						<!-- HASHTAG -->

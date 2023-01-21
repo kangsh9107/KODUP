@@ -72,9 +72,7 @@ $('.index_btnKakaoJoinR').on('click', function() {
 					alert('가입 오류입니다. 잠시후 다시 시도해주세요.');
 				} else {
 					$('#center').html(data);
-					setTimeout(() => {
-						location.replace('/');
-					}, 200);
+					location.replace('/');
 				}
 			}
 		});
@@ -104,9 +102,7 @@ $('.index_btnLoginR').on('click', function() {
 					alert('아이디와 비밀번호를 확인해주세요.');
 				} else {
 					$('#center').html(data);
-					setTimeout(() => {
-						location.replace('/');
-					}, 200);
+					location.replace('/');
 				}
 			}
 		});
@@ -163,9 +159,7 @@ $('.index_btnJoinR').on('click', function() {
 					alert('가입 오류입니다. 잠시후 다시 시도해주세요.');
 				} else {
 					$('#center').html(data);
-					setTimeout(() => {
-						location.replace('/');
-					}, 200);
+					location.replace('/');
 				}
 			}
 		});
@@ -263,9 +257,7 @@ $('.index_change_passwordR').on('click', function() {
 				} else {
 					alert('비밀번호 변경 성공!');
 					$('#center').html(data);
-					setTimeout(() => {
-						location.replace('/');
-					}, 200);
+					location.replace('/');
 				}
 			}
 		});

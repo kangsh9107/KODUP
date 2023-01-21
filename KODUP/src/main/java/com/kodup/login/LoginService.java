@@ -51,9 +51,8 @@ public class LoginService {
 	
 	//ID&PWD 체크후 로그인여부 판단
 	public boolean login(MemberVo mVo) {
-//		String encPwd = enc(mVo.getPwd());
-//		mVo.setPwd(encPwd);
-		
+		String encPwd = enc(mVo.getPwd());
+		mVo.setPwd(encPwd);
 		boolean b = false; //true면 로그인 성공
 		int cnt = 0;
 		cnt = loginMapper.login(mVo);
@@ -101,8 +100,8 @@ public class LoginService {
 	
 	//member테이블 kodup회원 insert
 	public boolean insertMember(MemberVo mVo) {
-//		String encPwd = enc(mVo.getPwd());
-//		mVo.setPwd(encPwd);
+		String encPwd = enc(mVo.getPwd());
+		mVo.setPwd(encPwd);
 		
 		boolean i = false; //true면 가입완료
 		int cnt = 0;
@@ -131,6 +130,16 @@ public class LoginService {
 		return id;
 	}
 	
+	//member테이블 profile_img 가져오기
+	public String getProfileImg(String id) {
+		return id= loginMapper.getProfileImg(id);
+	}
+	
+	//member테이블 nickname 가져오기
+	public String getNickname(String id) {
+		return id= loginMapper.getNickname(id);
+	}
+	
 	//chat테이블 id 중복체크
 	public boolean checkChatId(String id) {
 		boolean c = false;
@@ -142,10 +151,13 @@ public class LoginService {
 	}
 	
 	//채팅방에 접속하면 chat테이블에 id INSERT
-	public boolean chatInsert(String id) {
+	public boolean chatInsert(String id, int grade) {
 		boolean b = false;
 		int cnt = 0;
-		cnt = loginMapper.chatInsert(id);
+		mVo = new MemberVo();
+		mVo.setId(id);
+		mVo.setGrade(String.valueOf(grade));
+		cnt = loginMapper.chatInsert(mVo);
 		
 		status = manager.getTransaction(new DefaultTransactionDefinition());
 		savePoint = status.createSavepoint();
@@ -228,13 +240,10 @@ public class LoginService {
 	//send email naver
 	public boolean sendEmail(String key, HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		boolean c = false;
-		
 		String host = "smtp.naver.com";
 		String uploadPath = "C:\\Users\\K\\Documents\\GitHub\\KODUP-PROJECT\\KODUP\\src\\main\\resources\\static\\upload\\";
-		
 		String sender = req.getParameter("sender");
 		String receiver = req.getParameter("email");
-		
 		try {
 			//메일 관련 자료 캡슐화
 			Properties prop = new Properties();
@@ -243,7 +252,6 @@ public class LoginService {
 			prop.put("mail.smtp.auth", "true");
 			prop.put("mail.smtp.port", "587");
 			prop.put("mail.smtp.ssl.protocols", "TLSv1.2");
-			
 			//메일 서버 사용자 권한 체크(보안)
 			Session pass = Session.getInstance(prop, new Authenticator() {
 				@Override
@@ -251,7 +259,6 @@ public class LoginService {
 					return new PasswordAuthentication("kangsh9107@naver.com", "비밀번호");
 				}
 			});
-			
 			//보내는 메시지 캡슐화
 			String content = "인증키 : " + key;
 			MimeMessage message = new MimeMessage(pass);
@@ -259,21 +266,20 @@ public class LoginService {
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
 			message.setSentDate(new Date());
 			message.setContent(content, "text/html;charset=utf-8");
-			
 			//메일 전송
 			Transport.send(message);
 			c = true;
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
-			
+		
 		return c;
 	}
 	
 	//비밀번호 변경
 	public boolean updatePwd(MemberVo mVo) {
-//		String encPwd = enc(mVo.getPwd());
-//		mVo.setPwd(encPwd);
+		String encPwd = enc(mVo.getPwd());
+		mVo.setPwd(encPwd);
 		
 		boolean b = false; //false면 비밀번호 변경오류
 		int cnt = 0;

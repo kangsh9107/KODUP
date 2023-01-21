@@ -4,7 +4,7 @@
 	
 	<!-- TOP WRITER -->
 	<select id="topWriter" resultType="com.kodup.login.MemberVo">
-		SELECT b.id, m.profile_img FROM board b JOIN member m ON b.id = m.id
+		SELECT b.id, m.profile_img, m.nickname FROM board b JOIN member m ON b.id = m.id
 		WHERE nal BETWEEN DATE_ADD(NOW(),INTERVAL -1 WEEK ) AND NOW()
 		GROUP BY b.id ORDER BY COUNT(b.id) DESC, b.id ASC LIMIT 0,5
 	</select>
@@ -118,14 +118,24 @@
 		SELECT id FROM member WHERE email = #{_parameter}
 	</select>
 	
+	<!-- GET PROFILE_IMG -->
+	<select id="getProfileImg" parameterType="String" resultType="String">
+		SELECT profile_img FROM member WHERE id = #{_parameter}
+	</select>
+	
+	<!-- GET NICKNAME -->
+	<select id="getNickname" parameterType="String" resultType="String">
+		SELECT nickname FROM member WHERE id = #{_parameter}
+	</select>
+	
 	<!-- CHECK CHAT ID -->
 	<select id="checkChatId" parameterType="String" resultType="Integer">
 		SELECT COUNT(id) FROM chat WHERE id = #{_parameter}
 	</select>
 	
 	<!-- CHAT INSERT -->
-	<insert id="chatInsert" parameterType="String">
-		INSERT INTO chat(id) VALUES(#{_parameter})
+	<insert id="chatInsert" parameterType="com.kodup.login.MemberVo">
+		INSERT INTO chat(id, grade) VALUES(#{id}, #{grade})
 	</insert>
 	
 	<!-- CHAT DELETE -->
