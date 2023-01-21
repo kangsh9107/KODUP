@@ -38,8 +38,10 @@ li {
 		<input type='hidden' name='pay_date' value='${mbVo.pay_date }' />
 		<input type='hidden' name='required_skill' value='${mbVo.required_skill }' />
 		<input type='hidden' name='doc' value='${mbVo.doc }' />
-		<input type='hidden' name='pixel' value='${mbVo.pixel }' />
-		
+		<input type='hidden' name='pixel' class="pixel" value='${mbVo.pixel }' />
+		<input type='hidden' name='premium_review_sno' value=''/>
+		<input type='hidden' name='writer_id' value=''/>
+		<input type='hidden' name='buyer_id' class='member_id' value='${sessionId }' />		
 		<div id="task" style="margin-bottom: 5px;">${mbVo.main_task }</div>
 		<div id="job_index" style="margin-bottom: 5px;">${mbVo.sub_task }</div>
 		<div class="container text-center">
@@ -269,15 +271,15 @@ li {
 										</c:otherwise>	
 									</c:choose>
 <%-- 									<c:if test="${sessionId ne null && vo.buyer_id eq sessionId || vo.writer_id eq sessionId}"></c:if> --%>
-									<input type='text' name='premium_review_sno' value='${vo.premium_review_sno }'>
-									<input type='text' name='writer_id' value='${vo.writer_id }'/>
-									<input type='text' name='buyer_id' class='member_id' value='${sessionId }' />
-									<input type='text' name='mansearch_sno' value="${mbVo.mansearch_sno }" />
+									<input type='hidden' name='premium_review_sno' class='premium_review_sno' value='${vo.premium_review_sno }'>
+									<input type='hidden' name='writer_id' class='writer_id' value='${vo.writer_id }'/>
+									<input type='hidden' name='buyer_id' class='member_id' value='${sessionId }' />
+									<input type='hidden' name='mansearch_sno' value="${mbVo.mansearch_sno }" />
 								</div>
 								<div class="doc_blind_wrap">
 									<c:if test="${sessionId ne null && vo.status==0 && vo.writer_id ne sessionId}">
 										<button type="button" class="premium_review_payment"
-											data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+											data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick='premiumView(this.form)'>
 											프리미엄 리뷰 보기
 										</button>
 									</c:if>
@@ -288,7 +290,7 @@ li {
 				</div>
 
 				<!-- Modal -->
-				<div class="modal fade" id="staticBackdrop"
+				<!--<div class="modal fade" id="staticBackdrop"
 					data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
 					aria-labelledby="staticBackdropLabel" aria-hidden="true">
 					<div class="modal-dialog">
@@ -300,18 +302,19 @@ li {
 										aria-label="Close">
 								</button>
 							</div>
-							<div class="modal-body">정말 200픽셀을 사용하여 프리미엄 리뷰를 보시겠습니까?</div>
+							 <div class="modal-body">정말 200픽셀을 사용하여 프리미엄 리뷰를 보시겠습니까?</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
 									    data-bs-dismiss="modal">아니오
 								</button>
 								<button type="button" class="btn btn-primary review_payment"
-									    onclick='premiumView()'>네, 보겠습니다.
+									    onclick='premiumView(this.form)'>네, 보겠습니다.
 								</button>
-							</div>
+							</div> 
 						</div>
 					</div>
 				</div>
+				-->
 			</form>
 		</c:if>
 	</c:forEach>

@@ -61,8 +61,10 @@ public class MansearchBoardController {
 		service.writelog(mbVo);
 		service.readpixel(buyer_id);
 		service.writepixel(mbVo);
+//		List<MansearchBoardVo> premiumlist = service.premiumlist(mbVo.getMansearch_sno(),mVo);
+//		mv.addObject("premiumlist",premiumlist);		
+//		mv.setViewName("/mansearch/mansearch_premium_review");
 		mv.addObject("mbVo",mbVo);
-
 		mv.setViewName("/mansearch/mansearch_view");
 		return mv;
 	}
