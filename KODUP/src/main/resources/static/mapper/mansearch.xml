@@ -21,13 +21,14 @@
 		limit ${startNo}, ${listSize}
 	</select>
 	<select id="review" parameterType="Integer" resultType="com.kodup.mansearch.MansearchBoardVo">
-		select pr.review from premium_review pr where pr.premium_review_sno = ${premium_review_sno}
+		SELECT pr.premium_review_sno,pr.id AS writer_id FROM premium_review pr WHERE pr.premium_review_sno=${premium_review_sno}
 	</select>
  	<select id="view" parameterType="Integer" resultType="com.kodup.mansearch.MansearchBoardVo">
 		SELECT DATEDIFF(deadline, DATE_FORMAT(now(),'%Y-%m-%d')) as deadlinecount, mb.pay, mb.pay_date, mb.education_level, mb.work_type, mb.corp_location, mb.position, mb.required_career, mb.job_type, mb.required_skill, mb.deadline, 
 			   mb.main_task, mb.sub_task,mb.work_start,mb.sno, mb.mansearch_sno,
        		   b.subject, b.doc, b.id, b.sno,
-               c.corp_logo, c.corp_name, c.manager_name, c.manager_phone, c.manager_email
+               c.corp_logo, c.corp_name, c.manager_name, c.manager_phone, c.manager_email,
+               m.pixel
 	    FROM mansearch_board mb LEFT JOIN board b 				ON mb.sno = b.sno
                                 LEFT JOIN member m      		ON b.id = m.id
                         		LEFT JOIN corperation c 		ON m.id = c.id
@@ -36,7 +37,7 @@
 	<select id="premiumlist" parameterType="Integer" resultType="com.kodup.mansearch.MansearchBoardVo">
 		select premium_review_sno,mansearch_sno as pr_mansearch_sno,id as writer_id,review from premium_review where mansearch_sno=${mansearch_sno}
 	</select>
-	<select id="buylist" parameterType="com.kodup.login.MemberVo" resultType="com.kodup.mansearch.MansearchBoardVo">
+	<select id="buylist" parameterType="com.kodup.mansearch.MansearchBoardVo" resultType="com.kodup.mansearch.MansearchBoardVo">
 		select premium_review_sno from premium_review_buylist where id = #{id}
 	</select>
 	<select id="corp_status" parameterType="com.kodup.mansearch.MansearchBoardVo" resultType="Integer">
@@ -63,4 +64,23 @@
     		LEFT JOIN board AS b ON mb.sno = b.sno
 		WHERE mb.sno = ${sno} 
 	</delete>
+	<insert id="buylistinsert" parameterType="com.kodup.mansearch.MansearchBoardVo">
+		INSERT INTO premium_review_buylist(id,premium_review_sno) VALUES(#{id},${premium_review_sno} )
+	</insert>
+	<update id="readpixel" parameterType="String">
+		update member set pixel = pixel-200
+		where id = #{id}
+	</update>
+	<update id="writepixel" parameterType="com.kodup.mansearch.MansearchBoardVo">
+		update member set pixel = pixel+200
+		where id = #{writer_id}
+	</update>
+	<insert id="readlog" parameterType="String">
+		insert into pixel_history(id,pixel_log,history_date,history_detail)
+		values(#{id},-200,now(),'프리미엄리뷰 열람')
+	</insert>
+	<insert id="writelog" parameterType="com.kodup.mansearch.MansearchBoardVo">
+		insert into pixel_history(id,pixel_log,history_date,history_detail)
+		values(#{writer_id},200,now(),'프리미엄리뷰 작성')
+	</insert>
 </mapper>

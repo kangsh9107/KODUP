@@ -11,6 +11,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.kodup.board.PageVo;
 import com.kodup.login.MemberVo;
+import com.kodup.pixel.PixelHistoryVo;
 
 @Service
 @Transactional
@@ -34,9 +35,9 @@ public class MansearchService {
 		return list;
 	}
 	
-	public List<MansearchBoardVo> review(int sno){
-		List<MansearchBoardVo> list = mapper.review(sno);
-		return list;
+	public MansearchBoardVo review(int premium_review_sno){
+		MansearchBoardVo mbVo = mapper.review(premium_review_sno);
+		return mbVo;
 	}	
 	
 	public List<MansearchBoardVo> premiumlist(int sno, MemberVo mVo){
@@ -128,6 +129,77 @@ public class MansearchService {
 
 		return corp_status;
 	}
+	
+	public boolean buylistinsert(MansearchBoardVo mbVo) {
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		int cnt = mapper.buylistinsert(mbVo);
+		boolean flag = true;
+		if (cnt<1) {
+			status.rollbackToSavepoint(savePoint);
+			flag = false;
+		}
+		return flag;
+	}	
+	
+	public boolean readpixel(String buyer_id) {
+		boolean b = true;
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		int cnt = mapper.readpixel(buyer_id);
+		if(cnt<1) {
+			b=false;
+		}
+		if(b) {
+			manager.commit(status);
+		}else status.rollbackToSavepoint(savePoint);
+
+		return b;
+	}	
+
+	public boolean writepixel(MansearchBoardVo mbVo) {
+		boolean b = true;
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		int cnt = mapper.writepixel(mbVo);
+		if(cnt<1) {
+			b=false;
+		}
+		if(b) {
+			manager.commit(status);
+		}else status.rollbackToSavepoint(savePoint);
+
+		return b;
+	}	
+	
+	public boolean readlog(String buyer_id) {
+		boolean b = true;
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		int cnt = mapper.readlog(buyer_id);
+		if(cnt<1) {
+			b=false;
+		}
+		if(b) {
+			manager.commit(status);
+		}else status.rollbackToSavepoint(savePoint);
+
+		return b;
+	}
+	public boolean writelog(MansearchBoardVo mbVo) {
+		boolean b = true;
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		int cnt = mapper.writelog(mbVo);
+		if(cnt<1) {
+			b=false;
+		}
+		if(b) {
+			manager.commit(status);
+		}else status.rollbackToSavepoint(savePoint);
+
+		return b;
+	}	
 	
 	public PageVo getpVo() {
 		return pVo;

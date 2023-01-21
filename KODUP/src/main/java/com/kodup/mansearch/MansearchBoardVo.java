@@ -1,6 +1,7 @@
 package com.kodup.mansearch;
 
 public class MansearchBoardVo {
+	int pixel;
 	int status=0;
 	int mansearch_sno;
 	int sno;
@@ -40,6 +41,12 @@ public class MansearchBoardVo {
 	
 	
 	
+	public int getPixel() {
+		return pixel;
+	}
+	public void setPixel(int pixel) {
+		this.pixel = pixel;
+	}
 	public int getStatus() {
 		return status;
 	}

@@ -138,12 +138,20 @@ $('.mansearch_board_updateR').on('click',function(){
 
 premiumView = function(){
 	frm = $('.mansearch_frm')[0];
-	param = $(frm).serialize(); 
-	var img = document.querySelector('.blur');
-	img.style.display='none';
-	$('.doc_blind_wrap').remove();
-	$('.btn-close').click();
-	$.post("/mansearch/premium_review",param,function(data){
-	   $('.premium_review_doc').html(data);		
-	})
+	if(frm.pixel.value >= 200){
+		frm = $('.premium_frm')[0];
+		param = $(frm).serialize(); 
+		var img = document.querySelector('.blur');
+		img.style.display='none';
+		$('.doc_blind_wrap').remove();
+		$('.btn-close').click();
+		$.post("/mansearch/premium_review",param,function(data){
+			$('#section').html(data);		
+		})
+	}else{
+		window.scrollTo(0,0);
+		alert('보유 픽셀이 부족합니다. 충전 후 이용해주세요');
+		$('.btn-close').click();
+   		$('#center').load('/pixel/pixel_buy');
+	}
 }
