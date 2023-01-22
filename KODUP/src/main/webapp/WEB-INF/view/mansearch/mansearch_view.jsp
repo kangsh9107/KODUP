@@ -198,8 +198,8 @@ li {
 			<div class="col">
 				<label>
 					<h5>
-						혹시 이 기업의 <strong><font color="#bb2642">프리미엄 리뷰</font></strong>가
-						궁금하신가요?
+						혹시 이 기업의 <strong><font color="#bb2642">프리미엄 리뷰</font></strong>
+						가 궁금하신가요?
 					</h5>
 				</label>
 				<div id="pre_review_explane">
@@ -279,7 +279,7 @@ li {
 								<div class="doc_blind_wrap">
 									<c:if test="${sessionId ne null && vo.status==0 && vo.writer_id ne sessionId}">
 										<button type="button" class="premium_review_payment"
-											data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick='premiumView(this.form)'>
+											 onclick='premiumView(this.form)'>
 											프리미엄 리뷰 보기
 										</button>
 									</c:if>

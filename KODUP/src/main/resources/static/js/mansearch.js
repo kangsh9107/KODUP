@@ -143,15 +143,28 @@ premiumView = function(form){
 	frm = $('.mansearch_frm')[0];
 	frm.writer_id.value = form.writer_id.value;
 	frm.premium_review_sno.value = form.premium_review_sno.value;
+	param = new FormData(frm);
 	if(pixel.value >= 200){		
-		param = $(frm).serialize(); 
 		var img = document.querySelector('.blur');
 		img.style.display='none';
-		$('.doc_blind_wrap').remove();
-		$('.btn-close').click();
-		$.post("/mansearch/premium_review",param,function(data){
-			$('#center').html(data);		
-		})
+		$('.doc_blind_wrap').remove(); 
+/*		$('.btn-close').click();*/
+		$.ajax({
+		type :'post',
+		url : '/mansearch/premium_review',
+		contentType : false,
+    	processData : false,
+    	data : param,
+    	dataType : 'html',
+    	success : function(data){
+			var img = document.querySelector('.blur');
+			img.style.display='none';
+			$('.doc_blind_wrap').remove(); 
+			param = $(frm).serialize();
+			//window.location.reload();	
+	 		$('.premium_review_doc').html(data);
+		}
+	})
 	}else{
 		window.scrollTo(0,0);
 		alert('보유 픽셀이 부족합니다. 충전 후 이용해주세요');

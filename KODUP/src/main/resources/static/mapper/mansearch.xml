@@ -21,7 +21,7 @@
 		limit ${startNo}, ${listSize}
 	</select>
 	<select id="review" parameterType="Integer" resultType="com.kodup.mansearch.MansearchBoardVo">
-		SELECT pr.premium_review_sno,pr.id AS writer_id FROM premium_review pr WHERE pr.premium_review_sno=${premium_review_sno}
+		SELECT pr.premium_review_sno,pr.mansearch_sno,pr.id AS writer_id,review FROM premium_review pr WHERE pr.premium_review_sno=${premium_review_sno}
 	</select>
  	<select id="view" parameterType="Integer" resultType="com.kodup.mansearch.MansearchBoardVo">
 		SELECT DATEDIFF(deadline, DATE_FORMAT(now(),'%Y-%m-%d')) as deadlinecount, mb.pay, mb.pay_date, mb.education_level, mb.work_type, mb.corp_location, mb.position, mb.required_career, mb.job_type, mb.required_skill, mb.deadline, 
@@ -35,7 +35,7 @@
         WHERE b.boardtype = 'mansearch' and mb.mansearch_sno = ${mansearch_sno} 	
 	</select>
 	<select id="premiumlist" parameterType="Integer" resultType="com.kodup.mansearch.MansearchBoardVo">
-		select premium_review_sno,review,mansearch_sno as pr_mansearch_sno,id as writer_id,review from premium_review where mansearch_sno=${mansearch_sno}
+		select premium_review_sno,mansearch_sno as pr_mansearch_sno,id as writer_id,review from premium_review where mansearch_sno=${mansearch_sno}
 	</select>
 	<select id="buylist" parameterType="com.kodup.mansearch.MansearchBoardVo" resultType="com.kodup.mansearch.MansearchBoardVo">
 		select premium_review_sno from premium_review_buylist where id = #{id}

@@ -47,25 +47,27 @@ public class MansearchBoardController {
 		return mv;
 	}
 	@RequestMapping("/mansearch/premium_review")
-	public ModelAndView review(HttpServletRequest req,MemberVo mVo,MansearchBoardVo mbVo, PixelHistoryVo hVo) {
+	public ModelAndView review(HttpServletRequest req,MemberVo mVo,MansearchBoardVo mbVo) {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = req.getSession();
 		String buyer_id =(String)session.getAttribute("sessionId");
 		System.out.println("premium_review_sno : " + mbVo.getPremium_review_sno());
 		mbVo = service.review(mbVo.getPremium_review_sno());
 		mbVo.setId(buyer_id);
+		String review = mbVo.getReview();
+		System.out.println("review : " + mbVo.getReview());
 		System.out.println("buyer_id : " + buyer_id);
 		System.out.println("writer_id : " + mbVo.getWriter_id());
+		System.out.println("mansearch_sno : " + mbVo.getMansearch_sno());
 		service.buylistinsert(mbVo);
 		service.readlog(buyer_id);
 		service.writelog(mbVo);
 		service.readpixel(buyer_id);
 		service.writepixel(mbVo);
-//		List<MansearchBoardVo> premiumlist = service.premiumlist(mbVo.getMansearch_sno(),mVo);
-//		mv.addObject("premiumlist",premiumlist);		
-//		mv.setViewName("/mansearch/mansearch_premium_review");
+		mv.addObject("review",review);
 		mv.addObject("mbVo",mbVo);
-		mv.setViewName("/mansearch/mansearch_view");
+		mv.setViewName("mansearch/mansearch_premium_review");
+//		mv.setViewName("mansearch/mansearch_view");
 		return mv;
 	}
 	@RequestMapping("/mansearch/mansearch_insert")
