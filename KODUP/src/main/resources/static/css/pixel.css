@@ -13,7 +13,7 @@ dd {
 h3.pg_title{
 	font-family: 'BMJUA';
 }
-h4{
+h4,h2{
 	font-family: 'BMJUA';
 }
 @media ( max-width :1150px) {

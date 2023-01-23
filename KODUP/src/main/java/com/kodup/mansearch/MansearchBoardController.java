@@ -55,10 +55,6 @@ public class MansearchBoardController {
 		mbVo = service.review(mbVo.getPremium_review_sno());
 		mbVo.setId(buyer_id);
 		String review = mbVo.getReview();
-		System.out.println("review : " + mbVo.getReview());
-		System.out.println("buyer_id : " + buyer_id);
-		System.out.println("writer_id : " + mbVo.getWriter_id());
-		System.out.println("mansearch_sno : " + mbVo.getMansearch_sno());
 		service.buylistinsert(mbVo);
 		service.readlog(buyer_id);
 		service.writelog(mbVo);
@@ -67,7 +63,6 @@ public class MansearchBoardController {
 		mv.addObject("review",review);
 		mv.addObject("mbVo",mbVo);
 		mv.setViewName("mansearch/mansearch_premium_review");
-//		mv.setViewName("mansearch/mansearch_view");
 		return mv;
 	}
 	@RequestMapping("/mansearch/mansearch_insert")

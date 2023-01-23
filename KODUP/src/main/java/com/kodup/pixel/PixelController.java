@@ -24,7 +24,17 @@ public class PixelController {
 		return mv;
 
 	}
+	@RequestMapping("/pixel/pixel_buy_popup")
+	public ModelAndView popup() {
+		ModelAndView mv = new ModelAndView();
+		List<PixelPriceVo> list = service.select();
+		mv.addObject("list", list);
+		mv.setViewName("pixel/pixel_buy_popup");
 		
+		return mv;
+
+	}
+	
 	@RequestMapping("/pixel/pixel_buy_complete")
 	public synchronized String buy(MemberVo mVo, PixelBuyVo buyVo, PixelHistoryVo hVo) {
 		String msg="";

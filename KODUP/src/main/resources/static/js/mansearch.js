@@ -140,6 +140,7 @@ premiumView = function(form){
 	var yn = confirm('정말 200픽셀을 사용하여 프리미엄 리뷰를 보시겠습니까?');
 	if(!yn) return;
 	var pixel = document.querySelector(".pixel");
+	pixel.value=0;
 	frm = $('.mansearch_frm')[0];
 	frm.writer_id.value = form.writer_id.value;
 	frm.premium_review_sno.value = form.premium_review_sno.value;
@@ -162,7 +163,9 @@ premiumView = function(form){
 	}else{
 		window.scrollTo(0,0);
 		alert('보유 픽셀이 부족합니다. 충전 후 이용해주세요');
-   		$('#center').load('/pixel/pixel_buy');
+		var title  = 'popup';
+		var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=850, height=600, top=100, left=400';
+		window.open("/pixel/pixel_buy_popup", title, status);
 	}
 }
 

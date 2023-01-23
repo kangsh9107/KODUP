@@ -68,8 +68,6 @@ function requestPay1() {
 }
 // -------------------------------------------------
 // 카드결제 api -------------------------------------------------
-var IMP = window.IMP;    //안해도 괜찮다
-IMP.init("imp68151717"); //본인 아임포트 가맹점 식별코드
 function requestPay2() {
 	frm = $('.pixel_frm2')[0];
 	param = new FormData(frm);
@@ -122,8 +120,6 @@ function requestPay2() {
 	});
 }
 // -------------------------------------------------// 카드결제 api -------------------------------------------------
-var IMP = window.IMP;    //안해도 괜찮다
-IMP.init("imp68151717"); //본인 아임포트 가맹점 식별코드
 function requestPay3() {
 	frm = $('.pixel_frm3')[0];
 	param = new FormData(frm);
@@ -176,8 +172,6 @@ function requestPay3() {
 	});
 }
 // -------------------------------------------------// 카드결제 api -------------------------------------------------
-var IMP = window.IMP;    //안해도 괜찮다
-IMP.init("imp68151717"); //본인 아임포트 가맹점 식별코드
 function requestPay4() {
 	frm = $('.pixel_frm4')[0];
 	param = new FormData(frm);
@@ -230,8 +224,6 @@ function requestPay4() {
 	});
 }
 // -------------------------------------------------// 카드결제 api -------------------------------------------------
-var IMP = window.IMP;    //안해도 괜찮다
-IMP.init("imp68151717"); //본인 아임포트 가맹점 식별코드
 function requestPay5() {
 	frm = $('.pixel_frm5')[0];
 	param = new FormData(frm);
@@ -284,8 +276,6 @@ function requestPay5() {
 	});
 }
 // -------------------------------------------------// 카드결제 api -------------------------------------------------
-var IMP = window.IMP;    //안해도 괜찮다
-IMP.init("imp68151717"); //본인 아임포트 가맹점 식별코드
 function requestPay6() {
 	frm = $('.pixel_frm6')[0];
 	param = new FormData(frm);
