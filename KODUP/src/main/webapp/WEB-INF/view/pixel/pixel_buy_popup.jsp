@@ -9,11 +9,160 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" >
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel='stylesheet' href='../css/pixel.css'>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <title>pixel/pixel_buy_popup.jsp</title>
+<style>
+@charset "UTF-8";
+@font-face{
+	font-family:"BMJUA";
+	src: url("/fonts/BMJUA_ttf.ttf");
+}
+ul, ol, li {
+	list-style: none;
+}
+
+dd {
+	margin: 0;
+}
+h2.pg_title{
+	font-family: 'BMJUA';
+}
+h4,h2{
+	font-family: 'BMJUA';
+}
+.st1 {
+	background-image: url('/images/픽셀1.png');
+	background-size: 180px 150px;
+	background-repeat: no-repeat;
+}
+
+.st2 {
+	background-image: url('/images/픽셀2.png');
+	background-size: 180px 150px;
+	background-repeat: no-repeat;
+}
+
+.st3 {
+	background-image: url('/images/픽셀3.png');
+	background-size: 180px 150px;
+	background-repeat: no-repeat;
+}
+
+.st4 {
+	background-image: url('/images/픽셀4.png');
+	background-size: 180px 150px;
+	background-repeat: no-repeat;
+}
+
+.st5 {
+	background-image: url('/images/픽셀5.png');
+	background-size: 180px 150px;
+	background-repeat: no-repeat;
+}
+
+.st6 {
+	background-image: url('/images/픽셀6.png');
+	background-size: 180px 150px;
+	background-repeat: no-repeat;
+}
+.use1{
+	background-image: url('/images/qna.png');
+	background-size: 180px 150px;
+	background-repeat: no-repeat;	
+}
+.use2{
+	background-image: url('/images/전문가.png');
+	background-size: 180px 150px;
+	background-repeat: no-repeat;	
+}
+.use3{
+	background-image: url('/images/premium_review.png');
+	background-size: 180px 150px;
+	background-repeat: no-repeat;	
+}
+.st_area .buy {
+	position: relative;
+	width: 800px;
+	height: 151px;
+	margin-left: 250px;
+	background: #fff;
+	border-left: 1px solid #e6e6e6;
+	border-radius: 0 5px 5px 0;
+}
+.st_area .buy .btn_buy {
+	border: 1px solid #bb2649;
+	width: 100px;
+	font-size: 14px;
+	background-color: #bb2649;
+	color: white;
+	padding: 12px 20px;
+	border-radius: 5px;
+	position: absolute;
+	top: 42px;
+	left: 115px;
+	font-weight: bold;
+}			
+
+
+.st_area {
+	position: relative;
+	border: 1px solid #e0e0e0;
+	border-radius: 5px;
+	background-color: #fcfcfc;
+}
+
+.pixelfont {
+	font-size: 13px;
+	color: #666;
+	margin-bottom: 2px;
+	margin-left:-5px;
+	display:inline-block;
+	padding:0;
+}
+
+.st_area .buy .area .num strong {
+	font-size: 16px;
+	color: #bb2649;
+	margin:0;
+	padding:0;
+}
+
+.st_area .buy .area {
+	text-align: right;
+	width: 110px;
+	position: absolute;
+	top: 40px;
+}
+span.num{padding:0; margin:0;}
+
+.st_area .buy .btn_buy:hover {
+	color: #bb2649;
+	background-color: white;
+}
+.notice {
+	position:relative;
+	width: 95%;
+	height: 100%;
+	margin-top: 10px;
+	border-top: 1px solid #e5e5e5;
+	background: #f8f8f8;
+	margin-top: 10px;
+	border-top: 1px solid #e5e5e5;
+	background: #f8f8f8;
+	padding: 10px;
+}
+
+span.price {
+	font-size: 25px;
+}
+.buy>dl {
+	display: inline-block;
+	text-align: center;
+	margin-top: 30px;
+}
+
+</style>
 </head>
 <body>
 	<h2 class="pg_title">픽셀충전</h2>
@@ -22,7 +171,7 @@
 		<div class="item_pixel container text-center">
 			<div class="st_area st1">
 				<form class='pixel_frm1' method='post'>
-					<input type='hidden' class='member_id' name='id' value=''/>
+					<input type='hidden' class='member_id' name='id' value='${sessionId }'/>
 					<input type='hidden' name="pixel_buy_amount" value="${vo.pixel_1_amount }">
 					<input type='hidden' name="pixel_buy_price" value="${vo.pixel_1_price }">				
 					<div class="buy">
@@ -37,7 +186,7 @@
 			</div>
 			<div class="st_area st2">
 				<form class='pixel_frm2' method='post'>
-					<input type='hidden' class='member_id' name='id' value=''/>				
+					<input type='hidden' class='member_id' name='id' value='${sessionId }'/>
 					<input type='hidden' name="pixel_buy_amount" value="${vo.pixel_2_amount }">
 					<input type='hidden' name="pixel_buy_price" value="${vo.pixel_2_price }">
 					<div class="buy">
@@ -51,7 +200,7 @@
 			</div>
 			<div class="st_area st3">
 				<form class='pixel_frm3' method='post'>
-					<input type='hidden' class='member_id' name='id' value=''/>
+					<input type='hidden' class='member_id' name='id' value='${sessionId }'/>
 					<input type='hidden' name="pixel_buy_amount" value="${vo.pixel_3_amount }">
 					<input type='hidden' name="pixel_buy_price" value="${vo.pixel_3_price }">
 					<div class="buy">
@@ -66,7 +215,7 @@
 
 			<div class="st_area st4">
 				<form class='pixel_frm4' method='post'>
-					<input type='hidden' class='member_id' name='id' value=''/>
+					<input type='hidden' class='member_id' name='id' value='${sessionId }'/>
 					<input type='hidden' name="pixel_buy_amount" value="${vo.pixel_4_amount }">
 					<input type='hidden' name="pixel_buy_price" value="${vo.pixel_4_price }">
 								
@@ -82,7 +231,7 @@
 
 			<div class="st_area st5">
 				<form class='pixel_frm5' method='post'>
-					<input type='hidden' class='member_id' name='id' value=''/>
+					<input type='hidden' class='member_id' name='id' value='${sessionId }'/>
 					<input type='hidden' name="pixel_buy_amount" value="${vo.pixel_5_amount }">
 					<input type='hidden' name="pixel_buy_price" value="${vo.pixel_5_price }">
 					<div class="buy">
@@ -97,7 +246,7 @@
 
 			<div class="st_area st6">
 				<form class='pixel_frm6' method='post'>
-					<input type='hidden' class='member_id' name='id' value=''/>
+					<input type='hidden' class='member_id' name='id' value='${sessionId }'/>
 					<input type='hidden' name="pixel_buy_amount" value="${vo.pixel_6_amount }">
 					<input type='hidden' name="pixel_buy_price" value="${vo.pixel_6_price }">				
 					<div class="buy">
@@ -173,6 +322,7 @@ for(let i=0; i<memberid.length; i++){
 }
 $('#popup_ok').on('click',function(){
 	window.close();
+	popup.close();
 	$('.kgLayer').remove();
 })	
 // 카드결제 api -------------------------------------------------
@@ -201,8 +351,7 @@ function requestPay1() {
 	    		dataType: 'html',
 	    		success : function(data){
 					if(data != '') alert(data);
-					param = $(frm).serialize();
-					$('#center').load('/mypage/mypage_mypixel');
+					$('.kgLayer').remove();
 				}	
 
 	    	}).done(function(data) {

@@ -165,7 +165,7 @@ premiumView = function(form){
 		alert('보유 픽셀이 부족합니다. 충전 후 이용해주세요');
 		var title  = 'popup';
 		var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=850, height=600, top=100, left=400';
-		window.open("/pixel/pixel_buy_popup", title, status);
+		var popup = window.open("/pixel/pixel_buy_popup", title, status);
 	}
 }
 
