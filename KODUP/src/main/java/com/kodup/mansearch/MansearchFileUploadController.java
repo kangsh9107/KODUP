@@ -32,11 +32,8 @@ public class MansearchFileUploadController {
 	}
 	
 	@RequestMapping("/mansearch/mansearch_updateR")
-public synchronized String updateR(@ModelAttribute MansearchBoardVo mbVo) {
-		 
-		
+	public synchronized String updateR(@ModelAttribute MansearchBoardVo mbVo) {
 		String msg="";
-
 		try {
 			boolean flag1 = service.boardupdate(mbVo);
 			boolean flag2 = service.mansearchupdate(mbVo);			
@@ -48,6 +45,25 @@ public synchronized String updateR(@ModelAttribute MansearchBoardVo mbVo) {
 
 		}catch(Exception e) {
 			e.printStackTrace();
+		}
+		return msg;
+	}
+	
+	@RequestMapping("/mansearch/mansearch_reviewR")
+	public synchronized String reviewR(@ModelAttribute MansearchBoardVo mbVo) {	
+		System.out.println("reviewR");
+		String msg="";
+		String certification = service.certification(mbVo);
+		System.out.println("certification : " + certification);
+		if(certification != null ) {
+			boolean flag = service.reviewinsert(mbVo);			
+			
+			if(flag) {
+				msg = "리뷰가 작성되었습니다. 다른 유저가 열람 시 200픽셀을 획득합니다.";
+			} else msg="저장중 오류 발생";
+			
+		}else if(certification == null) {
+			msg="경력인증 후 작성 가능합니다.";	
 		}
 		return msg;
 	}

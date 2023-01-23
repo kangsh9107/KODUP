@@ -41,7 +41,8 @@ li {
 		<input type='hidden' name='pixel' class="pixel" value='${mbVo.pixel }' />
 		<input type='hidden' name='premium_review_sno' value=''/>
 		<input type='hidden' name='writer_id' value=''/>
-		<input type='hidden' name='buyer_id' class='member_id' value='${sessionId }' />		
+		<input type='hidden' name='buyer_id' class='member_id' value='${sessionId }' />
+		<textarea name="review" style="display:none;"> </textarea>		
 		<div id="task" style="margin-bottom: 5px;">${mbVo.main_task }</div>
 		<div id="job_index" style="margin-bottom: 5px;">${mbVo.sub_task }</div>
 		<div class="container text-center">
@@ -230,14 +231,14 @@ li {
 				</div>
 				<div class="col-11">
 					<div class="form-floating">
-						<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+						<textarea class="form-control premium_review_doc" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
 						<label for="floatingTextarea2">경력증명서 인증 후 리뷰를 작성할 수 있습니다.</label>
 					</div>
 				</div>
 			</c:if>
 		</div>
 		<c:if test="${sessionId ne null }">
-			<button class="mansearch_insert" style="float: right; margin-top: 15px;">
+			<button class="premium_review_insert" style="float: right; margin-top: 15px;">
 				리뷰등록
 			</button>
 		</c:if>
@@ -261,7 +262,6 @@ li {
 							</div>
 							<div class="premium_review_doc_wrap">
 								<div class="premium_review_doc">
-<%-- 								<c:if test="${sessionId eq null || vo.buyer_id ne sessionId && vo.writer_id ne sessionId }"> </c:if>--%>
 									<c:choose>
 										<c:when test="${vo.status == 1 || vo.writer_id eq sessionId}">									
 											${vo.review }
@@ -270,7 +270,6 @@ li {
 											<img src="/images/review_blur.png" class="blur">
 										</c:otherwise>	
 									</c:choose>
-<%-- 									<c:if test="${sessionId ne null && vo.buyer_id eq sessionId || vo.writer_id eq sessionId}"></c:if> --%>
 									<input type='hidden' name='premium_review_sno' class='premium_review_sno' value='${vo.premium_review_sno }'>
 									<input type='hidden' name='writer_id' class='writer_id' value='${vo.writer_id }'/>
 									<input type='hidden' name='buyer_id' class='member_id' value='${sessionId }' />

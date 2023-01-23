@@ -28,5 +28,8 @@ public interface MansearchMapper {
 	public int readpixel(String buyer_id);
 	public int writepixel(MansearchBoardVo mbVo);
 	public int readlog(String buyer_id);
-	public int writelog(MansearchBoardVo mbVo);	
+	public int writelog(MansearchBoardVo mbVo);
+	public int reviewinsert(MansearchBoardVo mbVo);	
+	public String certification(MansearchBoardVo mbVo);
+
 }

@@ -201,6 +201,24 @@ public class MansearchService {
 		return b;
 	}	
 	
+	public String certification(MansearchBoardVo mbVo) {
+		String certification = mapper.certification(mbVo);
+
+		return certification;
+	}	
+	
+	public boolean reviewinsert(MansearchBoardVo mbVo) {
+		boolean flag = true;
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		int cnt = mapper.reviewinsert(mbVo);
+		if (cnt<1) {
+			status.rollbackToSavepoint(savePoint);
+			flag = false;
+		}
+		return flag;
+	}	
+	
 	public PageVo getpVo() {
 		return pVo;
 	}

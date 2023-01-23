@@ -83,4 +83,13 @@
 		insert into pixel_history(id,pixel_log,history_date,history_detail)
 		values(#{writer_id},200,now(),'프리미엄리뷰 작성')
 	</insert>
+	<select id="certification" parameterType="com.kodup.mansearch.MansearchBoardVo" resultType="String">
+		select cc.career_certificate from career_certification cc 
+		join member m on cc.id = m.id
+		where m.id = #{id}
+	</select>
+	<insert id="reviewinsert" parameterType="com.kodup.mansearch.MansearchBoardVo">
+		insert into premium_review(mansearch_sno,id,review)
+		values(${mansearch_sno},#{id},#{review})
+	</insert>	
 </mapper>

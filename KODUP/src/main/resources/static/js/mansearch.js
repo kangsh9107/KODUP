@@ -137,7 +137,7 @@ $('.mansearch_board_updateR').on('click',function(){
 })
 
 premiumView = function(form){
-	var yn = confirm('정말 200픽셀을 사용하여 프리미엄 리뷰를 보시겠습니까?')
+	var yn = confirm('정말 200픽셀을 사용하여 프리미엄 리뷰를 보시겠습니까?');
 	if(!yn) return;
 	var pixel = document.querySelector(".pixel");
 	frm = $('.mansearch_frm')[0];
@@ -148,7 +148,6 @@ premiumView = function(form){
 		var img = form.querySelector('.blur');
 		img.style.display='none';
 		$('.doc_blind_wrap').remove(); 
-/*		$('.btn-close').click();*/
 		$.ajax({
 		type :'post',
 		url : '/mansearch/premium_review',
@@ -157,15 +156,33 @@ premiumView = function(form){
     	data : param,
     	dataType : 'html',
     	success : function(data){
-			param = $(frm).serialize();
-			//window.location.reload();	
 	 		$(form).find($('.premium_review_doc')).html(data);
 		}
 	})
 	}else{
 		window.scrollTo(0,0);
 		alert('보유 픽셀이 부족합니다. 충전 후 이용해주세요');
-//		$('.btn-close').click();
    		$('#center').load('/pixel/pixel_buy');
 	}
 }
+
+$('.premium_review_insert').on('click',function(){
+	frm = $('.mansearch_frm')[0];
+	frm.review.value = $('.premium_review_doc').val();
+	frm.id.value = frm.buyer_id.value;
+	frm.premium_review_sno.value=0;
+	param = new FormData(frm);
+	$.ajax({
+		type :'post',
+		url : '/mansearch/mansearch_reviewR',
+		contentType : false,
+    	processData : false,
+    	data : param,
+    	dataType : 'html',
+    	success : function(data){
+			if(data != '') alert(data);
+			param = $(frm).serialize();
+	 		$('#center').load('/mansearch/mansearch_view',param);
+		}
+	})
+})
