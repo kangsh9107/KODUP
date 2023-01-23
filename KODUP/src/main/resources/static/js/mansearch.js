@@ -145,7 +145,7 @@ premiumView = function(form){
 	frm.premium_review_sno.value = form.premium_review_sno.value;
 	param = new FormData(frm);
 	if(pixel.value >= 200){		
-		var img = document.querySelector('.blur');
+		var img = form.querySelector('.blur');
 		img.style.display='none';
 		$('.doc_blind_wrap').remove(); 
 /*		$('.btn-close').click();*/
@@ -157,18 +157,15 @@ premiumView = function(form){
     	data : param,
     	dataType : 'html',
     	success : function(data){
-			var img = document.querySelector('.blur');
-			img.style.display='none';
-			$('.doc_blind_wrap').remove(); 
 			param = $(frm).serialize();
 			//window.location.reload();	
-	 		$('.premium_review_doc').html(data);
+	 		$(form).find($('.premium_review_doc')).html(data);
 		}
 	})
 	}else{
 		window.scrollTo(0,0);
 		alert('보유 픽셀이 부족합니다. 충전 후 이용해주세요');
-		$('.btn-close').click();
+//		$('.btn-close').click();
    		$('#center').load('/pixel/pixel_buy');
 	}
 }
