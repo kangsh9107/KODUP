@@ -9,6 +9,8 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import com.kodup.qna.QnaBoardVo;
+
 @Service
 @Transactional
 public class CommonBoardService {
@@ -27,18 +29,20 @@ public class CommonBoardService {
 	public List<SelectBoardVo> listQna(CommonBoardPageVo cbpVo) {
 		int totSize = 0;
 		String horsehead = cbpVo.getHorsehead();
-		
 		List<CommonBoardPageVo> listTemp = cbMapper.totList(cbpVo);
 		for(CommonBoardPageVo l : listTemp) {
-			if(horsehead.equals("")) {
-				totSize += l.getTotSize();
-			} else if(l.getHorsehead().equals(horsehead)) {
-				totSize = l.getTotSize();
-			}
+			if(horsehead.equals("")) totSize += l.getTotSize();
+			else if(l.getHorsehead().equals(horsehead)) totSize = l.getTotSize();
 		}
 		cbpVo.setTotSize(totSize);
 		this.cbpVo = cbpVo;
-		List<SelectBoardVo> listQna = cbMapper.listQna(cbpVo);
+		List<SelectBoardVo> listQna = cbMapper.listQna(cbpVo); //조건에 맞는 전체 리스트
+		List<SelectBoardVo> view = cbMapper.listView(cbpVo);   //조건에 맞는 해당 아이디가 본 글 리스트
+		for(SelectBoardVo l : listQna) { //봤던 글 viewStatus 1로 변경
+			for(SelectBoardVo v : view) {
+				if(l.sno == v.sno) l.setViewStatus(1);
+			}
+		}
 		
 		return listQna;
 	}
@@ -47,18 +51,20 @@ public class CommonBoardService {
 	public List<SelectBoardVo> listHashtag(CommonBoardPageVo cbpVo) {
 		int totSize = 0;
 		String horsehead = cbpVo.getHorsehead();
-		
 		List<CommonBoardPageVo> listTemp = cbMapper.totListHashtag(cbpVo);
 		for(CommonBoardPageVo l : listTemp) {
-			if(horsehead.equals("")) {
-				totSize += l.getTotSize();
-			} else if(l.getHorsehead().equals(horsehead)) {
-				totSize = l.getTotSize();
-			}
+			if(horsehead.equals("")) totSize += l.getTotSize();
+			else if(l.getHorsehead().equals(horsehead)) totSize = l.getTotSize();
 		}
 		cbpVo.setTotSize(totSize);
 		this.cbpVo = cbpVo;
 		List<SelectBoardVo> listHashtag = cbMapper.listHashtag(cbpVo);
+		List<SelectBoardVo> view = cbMapper.listView(cbpVo);
+		for(SelectBoardVo l : listHashtag) { //봤던 글 viewStatus 1로 변경
+			for(SelectBoardVo v : view) {
+				if(l.sno == v.sno) l.setViewStatus(1);
+			}
+		}
 		
 		return listHashtag;
 	}
@@ -122,6 +128,26 @@ public class CommonBoardService {
 			status.rollbackToSavepoint(savePoint);
 		}
 		
+		return b;
+	}
+	
+	//봤던글 표시
+	public void insertView(CommonBoardPageVo cbpVo) {
+		boolean b = checkView(cbpVo);
+		if( !b ) {
+			int cnt = cbMapper.insertView(cbpVo);
+			status = manager.getTransaction(new DefaultTransactionDefinition());
+			savePoint = status.createSavepoint();
+			if(cnt > 0) manager.commit(status);
+			else status.rollbackToSavepoint(savePoint);
+		}
+	}
+	
+	//봤던글인지 체크
+	public boolean checkView(CommonBoardPageVo cbpVo) {
+		boolean b = false; //false면 아직 안봤다
+		int cnt = cbMapper.checkView(cbpVo);
+		if(cnt > 0) b = true;
 		return b;
 	}
 

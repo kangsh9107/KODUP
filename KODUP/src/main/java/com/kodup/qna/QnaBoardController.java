@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,12 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kodup.common.CommonBoardPageVo;
+import com.kodup.common.CommonBoardService;
 
 @RestController
 public class QnaBoardController {
 	
 	@Autowired
 	QnaBoardService service;
+	
+	@Autowired
+	CommonBoardService cbService;
 	
 	@RequestMapping("/qna/qna")
 	public ModelAndView qna() {
@@ -41,6 +46,14 @@ public class QnaBoardController {
 		int checkChaeTaek =service.checkChaeTaek(qbVo.getSno());
 		List<QnaBoardReplVo> replList = service.replList(qbVo.getSno());//본문의sno를 넣어줌
 		qbVo.getHashtaglist();
+		
+		//봤던글 표시
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(qbVo.getSno());
+		if(cbpVo.getId() != null) {
+			cbService.insertView(cbpVo);
+		}
 		
 		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("checkChaeTaek",checkChaeTaek);

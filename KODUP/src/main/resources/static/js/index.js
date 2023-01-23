@@ -146,6 +146,10 @@ var quick = function(sno, boardtype) {
 	var frm = $('.index_cb_form')[0];
 	frm.sno.value = sno;
 	frm.boardtype.value = boardtype;
+	param = $(frm).serialize();
+    $.post("/qna/qna_view", param, function(data){
+        $('#center').html(data);
+    })
 }
 //QNA LIST
 $('.btnQna').on('click', function() {
@@ -237,6 +241,7 @@ $('#btnMantoman').on('click',function() {
 		var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=350, height=500, top=400, left=1300'; 
 		window.open('/mantoman/mantoman_index?sessionId=' + sessionId, title, status);
 	} else {
+		window.scrollTo(0, 0);
 		$('.index_btnLogin').click();
 	}
 });

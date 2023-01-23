@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -23,8 +24,10 @@ public class CommonBoardController {
 	
 	//Q&A 리스트 출력
 	@RequestMapping("/qna/qna_list")
-	public ModelAndView qnaList(CommonBoardPageVo cbpVo) {
+	public ModelAndView qnaList(CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
 		List<SelectBoardVo> listQna = cbService.listQna(cbpVo);
 		cbpVo = cbService.getCbpVo();
 		
@@ -38,6 +41,8 @@ public class CommonBoardController {
 	@RequestMapping("/qna/qna_list_back")
 	public ModelAndView qnaListBack(CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
 		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
 		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
 		cbpVo.setHorsehead(req.getParameter("horseheadK"));
@@ -53,8 +58,10 @@ public class CommonBoardController {
 	
 	//hashtag search
 	@RequestMapping("/login/find_hashtag")
-	public ModelAndView hashtagList(CommonBoardPageVo cbpVo) {
+	public ModelAndView hashtagList(CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
 		List<SelectBoardVo> listHashtag = cbService.listHashtag(cbpVo);
 		cbpVo = cbService.getCbpVo();
 		

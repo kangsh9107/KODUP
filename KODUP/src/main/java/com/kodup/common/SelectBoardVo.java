@@ -23,6 +23,8 @@ public class SelectBoardVo {
 	int countRepl;
 	int board_delete; //0: 일반 글, 1: 작성자가 삭제한 글, 2: 관리자가 삭제한 글
 	int qna_pixel_reward;
+	int qna_status;
+	int viewStatus;   //0: 안봤음, 1: 봤음
 	
 	public int getSno() { return sno; }
 	public void setSno(int sno) { this.sno = sno; }
@@ -58,5 +60,9 @@ public class SelectBoardVo {
 	public void setHorsehead(String horsehead) { this.horsehead = horsehead; }
 	public int getQna_pixel_reward() { return qna_pixel_reward; }
 	public void setQna_pixel_reward(int qna_pixel_reward) { this.qna_pixel_reward = qna_pixel_reward; }
+	public int getQna_status() { return qna_status; }
+	public void setQna_status(int qna_status) { this.qna_status = qna_status; }
+	public int getViewStatus() { return viewStatus; }
+	public void setViewStatus(int viewStatus) { this.viewStatus = viewStatus; }
 	
 }

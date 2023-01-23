@@ -4,20 +4,6 @@
 
 /***** 강수형 *****/
 /***** SUMMERNOTE *****/
-/*
-$(document).ready(function () {
- 	$('#summernote').summernote({
-		placeholder: '내용을 입력해주세요.',
-		height: 400,
-		maxHeight: 300,
-		popover: { //footer 밑 쓸모 없는 메뉴 삭제
-			image: [],
-			link: [],
-			air: []
-		}
-	});
-});
-*/
 var fonts = ['맑은 고딕', '돋움', '궁서', '굴림', '굴림체', '궁서체', '나눔 고딕', '바탕', '바탕체', '새굴림'];
 fonts.sort();
 var loadInterval=[];
@@ -28,12 +14,7 @@ $('#summernote').summernote({
 	maxHeight: null, //최대 높이
 	focus: true,     //에디터 로딩후 포커스를 맞출지 여부
 	fontNames : fonts,
-	popover: {       //footer 밑 쓸모 없는 메뉴 삭제
-		image: [],
-		link: [],
-		air: []
-	},
-	lang: 'ko-KR',
+	lang: "ko-KR",
 	callbacks: {	 //이미지 첨부 콜백함수
 		onMediaDelete : function(target) {
 			deleteFile(target[0].src);
@@ -67,7 +48,6 @@ function sendFile(intervalPos, file, el) {
 
 function loadCheck(intervalPos, img) {
 	try {
-		console.log('img : ' + img);
 		var t = new Image();
 		t.src = img;
 		t.onload = function(){
@@ -139,7 +119,7 @@ function qna_view_findHashtag(hashtag){
 	//지금은 일단 콘솔로그만 찍어줌
 	console.log(hashtag);
 }
-$(document).ready(function () {
+$(document).ready(function () {	
 	$('.view_summernote').summernote({
 	    placeholder: '내용을 입력해주세요.',
 	    height: 100,

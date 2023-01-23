@@ -116,13 +116,21 @@
 			</li>
 			<c:forEach items="${listQna }" var="listQna">
 				<li class="list-group-item" style="padding: 10px 0 10px 0;">
-					<a href="#" class="text-decoration-none">
+					<a href="javascript:void(0);" onclick="runTopWriterProfile('${listQna.nickname }')" class="text-decoration-none">
 						<img id="index_profile" src="upload/${listQna.profile_img }">
 						<span id="index_nickname">${listQna.nickname }</span>
 					</a>
 					<span id="index_time">· ${listQna.nal }</span>
 					<div style="float: right;">
-						<i class="fas fa-circle-check" style="color: #555; font-size: 0.9rem;"></i>
+						<!-- VIEW CHECK -->
+						<c:choose>
+							<c:when test="${listQna.viewStatus == 0 }">
+								<i class="fas fa-circle-check" style="color: #555; font-size: 0.9rem;"></i>
+							</c:when>
+							<c:otherwise>
+								<i class="fas fa-circle-check" style="color: #bb2649; font-size: 0.9rem;"></i>
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<br/>
 					<a href="#" onclick="qna_view(${listQna.sno })" class="text-decoration-none">
@@ -143,7 +151,14 @@
 					<br/>
 					<div style="float: left;">
 						<!-- QNA PIXEL REWARD -->
-						<label id="qna_pixel_reward">${listQna.qna_pixel_reward }</label>
+						<c:choose>
+							<c:when test="${listQna.qna_status == 0 }">
+								<label id="qna_pixel_reward">${listQna.qna_pixel_reward }</label>
+							</c:when>
+							<c:otherwise>
+								<label id="qna_pixel_reward" style="text-decoration: line-through; border: 1px solid rgb(0, 144, 249)">${listQna.qna_pixel_reward }</label>
+							</c:otherwise>
+						</c:choose>
 						<!-- HORSEHEAD -->
 						<label id="board_horsehead">${listQna.horsehead }</label>
 						<!-- HASHTAG -->

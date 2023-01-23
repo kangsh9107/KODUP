@@ -4,14 +4,14 @@
 
 	<!-- totSize -->
 	<select id="totList" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.CommonBoardPageVo">
-		SELECT COUNT(b.sno) AS totSize, b.boardtype, qb.qna_horsehead AS horsehead, qb.qna_pixel_reward
+		SELECT COUNT(b.sno) AS totSize, b.boardtype, qb.qna_horsehead AS horsehead
 		FROM board b LEFT JOIN member m     ON b.id = m.id
 		             LEFT JOIN qna_board qb ON b.sno = qb.sno
 		WHERE m.nickname LIKE '%${findStr}%'
 		OR    b.hashtag  LIKE '%${findStr}%'
 		OR    b.subject  LIKE '%${findStr}%'
 		OR    b.doc      LIKE '%${findStr}%'
-		GROUP BY b.boardtype, qb.qna_horsehead, qb.qna_pixel_reward
+		GROUP BY b.boardtype, qb.qna_horsehead
 		HAVING b.boardtype = #{boardtype}
 		<if test="horsehead != ''">
 			AND qb.qna_horsehead = #{horsehead}
@@ -21,8 +21,8 @@
 	<!-- Q&A LIST -->
 	<select id="listQna" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.SelectBoardVo">
 		SELECT b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
-			   b.thumbup, b.thumbdown, (b.thumbup-b.thumbdown) AS thumb, board_delete,
-		       m.id, m.nickname, m.profile_img, qb.qna_horsehead AS horsehead, qb.qna_pixel_reward,
+			   b.thumbup, b.thumbdown, (b.thumbup-b.thumbdown) AS thumb, b.board_delete,
+		       m.id, m.nickname, m.profile_img, qb.qna_horsehead AS horsehead, qb.qna_pixel_reward, qb.qna_status,
 		       COUNT(r.repl_sno) AS countRepl
 		FROM board b LEFT JOIN member m     ON b.id = m.id
 		             LEFT JOIN repl r       ON b.sno = r.sno
@@ -32,8 +32,8 @@
 		OR    b.subject  LIKE '%${findStr}%'
 		OR    b.doc      LIKE '%${findStr}%'
 		GROUP BY b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
-				 b.thumbup, b.thumbdown, thumb, board_delete,
-				 m.id, m.nickname, m.profile_img, qb.qna_horsehead, qb.qna_pixel_reward
+				 b.thumbup, b.thumbdown, thumb, b.board_delete,
+				 m.id, m.nickname, m.profile_img, qb.qna_horsehead, qb.qna_pixel_reward, qb.qna_status
 		HAVING b.boardtype = #{boardtype}
 		<if test="horsehead != '' and horsehead != null">
 			AND qb.qna_horsehead = #{horsehead}
@@ -57,7 +57,7 @@
 	
 	<!-- totSizeHashtag -->
 	<select id="totListHashtag" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.CommonBoardPageVo">
-		SELECT COUNT(b.sno) AS totSize, b.boardtype, qb.qna_horsehead AS horsehead, qb.qna_pixel_reward
+		SELECT COUNT(b.sno) AS totSize, b.boardtype, qb.qna_horsehead AS horsehead
 		FROM board b LEFT JOIN member m     ON b.id = m.id
 		             LEFT JOIN qna_board qb ON b.sno = qb.sno
 		WHERE b.hashtag LIKE '%${hashtag}%'
@@ -67,16 +67,16 @@
 	<!-- Hashtag LIST -->
 	<select id="listHashtag" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.SelectBoardVo">
 		SELECT b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
-			   b.thumbup, b.thumbdown, (b.thumbup-b.thumbdown) AS thumb, board_delete,
-		       m.id, m.nickname, m.profile_img, qb.qna_horsehead AS horsehead, qb.qna_pixel_reward,
+			   b.thumbup, b.thumbdown, (b.thumbup-b.thumbdown) AS thumb, b.board_delete,
+		       m.id, m.nickname, m.profile_img, qb.qna_horsehead AS horsehead, qb.qna_pixel_reward, qb.qna_status,
 		       COUNT(r.repl_sno) AS countRepl
 		FROM board b LEFT JOIN member m     ON b.id = m.id
 		             LEFT JOIN repl r       ON b.sno = r.sno
 		             LEFT JOIN qna_board qb ON b.sno = qb.sno
 		WHERE b.hashtag LIKE '%${hashtag}%'
 		GROUP BY b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
-				 b.thumbup, b.thumbdown, thumb, board_delete,
-				 m.id, m.nickname, m.profile_img, qb.qna_horsehead, qb.qna_pixel_reward
+				 b.thumbup, b.thumbdown, thumb, b.board_delete,
+				 m.id, m.nickname, m.profile_img, qb.qna_horsehead, qb.qna_pixel_reward, qb.qna_status
 		<choose>
 			<when test="sort == 1">
 				ORDER BY b.nal DESC, b.sno DESC
@@ -132,6 +132,21 @@
 	<!-- getViewcount -->
 	<select id="getViewcount" parameterType="Integer" resultType="Integer">
 		SELECT viewcount FROM board WHERE sno = ${_parameter}
+	</select>
+	
+	<!-- insertView -->
+	<insert id="insertView" parameterType="com.kodup.common.CommonBoardPageVo">
+		INSERT view_board(sno, id) VALUES(${sno}, #{id})
+	</insert>
+	
+	<!-- checkView -->
+	<insert id="checkView" parameterType="com.kodup.common.CommonBoardPageVo">
+		SELECT COUNT(sno) FROM view_board WHERE id = #{id} AND sno = ${sno}
+	</insert>
+	
+	<!-- listView -->
+	<select id="listView" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.SelectBoardVo">
+		SELECT sno FROM view_board WHERE id = #{id}
 	</select>
 
 </mapper>

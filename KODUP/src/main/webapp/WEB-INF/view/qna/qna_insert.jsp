@@ -50,7 +50,7 @@
 		</div>
 		<div class="input-group form-group">
 			<!-- SUMMERNOTE -->
-			<div id="summer">
+			<div id="summer" style="display: inline-block !important; width: 100% !important;">
 				<div id="summernote"></div>
 			</div>
 		</div>

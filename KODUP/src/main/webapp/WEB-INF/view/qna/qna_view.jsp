@@ -44,7 +44,7 @@
 				<span id="qna_view_header_section1"> <!-- span태그사용 : 이미지사진+닉네임 한줄로 붙이기위해 span이 inline요소라서 -->
 					<img id="qna_view_header_profileimage_file" 
 					style="width:40px; height:40px; vertical-align: top; border-radius:50%;"
-					src="images/${qbVo.profile_img}" >
+					src="upload/${qbVo.profile_img}" >
 				</span>
 				<!-- 본문 조회수,작성시간 -->
 				<div  id="qna_view_header_section2" style="display:inline-block; vertical-align: top;">

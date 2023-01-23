@@ -12,7 +12,7 @@
 	<span style="font-weight: 600;">#Top Writer</span>
 	<hr/>
 	<c:forEach items="${listTopWriter }" var="twVo">
-		<a href="#" onclick="runTopWriterProfile('${twVo.nickname }')" class="text-decoration-none" style="float: left;">
+		<a href="javascript:void(0);" onclick="runTopWriterProfile('${twVo.nickname }')" class="text-decoration-none" style="float: left;">
 			<img id="index_top_writer_profile" src="upload/${twVo.profile_img }">
 			<span id="index_top_writer_nickname">${twVo.nickname }</span>
 		</a>
