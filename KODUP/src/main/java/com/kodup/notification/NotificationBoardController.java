@@ -24,13 +24,6 @@ public class NotificationBoardController {
 	
 	@Autowired
 	CommonBoardService cbService;
-	
-	@RequestMapping("/notification/notification")
-	public ModelAndView notfication() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/notification/notification");
-		return mv;
-	}
 
 	@RequestMapping("/notification/notification_insert")
 	public ModelAndView notficationInsert() {
