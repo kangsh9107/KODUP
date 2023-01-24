@@ -97,7 +97,6 @@
 			</div>
 			
 			<!-- HIDDEN -->
-<<<<<<< HEAD
 			<input type="hidden" name="sno" value="${cbpVo.sno }">
 			<input type="hidden" name="sort" value="${cbpVo.sort }">
 			<input type="hidden" name="boardtype" value="${cbpVo.boardtype }">
@@ -105,11 +104,6 @@
 			<input type="hidden" name="hashtag" value="${cbpVo.hashtag }">
 			<input type="hidden" name="nowPage" value="${cbpVo.nowPage }">
 			<input type="hidden" name="id" value="${sessionScope.sessionId }">
-=======
-			<input type="hidden" name="nowPage" value="0">
-			<input type="hidden" name="infoshare_sno" value="0">
-			<input type="hidden" name="sno" value="0">
->>>>>>> refs/remotes/origin/seongho
 		</form>
 
 		<!-- LIST -->
@@ -138,7 +132,6 @@
 						</c:choose>
 					</div>
 					<br/>
-<<<<<<< HEAD
 					<a href="#" onclick="infoshare_view(${listInfoshare.sno })" class="text-decoration-none">
 						<span id="index_subject">
 							<c:choose>
@@ -153,10 +146,6 @@
 								</c:otherwise>
 							</c:choose>
 						</span>
-=======
-					<a href="#" onclick="infoshare_view(${listInfoshare.sno})" class="text-decoration-none">
-						<span id="index_doc">프로그래밍 언어 별 채용공고 통계</span>
->>>>>>> refs/remotes/origin/seongho
 					</a>
 					<br/>
 					<div style="float: left;">

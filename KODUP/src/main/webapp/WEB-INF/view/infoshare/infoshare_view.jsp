@@ -112,7 +112,7 @@
 					<!-- 댓글인서트 서머노트 -->
 					<div class="view_summernote_section">
 						<span>
-							<img id="infoshare_view_repl_insert_profileimage_file" src="images/${sessionScope.profile_img}" style="border-radius:50%;">
+							<img id="infoshare_view_repl_insert_profileimage_file" src="upload/${sessionScope.profile_img}" style="border-radius:50%;">
 						</span>
 						<textarea id="view_main_summernote" class="view_summernote"></textarea>
 					</div>
@@ -164,7 +164,7 @@
 						<!-- 댓글작성자프로필사진+닉네임+댓글작성시간 -->
 						<div class="infoshare_view_repl_profile" style="font-size:13px; margin-top:15px;">
 							<span class="infoshare_view_repl_profile_profileimage"><!--댓글작성자프로필사진+닉네임+댓글작성시간 한줄로 붙이기위해 inline요소인 span태그사용 -->
-								<img class="infoshare_view_repl_profile_profileimage_file" src="images/${replList.profile_img}"style="border-radius:50%;" >
+								<img class="infoshare_view_repl_profile_profileimage_file" src="upload/${replList.profile_img}"style="border-radius:50%;" >
 							</span>
 							
 							<span class="infoshare_view_repl_profile_nickname" 
@@ -242,7 +242,7 @@
 						<!-- (ON/OFF)display ; 대댓글입력폼 -->
 						<div id="repl_insert_section${replList.repl_sno}" style="display:none; font-size:15px; margin-left:50px;">
 							<span>
-								<img id="infoshare_view_repl_inner_insert_profileimage_file" src="images/${sessionScope.profile_img}" style="border-radius:50%;"><!-- 세션아이디의 프로필이미지가 들어감 -->
+								<img id="infoshare_view_repl_inner_insert_profileimage_file" src="upload/${sessionScope.profile_img}" style="border-radius:50%;"><!-- 세션아이디의 프로필이미지가 들어감 -->
 							</span>
 							<!-- 대댓글인서트_내용 서머노트 -->
 							<div id="view_inner_summernote${replList.grp}"class="view_summernote"></div>
@@ -261,7 +261,7 @@
 							<!-- 댓글작성자프로필사진+닉네임+댓글작성시간 -->
 							<div class="infoshare_view_repl_profile" style="font-size:13px; margin-top:15px;">
 								<span class="infoshare_view_repl_profile_profileimage"><!--댓글작성자프로필사진+닉네임+댓글작성시간 한줄로 붙이기위해 inline요소인 span태그사용 -->
-									<img class="infoshare_view_repl_profile_profileimage_file" src="images/${replList.profile_img}"style="border-radius:50%;" >
+									<img class="infoshare_view_repl_profile_profileimage_file" src="upload/${replList.profile_img}"style="border-radius:50%;" >
 								</span>
 								<span class="infoshare_view_repl_profile_nickname">
 									<span>${replList.nickname}</span>
@@ -318,7 +318,7 @@
 				<span id="infoshare_view_header_section1"> <!-- span태그사용 : 이미지사진+닉네임 한줄로 붙이기위해 span이 inline요소라서 -->
 					<img id="infoshare_view_header_profileimage_file" 
 					style="width:40px; height:40px; vertical-align: top; border-radius:50%;"
-					src="images/${ibVo.profile_img}" >
+					src="upload/${ibVo.profile_img}" >
 				</span>
 				<!-- 본문 조회수,작성시간 -->
 				<div  id="infoshare_view_header_section2" style="display:inline-block; vertical-align: top;">
@@ -349,7 +349,7 @@
 				<span id="infoshare_view_header_section1"> <!-- span태그사용 : 이미지사진+닉네임 한줄로 붙이기위해 span이 inline요소라서 -->
 					<img id="infoshare_view_header_profileimage_file" 
 					style="width:40px; height:40px; vertical-align: top; border-radius:50%;"
-					src="images/${ibVo.profile_img}" >
+					src="upload/${ibVo.profile_img}" >
 				</span>
 				<!-- 본문 조회수,작성시간 -->
 				<div  id="infoshare_view_header_section2" style="display:inline-block; vertical-align: top;">
