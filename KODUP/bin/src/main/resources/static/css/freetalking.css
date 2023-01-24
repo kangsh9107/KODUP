@@ -1,7 +1,35 @@
 @charset "UTF-8";
 
 /***** 강수형 *****/
+/***** MEDIA *****/
+@media all and (max-width: 576px) {
+	#textPrevious, #textNext {
+		display: none;
+	}
+}
+
 /***** INSERT *****/
+@keyframes spinner {
+	to { transform: rotate(360deg); }
+}
+ 
+.spinner:before {
+	z-index : 100;
+	content: '';
+	box-sizing: border-box;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 70px;
+	height: 70px;
+	margin-top: -15px;
+	margin-left: -15px;
+	border-radius: 50%;
+	border: 3px solid #ccc;
+	border-top-color: #07d;
+	animation: spinner .6s linear infinite;
+}
+
 .board_header {
 	padding: 0;
 }
@@ -146,7 +174,7 @@
 	padding: 3px 7px;
 	height: 36px;
 	line-height: 30px;
-	font-size: 1.125rem;
+	font-size: 1rem;
 	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
 	color: #111827;
 }
@@ -209,6 +237,20 @@
 	color: #bb2649;
 }
 
+#btnPrevious i:hover {
+	color: #bb2649 !important;
+}
+
+#btnPreviousNone {
+	color: #aaa;
+	font-size: 1.1rem;
+	pointer-events: none;
+}
+
+#btnPreviousNone:hover {
+	color: #aaa !important;
+}
+
 #btnNext {
 	color: #555;
 	font-size: 1.1rem;
@@ -216,6 +258,20 @@
 
 #btnNext:hover {
 	color: #bb2649;
+}
+
+#btnNext i:hover {
+	color: #bb2649 !important;
+}
+
+#btnNextNone {
+	color: #aaa;
+	font-size: 1.1rem;
+	pointer-events: none;
+}
+
+#btnNextNone:hover {
+	color: #aaa !important;
 }
 
 #board_btnZone .btn:hover {
@@ -327,6 +383,10 @@
 	color: #bb2649;
 }
 
+.btnMove {
+	color: #bb2649;
+}
+
 /***** BTNZONE *****/
 #board_btnZone {
 	padding: 10px 10px 10px 0;
@@ -349,3 +409,120 @@
 #btnMoveInput:hover {
 	color: #bb2649;
 }
+
+
+/***** 조성호 *****/
+/***** freetalking VIEW *****/
+#freetalking_view {
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+	color: #111827;
+}
+
+#freetalking_view #freetalking_view_subject>.col{
+	min-height:45px;
+	font-weight: 600;
+	text-align:left;
+}
+
+#freetalking_view #freetalking_view_header{
+	display:inline-block; 
+	width:100%;
+	height:55px;
+	margin-top:10px;
+	
+}
+
+
+#freetalking_view #freetalking_view_header {
+	text-align:left;
+	font-size:13px;
+}
+#freetalking_view #freetalking_view_doc{
+	min-height: 400px;
+}
+#freetalking_view #freetalking_view_hashtag{
+	
+}
+#freetalking_view #freetalking_view_hashtag a{
+	text-decoration : none;
+	font-weight: 600;
+	font-size:20px;
+	color:#bb2649;
+}
+
+#freetalking_view #freetalking_view_hashtag a:hover{
+	background-color: #ff3363;
+	color: white;
+}
+
+#freetalking_view #freetalking_view_btnzone{
+	text-align:right !important;
+}
+.freetalking_view_originalBtn{
+	width: 50px;
+	height: 30px;
+	color: white;
+	background-color: #bb2649;
+	border : 0px;
+	border-radius:5px;
+}
+#freetalking_view .btnBoardtype{
+	width:30px;
+	height:30px;
+	
+}
+.freetalking_view_originalBtn:hover{
+	background-color: #ff3363;
+	color: white;
+}
+#freetalking_view #freetalking_view_repl_insert_profileimage_file{
+	width:50px;
+	height:50px;
+}
+#freetalking_view #freetalking_view_repl_btnInsert{
+	float:right;
+	
+}
+
+
+#freetalking_view .freetalking_view_repl_profile_profileimage_file{
+	width:20px;
+	height:20px;
+}
+#freetalking_view .freetalking_view_repl_doc{
+	min-height: 100px;
+	background: #FAFAFA;
+	
+}
+#freetalking_view .freetalking_view_repl_btnzone{
+	text-align:right;
+	
+}
+#freetalking_view .freetalking_view_repl_inner{
+	margin-left: 50px;
+}
+#freetalking_view .freetalking_view_repl_inner_profile_profileimage_file{
+	width:20px;
+	height:20px;
+}
+#freetalking_view .freetalking_view_repl_inner_doc{
+	min-height: 50px;
+	background: #FAFAFA;
+}
+#freetalking_view .freetalking_view_repl_inner_btnzone{
+	text-align:right;
+}
+
+#freetalking_view #freetalking_view_repl_inner_insert_profileimage_file{
+	width:40px;
+	height:40px;
+}
+#freetalking_view #freetalking_view_repl_inner_btnInsert {
+	text-align:right;
+}
+#freetalking_view .note-frame{
+	border: 1px solid #DCDCDC;
+	border-radius:20px;
+	padding:5px;
+}
+

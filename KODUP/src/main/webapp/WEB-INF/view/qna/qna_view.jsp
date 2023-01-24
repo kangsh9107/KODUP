@@ -253,7 +253,7 @@
 						<!-- (ON/OFF)display ; 대댓글입력폼 -->
 						<div id="repl_insert_section${replList.repl_sno}" style="display:none; font-size:15px; margin-left:50px;">
 							<span>
-								<img id="qna_view_repl_inner_insert_profileimage_file" src="upload/${sessionScope.profile_img}"><!-- 세션아이디의 프로필이미지가 들어감 -->
+								<img id="qna_view_repl_inner_insert_profileimage_file" src="upload/${sessionScope.profile_img}" style="border-radius:50%;"><!-- 세션아이디의 프로필이미지가 들어감 -->
 							</span>
 							<!-- 대댓글인서트_내용 서머노트 -->
 							<div id="view_inner_summernote${replList.grp}"class="view_summernote"></div>

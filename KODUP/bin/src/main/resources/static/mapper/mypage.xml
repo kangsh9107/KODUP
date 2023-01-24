@@ -2,9 +2,147 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kodup.mypage.MypageMapper">
 
+<!-- 회원정보 페이지 -->
 
-<!-- SELECT nickname, email, gender, age, profile_img FROM member WHERE id = #{_parameter}
- -->
+	<!-- 회원 정보 -->
+	<select id='info' parameterType="String" resultType="com.kodup.mypage.MypageVo">
+		SELECT id, nickname, email, gender, age, profile_img, grade FROM member WHERE id= #{_parameter}
+	</select>
 
+	<!-- 회원정보 업데이트 -->
+	<update id='mypage_memberinfo_update_complete' parameterType="com.kodup.mypage.MypageVo" >
+		UPDATE member SET nickname = #{nickname }, email= #{email }, gender= #{gender }, 
+			   			  age= #{age }, profile_img = #{profile_img}
+		WHERE id = #{id} 
+	</update>
+	
+	<!-- 회원정보 수정..파일첨부했을 때  -->
+	<update id='updateR' parameterType='com.kodup.mypage.MypageVo'>
+		UPDATE member SET nickname = #{nickname }, email= #{email }, gender= #{gender }, 
+			   			  age= #{age }, profile_img = #{profile_img}
+		WHERE id = #{id} 
+	</update>
+	
+	<!-- 회원정보 수정..파일첨부 안했을때  -->
+	<update id='update' parameterType='com.kodup.mypage.MypageVo'>
+		UPDATE member SET nickname = #{nickname }, email= #{email }, gender= #{gender }, 
+			   			  age= #{age }
+		WHERE id = #{id} 
+	</update>
+	
+	
+	<!-- 회원 탈퇴 -->
+	<delete id='mypage_memberinfo_quit_real' parameterType='com.kodup.mypage.MypageVo'>
+		DELETE from member WHERE id= #{id }
+	</delete> 
+	
+	
+	
+<!-- 나의픽셀-->
 
+	<!-- 보유픽셀 -->
+	<select id='pixel_have' parameterType='String' resultType='int'>
+		select pixel from member where id=#{id}
+	</select>
+	
+
+	<!-- 픽셀환전신청 시 작동하는 세 쿼리  -->
+	<!-- 1. 현재 보유픽셀 - 환전희망픽셀 = 변경된 보유픽셀 -->
+	<update id='mypage_pixel_exchange_result' parameterType='com.kodup.mypage.MypagePixelVo'>
+		update member set pixel = pixel-${pixel_want_exchange} where id=#{id}
+	</update>
+
+	<!-- 2. 환전 내역(아이디, 픽셀, 내역) DB에 추가 -->
+	<update id='mypage_pixel_exchange_history' parameterType='com.kodup.mypage.MypagePixelVo'>
+		insert into pixel_history(id, pixel_log, history_detail) values(#{id}, -${pixel_want_exchange}, '픽셀환전')
+	</update>
+
+	<!-- 3. 픽셀환전신청리스트 테이블에 정보 추가 -->
+	<insert id='mypage_pixel_exchange_status' parameterType='com.kodup.mypage.MypagePixelVo'>
+		insert into pixel_exchange_list(id, apply_pixel) values(#{id}, ${pixel_want_exchange})
+	</insert>
+
+	
+
+	<!-- 나의 픽셀 전체 이력 조회 -->
+	<select id="pixel" parameterType="com.kodup.mypage.PageVo" resultType="com.kodup.mypage.MypagePixelVo">
+		SELECT m.pixel, p.pixel_log, p.history_date, p.history_detail FROM pixel_history p
+		join member m on p.id = m.id 
+		where m.id = #{id} order by p.pixel_history_sno desc, p.history_date desc 
+		limit ${startNo}, ${listSize}
+	</select>
+	
+	<!-- 나의 픽셀 획득 이력 조회 -->
+	<select id="pixel_get" parameterType="com.kodup.mypage.PageVo" resultType="com.kodup.mypage.MypagePixelVo">
+		SELECT m.pixel, p.pixel_log, p.history_date, p.history_detail FROM pixel_history p
+		join member m on p.id = m.id 
+		where m.id = #{id} and (p.history_detail='픽셀구매' or p.history_detail='출석체크' or
+		p.history_detail='Q&amp;A답변채택' or p.history_detail='멘토활동' or 
+		p.history_detail='프리미엄리뷰 작성')
+		order by p.pixel_history_sno desc, p.history_date desc
+		limit ${startNo}, ${listSize}
+	</select>
+	
+	<!-- 나의 픽셀 사용 이력 조회 -->
+	<select id="pixel_use" parameterType="com.kodup.mypage.PageVo" resultType="com.kodup.mypage.MypagePixelVo">
+		SELECT m.pixel, p.pixel_log, p.history_date, p.history_detail FROM pixel_history p
+		join member m on p.id = m.id 
+		where m.id = #{id} and (p.history_detail='픽셀환전' or p.history_detail='Q&amp;A질문글작성' or
+		p.history_detail='멘티상담완료' or p.history_detail='프리미엄리뷰 열람' or 
+		p.history_detail='픽셀환전승인완료')
+		order by p.pixel_history_sno desc, p.history_date desc
+		limit ${startNo}, ${listSize}
+	</select>
+	
+	
+	<select id="totList" parameterType='com.kodup.mypage.PageVo' resultType='Integer'>
+		select COUNT(pixel_history_sno) from pixel_history where id = #{id}
+	</select>
+	
+	
+<!-- 	<select id="select" parameterType="kr.jobtc.springboot.board.PageVo" resultType="kr.jobtc.springboot.board.BoardVo">
+        select sno, id, grp, seq, deep, hit, date_format(nal, '%y-%m-%d') nal,
+              (select count(pSno) from boardAtt where pSno=board.sno) attCnt,
+              concat( lpad(' ', deep*3, '&#160;'),
+                  case
+                    when deep>0 then concat('re)', subject)
+                    else subject
+                  end
+              ) subject
+        from board
+        WHERE id=#{findStr} OR SUBJECT LIKE '%${findStr}%'
+        OR doc LIKE '%${findStr}%'
+        order by grp desc, seq asc, deep asc
+        limit ${startNo}, ${listSize}
+    
+    </select>
+	 -->
+	
+	
+	
+<!-- 인증페이지 -->	
+	
+		<!-- 멘토인증 (경력증명) 1. db에 신청이력 추가-->
+		<insert id='mypage_mentor_certification_step1' parameterType='com.kodup.mypage.MypageCertiVo'>
+			insert into career_certification(id, career_certificate) values (#{id}, #{career_certificate})
+		</insert> 
+		
+		<!-- 2. 회원 스테이터스 변경 -->
+		<update id='mypage_mentor_certification_step2' parameterType='com.kodup.mypage.MypageCertiVo'>
+			update member set mento_status = 1 where id = #{id}
+		</update>
+		
+		
+		<!-- 기업인증 -->
+		<!-- <insert id='' "C:/Users/N/Desktop/operation_stat, sales_stat, cost jsp파일입니다..zip"parameterType='com.kodup.mypage.MypageCertiVo'>
+		insert into corperation (id, corp_license, corp_logo, corp_name, corp_phone, corp_email, manager_name, manager_phone, manager_email)
+		values (#{id}, #{corp_license}, #{corp_logo}, #{corp_name}, #{corp_phone}, #{corp_email}, #{manager_name}, #{manager_phone}, #{manager_email} )
+		</insert> -->
+		
+		<!-- 기업스테이스 변경 -->
+		<!-- <update id='' parameterType='com.kodup.mypage.MypageCertiVo'>
+			update member set corp_status = 1 where id = #{id}
+		</update>
+		 -->
+		
 </mapper>

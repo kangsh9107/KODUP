@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,230 +9,407 @@
 <link href="css/qna.css" rel="stylesheet">
 <!-- JS -->
 <script defer src="js/qna.js"></script>
+<script defer src="js/common_board.js"></script>
 <title>qna/qna_view.jsp</title>
 </head>
 <body>
-<form id="qna_view">
+<form id="qna_view" >
+	<div style=" height:20px; display:none;">
+	<input type='text' name='nowPage' 	value='0' size="2"/>
+	sno
+	<input type='text' id="view_sno" name='sno' size="2" value='${qbVo.sno}' />      
+	repl_sno
+	<input type='text' name='repl_sno' 	  id="repl_sno"  			 value='0' size="2"/>
+	<input type='text' name='board_delete'id="board_delete" 		 value='${qbVo.board_delete}' />
+	<input type="text" name='sessionid'   id="view_sessionID"     	 value='${sessionScope.sessionId}' size="4"/> <!-- index.jsp의 세션아이디를 그대로 el문으로 받아옴 -->
+	<input type="text" name="sno_id" 	  id="sno_id"                value='${qbVo.id}' size="3"/>
+	<input type="text" name="id" 		  id="chaetaekID"            value='0' size="3"/>
+	<input type="text" name="repl_status" id="repl_status"    		 value='0' size="3"/>
+	<input type='text' name="grp"		  id="insert_inner_repl_grp" value='0' size='2' />
+	<input type="text" name='qna_pixel_reward' 						 value="${qbVo.qna_pixel_reward}" size="2" />
+	<textarea		   name="repl_doc"	  id="view_summer_code"  ></textarea>
+	<br/>
+	<input id="checkChaeTaek" type="text" value='${checkChaeTaek}'/>
+	
+	</div>
 	<!-- boardtype  /  horsehead -->
 	<div id="qna_view_horsehead">
-		<span>QnA</span>
+		<a href="#" class="btnBoardtype">Q&A</a>
 		/
-		<span>기술</span>
+		<a>${qbVo.qna_horsehead}</a>
 	</div>
 	
-	<!-- 본문글제목 -->
-	<div id="qna_view_subject">
-		<div class="col" >
-			<span>
-				초보자를 위한 오픈 소스 시작하기
-			</span>
-		</div>
-	</div>
-	
-	<!-- 작성자프로필사진+닉네임 -->
-	<div id="qna_view_profile">
-		<span id="qna_view_profile_profileimage" > <!-- span태그사용 : 이미지사진+닉네임 한줄로 붙이기위해 span이 inline요소라서 -->
-			<img id="qna_view_profile_profileimage_file" src="images/index_default.png" >
-		</span>
-		<span id="index_profile">
-			<span>딥러닝악마</span>
-		</span>
-	</div>
-	<!-- 조회수,작성시간 -->
-	<div id="qna_view_nalandhit" >
-		<span>10분전</span>
-		<span>조회수 : 33</span>
-	</div>	
-	
-	
-	<!-- 글내용 -->
-	<div id="qna_view_doc" >
-		같으며, 봄바람을 보이는 희망의 이것이다. 그들의 옷을 얼마나 사랑의 위하여서. 풀이 청춘 자신과 바이며, 봄바람을 주며, 아니다.
-		수 많이 풍부하게 충분히 몸이 아름다우냐? 구하지 대고, 풀밭에 심장은 만천하의 없으면, 별과 구할 것이다. 따뜻한 따뜻한 가치를 없으면 있다.
-		구하지 있으며, 청춘이 때문이다. 꽃이 낙원을 가슴에 그러므로 주는 대중을 무한한 사막이다. 그들의 이성은 피가 같이 것이다. 주며, 웅대한 청춘은 눈이 있으랴?
-		인생을 웅대한 유소년에게서 피부가 아니더면, 무엇을 보배를 소리다.이것은 예가 끓는다.
-	</div>
-	
-	<!-- 해시태그 --><!-- 해당해시태그를 누를경우 findStr로 해당 태그가 들어간 글들을 셀렉트 -->
-	<div id="qna_view_hashtag">
-		<a href="#">#봄바람	</a>
-		<a href="#">#희망		</a>
-		<a href="#">#청춘		</a>
-	</div>
-	<!-- (목록,수정,삭제)btnzone -->
-	<div id="qna_view_btnzone">
-		<input type="button" class="btnUpdate" value="수정">
-		<input type="button" class="btnDeleteR" value="삭제">
-		<input type="button" class="btnList" value="목록">
-	</div>
-	
-	<hr/>
-	
-	<!-- 댓글 -->
-	<div id="qna_view_repl">
-		<!-- 댓글insert -->
-		<div id="qna_view_repl_insert">
-			<span>
-				<img id="qna_view_repl_insert_profileimage_file" src="images/ITtravel.png" >
-			</span>
-			<span>
-				<span>고백좌</span>
-			</span>
-			<!-- 댓글인서트_내용 서머노트 -->
-			<div class="view_summernote"></div>
-			<!-- 댓글인서트_버튼 -->
-			<div>
-				<input type="button" value="댓글입력" id="qna_view_repl_btnInsert">
+	<!-- 삭제된글에경우 board_delete에 따라 출력되는 화면이달라짐 -->
+	<c:choose>
+		<c:when test="${qbVo.board_delete eq 0}">
+			<!-- 본문 헤더(작성자사진,닉네임,작성일,조회수,보상픽셀) -->
+			<div id="qna_view_header"  >
+				<span id="qna_view_header_section1"> <!-- span태그사용 : 이미지사진+닉네임 한줄로 붙이기위해 span이 inline요소라서 -->
+					<img id="qna_view_header_profileimage_file" 
+					style="width:40px; height:40px; vertical-align: top; border-radius:50%;"
+					src="upload/${qbVo.profile_img}" >
+				</span>
+				<!-- 본문 조회수,작성시간 -->
+				<div  id="qna_view_header_section2" style="display:inline-block; vertical-align: top;">
+					<div id="qna_view_profile_nickname">${qbVo.nickname}</div>
+					<span>${qbVo.nal}
+					<img src="images/index_viewcount.png" 
+					style="width:20px; height:15px; margin-top: -4px; margin-right:-4px;">
+					${qbVo.viewcount }</span>
+					<span>채택픽셀:${qbVo.qna_pixel_reward}</span>
+				</div>	
 			</div>
-		</div>
-		<br/>
-		
-		<!-- 댓글select-->
-		<!-- 댓글1 -->
-		<!-- 댓글작성자프로필사진+닉네임+댓글작성시간 -->
-		<div class="qna_view_repl_profile">
-			<span class="qna_view_repl_profile_profileimage"><!--댓글작성자프로필사진+닉네임+댓글작성시간 한줄로 붙이기위해 inline요소인 span태그사용 -->
-				<img class="qna_view_repl_profile_profileimage_file" src="images/angel.png" >
-			</span>
-			<span class="qna_view_profile_nickname">
-				<span>천사</span>
-			</span>
-			<span class="qna_view_repl_nal">
-				<span>4분전</span>
-			</span>
-		</div>
-		<!-- 댓글내용 -->
-		<div class="qna_view_repl_doc">
-			<div >
-			입숨 러므로 주는 대중을 무한한 사막이다. 그들의 이성은 피가 같이 것이다. 주며, 웅대한 청춘은 눈이 있으랴?
-			인생을 웅대한 유소년에게서 피부가 아니더면, 무엇을 보배를 소리
+			<!-- 본문 글제목 -->
+			<div id="qna_view_subject">
+				<span style="font-size:1.5rem; font-weight:600;">
+					${qbVo.subject}
+				</span>
 			</div>
-		</div>
-		<!-- 댓글(수정,삭제)btnzone -->
-		<div class="qna_view_repl_btnzone" >
-			<input type="button" value="수정"><!-- 댓글작성자가 세션아이디와 똑같은 경우에만 활성화;수정,삭제버튼 -->
-			<input type="button" value="삭제">
-			<input type="button" value="채택"><!-- 본문글작성자가 세션아이디와 똑같은 경우에만 활성화;채택버튼 JS:cf)confirm-->
-		</div>
-		<!-- 댓글2 -->
-		<!-- 댓글작성자프로필사진+닉네임+댓글작성시간 -->
-		<div class="qna_view_repl_profile">
-			<span class="qna_view_repl_profile_profileimage"><!--댓글작성자프로필사진+닉네임+댓글작성시간 한줄로 붙이기위해 inline요소인 span태그사용 -->
-				<img class="qna_view_repl_profile_profileimage_file" src="images/devilcookie.png" >
+			<!-- 본문 글내용 -->
+			<span id="qna_view_doc" style="font-size:15px; display:inline-block; min-height:300px; margin-top:20px;">
+				${qbVo.doc}
 			</span>
-			<span class="qna_view_profile_nickname">
-				<span>악마</span>
-			</span>
-			<span class="qna_view_repl_nal">
-				<span>8분전</span>
-			</span>
-		</div>
-		<!-- 댓글내용 -->
-		<div class="qna_view_repl_doc">
-			<div >
-			청춘이 때문이다. 꽃이 낙원을 가슴에 그러므로 주는 대중을 무한한 사막이다. 그들의 이성은 피가 같이 것이다. 주며, 웅대한 청춘은 눈이 있으랴? 
-			</div>
-		</div>
-		<!-- 댓글(수정,삭제)btnzone -->
-		<div class="qna_view_repl_btnzone">                       
-			<input type="button" value="수정">
-			<input type="button" value="삭제">
-			<input type="button" value="채택">
-		</div>
-		<!-- 대댓글 -->
-		<div class="qna_view_repl_inner">
-			<!--  대댓글select -->
-			<div>
-				<!--대댓글1 작성자프로필사진+닉네임+시간 -->
-				<div class="qna_view_repl_inner_profile">
-					<span class="qna_view_repl_inner_profile_profileimage"><!--대댓글작성자프로필사진+닉네임+댓글작성시간 한줄로 붙이기위해 inline요소인 span태그사용 -->
-						<img class="qna_view_repl_inner_profile_profileimage_file" src="images/ITtravel.png" >
-					</span>
-					<span class="qna_view_repl_inner_profile_nickname">
-						<span>고백좌</span>
-					</span>	
-					<span class="qna_view_repl_inner_nal">
-						<span>2분전</span>
-					</span>
-				</div>
-				<!-- 대댓글 내용 -->
-				<div class="qna_view_repl_inner_doc" >
-					<div>
-						사랑해요
+			<!-- 추천,비추천 -->
+			<c:if test="${sessionScope.sessionId ne null}">
+				<div>
+					<div style="text-align:right;">
+						<button id="btn_viewpage_thumbup" type="button" style="display:inline-block; text-align:right; background-color:#fff; border:0;" ><img src="images/추천엄지.png"></button>
+							<input type="text" id="thumb_standard" value="${qbVo.thumbup-qbVo.thumbdown}" style="display:none;"/>
+							<span id="thumb" style="font-weight:600px;" >${qbVo.thumbup-qbVo.thumbdown}</span>
+						<button id="btn_viewpage_thumbdown" type="button" style="display:inline-block; text-align:right; background-color:#fff; border:0;" ><img src="images/비추천엄지.png"></button>
 					</div>
 				</div>
-				<!-- 대댓글(수정,삭제)btnzone --> <!-- 대댓글작성자와 세션아이디가 같은경우에만 활성화 -->
-				<div class="qna_view_repl_inner_btnzone">
-					<input type="button" value="수정">
-					<input type="button" value="삭제">
+			</c:if>
+			
+			<!-- 추천,비추천 -->
+			<c:if test="${sessionScope.sessionId eq null}">
+				<div>
+					<div style="text-align:right;">
+						<button id="btn_viewpage_thumbup" disabled type="button" style="display:inline-block; text-align:right; background-color:#fff; border:0;" ><img src="images/추천엄지.png"></button>
+							<input type="text" id="thumb_standard" value="${qbVo.thumbup-qbVo.thumbdown}" style="display:none;"/>
+							<span id="thumb" style="font-weight:600px;" >${qbVo.thumbup-qbVo.thumbdown}</span>
+						<button id="btn_viewpage_thumbdown" disabled type="button" style="display:inline-block; text-align:right; background-color:#fff; border:0;" ><img src="images/비추천엄지.png"></button>
+					</div>
+				</div>
+			</c:if>
+			<!-- 본문 해시태그 --><!-- 해당해시태그를 누를경우 findStr로 해당 태그가 들어간 글들을 셀렉트 -->
+			<div id="qna_view_hashtag">
+				<c:forEach var='vo' items='${qbVo.hashtaglist}'>
+					<span>
+						<a href="#" onclick="qna_view_findHashtag(${vo.hashtag})">${vo.hashtag}</a>
+					</span>
+				</c:forEach>
+			</div>
+			<!-- 본문 btnzone -->
+			<div id="qna_view_btnzone" style="margin-top:30px;" >
+				<c:if test="${qbVo.id eq sessionScope.sessionId}">
+					<input type="button" class="btnUpdate qna_view_originalBtn" style="vertical-align:top;"value="수정">
+					<input type="button" class="btnDeleteR  qna_view_originalBtn"style="vertical-align:top;" value="삭제">
+				</c:if>
+				<input type="button" class="btnListU  qna_view_originalBtn" style="vertical-align:top;"value="목록">
+			</div>
+			
+			<hr/>
+			<!-- 댓글insert-->
+			<c:if test="${sessionScope.sessionId ne null }">
+				<div id="qna_view_repl_insert" style=" border:1px solid #DCDCDC; padding : 20px 30px 50px 30px; border-radius:30px;">
+					<!-- 댓글인서트 서머노트 -->
+					<div class="view_summernote_section">
+						<span>
+							<img id="qna_view_repl_insert_profileimage_file" src="upload/${sessionScope.profile_img}" style="border-radius:50%;">
+						</span>
+						<textarea id="view_main_summernote" class="view_summernote"></textarea>
+					</div>
+					<div>
+						<input type="button" value="댓글입력"
+						id="qna_view_repl_btnInsert" 
+						class="qna_view_originalBtn" 
+						style="margin-top:5px; width:100px;" 
+						onclick='view_insert_repl()'>
+					</div>
+					
+				</div>
+			</c:if>
+			<c:if test="${sessionScope.sessionId eq null}">
+				<div id="qna_view_repl_insert" style=" border:1px solid #DCDCDC; padding : 20px 30px 50px 30px; border-radius:30px;">
+					<!-- 댓글인서트 서머노트 -->
+					<div class="view_summernote_section">
+						<span>
+							<img id="qna_view_repl_insert_profileimage_file" src="images/NULLboy.png" style="border-radius:50%;">
+						</span>
+						<div style="border:1px solid #DCDCDC; border-radius:20px; min-height:90px; padding:20px;">
+							<span  >
+								<img style="display:inline-block; vertical-align:bottom;" src="images/동그라미물음표.png" style="width:20px; height:20px;"/>
+								댓글을 쓰려면
+								 <a href="#" class="underline" onclick="view_login()">로그인</a>이 필요합니다.
+							</span>
+						</div>
+					</div>
+					<div>	
+						<input type="button" value="댓글입력" disabled="disabled" 
+						id="qna_view_repl_btnInsert" 
+						style="margin-top:5px; width:100px; border-radius:10px;" 
+						onclick='view_insert_repl()'>
+					</div>
 				</div>
 				
-				<!--대댓글2 더미데이터 -->
-				<div class="qna_view_repl_inner_profile">
-					<span class="qna_view_repl_inner_profile_profileimage"><!--대댓글작성자프로필사진+닉네임+댓글작성시간 한줄로 붙이기위해 inline요소인 span태그사용 -->
-						<img class="qna_view_repl_inner_profile_profileimage_file" src="images/devilcookie.png" >
-					</span>
-					<span class="qna_view_repl_inner_profile_nickname">
-						<span>악마</span>
-					</span>	
-					<span class="qna_view_repl_inner_nal">
-						<span>0분전</span>
-					</span>
+			</c:if>
+			<hr/>
+			
+			<!-- 댓글리스트 -->
+			<div id="qna_view_repl_list" style="margin-top:50px;"> 
+				<c:forEach var='replList' items='${replList}'>
+				<!-- 리플 HIDDEN -->
+				<div style="display:none;"> 
+					<textarea id="save_repl_doc${replList.repl_sno}">${replList.repl_doc}</textarea> 
 				</div>
-				<!-- 대댓글 내용 -->
-				<div class="qna_view_repl_inner_doc">
-					<div>
-						??!
-					</div>
-				</div>
-				<!-- 대댓글(수정,삭제)btnzone --> <!-- 대댓글작성자와 세션아이디가 같은경우에만 활성화 -->
-				<div class="qna_view_repl_inner_btnzone">
-					<input type="button" value="수정">
-					<input type="button" value="삭제">
-				</div>
+					<c:if test ='${replList.deep eq 0}'>
+						<!-- 댓글작성자프로필사진+닉네임+댓글작성시간 -->
+						<div class="qna_view_repl_profile" style="font-size:13px; margin-top:15px;">
+							<span class="qna_view_repl_profile_profileimage"><!--댓글작성자프로필사진+닉네임+댓글작성시간 한줄로 붙이기위해 inline요소인 span태그사용 -->
+								<img class="qna_view_repl_profile_profileimage_file" src="upload/${replList.profile_img}"style="border-radius:50%;" >
+							</span>
+							
+							<span class="qna_view_repl_profile_nickname" 
+							id="chaetaek_nickname${replList.repl_sno}">${replList.nickname}</span>
+							
+							<span class="qna_view_repl_nal">
+								<span>${replList.repl_nal}</span>
+							</span>
+						</div>
+						<!-- 댓글내용 -->
+						<!-- 댓글이뿌려지고 reward_class1로 채택댓글을 가릴수있다-->
+						<!-- reward_class${replList.repl_status}->reward_class1 : 채택댓글클래스-->
+						<div class="qna_view_repl_doc reward_class${replList.repl_status}" 
+						style="position:relative; font-size:13px; border:1px solid #E6E6E6;
+						border-radius:10px; padding:2px; min-height:70px;">
+							<div>
+								<span>
+									<c:choose>
+										<c:when test="${replList.repl_delete eq 0}">
+										${replList.repl_doc}
+										</c:when>
+										<c:when test="${replList.repl_delete eq 1}">
+										작성자 본인에 의해 삭제된 댓글입니다.
+										</c:when>
+										<c:when test="${replList.repl_delete eq 2}">
+										관리자에 의해 삭제된 댓글입니다.
+										</c:when>
+									</c:choose>
+								</span>
+							</div>
+							<!-- (ON/OFF)key -->
+							<c:if test="${sessionScope.sessionId ne null }">
+								<button id="repl_inner_display_onkey" 
+								 type="button" 
+								 style="width:70px; height:20px; position:absolute; bottom:0; 
+								 border:0;" 
+								 onclick="insertFormToggle(${replList.repl_sno})">
+								대댓입력</button>
+							</c:if>
+							<c:if test="${sessionScope.sessionId eq null }">
+								<button id="repl_inner_display_onkey" 
+								 type="button" 
+								 style="width:70px; height:20px; position:absolute; bottom:0; border:0;" 
+								 disabled="disabled"
+								 onclick="insertFormToggle(${replList.repl_sno})">
+								대댓입력</button>
+							</c:if>
+							<c:if test="${replList.countinnerrepl >0 }">
+								<button id="repl_inner_display_onkey2" 
+								 type="button" 
+								 style="width:70px; height:20px; position:absolute; bottom:0; left:80px; border:0;" 
+								 onclick="innerReplToggle(${replList.grp})">
+								 댓글접기</button>
+							</c:if>
+						</div>
+						<!-- 댓글(수정,삭제)btnzone -->
+						<div class="qna_view_repl_btnzone">
+							<c:if test="${replList.repl_delete eq 0}">
+								<!-- 댓글작성자가 세션아이디와 똑같은 경우에만 활성화;수정,삭제버튼 -->
+								<c:if test="${replList.id eq sessionScope.sessionId}">
+									<input type="button" class="qna_view_originalBtn" value="수정"
+									onclick="view_update_Repl_open(${replList.repl_sno})">
+									<input type="button" class="qna_view_originalBtn" value="삭제"
+									onclick="view_repl_deleteR(${replList.repl_sno})">
+								</c:if>
+								 <!-- 본문글작성자가 세션아이디와 똑같은 경우에만 활성화;채택버튼 JS:cf)confirm-->
+								 <c:if test="${qbVo.id eq sessionScope.sessionId && checkChaeTaek eq 0}">
+									<input type="button" class="qna_view_originalBtn" value="채택"
+									 onclick="reward_chaetaek(${replList.repl_sno},${replList.grp},'${replList.id}') ">
+								 </c:if>
+							</c:if>
+						</div>
+						<!-- (ON/OFF)display ; 댓글수정서머노트 -->
+						<div id="updateReplSection${replList.repl_sno}"style="display:none; margin-top:5px;">
+							<textarea id="view_update_Repl_summernote${replList.repl_sno}" style="display:none;">
+							</textarea>
+							<div id="bntbntnzone"style="display:inline-block; ">
+								<button type="button" class="qna_view_originalBtn" onclick="updateReplUpdate(${replList.repl_sno},${replList.repl_status})">수정</button>
+								<button type="button" class="qna_view_originalBtn" onclick="updateReplCancel(${replList.repl_sno})">취소</button>
+							</div>
+						</div>
+					
+						<!-- (ON/OFF)display ; 대댓글입력폼 -->
+						<div id="repl_insert_section${replList.repl_sno}" style="display:none; font-size:15px; margin-left:50px;">
+							<span>
+								<img id="qna_view_repl_inner_insert_profileimage_file" src="upload/${sessionScope.profile_img}"><!-- 세션아이디의 프로필이미지가 들어감 -->
+							</span>
+							<!-- 대댓글인서트_내용 서머노트 -->
+							<div id="view_inner_summernote${replList.grp}"class="view_summernote"></div>
+							<!-- 대댓글인서트_버튼 -->
+							<div id="qna_view_repl_inner_btnInsert" >
+								<input type="button" class="qna_view_originalBtn" value="대댓글입력"
+								style="width:100px;"
+								onclick="view_insert_innerRepl(${replList.grp},${replList.repl_status})" >
+							</div>
+						</div>
+					</c:if>
+					<c:if test ='${replList.deep ne 0}'>
+						<div class="repl_inner_section${replList.grp}"style="margin-left:50px; ">
+							<!-- 댓글작성자프로필사진+닉네임+댓글작성시간 -->
+							<div class="qna_view_repl_profile" style="font-size:13px; margin-top:15px;">
+								<span class="qna_view_repl_profile_profileimage"><!--댓글작성자프로필사진+닉네임+댓글작성시간 한줄로 붙이기위해 inline요소인 span태그사용 -->
+									<img class="qna_view_repl_profile_profileimage_file" src="upload/${replList.profile_img}"style="border-radius:50%;" >
+								</span>
+								<span class="qna_view_repl_profile_nickname">
+									<span>${replList.nickname}</span>
+								</span>
+								<span class="qna_view_repl_nal">
+									<span>${replList.repl_nal}</span>
+								</span>
+							</div>
+							<!-- 댓글내용 -->
+							<div class="qna_view_repl_doc" style="min-height:70px;position:relative; font-size:13px; border:1px solid #E6E6E6; border-radius:10px; padding:2px;">
+								<div>
+									<span>
+										<c:choose>
+											<c:when test="${replList.repl_delete eq 0}">
+											${replList.repl_doc}
+											</c:when>
+											<c:when test="${replList.repl_delete eq 1}">
+											작성자 본인에 의해 삭제된 댓글입니다.
+											</c:when>
+											<c:when test="${replList.repl_delete eq 2}">
+											관리자에 의해 삭제된 댓글입니다.
+											</c:when>
+										</c:choose>
+									</span>
+								</div>
+							</div>
+							<!-- 댓글(수정,삭제)btnzone -->
+							<div class="qna_view_repl_btnzone">    
+								<c:if test="${replList.repl_delete eq 0}">
+									<c:if test="${replList.id eq sessionScope.sessionId}">
+										<input type="button" class="qna_view_originalBtn" value="수정"
+										onclick="view_update_Repl_open(${replList.repl_sno})"><!-- 댓글작성자가 세션아이디와 똑같은 경우에만 활성화;수정,삭제버튼 -->
+										<input type="button" class="qna_view_originalBtn" value="삭제"
+										onclick="view_repl_deleteR(${replList.repl_sno})">
+									</c:if>
+								</c:if>
+							</div>
+							<!-- (ON/OFF)display ; 대댓글수정서머노트 -->
+							<div id="updateReplSection${replList.repl_sno}"style="display:none;">
+								<textarea id="view_update_Repl_summernote${replList.repl_sno}" >
+								</textarea>
+								<button type="button" class="qna_view_originalBtn" onclick="updateReplUpdate(${replList.repl_sno},${replList.repl_status})">수정</button>
+								<button type="button" class="qna_view_originalBtn" onclick="updateReplCancel(${replList.repl_sno})">취소</button>
+							</div>
+						</div>	
+					</c:if>
+				</c:forEach>
 			</div>
-			<!-- 대댓글insert -->
-			<div id="qna_view_repl_inner_insert">
-				<span>
-					<img id="qna_view_repl_inner_insert_profileimage_file" src="images/ITtravel.png">
+		</c:when>
+		
+		<c:when test="${qbVo.board_delete eq 1}">
+			<!-- 본문 헤더(작성자사진,닉네임,작성일,조회수,보상픽셀) -->
+			<div id="qna_view_header"  >
+				<span id="qna_view_header_section1"> <!-- span태그사용 : 이미지사진+닉네임 한줄로 붙이기위해 span이 inline요소라서 -->
+					<img id="qna_view_header_profileimage_file" 
+					style="width:40px; height:40px; vertical-align: top; border-radius:50%;"
+					src="upload/${qbVo.profile_img}" >
 				</span>
-				<span>
-					<span>고백좌</span>
+				<!-- 본문 조회수,작성시간 -->
+				<div  id="qna_view_header_section2" style="display:inline-block; vertical-align: top;">
+					<div id="qna_view_profile_nickname">${qbVo.nickname}</div>
+					<span>${qbVo.nal}
+					<img src="images/index_viewcount.png" 
+					style="width:20px; height:15px; margin-top: -4px; margin-right:-4px;">
+					${qbVo.viewcount }</span>
+					<span>채택픽셀:${qbVo.qna_pixel_reward}</span>
+				</div>	
+			</div>
+		
+			<!-- 본문 글제목 -->
+			<div id="qna_view_subject">
+				<span style="font-size:1.5rem; font-weight:600;">
+					작성자 본인에 의해 삭제된 글입니다.
 				</span>
-				<!-- 대댓글인서트_내용 서머노트 -->
-				<div class="view_summernote"></div>
-				<!-- 대댓글인서트_버튼 -->
-				<div id="qna_view_repl_inner_btnInsert">
-					<input type="button" value="대댓글입력">
-				</div>
 			</div>
-		</div>
-		<!-- 댓글3 -->
-		<!-- 댓글작성자프로필사진+닉네임+댓글작성시간 -->
-		<div class="qna_view_repl_profile">
-			<span class="qna_view_repl_profile_profileimage"><!--댓글작성자프로필사진+닉네임+댓글작성시간 한줄로 붙이기위해 inline요소인 span태그사용 -->
-				<img class="qna_view_repl_profile_profileimage_file" src="images/girlchar.png" >
+			
+			<!-- 본문 글내용 --> <!--  -->
+			<span id="qna_view_doc" style="font-size:15px; display:inline-block; min-height:300px; margin-top:20px;">
+				작성자 본인에 의해 삭제된 글입니다.
 			</span>
-			<span class="qna_view_profile_nickname">
-				<span>>ol쁜0r이</span>
-			</span>
-			<span class="qna_view_repl_nal">
-				<span>11분전</span>
-			</span>
-		</div>
-		<!-- 댓글내용 -->
-		<div class="qna_view_repl_doc">
-			<div >
-			없으면, 별과 구할 것이다. 따뜻한 따뜻한 가치를 없으면 있다.
+		</c:when>
+		<c:when test="${qbVo.board_delete eq 2}">
+			<!-- 본문 헤더(작성자사진,닉네임,작성일,조회수,보상픽셀) -->
+			<div id="qna_view_header"  >
+				<span id="qna_view_header_section1"> <!-- span태그사용 : 이미지사진+닉네임 한줄로 붙이기위해 span이 inline요소라서 -->
+					<img id="qna_view_header_profileimage_file" 
+					style="width:40px; height:40px; vertical-align: top; border-radius:50%;"
+					src="upload/${qbVo.profile_img}" >
+				</span>
+				<!-- 본문 조회수,작성시간 -->
+				<div  id="qna_view_header_section2" style="display:inline-block; vertical-align: top;">
+					<div id="qna_view_profile_nickname">${qbVo.nickname}</div>
+					<span>${qbVo.nal}
+					<img src="images/index_viewcount.png" 
+					style="width:20px; height:15px; margin-top: -4px; margin-right:-4px;">
+					${qbVo.viewcount }</span>
+					<span>채택픽셀:${qbVo.qna_pixel_reward}</span>
+				</div>	
 			</div>
-		</div>
-		<!-- 댓글(수정,삭제)btnzone -->
-		<div class="qna_view_repl_btnzone">                       
-			<input type="button" value="수정">
-			<input type="button" value="삭제">
-			<input type="button" value="채택">
-		</div>
+		
+			<!-- 본문 글제목 -->
+			<div id="qna_view_subject">
+				<span style="font-size:1.5rem; font-weight:600;">
+					관리자에 의해 삭제된 글입니다.
+				</span>
+			</div>
+			
+			<!-- 본문 글내용 --> <!--  -->
+			<span id="qna_view_doc" style="font-size:15px; display:inline-block; min-height:300px; margin-top:20px;">
+				관리자에 의해 삭제된 글입니다.
+			</span>
+		</c:when>
+	</c:choose>		
+
+	<!-- HIDDEN -->
+	<input type="hidden" name="findStr" value="${cbpVo.findStr }">
+	<input type="hidden" name="sortK" value="${cbpVo.sort }">
+	<input type="hidden" name="boardtypeK" value="${cbpVo.boardtype }">
+	<input type="hidden" name="horseheadK" value="${cbpVo.horsehead }">
+	<input type="hidden" name="horsehead" value="${qbVo.qna_horsehead}">
+	<input type="hidden" name="nowPageK" value="${cbpVo.nowPage }">
+	<input type="hidden" name="idK" value="${sessionScope.sessionId }">
+	<input type="hidden" name="subject" value="${qbVo.subject}">
+	<textarea style="display: none;" id="getDoc" name="doc">${qbVo.doc }</textarea>
+	<input type="hidden" name="hashtag" value="">
+	<div id="qna_view_hashtag2" style="display: none;">
+		<c:forEach var='vo' items='${qbVo.hashtaglist}'>
+			${vo.hashtag}
+		</c:forEach>
 	</div>
 </form>
 </body>
 </html>
+
+
+
+
+
+
+
+
+

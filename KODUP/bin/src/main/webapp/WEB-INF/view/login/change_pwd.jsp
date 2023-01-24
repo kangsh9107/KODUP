@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- JS -->
+<script defer src="js/join.js"></script>
 <title>login/change_pwd.jsp</title>
 </head>
 <body>
@@ -24,7 +26,7 @@
 						<!-- ID -->
 						<div class="input-group form-group index_login_input">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
-							<input type="text" name="id" class="form-control" value="a001" readOnly>
+							<input type="text" name="id" class="form-control" value="${id }" readOnly>
 						</div>
 						<!-- PASSWORD -->
 						<div class="input-group form-group index_login_input">

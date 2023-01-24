@@ -130,7 +130,7 @@
 						</c:choose>
 					</div>
 					<br/>
-					<a href="#" onclick="notification_view(${listNotificatin.sno })" class="text-decoration-none">
+					<a href="#" onclick="notification_view(${listNotificatin.sno})" class="text-decoration-none">
 						<span id="index_subject">
 							<c:choose>
 								<c:when test="${listNotificatin.board_delete == 0 }">

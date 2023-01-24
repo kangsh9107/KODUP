@@ -56,6 +56,14 @@
 	.index_footer {
 		margin-top: 165px !important;
 	}
+	
+	#textPrevious {
+		display: none;
+	}
+	
+	#textNext {
+		display: none;
+	}
 }
 
 @media all and (max-width: 576px) {
@@ -99,7 +107,6 @@
 
 @media all and (max-width: 575px) {
 	.index_nav {
-		margin-bottom: 40px !important;
 		padding-bottom: 25px !important;
 	}
 	
@@ -123,10 +130,6 @@
 }
 
 @media all and (max-width: 390px) {
-	.index_nav {
-		margin-bottom: 40px !important;
-	}
-	
 	.index_dropdown_wrap_wrap {
 		float: right !important;
 		margin-right: 0 !important;
@@ -137,7 +140,7 @@
 /***** NAV *****/
 .index_nav {
 	padding: 15px 0 15px 0 !important;
-	margin: 0 0 40px 0;
+	margin: 0 0 20px 0;
 }
 
 .index_nav .index_logo_a {
@@ -212,7 +215,7 @@
 /***** MANTOMAN *****/
 .btnMantoman {
 	position: absolute;
-	top: 50%;
+	top: 80%;
 	right: 40px;
 	color: #bb2649;
 	z-index: 1;
@@ -384,15 +387,16 @@
 	cursor: default;
 }
 
-#index_doc {
-	font-size: 1.125rem;
+#index_subject {
+	font-size: 1rem;
 	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
 	font-weight: 600;
-	color: black;
+	color: #111827;
 }
 
-#index_doc:hover {
+#index_subject:hover {
 	color: #bb2649;
+	cursor: pointer;
 }
 
 /***** FOOTER *****/
@@ -523,7 +527,7 @@
 }
 
 .index_btnJoinR:hover {
-	color: #111827;
+	color: #bb2649;
 	background-color: white;
 	border: 1px solid #bb2649;
 }
@@ -543,8 +547,23 @@
 	border: 1px solid #fee500;
 }
 
+.index_btnKakaoJoinR {
+	width: 303px;
+	color: #111827;
+	background-color: #fee500;
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+	font-weight: 600;
+}
+
+.index_btnKakaoJoinR:hover {
+	color: #111827;
+	background-color: white;
+	border: 1px solid #fee500;
+}
+
 /***** FIND ACCOUNT *****/
-.index_find_account_form {
+.index_find_account_form, .index_find_account_key_form {
 	padding: 30px;
 	border-radius: 10px 10px 10px 10px;
 	box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
@@ -561,7 +580,7 @@
 	margin: 0 0 5px 0;
 }
 
-.index_find_accountR {
+.index_find_accountR, .index_find_account_keyR {
 	width: 303px;
 	color: white;
 	background-color: #bb2649;
@@ -570,7 +589,7 @@
 	font-weight: 600;
 }
 
-.index_find_accountR:hover {
+.index_find_accountR:hover, .index_find_account_keyR:hover {
 	color: #bb2649;
 	background-color: white;
 	border: 1px solid #bb2649;
@@ -622,8 +641,47 @@
 }
 
 
+/***** 이세형 *****/
 
+@keyframes box-ani {
+	0% { transform: translate(0, 200px); opacity: 0%; }
+	100% { transform: translate(0, 0); opacity: 89.5%;}
+}
 
+#sockectController>.popupCallDiv {
+	padding:20px;
+	z-index:10;
+	position:fixed;
+	right:30px;
+	bottom:60px;
+	width:330px;
+	min-height:230px;
+	background-color:#b07280;
+	border:1px solid black;
+	border-radius:10px;
+	opacity: 98%;
+	animation: box-ani 1s cubic-bezier(0.49, -0.51, 0.33, 1.79);
+	overflow:hidden;
+	height:auto;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+#sockectController>.popupCallDiv input[type=text]{
+	width:95%;
+}
+
+#sockectController>.popupCallDiv input[type=button]{
+	border-radius:3px;
+	border:none;
+	border:0.3px solid #aaa;
+	padding:3.6px 0;
+	width:140px;
+	font-size:16px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+}
+
+#sockectController>.popupCallDiv input[type=button]:hover{
+	cursor:pointer;
+}
 
 /***** 박요한 *****/
 @media ( max-width :768px) {

@@ -89,12 +89,15 @@ public class QnaBoardService {
 		Object savePoint = status.createSavepoint();
 		
 		int cnt = mapper.replChaetaek(qbrVo); 
-		if(cnt<1) {	b=false;}
-		
-		if(b) manager.commit(status);
-		else status.rollbackToSavepoint(savePoint);
-		
-		
+		if(cnt<1) {
+			b=false;
+		}else {
+			cnt=mapper.replChaetaek2(qbrVo);
+			if(cnt<1) {	b=false;}
+			
+			if(b) manager.commit(status);
+			else status.rollbackToSavepoint(savePoint);
+		}
 		return b;
 	}
 	

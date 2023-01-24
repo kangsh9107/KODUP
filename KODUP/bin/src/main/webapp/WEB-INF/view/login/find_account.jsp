@@ -21,17 +21,19 @@
 						<div class="index_find_menual">
 							<span>회원 가입시 입력하신 이메일을 입력하시면,</span>
 							<br/>
-							<span>아이디 및 비밀번호 변경 링크를 보내드립니다.</span>
+							<span>인증키를 보내드립니다.</span>
 						</div>
 						<!-- EMAIL -->
 						<div class="input-group form-group index_login_input">
 							<span class="input-group-text"><i class="fas fa-envelope"></i></span>
-							<input type="text" name="email" class="form-control" placeholder="email" autocomplete="off">
+							<input type="text" name="email" class="form-control" value="kangsh9107@naver.com" placeholder="email" autocomplete="off">
 						</div>
 						<div class="input-group form-group index_login_input">
 							<span class="input-group-text"><i class="fas fa-keyboard"></i></span>
 							<input type="button" value="계정찾기" class="btn index_find_accountR">
 						</div>
+						<!-- HIDDEN -->
+						<input type="hidden" name="sender" value="kangsh9107@naver.com">
 					</form>
 				</div>
 			</div>

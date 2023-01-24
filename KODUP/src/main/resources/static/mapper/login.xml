@@ -165,4 +165,8 @@
 		UPDATE member SET pwd = #{pwd} WHERE id = #{id}
 	</update>
 	
+	<!-- 방문자수 추가 -->
+	<insert id="addVisit" parameterType="String">
+		insert into countVisitors(id,nal) values(#{_parameter},sysdate())
+	</insert>
 </mapper>

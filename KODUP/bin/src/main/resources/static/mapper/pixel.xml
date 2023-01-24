@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kodup.pixel.PixelMapper">
+	<select id="select" resultType="com.kodup.pixel.PixelPriceVo">
+		select pixel_1_price,pixel_1_amount,pixel_2_price,pixel_2_amount,
+			   pixel_3_price,pixel_3_amount,pixel_4_price,pixel_4_amount,
+			   pixel_5_price,pixel_5_amount,pixel_6_price,pixel_6_amount
+		from pixel_price
+	</select>
+	<insert id="addlist" parameterType="com.kodup.pixel.PixelBuyVo">
+			insert into pixel_buy_list(id,pixel_buy_date,pixel_buy_amount)
+			values(#{id},now(),#{pixel_buy_amount})
+	</insert>
+	<update id="addpixel" parameterType="com.kodup.login.MemberVo">
+		update member set pixel = pixel+(select pixel_buy_amount from pixel_buy_list order by pixel_buy_date desc limit 0,1)
+		where id = #{id}
+	</update>
+	<insert id="buylog" parameterType="com.kodup.pixel.PixelHistoryVo">
+		insert into pixel_history(id,pixel_log,history_date,history_detail)
+		values(#{id},(select pixel_buy_amount from pixel_buy_list order by pixel_buy_date desc limit 0,1),now(),'픽셀 구매')
+	</insert>	
+</mapper>

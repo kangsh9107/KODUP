@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <!-- JS -->
 <script defer src="js/join.js"></script>
+<script defer src="js/login.js"></script>
 <title>login/login.jsp</title>
 </head>
 <body>

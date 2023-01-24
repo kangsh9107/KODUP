@@ -3,15 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<script>
-$('.btnQuit_Irreversible').on('click', function(){
-	alert("탈퇴완료");
-	$('#center').load('/login/main');
-	
-});
-</script>
-
+<script src="js/mypage_memberinfo_quit.js"></script>
 <meta charset="UTF-8">
 <title>member_quit</title>
 </head>
@@ -24,7 +16,9 @@ $('.btnQuit_Irreversible').on('click', function(){
 	
 회원탈퇴를 신청하기 전에 안내 사항을 꼭 확인해주세요.
 <br><br>
-사용하고 계신 아이디(     "A001"    )는 탈퇴할 경우 재사용 및 복구가 불가능합니다.
+사용하고 계신 아이디 
+ <input type='text' class="member_quit_id" value=${mpVo.id } size="10" readonly>
+    (은)는 탈퇴할 경우 재사용 및 복구가 불가능합니다.
 탈퇴한 아이디는 본인과 타인 모두 재사용 및 복구가 불가하오니 신중하게 선택하시기 바랍니다.
 <br><br>
 탈퇴 후 회원정보 및 개인형 서비스 이용기록은 모두 삭제됩니다.
@@ -55,12 +49,14 @@ modoo!(모두)	등록된 홈페이지 및 게시물 삭제
 다른 로그인 수단을 준비하거나, 데이터를 백업한 후 네이버 회원을 탈퇴해야 합니다.
 <br><br>
 네이버 아이디로 로그인을 통해 연동된 사이트 확인
-탈퇴 후에는 아이디    "A001"     로 다시 가입할 수 없으며 아이디와 데이터는 복구할 수 없습니다.
+탈퇴 후에는 아이디  
+ <input type='text' class="member_quit_id" value=${mpVo.id } size="10" readonly>
+ (으)로 다시 가입할 수 없으며 아이디와 데이터는 복구할 수 없습니다.
 게시판형 서비스에 남아 있는 게시글은 탈퇴 후 삭제할 수 없습니다.
 또한, 네이버 아이디를 사용해 다른 서비스에 로그인 할 수 없게 됩니다.
 <br><br><br>
 	<div class="form-check">
-	  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+	  <input class="form-check-input member_quit_checkbox" type="checkbox" value="" id="flexCheckDefault">
 	  <label class="form-check-label" for="flexCheckDefault">
 	   <font color='333333'> 안내 사항을 모두 확인하였으며, 이에 동의합니다.
 	  </label></font>
@@ -69,7 +65,23 @@ modoo!(모두)	등록된 홈페이지 및 게시물 삭제
 	</font>
 	<br><br>
 개인정보처리방침 책임의 한계와 법적 고지 회원정보 고객센터
-NAVER Copyright © NAVER Corp. All Rights Reserved.
+KODUP Copyright © KODUP Corp. All Rights Reserved.
 </div>
+
+<!-- 회원 탈퇴 정보를 보내기 위한 폼 태그 -->
+<form class='member_quit_frm'>
+	<span class='mm_text' hidden="hidden">아이디</span>
+	<input type='text' name='id' class='name' hidden="hidden" value=${mpVo.id } readonly><br/>
+	<!--  
+	<span class='mm_text'>닉네임</span><input type='text' name='nickname' class='name' value=${mpVo.nickname }><br/>
+	<span class='mm_text'>이메일</span><input type='text' name='email' class='name' value=${mpVo.email }><br/>
+	<span class='mm_text'>나이</span><input type='text' name='age' class='name' value=${mpVo.age }><br/>
+	<span class='mm_text'>성별</span><input type='text' name='gender' class='name' value=${mpVo.gender } readonly><br/>
+	<span class='mm_text'>이미지</span><input type='text' name='profile_img' class='name' value=${mpVo.profile_img }><br/>
+	<span class='mm_text'>등급</span><input type='text' name='grade' class='name' value=${mpVo.grade }><br/>
+	 -->
+	<br>
+</form>
+
 </body>
 </html>

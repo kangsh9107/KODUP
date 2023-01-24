@@ -10,7 +10,7 @@ $('.btnQuit').on('click', function(){
 
 
 //mypage_memberinfo_update (회원정보 수정) 
-$('.btnModify').on('click', function(){
+$('.btnUpdate').on('click', function(){
 	console.log("회원정보 수정");
 	$('#m_section2').load('/board/mypage_memberinfo_update');
 });
