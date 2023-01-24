@@ -387,6 +387,7 @@
 	</c:choose>		
 
 	<!-- HIDDEN -->
+	<input type="hidden" name="findStr" value="${cbpVo.findStr }">
 	<input type="hidden" name="sortK" value="${cbpVo.sort }">
 	<input type="hidden" name="boardtypeK" value="${cbpVo.boardtype }">
 	<input type="hidden" name="horseheadK" value="${cbpVo.horsehead }">

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kodup.common.CommonBoardMapper">
 
-	<!-- totSize -->
+	<!-- totSize Q&A -->
 	<select id="totList" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.CommonBoardPageVo">
 		SELECT COUNT(b.sno) AS totSize, b.boardtype, qb.qna_horsehead AS horsehead
 		FROM board b LEFT JOIN member m     ON b.id = m.id
@@ -15,6 +15,54 @@
 		HAVING b.boardtype = #{boardtype}
 		<if test="horsehead != ''">
 			AND qb.qna_horsehead = #{horsehead}
+		</if>
+	</select>
+
+	<!-- totSize INFOSHARE -->
+	<select id="totListInfoshare" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.CommonBoardPageVo">
+		SELECT COUNT(b.sno) AS totSize, b.boardtype, ib.infoshare_horsehead AS horsehead
+		FROM board b LEFT JOIN member m           ON b.id = m.id
+		             LEFT JOIN infoshare_board ib ON b.sno = ib.sno
+		WHERE m.nickname LIKE '%${findStr}%'
+		OR    b.hashtag  LIKE '%${findStr}%'
+		OR    b.subject  LIKE '%${findStr}%'
+		OR    b.doc      LIKE '%${findStr}%'
+		GROUP BY b.boardtype, ib.infoshare_horsehead
+		HAVING b.boardtype = #{boardtype}
+		<if test="horsehead != ''">
+			AND ib.infoshare_horsehead = #{horsehead}
+		</if>
+	</select>
+
+	<!-- totSize FREETALKING -->
+	<select id="totListFreetalking" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.CommonBoardPageVo">
+		SELECT COUNT(b.sno) AS totSize, b.boardtype, fb.freetalking_horsehead AS horsehead
+		FROM board b LEFT JOIN member m             ON b.id = m.id
+		             LEFT JOIN freetalking_board fb ON b.sno = fb.sno
+		WHERE m.nickname LIKE '%${findStr}%'
+		OR    b.hashtag  LIKE '%${findStr}%'
+		OR    b.subject  LIKE '%${findStr}%'
+		OR    b.doc      LIKE '%${findStr}%'
+		GROUP BY b.boardtype, fb.freetalking_horsehead
+		HAVING b.boardtype = #{boardtype}
+		<if test="horsehead != ''">
+			AND fb.freetalking_horsehead = #{horsehead}
+		</if>
+	</select>
+
+	<!-- totSize JOBSEARCH -->
+	<select id="totListJobsearch" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.CommonBoardPageVo">
+		SELECT COUNT(b.sno) AS totSize, b.boardtype, jb.jobsearch_horsehead AS horsehead
+		FROM board b LEFT JOIN member m           ON b.id = m.id
+		             LEFT JOIN jobsearch_board jb ON b.sno = jb.sno
+		WHERE m.nickname LIKE '%${findStr}%'
+		OR    b.hashtag  LIKE '%${findStr}%'
+		OR    b.subject  LIKE '%${findStr}%'
+		OR    b.doc      LIKE '%${findStr}%'
+		GROUP BY b.boardtype, jb.jobsearch_horsehead
+		HAVING b.boardtype = #{boardtype}
+		<if test="horsehead != ''">
+			AND jb.jobsearch_horsehead = #{horsehead}
 		</if>
 	</select>
 
@@ -37,6 +85,117 @@
 		HAVING b.boardtype = #{boardtype}
 		<if test="horsehead != '' and horsehead != null">
 			AND qb.qna_horsehead = #{horsehead}
+		</if>
+		<choose>
+			<when test="sort == 1">
+				ORDER BY b.nal DESC, b.sno DESC
+			</when>
+			<when test="sort == 2">
+				ORDER BY thumb DESC, b.nal DESC, b.sno DESC
+			</when>
+			<when test="sort == 3">
+				ORDER BY countRepl DESC, b.nal DESC, b.sno DESC
+			</when>
+			<otherwise>
+				ORDER BY b.viewcount DESC, b.nal DESC, b.sno DESC
+			</otherwise>
+		</choose>
+		LIMIT ${startNo}, ${listSize}
+	</select>
+
+	<!-- INFOSHARE LIST -->
+	<select id="listInfoshare" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.SelectBoardVo">
+		SELECT b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
+			   b.thumbup, b.thumbdown, (b.thumbup-b.thumbdown) AS thumb, b.board_delete,
+		       m.id, m.nickname, m.profile_img, ib.infoshare_horsehead AS horsehead,
+		       COUNT(r.repl_sno) AS countRepl
+		FROM board b LEFT JOIN member m           ON b.id = m.id
+		             LEFT JOIN repl r             ON b.sno = r.sno
+		             LEFT JOIN infoshare_board ib ON b.sno = ib.sno
+		WHERE m.nickname LIKE '%${findStr}%'
+		OR    b.hashtag  LIKE '%${findStr}%'
+		OR    b.subject  LIKE '%${findStr}%'
+		OR    b.doc      LIKE '%${findStr}%'
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
+				 b.thumbup, b.thumbdown, thumb, b.board_delete,
+				 m.id, m.nickname, m.profile_img, ib.infoshare_horsehead
+		HAVING b.boardtype = #{boardtype}
+		<if test="horsehead != '' and horsehead != null">
+			AND ib.infoshare_horsehead = #{horsehead}
+		</if>
+		<choose>
+			<when test="sort == 1">
+				ORDER BY b.nal DESC, b.sno DESC
+			</when>
+			<when test="sort == 2">
+				ORDER BY thumb DESC, b.nal DESC, b.sno DESC
+			</when>
+			<when test="sort == 3">
+				ORDER BY countRepl DESC, b.nal DESC, b.sno DESC
+			</when>
+			<otherwise>
+				ORDER BY b.viewcount DESC, b.nal DESC, b.sno DESC
+			</otherwise>
+		</choose>
+		LIMIT ${startNo}, ${listSize}
+	</select>
+
+	<!-- FREETALKING LIST -->
+	<select id="listFreetalking" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.SelectBoardVo">
+		SELECT b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
+			   b.thumbup, b.thumbdown, (b.thumbup-b.thumbdown) AS thumb, b.board_delete,
+		       m.id, m.nickname, m.profile_img, fb.freetalking_horsehead AS horsehead,
+		       COUNT(r.repl_sno) AS countRepl
+		FROM board b LEFT JOIN member m             ON b.id = m.id
+		             LEFT JOIN repl r               ON b.sno = r.sno
+		             LEFT JOIN freetalking_board fb ON b.sno = fb.sno
+		WHERE m.nickname LIKE '%${findStr}%'
+		OR    b.hashtag  LIKE '%${findStr}%'
+		OR    b.subject  LIKE '%${findStr}%'
+		OR    b.doc      LIKE '%${findStr}%'
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
+				 b.thumbup, b.thumbdown, thumb, b.board_delete,
+				 m.id, m.nickname, m.profile_img, fb.freetalking_horsehead
+		HAVING b.boardtype = #{boardtype}
+		<if test="horsehead != '' and horsehead != null">
+			AND fb.freetalking_horsehead = #{horsehead}
+		</if>
+		<choose>
+			<when test="sort == 1">
+				ORDER BY b.nal DESC, b.sno DESC
+			</when>
+			<when test="sort == 2">
+				ORDER BY thumb DESC, b.nal DESC, b.sno DESC
+			</when>
+			<when test="sort == 3">
+				ORDER BY countRepl DESC, b.nal DESC, b.sno DESC
+			</when>
+			<otherwise>
+				ORDER BY b.viewcount DESC, b.nal DESC, b.sno DESC
+			</otherwise>
+		</choose>
+		LIMIT ${startNo}, ${listSize}
+	</select>
+
+	<!-- JOBSEARCH LIST -->
+	<select id="listJobsearch" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.SelectBoardVo">
+		SELECT b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
+			   b.thumbup, b.thumbdown, (b.thumbup-b.thumbdown) AS thumb, b.board_delete,
+		       m.id, m.nickname, m.profile_img, jb.jobsearch_horsehead AS horsehead,
+		       COUNT(r.repl_sno) AS countRepl
+		FROM board b LEFT JOIN member m           ON b.id = m.id
+		             LEFT JOIN repl r             ON b.sno = r.sno
+		             LEFT JOIN jobsearch_board jb ON b.sno = jb.sno
+		WHERE m.nickname LIKE '%${findStr}%'
+		OR    b.hashtag  LIKE '%${findStr}%'
+		OR    b.subject  LIKE '%${findStr}%'
+		OR    b.doc      LIKE '%${findStr}%'
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
+				 b.thumbup, b.thumbdown, thumb, b.board_delete,
+				 m.id, m.nickname, m.profile_img, jb.jobsearch_horsehead
+		HAVING b.boardtype = #{boardtype}
+		<if test="horsehead != '' and horsehead != null">
+			AND jb.jobsearch_horsehead = #{horsehead}
 		</if>
 		<choose>
 			<when test="sort == 1">

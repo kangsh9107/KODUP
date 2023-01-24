@@ -12,7 +12,13 @@ import com.kodup.qna.QnaBoardVo;
 public interface CommonBoardMapper {
 
 	public List<CommonBoardPageVo> totList(CommonBoardPageVo cbpVo);
+	public List<CommonBoardPageVo> totListInfoshare(CommonBoardPageVo cbpVo);
+	public List<CommonBoardPageVo> totListFreetalking(CommonBoardPageVo cbpVo);
+	public List<CommonBoardPageVo> totListJobsearch(CommonBoardPageVo cbpVo);
 	public List<SelectBoardVo> listQna(CommonBoardPageVo cbpVo);
+	public List<SelectBoardVo> listInfoshare(CommonBoardPageVo cbpVo);
+	public List<SelectBoardVo> listFreetalking(CommonBoardPageVo cbpVo);
+	public List<SelectBoardVo> listJobsearch(CommonBoardPageVo cbpVo);
 	public List<CommonBoardPageVo> totListHashtag(CommonBoardPageVo cbpVo);
 	public List<SelectBoardVo> listHashtag(CommonBoardPageVo cbpVo);
 	public List<SelectBoardVo> listView(CommonBoardPageVo cbpVo);

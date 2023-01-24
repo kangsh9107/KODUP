@@ -77,6 +77,15 @@ function deleteFile(target) {
 	});
 }
 
+function hashtag_view(sno){
+	frm = $('.board_search_form')[0];
+    frm.sno.value = sno;
+    param = $(frm).serialize();
+    $.post("/qna/hashtag_view", param, function(data){
+        $('#center').html(data);
+    })
+}
+
 
 
 
@@ -131,9 +140,6 @@ $(document).ready(function () {
 	    }
 	   
 	});
-});
-$('.btnBoardtype').on('click', function() {
-	$('#center').load('/qna/qna');
 });
 
 

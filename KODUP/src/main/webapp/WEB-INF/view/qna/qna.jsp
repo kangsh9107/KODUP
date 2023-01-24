@@ -153,10 +153,10 @@
 						<!-- QNA PIXEL REWARD -->
 						<c:choose>
 							<c:when test="${listQna.qna_status == 0 }">
-								<label id="qna_pixel_reward">${listQna.qna_pixel_reward }</label>
+								<label id="qna_pixel_reward" style="border: 1px solid rgba(0, 144, 249, .5)">${listQna.qna_pixel_reward }</label>
 							</c:when>
 							<c:otherwise>
-								<label id="qna_pixel_reward" style="text-decoration: line-through; border: 1px solid rgb(0, 144, 249)">${listQna.qna_pixel_reward }</label>
+								<label id="qna_pixel_reward" style="text-decoration: line-through;">${listQna.qna_pixel_reward }</label>
 							</c:otherwise>
 						</c:choose>
 						<!-- HORSEHEAD -->

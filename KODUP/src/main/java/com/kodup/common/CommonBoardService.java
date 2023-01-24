@@ -47,6 +47,72 @@ public class CommonBoardService {
 		return listQna;
 	}
 	
+	//INFOSHARE LIST
+	public List<SelectBoardVo> listInfoshare(CommonBoardPageVo cbpVo) {
+		int totSize = 0;
+		String horsehead = cbpVo.getHorsehead();
+		List<CommonBoardPageVo> listTemp = cbMapper.totListInfoshare(cbpVo);
+		for(CommonBoardPageVo l : listTemp) {
+			if(horsehead.equals("")) totSize += l.getTotSize();
+			else if(l.getHorsehead().equals(horsehead)) totSize = l.getTotSize();
+		}
+		cbpVo.setTotSize(totSize);
+		this.cbpVo = cbpVo;
+		List<SelectBoardVo> listInfoshare = cbMapper.listInfoshare(cbpVo); //조건에 맞는 전체 리스트
+		List<SelectBoardVo> view = cbMapper.listView(cbpVo);   //조건에 맞는 해당 아이디가 본 글 리스트
+		for(SelectBoardVo l : listInfoshare) { //봤던 글 viewStatus 1로 변경
+			for(SelectBoardVo v : view) {
+				if(l.sno == v.sno) l.setViewStatus(1);
+			}
+		}
+		
+		return listInfoshare;
+	}
+	
+	//FREETALKING LIST
+	public List<SelectBoardVo> listFreetalking(CommonBoardPageVo cbpVo) {
+		int totSize = 0;
+		String horsehead = cbpVo.getHorsehead();
+		List<CommonBoardPageVo> listTemp = cbMapper.totListFreetalking(cbpVo);
+		for(CommonBoardPageVo l : listTemp) {
+			if(horsehead.equals("")) totSize += l.getTotSize();
+			else if(l.getHorsehead().equals(horsehead)) totSize = l.getTotSize();
+		}
+		cbpVo.setTotSize(totSize);
+		this.cbpVo = cbpVo;
+		List<SelectBoardVo> listFreetalking = cbMapper.listFreetalking(cbpVo); //조건에 맞는 전체 리스트
+		List<SelectBoardVo> view = cbMapper.listView(cbpVo);   //조건에 맞는 해당 아이디가 본 글 리스트
+		for(SelectBoardVo l : listFreetalking) { //봤던 글 viewStatus 1로 변경
+			for(SelectBoardVo v : view) {
+				if(l.sno == v.sno) l.setViewStatus(1);
+			}
+		}
+		
+		return listFreetalking;
+	}
+	
+	//JOBSEARCH LIST
+	public List<SelectBoardVo> listJobsearch(CommonBoardPageVo cbpVo) {
+		int totSize = 0;
+		String horsehead = cbpVo.getHorsehead();
+		List<CommonBoardPageVo> listTemp = cbMapper.totListJobsearch(cbpVo);
+		for(CommonBoardPageVo l : listTemp) {
+			if(horsehead.equals("")) totSize += l.getTotSize();
+			else if(l.getHorsehead().equals(horsehead)) totSize = l.getTotSize();
+		}
+		cbpVo.setTotSize(totSize);
+		this.cbpVo = cbpVo;
+		List<SelectBoardVo> listJobsearch = cbMapper.listJobsearch(cbpVo); //조건에 맞는 전체 리스트
+		List<SelectBoardVo> view = cbMapper.listView(cbpVo);   //조건에 맞는 해당 아이디가 본 글 리스트
+		for(SelectBoardVo l : listJobsearch) { //봤던 글 viewStatus 1로 변경
+			for(SelectBoardVo v : view) {
+				if(l.sno == v.sno) l.setViewStatus(1);
+			}
+		}
+		
+		return listJobsearch;
+	}
+	
 	//Hash Tag 검색
 	public List<SelectBoardVo> listHashtag(CommonBoardPageVo cbpVo) {
 		int totSize = 0;

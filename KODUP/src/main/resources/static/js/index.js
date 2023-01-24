@@ -151,6 +151,37 @@ var quick = function(sno, boardtype) {
         $('#center').html(data);
     })
 }
+
+var quickFreetalking = function(sno, boardtype) {
+	var frm = $('.index_cb_form')[0];
+	frm.sno.value = sno;
+	frm.boardtype.value = boardtype;
+	param = $(frm).serialize();
+    $.post("/freetalking/freetalking_view", param, function(data){
+        $('#center').html(data);
+    })
+}
+
+var quickInfoshare = function(sno, boardtype) {
+	var frm = $('.index_cb_form')[0];
+	frm.sno.value = sno;
+	frm.boardtype.value = boardtype;
+	param = $(frm).serialize();
+    $.post("/infoshare/infoshare_view", param, function(data){
+        $('#center').html(data);
+    })
+}
+
+var quickNotification = function(sno, boardtype) {
+	var frm = $('.index_cb_form')[0];
+	frm.sno.value = sno;
+	frm.boardtype.value = boardtype;
+	param = $(frm).serialize();
+    $.post("/notification/notification_view", param, function(data){
+        $('#center').html(data);
+    })
+}
+
 //QNA LIST
 $('.btnQna').on('click', function() {
 	var frm = $('.index_cb_form')[0];
@@ -177,21 +208,45 @@ $(document).on('click', '.btnMainQna', function() {
 
 //INFOSHARE LIST
 $('.btnInfoshare').on('click', function() {
-	$('#center').load('/infoshare/infoshare');
+	var frm = $('.index_cb_form')[0];
+	frm.boardtype.value = 'infoshare';
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/qna/qna_list',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
 });
 
 $(document).on('click', '.btnMainInfoshare', function() {
 	$('.btnInfoshare').addClass('click');
-	$('#center').load('/infoshare/infoshare');
+	$('.btnQna').click();
 });
-
-function runInfoshare() {
-	console.log('테스트');
-}
 
 //FREETALKING LIST
 $('.btnFreetalking').on('click', function() {
-	$('#center').load('/freetalking/freetalking');
+	var frm = $('.index_cb_form')[0];
+	frm.boardtype.value = 'freetalking';
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/qna/qna_list',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
 });
 
 $(document).on('click', '.btnMainFreetalking', function() {
@@ -199,32 +254,49 @@ $(document).on('click', '.btnMainFreetalking', function() {
 	$('.btnFreetalking').click();
 });
 
-function runFreetalking() {
-	console.log('테스트');
-}
-
 //JOBSEARCH LIST
 $('.btnJobsearch').on('click', function() {
-	$('#center').load('/jobsearch/jobsearch');
+	var frm = $('.index_cb_form')[0];
+	frm.boardtype.value = 'jobsearch';
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/qna/qna_list',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
 });
-
-function runJobsearch() {
-	console.log('테스트');
-}
 
 //NOTIFICATION LIST
 $('.btnNotification').on('click', function() {
-	$('#center').load('/notification/notification');
+	var frm = $('.index_cb_form')[0];
+	frm.boardtype.value = 'notification';
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/qna/qna_list',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
 });
 
 $(document).on('click', '.btnMainNotification', function() {
 	$('.btnNotification').addClass('click');
-	$('#center').load('/notification/notification');
+	$('.btnNotification').click();
 });
 
-function runNotification() {
-	console.log('테스트');
-}
 
 
 

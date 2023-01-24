@@ -77,7 +77,7 @@
 							</div>
 							<br/>
 							<a href="#" class="text-decoration-none">
-								<span id="index_subject">
+								<span id="index_subject" onclick="quickFreetalking('${freetalking5.sno}', '${freetalking5.boardtype }')">
 									<c:choose>
 										<c:when test="${fn:length(freetalking5.subject) gt 26}">
 											<c:out value="${fn:substring(freetalking5.subject, 0, 25)}..."></c:out>
@@ -197,7 +197,7 @@
 							</div>
 							<br/>
 							<a href="#" class="text-decoration-none">
-								<span id="index_subject">
+								<span id="index_subject" onclick="quickInfoshare('${infoshare5.sno}', '${infoshare5.boardtype }')">
 									<c:choose>
 										<c:when test="${fn:length(infoshare5.subject) gt 26}">
 											<c:out value="${fn:substring(infoshare5.subject, 0, 25)}..."></c:out>

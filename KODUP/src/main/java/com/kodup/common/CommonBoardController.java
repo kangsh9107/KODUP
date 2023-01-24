@@ -28,12 +28,40 @@ public class CommonBoardController {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = req.getSession();
 		cbpVo.setId((String)session.getAttribute("sessionId"));
-		List<SelectBoardVo> listQna = cbService.listQna(cbpVo);
-		cbpVo = cbService.getCbpVo();
 		
-		mv.addObject("cbpVo", cbpVo);
-		mv.addObject("listQna", listQna);
-		mv.setViewName("/qna/qna");
+		String boardtype = cbpVo.getBoardtype();
+		if(boardtype.equals("qna")) {
+			List<SelectBoardVo> listQna = cbService.listQna(cbpVo);
+			cbpVo = cbService.getCbpVo();
+			mv.addObject("cbpVo", cbpVo);
+			mv.addObject("listQna", listQna);
+			mv.setViewName("/qna/qna");
+		} else if(boardtype.equals("infoshare")) {
+			List<SelectBoardVo> listInfoshare = cbService.listInfoshare(cbpVo);
+			cbpVo = cbService.getCbpVo();
+			mv.addObject("cbpVo", cbpVo);
+			mv.addObject("listInfoshare", listInfoshare);
+			mv.setViewName("/infoshare/infoshare");
+		} else if(boardtype.equals("freetalking")) {
+			List<SelectBoardVo> listFreetalking = cbService.listFreetalking(cbpVo);
+			cbpVo = cbService.getCbpVo();
+			mv.addObject("cbpVo", cbpVo);
+			mv.addObject("listFreetalking", listFreetalking);
+			mv.setViewName("/freetalking/freetalking");
+		} else if(boardtype.equals("jobsearch")) {
+			List<SelectBoardVo> listJobsearch = cbService.listJobsearch(cbpVo);
+			cbpVo = cbService.getCbpVo();
+			mv.addObject("cbpVo", cbpVo);
+			mv.addObject("listJobsearch", listJobsearch);
+			mv.setViewName("/jobsearch/jobsearch");
+		} else if(boardtype.equals("notification")) {
+//			List<SelectBoardVo> listNotification = cbService.listNotification(cbpVo);
+//			cbpVo = cbService.getCbpVo();
+//			mv.addObject("cbpVo", cbpVo);
+//			mv.addObject("listNotification", listNotification);
+//			mv.setViewName("/notification/notification");
+		}
+		
 		return mv;
 	}
 	
@@ -56,12 +84,72 @@ public class CommonBoardController {
 		return mv;
 	}
 	
+	//INFOSHARE 리스트 출력 back
+	@RequestMapping("/infoshare/infoshare_list_back")
+	public ModelAndView infoshareListBack(CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		List<SelectBoardVo> listInfoshare = cbService.listInfoshare(cbpVo);
+		cbpVo = cbService.getCbpVo();
+		
+		mv.addObject("cbpVo", cbpVo);
+		mv.addObject("listInfoshare", listInfoshare);
+		mv.setViewName("/infoshare/infoshare");
+		return mv;
+	}
+	
+	//FREETALKING 리스트 출력 back
+	@RequestMapping("/infoshare/freetalking_list_back")
+	public ModelAndView freetalkingListBack(CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		List<SelectBoardVo> listFreetalking = cbService.listFreetalking(cbpVo);
+		cbpVo = cbService.getCbpVo();
+		
+		mv.addObject("cbpVo", cbpVo);
+		mv.addObject("listFreetalking", listFreetalking);
+		mv.setViewName("/freetalking/freetalking");
+		return mv;
+	}
+	
+	//JOBSEARCH 리스트 출력 back
+	@RequestMapping("/jobsearch/jobsearch_list_back")
+	public ModelAndView jobsearchListBack(CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		List<SelectBoardVo> listJobsearch = cbService.listJobsearch(cbpVo);
+		cbpVo = cbService.getCbpVo();
+		
+		mv.addObject("cbpVo", cbpVo);
+		mv.addObject("listJobsearch", listJobsearch);
+		mv.setViewName("/jobsearch/jobsearch");
+		return mv;
+	}
+	
 	//hashtag search
 	@RequestMapping("/login/find_hashtag")
 	public ModelAndView hashtagList(CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = req.getSession();
 		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSort(1);
+		if(req.getParameter("nowPageK") != null) cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		if(req.getParameter("horseheadK") != null) cbpVo.setHorsehead(req.getParameter("horseheadK"));
 		List<SelectBoardVo> listHashtag = cbService.listHashtag(cbpVo);
 		cbpVo = cbService.getCbpVo();
 		

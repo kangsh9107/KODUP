@@ -1,6 +1,11 @@
 package com.kodup.infoshare;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,12 +13,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kodup.common.CommonBoardPageVo;
+import com.kodup.common.CommonBoardService;
+
 
 @RestController
 public class InfoshareBoardController {
 	
 	@Autowired
 	InfoshareBoardService service;
+	
+	@Autowired
+	CommonBoardService cbService;
 	
 	@RequestMapping("/infoshare/infoshare")
 	public ModelAndView infoshare() {
@@ -38,17 +49,22 @@ public class InfoshareBoardController {
 	
 	//성호
 	@RequestMapping("/infoshare/infoshare_view")
-	public ModelAndView infoshareView(InfoshareBoardVo ibVo, InfoshareBoardReplVo ibrVo) {
+	public ModelAndView infoshareView(InfoshareBoardVo ibVo, InfoshareBoardReplVo ibrVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
 
 		
 		ibVo = service.view(ibVo.getSno());
 		List<InfoshareBoardReplVo> replList = service.replList(ibVo.getSno());//본문의sno를 넣어줌
 		
+		//봤던글 표시
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(ibVo.getSno());
+		if(cbpVo.getId() != null) cbService.insertView(cbpVo);
 		
+		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("ibVo",ibVo);
 		mv.addObject("replList",replList);
-		System.out.println(replList);
 		mv.setViewName("/infoshare/infoshare_view");
 		return mv;
 	}

@@ -351,6 +351,74 @@ $('.btnListU').on('click', function() {
 	});
 });
 
+$('.btnListUInfoshare').on('click', function() {
+	var frm = $('#infoshare_view')[0];
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/infoshare/infoshare_list_back',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
+});
+
+$('.btnListUFreetalking').on('click', function() {
+	var frm = $('#freetalking_view')[0];
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/infoshare/freetalking_list_back',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
+});
+
+$('.btnListUJobsearch').on('click', function() {
+	var frm = $('#jobsearch_view')[0];
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/jobsearch/jobsearch_list_back',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
+});
+
+$('.btnHashtagU').on('click', function() {
+	var frm = $('#qna_view')[0];
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/login/find_hashtag',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
+});
+
 $('.btnListView').on('click', function() {
 	var frm = $('.board_update_form')[0];
 	var param = new FormData(frm);

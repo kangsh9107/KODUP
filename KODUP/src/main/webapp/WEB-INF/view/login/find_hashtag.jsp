@@ -114,7 +114,7 @@
 						</c:choose>
 					</div>
 					<br/>
-					<a href="#" onclick="qna_view(${listHashtag.sno })" class="text-decoration-none">
+					<a href="#" onclick="hashtag_view(${listHashtag.sno })" class="text-decoration-none">
 						<span id="index_subject">${listHashtag.subject }</span>
 					</a>
 					<br/>
@@ -126,10 +126,10 @@
 								<!-- QNA PIXEL REWARD -->
 								<c:choose>
 									<c:when test="${listHashtag.qna_status == 0 }">
-										<label id="qna_pixel_reward">${listHashtag.qna_pixel_reward }</label>
+										<label id="qna_pixel_reward" style="border: 1px solid rgba(0, 144, 249, .5)">${listHashtag.qna_pixel_reward }</label>
 									</c:when>
 									<c:otherwise>
-										<label id="qna_pixel_reward" style="text-decoration: line-through; border: 1px solid rgb(0, 144, 249)">${listHashtag.qna_pixel_reward }</label>
+										<label id="qna_pixel_reward" style="text-decoration: line-through;">${listHashtag.qna_pixel_reward }</label>
 									</c:otherwise>
 								</c:choose>
 							</c:when>

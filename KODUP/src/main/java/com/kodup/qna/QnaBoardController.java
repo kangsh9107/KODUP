@@ -25,10 +25,25 @@ public class QnaBoardController {
 	@Autowired
 	CommonBoardService cbService;
 	
-	@RequestMapping("/qna/qna")
-	public ModelAndView qna() {
+	@RequestMapping("/qna/hashtag_view")
+	public ModelAndView hashtagView(QnaBoardVo qbVo, QnaBoardReplVo qbrVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/qna/qna");
+		qbVo = service.view(qbVo.getSno());
+		int checkChaeTaek =service.checkChaeTaek(qbVo.getSno());
+		List<QnaBoardReplVo> replList = service.replList(qbVo.getSno());//본문의sno를 넣어줌
+		qbVo.getHashtaglist();
+		
+		//봤던글 표시
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(qbVo.getSno());
+		if(cbpVo.getId() != null) cbService.insertView(cbpVo);
+		
+		mv.addObject("cbpVo", cbpVo);
+		mv.addObject("checkChaeTaek",checkChaeTaek);
+		mv.addObject("qbVo",qbVo);
+		mv.addObject("replList",replList);
+		mv.setViewName("/login/hashtag_view");
 		return mv;
 	}
 	
@@ -51,16 +66,12 @@ public class QnaBoardController {
 		HttpSession session = req.getSession();
 		cbpVo.setId((String)session.getAttribute("sessionId"));
 		cbpVo.setSno(qbVo.getSno());
-		if(cbpVo.getId() != null) {
-			cbService.insertView(cbpVo);
-		}
+		if(cbpVo.getId() != null) cbService.insertView(cbpVo);
 		
 		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("checkChaeTaek",checkChaeTaek);
-		System.out.println("채택스테이터스 서비스단:"+checkChaeTaek);
 		mv.addObject("qbVo",qbVo);
 		mv.addObject("replList",replList);
-		System.out.println(replList);
 		mv.setViewName("/qna/qna_view");
 		return mv;
 	}

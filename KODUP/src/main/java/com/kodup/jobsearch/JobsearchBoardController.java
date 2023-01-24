@@ -1,6 +1,11 @@
 package com.kodup.jobsearch;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,12 +13,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kodup.common.CommonBoardPageVo;
+import com.kodup.common.CommonBoardService;
+
 
 @RestController
 public class JobsearchBoardController {
 	
 	@Autowired
 	JobsearchBoardService service;
+	
+	@Autowired
+	CommonBoardService cbService;
 	
 	@RequestMapping("/jobsearch/jobsearch")
 	public ModelAndView jobsearch() {
@@ -40,7 +51,7 @@ public class JobsearchBoardController {
 	
 	//성호
 	@RequestMapping("/jobsearch/jobsearch_view")
-	public ModelAndView jobsearchView(JobsearchBoardVo jbVo, JobsearchBoardReplVo jbrVo) {
+	public ModelAndView jobsearchView(JobsearchBoardVo jbVo, JobsearchBoardReplVo jbrVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
 
 		
@@ -48,10 +59,15 @@ public class JobsearchBoardController {
 		jbVo = service.view(jbVo.getSno());
 		List<JobsearchBoardReplVo> replList = service.replList(jbVo.getSno());//본문의sno를 넣어줌
 		
+		//봤던글 표시
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(jbVo.getSno());
+		if(cbpVo.getId() != null) cbService.insertView(cbpVo);
 		
+		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("jbVo",jbVo);
 		mv.addObject("replList",replList);
-		System.out.println(replList);
 		mv.setViewName("/jobsearch/jobsearch_view");
 		return mv;
 	}
