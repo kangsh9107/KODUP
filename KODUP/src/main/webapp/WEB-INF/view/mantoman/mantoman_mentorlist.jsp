@@ -31,7 +31,7 @@
 		<img src="../images/devilcookie.png" class="mentoProfile_img">
 		<span class='profile_nickname'>자몽리</span><br>
 		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
-		<input type='button' class='btnCall' value='멘토 요청'>
+		<input type='button' class='btnCall consulting' value='상담중'>
 	</form>
 	<form class='chat_user separator'>
 		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
@@ -63,7 +63,7 @@
 		<img src="../images/angel.png" class="mentoProfile_img">
 		<span class='profile_nickname'>작별왕바이킹</span><br>
 		<span class='profile_phrases'>주 활동시간 : 금~일 21:00~01:00</span>
-		<input type='button' class='btnCall' value='멘토 요청'>
+		<input type='button' class='btnCall consulting' value='상담중'>
 	</form>
 	<form class='chat_user separator'>
 		<img src="../images/girlchar.png" class="mentoProfile_img">
@@ -107,13 +107,13 @@
 		<img src="../images/basic_profile.jpg" class="mentoProfile_img">
 		<span class='profile_nickname'>JD-pro</span><br>
 		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>
-		<input type='button' class='btnCall' value='멘토 요청'>
+		<input type='button' class='btnCall consulting' value='상담중'>
 	</form>
 	<form class='chat_user separator'>
 		<img src="../images/angel.png" class="mentoProfile_img">
 		<span class='profile_nickname'>미녕짱123</span><br>
 		<span class='profile_phrases'>주말 오후에 주로 접속함</span>
-		<input type='button' class='btnCall' value='멘토 요청'>
+		<input type='button' class='btnCall consulting' value='상담중'>
 	</form>
 </div>
 <script>
@@ -124,6 +124,12 @@ $('.mentoProfile_img').on('click',function() {
 	var status = "toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=400, height=500, top=400, left=870"; 
     window.open("/profile/member_profile_chat", title, status);
 });
+
+/* $("button").hover(function() {
+	  $("#text").text("마우스가 올라왔습니다.");
+	}, function(){
+	  $("#text").text("마우스가 빠져나갔습니다.");
+}); */
 </script>
 </body>
 </html>

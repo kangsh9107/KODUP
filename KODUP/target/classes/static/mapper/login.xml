@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kodup.login.LoginMapper">
+	
+	<!-- TOP WRITER -->
+	<select id="topWriter" resultType="com.kodup.login.MemberVo">
+		SELECT b.id, m.profile_img, m.nickname FROM board b JOIN member m ON b.id = m.id
+		WHERE nal BETWEEN DATE_ADD(NOW(),INTERVAL -1 WEEK ) AND NOW()
+		GROUP BY b.id ORDER BY COUNT(b.id) DESC, b.id ASC LIMIT 0,5
+	</select>
+	
+	<!-- HOT TAG -->
+	<select id="hotTag" resultType="com.kodup.login.CommonBoardVo">
+		SELECT hashtag FROM board
+	</select>
+	
+	<!-- QNA5 -->
+	<select id="qna5" resultType="com.kodup.login.IndexBoardVo">
+		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb,
+		       m.profile_img, m.nickname,
+		       COUNT(r.repl_sno) AS countRepl
+		FROM board b LEFT JOIN member m ON b.id = m.id
+		             LEFT JOIN repl r   ON b.sno = r.sno
+		WHERE b.boardtype = 'qna'
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown), m.profile_img, m.nickname
+		ORDER BY b.nal DESC, b.sno DESC LIMIT 0, 5
+	</select>
+	
+	<!-- FREETALKING5 -->
+	<select id="freetalking5" resultType="com.kodup.login.IndexBoardVo">
+		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb,
+		       m.profile_img, m.nickname,
+		       COUNT(r.repl_sno) AS countRepl
+		FROM board b LEFT JOIN member m ON b.id = m.id
+		             LEFT JOIN repl r   ON b.sno = r.sno
+		WHERE b.boardtype = 'freetalking'
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown), m.profile_img, m.nickname
+		ORDER BY b.nal DESC, b.sno DESC LIMIT 0, 5
+	</select>
+	
+	<!-- INFOSHARE5 -->
+	<select id="infoshare5" resultType="com.kodup.login.IndexBoardVo">
+		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb,
+		       m.profile_img, m.nickname,
+		       COUNT(r.repl_sno) AS countRepl
+		FROM board b LEFT JOIN member m ON b.id = m.id
+		             LEFT JOIN repl r   ON b.sno = r.sno
+		WHERE b.boardtype = 'infoshare'
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown), m.profile_img, m.nickname
+		ORDER BY b.nal DESC, b.sno DESC LIMIT 0, 5
+	</select>
+	
+	<!-- NOTIFICATION5 -->
+	<select id="notification5" resultType="com.kodup.login.IndexBoardVo">
+		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb,
+		       m.profile_img, m.nickname,
+		       COUNT(r.repl_sno) AS countRepl
+		FROM board b LEFT JOIN member m ON b.id = m.id
+		             LEFT JOIN repl r   ON b.sno = r.sno
+		WHERE b.boardtype = 'notification'
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown), m.profile_img, m.nickname
+		ORDER BY b.nal DESC, b.sno DESC LIMIT 0, 5
+	</select>
+	
+	<!-- WEEKLYBEST5 -->
+	<select id="weeklyBest5" resultType="com.kodup.login.IndexBoardVo">
+		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb, b.viewcount,
+			   m.profile_img, m.nickname,
+			   COUNT(r.repl_sno) AS countRepl
+		FROM board b LEFT JOIN member m ON b.id = m.id
+					 LEFT JOIN repl r   ON b.sno = r.sno
+		WHERE b.nal > DATE_ADD(NOW(), INTERVAL -7 DAY)
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, thumb, b.viewcount, m.profile_img, m.nickname
+		ORDER BY thumb DESC, viewcount DESC, b.nal DESC, b.sno DESC LIMIT 0, 5
+	</select>
+	
+	<!-- EDITOR5 -->
+	<select id="editor5" resultType="com.kodup.login.IndexBoardVo">
+		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb, b.viewcount,
+			   m.profile_img, m.nickname,
+			   COUNT(r.repl_sno) AS countRepl
+		FROM board b LEFT JOIN member m ON b.id = m.id
+					 LEFT JOIN repl r   ON b.sno = r.sno
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, thumb, b.viewcount, m.profile_img, m.nickname
+		ORDER BY RAND() LIMIT 0, 5
+	</select>
+	
+	<!-- LOGIN -->
+	<select id="login" parameterType="com.kodup.login.MemberVo" resultType="Integer">
+		SELECT COUNT(id) FROM member
+		WHERE id = #{id} AND pwd = #{pwd}
+	</select>
+	
+	<!-- CHECK ID -->
+	<select id="checkId" parameterType="String" resultType="Integer">
+		SELECT COUNT(id) FROM member
+		WHERE account_type = 1 AND id = #{_parameter}
+	</select>
+	
+	<!-- CHECK GRADE -->
+	<select id="checkGrade" parameterType="String" resultType="Integer">
+		SELECT grade FROM member
+		WHERE id = #{_parameter}
+	</select>
+	
+	<!-- CHECK NICKNAME -->
+	<select id="checkNickname" parameterType="String" resultType="Integer">
+		SELECT COUNT(nickname) FROM member WHERE nickname = #{_parameter}
+	</select>
+	
+	<!-- CHECK EMAIL -->
+	<select id="checkEmail" parameterType="String" resultType="Integer">
+		SELECT COUNT(email) FROM member WHERE email = #{_parameter} AND account_type = 0
+	</select>
+	
+	<!-- GET ID -->
+	<select id="getId" parameterType="String" resultType="String">
+		SELECT id FROM member WHERE email = #{_parameter}
+	</select>
+	
+	<!-- GET PROFILE_IMG -->
+	<select id="getProfileImg" parameterType="String" resultType="String">
+		SELECT profile_img FROM member WHERE id = #{_parameter}
+	</select>
+	
+	<!-- GET NICKNAME -->
+	<select id="getNickname" parameterType="String" resultType="String">
+		SELECT nickname FROM member WHERE id = #{_parameter}
+	</select>
+	
+	<!-- GET PIXEL -->
+	<select id="getPixel" parameterType="String" resultType="Integer">
+		SELECT pixel FROM member WHERE id = #{_parameter}
+	</select>
+	
+	<!-- CHECK CHAT ID -->
+	<select id="checkChatId" parameterType="String" resultType="Integer">
+		SELECT COUNT(id) FROM chat WHERE id = #{_parameter}
+	</select>
+	
+	<!-- CHAT INSERT -->
+	<insert id="chatInsert" parameterType="com.kodup.login.MemberVo">
+		INSERT INTO chat(id, grade) VALUES(#{id}, #{grade})
+	</insert>
+	
+	<!-- CHAT DELETE -->
+	<delete id="chatDelete" parameterType="String">
+		DELETE FROM chat WHERE id = #{_parameter}
+	</delete>
+	
+	<!-- INSERT MEMBER KAKAO -->
+	<insert id="insertMemberKakao" parameterType="com.kodup.login.MemberVo">
+		INSERT INTO member(id, pwd, email, nickname, gender, age, profile_img, account_type, join_date)
+		VALUES(#{id}, #{pwd}, #{email}, #{nickname}, #{gender}, #{age}, #{profile_img}, 1, NOW())
+	</insert>
+	
+	<!-- INSERT MEMBER KODUP -->
+	<insert id="insertMember" parameterType="com.kodup.login.MemberVo">
+		INSERT INTO member(id, pwd, email, nickname, gender, age, account_type, join_date)
+		VALUES(#{id}, #{pwd}, #{email}, #{nickname}, #{gender}, #{age}, 0, NOW())
+	</insert>
+	
+	<!-- UPDATE PWD -->
+	<update id="updatePwd" parameterType="com.kodup.login.MemberVo">
+		UPDATE member SET pwd = #{pwd} WHERE id = #{id}
+	</update>
+	
+</mapper>

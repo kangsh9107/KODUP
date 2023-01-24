@@ -172,6 +172,7 @@ public class MantomanController {
 		String mentiId = (String)req.getParameter("mentiId");
 		int mantoman_pixel_reward = Integer.parseInt(req.getParameter("mantoman_pixel_reward"));
 		System.out.println("mantoman_pixel_reward 확인중 : " + mantoman_pixel_reward);
+		
 		mtmVo.setId(mentoId);
 		mtmVo.setMantoman_pixel_reward(mantoman_pixel_reward);
 		
@@ -179,6 +180,9 @@ public class MantomanController {
 		boolean b = service.chatPixelReward2(mtmVo);
 		boolean c = service.updateChatStatus2(mentoId);
 		boolean d = service.updateChatStatus2(mentiId);
+		System.out.println("mentoId : " + mentoId);
+		System.out.println("mentiId : " + mentiId);
+		
 		
 		mv.addObject("mtmVo", mtmVo);
 	}

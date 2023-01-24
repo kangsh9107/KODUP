@@ -9,6 +9,8 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import com.kodup.profile.ProfileVo;
+
 @Transactional
 @Service
 public class MantomanService {
@@ -212,4 +214,9 @@ boolean b = false;
 		
 		return b;
 	}
+
+//	public ProfileVo selectProfile(String sessionId) {
+//		MantomanVo mtmVo = mapper.selectId(sessionId);
+//		return mtmVo;
+//	}
 }
