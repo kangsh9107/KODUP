@@ -1,0 +1,379 @@
+@charset "UTF-8";
+
+
+
+#container {
+	display: grid;
+	grid-template-columns: 150px 650px;
+}
+
+.label_name{
+	color: grey;
+}
+
+.bottom{
+	margin-bottom: 10px;
+}
+
+
+
+.mypage_subject_text{
+	display:inline-block;
+	font-weight:bolder;
+	text-align:center;
+	font-size: 1.5rem;
+}
+
+
+/* 회원 정보 */
+.member_info{
+	border: 2px solid #bb2649;
+}
+
+/* mypage_memberinfo.jsp */
+
+.mypage_member_profile_item{
+	width: 320px;
+	height: 254px;
+	/* background-color: lightgreen; */
+}
+
+.mypage_member_profile {
+	display: grid;
+	grid-template-columns: 300px 450px;
+	gap: 20px 20px;
+	/* row-gap: 20px; column-gap: 20px; */
+} 
+
+
+.btnModify, .btnQuit{
+	display: inline-block;
+}
+
+
+.list-group {
+	width:1000px;
+}
+
+.button {
+	text-align: right;
+}
+
+.mm_text{ 
+	display:inline-block;
+	width: 100px; 
+	font-weight:bold;}
+
+
+.form-floating, .btnC{
+	display: inline-block;
+}
+
+
+/* 회원정보 수정 memberinfo_update */
+
+#certification, #mypage_mypixel, 
+#mypage_dailycheck, #mypage_memberinfo, 
+#memberinfo_update, #member_quit{
+	
+	text-align:left;
+}
+
+
+.mypage_certification_box{
+	text-align:left;
+}
+
+/* #memberinfo_update{
+	margin-top:30px;
+	text-align:center;
+} */
+
+.name{margin-bottom:5px;}
+
+#certification, #mypage_mypixel, 
+#mypage_dailycheck, #mypage_memberinfo, 
+#memberinfo_update, #member_quit{
+	
+	margin-left: 10px;
+} 
+
+/* mypage_member_quit.jsp 회원탈퇴 */
+#member_quit{
+	box-sizing: border-box;
+	margin: 50px 20px 0px 20px;
+	border-radius: 20px;
+	border: 2px solid;
+	padding: 10px;
+}
+
+
+.member_quit_id{
+	font-weight: bolder;
+	color: green;
+	text-align:center; 
+	border: 0 solid black;
+}
+
+
+.btnQuit_Irreversible{
+	margin-left: 10px;
+}
+
+
+/* mypage_cerification 마이페이지 인증 */
+#certification span{
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+/* mypage_corp_certification.jsp */
+
+/*폼태그도 자리 차지하는 경우 있어서 추가한 건데 변화없음*/
+.mentor_certification{display:inline;}
+
+
+#mypage_corp_certification{
+	margin-top: 80px;
+	text-align: center; 
+}
+
+.mypage_corp_certification_noti{
+	display:inline-block;
+	width: 400px;
+	text-align: left;
+}
+
+
+/* 마이페이지 인증 버튼 효과 */
+.btnC {
+  width: 100px;
+  height: 50px;
+  display: inline-block;								
+  background: transparent; 
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-style: normal;
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  color: white; 
+  border-radius: 10px;
+  padding: 15px 15px;
+  transition: all 0.7s ease-out;
+  background: linear-gradient(270deg, rgba(223,190,106,0.8), rgba(146,111,52,0.8), rgba(34,34,34,0), rgba(34,34,34,0));
+  background-position: 1% 50%;
+  background-size: 300% 300%;
+  text-decoration: none;
+  margin: 0.625rem;
+  border: none;
+}
+
+.btnC:hover {
+  color: #fff;
+  border: 1px solid rgba(223,190,106,0);
+  color: white;
+  background-position: 99% 50%;
+}
+
+/* .btnC {
+  display: inline-block;
+  background: transparent; 
+  text-transform: uppercase;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 0.625rem;
+  letter-spacing: 0.3em;
+  color: rgba(223,190,106,0.7); 
+  border-radius: 0;
+  padding: 18px 80px 20px;
+  transition: all 0.7s ease-out;
+  background: linear-gradient(270deg, rgba(223,190,106,0.8), rgba(146,111,52,0.8), rgba(34,34,34,0), rgba(34,34,34,0));
+  background-position: 1% 50%;
+  background-size: 300% 300%;
+  text-decoration: none;
+  margin: 0.625rem;
+  border: none;
+  border: 1px solid rgba(223,190,106,0.3);
+}
+
+.btnC:hover {
+  color: #fff;
+  border: 1px solid rgba(223,190,106,0);
+  color: $white;
+  background-position: 99% 50%;
+}
+ */
+
+
+
+
+
+/* 마이페이지 텍스트 효과(복고풍) */
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:900');
+
+svg {
+  /* background: white; */
+  background: #ebe7e0; 
+}
+
+text {
+  fill: #35322a;
+  filter: url('#money');
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 50px;
+  font-weight: 900;
+}
+
+/* html {
+  align-items: center;
+  background: #ebe7e0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  min-width: 600px;
+} */
+
+
+
+/* mypage_mypixel.jsp 나의 픽셀 css */
+
+
+.mypage_mypixel_management_text{
+	display:inline-block;
+	margin-bottom:15px;
+}
+
+
+
+.pixel_box{
+	background-color:#ccc;
+	font-weight:bolder;
+}
+
+/* #3981E5; */
+
+.btn_mypage_pixel_charge, .btn_mypage_pixel_charge_list{
+	color:#0055CC;
+	background-color:white;
+	border-radius:10px;
+}
+
+.btn_mypage_pixel_charge:hover{
+	color:white;
+	background-color:#0055CC;
+	border:2px solid #0055CC;
+	border-radius:10px;
+}
+
+.btn_mypage_pixel_total_list, .btn_mypage_pixel_exchange_total{
+	color:black;
+	background-color:white;
+	border-radius:10px;
+}
+
+.btn_mypage_pixel_total_list:hover,
+.btn_mypage_pixel_exchange_total:hover{
+	color:white;
+	background-color:black;
+	border:2px solid black;
+	border-radius:10px;
+}
+
+
+.btn_mypage_pixel_charge_list:hover{
+	color:white;
+	background-color:#0055CC;
+	border:2px solid #0055CC;
+	border-radius:10px;
+}
+
+
+.btn_mypage_pixel_exchange, .btn_mypage_pixel_exchange_list{
+	color:#BB2649;
+	background-color:white;
+	border-radius:10px;
+}
+
+.btn_mypage_pixel_exchange:hover{
+	color:white;
+	background-color:#BB2649;
+	border:2px solid #BB2649; 
+	border-radius:10px;
+}
+
+
+.btn_mypage_pixel_exchange_list:hover{
+	color:white;
+	background-color:#BB2649;
+	border:2px solid #BB2649; 
+	border-radius:10px;
+}
+
+
+.mypage_mypixel_use_box2{
+	border: 1px solid #ccc;
+	padding: 10px;	
+	margin-top: 10px;
+}
+
+.mypage_mypixel_date{
+	display:inline-block;
+	width: 30%;
+	text-align:center;
+}
+
+.mypage_mypixel_details{
+	display:inline-block;
+	width: 48%;
+	text-align:center;
+}
+.mypage_mypixel_pixel{
+	display:inline-block;
+	width: 10%;
+	text-align:center;
+}
+
+
+.mypage_mypixel_page_number{
+	margin-left: 35%;
+}
+
+
+/* form 태그 css가 깨져서 */
+.pixel_exchange{
+	display: inline;	
+}
+
+/* 그리드 구현 영역
+.pixel-grid-container{
+	display: grid;
+	padding: 10px;
+	background-color: #ccc;
+	grid-template-colums: repeat (4, 1fr);
+	grid-template-rows: (1fr 1fr 1fr 1fr 3fr);
+}
+
+.pixel-grid-item{
+	margin: 10px;
+	padding: 10px;
+	background-color: lightgreen;	
+} */
+
+
+/* #mypage_mypixel{
+	text-align: center;
+} */
+
+/* 픽셀 리스트 */
+.btnZone{
+	margin-top: 10px;
+	margin-left: 150px;
+}
+
+.btnZone input[type=button]{
+	border: 1px solid white;
+	border-radius: 5px;
+	background-color: white;
+}
+
+

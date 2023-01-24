@@ -10,32 +10,29 @@
 </head>
 <body>
 <h3 class="mansearch_insert_title">정보수정</h3>
-
-
 <form class="mansearch_update_form" method='post'>
 	<input type='hidden' name='sno' value='${mbVo.sno }'><input type='hidden' name='id' class='member_id' value='${mbVo.id }'/><input type='hidden' name='mansearch_sno' value="${mbVo.mansearch_sno }"/>			
 	<input type='hidden' name='id' class='member_id' value=''/>
 	<input type='hidden' name='nowPage' value='${pVo.nowPage }'>
 	<input type='hidden' name='findStr' value='${pVo.findStr }'>
-	
 	<div class="container text-left">
 		<div class="row work_info">
 			<label class="info_label">근무정보</label>
 			<div class="col" style="padding-left:0;">
-	    		<label>제목</label>
-	    		<br/><input type="text" name="subject" value='${mbVo.subject }' class="form-control mansearch_board_insert_form" autocomplete="off">    		
+	    		<label>제목</label><br/>
+	    		<input type="text" name="subject" value='${mbVo.subject }' class="form-control mansearch_board_insert_form" autocomplete="off">    		
 	    	</div>
 	    	<div class="col-12 col-sm-6" style="padding-left:0;">
-	    		<label>근무시작일</label>
-	    		<br/><input type="date" name="work_start" value='${mbVo.work_start }' class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<label>근무시작일</label><br/>
+	    		<input type="date" name="work_start" value='${mbVo.work_start }' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>
 	    	<div class="col-12 col-sm-6" style="padding-left:0;">
-	    		<label>지원마감일</label>
-	    		<br/><input type="date" name="deadline" value='${mbVo.deadline }' class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<label>지원마감일</label><br/>
+	    		<input type="date" name="deadline" value='${mbVo.deadline }' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>
 	    	<div class="col-12 col-sm-6" style="padding-left:0;">
-	    		<label>급여(만원)</label>
-	    		<br/><input type="text" name="pay" value='${mbVo.pay }' class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<label>급여(만원)</label><br/>
+	    		<input type="text" name="pay" value='${mbVo.pay }' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>	    	
 	    	<div class="col-12 col-sm-6" style="padding-left:0;">
 	    		<label>메인직무</label><br/>
@@ -61,36 +58,36 @@
 				</div>
 	    	</div>	    	
 	    	<div class="col-12 col-sm-6" style="padding-left:0;">
-	    		<label>근무지역</label>
-	    		<br/><input type="text" name="corp_location" value='${mbVo.corp_location }' class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<label>근무지역</label><br/>
+	    		<input type="text" name="corp_location" value='${mbVo.corp_location }' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>
 	    	<div class="col-12 col-sm-6" style="padding-left:0;">
-	    		<label>포지션</label>
-	    		<br/><input type="text" name="position" value='${mbVo.position }' class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<label>포지션</label><br/>
+	    		<input type="text" name="position" value='${mbVo.position }' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>
 	    	<div class="col-12 col-sm-6" style="padding-left:0;">
-	    		<label>계약형태</label>
-	    		<br/><input type="text" name="job_type" value='${mbVo.job_type }' class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<label>계약형태</label><br/>
+	    		<input type="text" name="job_type" value='${mbVo.job_type }' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>
 	    	<div class="col-12 col-sm-6" style="padding-left:0;">
-	    		<label>필요경력</label>
-	    		<br/><input type="text" name="required_career" value='${mbVo.required_career }' class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<label>필요경력</label><br/>
+	    		<input type="text" name="required_career" value='${mbVo.required_career }' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>
 	    	<div class="col-12 col-sm-6" style="padding-left:0;">
-	    		<label>학력사항</label>
-	    		<br/><input type="text" name="education_level" value='${mbVo.education_level }' class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<label>학력사항</label><br/>
+	    		<input type="text" name="education_level" value='${mbVo.education_level }' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>
 	    	<div class="col-12 col-sm-6" style="padding-left:0;">
-	    		<label>근무방식</label>
-	    		<br/><input type="text" name="work_type" value='${mbVo.work_type }' class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<label>근무방식</label><br/>
+	    		<input type="text" name="work_type" value='${mbVo.work_type }' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>
 	    	<div class="col-12 col-sm-6" style="padding-left:0;">
-		    		<label>급여지급일</label>
-	    		<br/><input type="text" name="pay_date" value='${mbVo.pay_date }' class="form-control mansearch_board_insert_form" autocomplete="off">
+		    	<label>급여지급일</label><br/>
+		    	<input type="text" name="pay_date" value='${mbVo.pay_date }' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div> 
 	    	<div class="col-12 col-sm-6" style="margin-bottom:20px; padding-left:0;">
-	    		<label>필수스킬</label>
-		   		<br/><input type="text" name="required_skill" value='${mbVo.required_skill }' class="form-control mansearch_board_insert_form" autocomplete="off">
+	    		<label>필수스킬</label><br/>
+	    		<input type="text" name="required_skill" value='${mbVo.required_skill }' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>       	    	     	    	
 	  	</div>
 	</div>

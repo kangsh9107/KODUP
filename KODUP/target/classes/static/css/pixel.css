@@ -1,0 +1,335 @@
+@charset "UTF-8";
+@font-face{
+	font-family:"BMJUA";
+	src: url("/fonts/BMJUA_ttf.ttf");
+}
+ul, ol, li {
+	list-style: none;
+}
+
+dd {
+	margin: 0;
+}
+h3.pg_title{
+	font-family: 'BMJUA';
+}
+h4,h2{
+	font-family: 'BMJUA';
+}
+@media ( min-width :1401px) {
+	.inwrap {
+		margin: 0 auto;
+		display: grid !important;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 15px;
+	}
+	.item_pixel {
+		padding:0;
+		display: grid !important;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 15px;
+	}
+	.st1 {
+		background-image: url('/images/픽셀1.png');
+		background-size: 145px 130px;
+		background-repeat: no-repeat;
+	}
+	
+	.st2 {
+		background-image: url('/images/픽셀2.png');
+		background-size: 145px 130px;
+		background-repeat: no-repeat;
+	}
+	
+	.st3 {
+		background-image: url('/images/픽셀3.png');
+		background-size: 145px 130px;
+		background-repeat: no-repeat;
+	}
+	
+	.st4 {
+		background-image: url('/images/픽셀4.png');
+		background-size: 145px 130px;
+		background-repeat: no-repeat;
+	}
+	
+	.st5 {
+		background-image: url('/images/픽셀5.png');
+		background-size: 145px 130px;
+		background-repeat: no-repeat;
+	}
+	
+	.st6 {
+		background-image: url('/images/픽셀6.png');
+		background-size: 145px 130px;
+		background-repeat: no-repeat;
+	}
+	.use1{
+		background-image: url('/images/qna.png');
+		background-size: 145px 130px;
+		background-repeat: no-repeat;	
+	}
+	.use2{
+		background-image: url('/images/전문가.png');
+		background-size: 145px 130px;
+		background-repeat: no-repeat;	
+	}
+	.use3{
+		background-image: url('/images/premium_review.png');
+		background-size: 145px 130px;
+		background-repeat: no-repeat;	
+	}
+	.st_area .buy {
+		position: relative;
+		min-width: 250px;
+		height: 126px;
+		margin-left: 150px;
+		background: #fff;
+		border-left: 1px solid #e6e6e6;
+		border-radius: 0 5px 5px 0;
+	}
+	.st_area .buy .btn_buy {
+	border: 1px solid #bb2649;
+	width: 100px;
+	font-size: 14px;
+	background-color: #bb2649;
+	color: white;
+	padding: 12px 20px;
+	border-radius: 5px;
+	position: absolute;
+	top: 42px;
+	left: 127px;
+	font-weight: bold;
+	}
+}
+@media ( max-width :1400px) {
+	.inwrap {
+		margin: 0 auto;
+		display: grid !important;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 15px;
+	}
+	.item_pixel {
+		padding:0;
+		display: grid !important;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 15px;
+	}
+	.st1 {
+		background-image: url('/images/픽셀1.png');
+		background-size: 110px 130px;
+		background-repeat: no-repeat;
+	}
+	
+	.st2 {
+		background-image: url('/images/픽셀2.png');
+		background-size: 110px 130px;
+		background-repeat: no-repeat;
+	}
+	
+	.st3 {
+		background-image: url('/images/픽셀3.png');
+		background-size: 110px 130px;
+		background-repeat: no-repeat;
+	}
+	
+	.st4 {
+		background-image: url('/images/픽셀4.png');
+		background-size: 110px 130px;
+		background-repeat: no-repeat;
+	}
+	
+	.st5 {
+		background-image: url('/images/픽셀5.png');
+		background-size: 110px 130px;
+		background-repeat: no-repeat;
+	}
+	
+	.st6 {
+		background-image: url('/images/픽셀6.png');
+		background-size: 110px 130px;
+		background-repeat: no-repeat;
+	}
+	.use1{
+		background-image: url('/images/qna.png');
+		background-size: 110px 130px;
+		background-repeat: no-repeat;	
+	}
+	.use2{
+		background-image: url('/images/전문가.png');
+		background-size: 110px 130px;
+		background-repeat: no-repeat;	
+	}
+	.use3{
+		background-image: url('/images/premium_review.png');
+		background-size: 110px 130px;
+		background-repeat: no-repeat;	
+	}
+	.st_area .buy {
+		position: relative;
+		min-width: 230px;
+		height: 126px;
+		margin-left: 115px;
+		background: #fff;
+		border-left: 1px solid #e6e6e6;
+		border-radius: 0 5px 5px 0;
+	}
+	.st_area .buy .btn_buy {
+	border: 1px solid #bb2649;
+	width: 100px;
+	font-size: 14px;
+	background-color: #bb2649;
+	color: white;
+	padding: 12px 20px;
+	border-radius: 5px;
+	position: absolute;
+	top: 42px;
+	left: 115px;
+	font-weight: bold;
+	}			
+}
+
+@media ( max-width :1200px) {
+	.inwrap {
+		margin: 0 auto;
+		display: grid !important;
+		grid-template-columns: repeat(1, 1fr);
+		gap: 15px;
+	}
+	.item_pixel {
+		padding:0;
+		display: grid !important;
+		grid-template-columns: repeat(1, 1fr);
+		gap: 15px;
+	}
+	.st1 {
+		background-image: url('/images/픽셀1.png');
+		background-size: 145px 130px;
+		background-repeat: no-repeat;
+	}
+	
+	.st2 {
+		background-image: url('/images/픽셀2.png');
+		background-size: 145px 130px;
+		background-repeat: no-repeat;
+	}
+	
+	.st3 {
+		background-image: url('/images/픽셀3.png');
+		background-size: 145px 130px;
+		background-repeat: no-repeat;
+	}
+	
+	.st4 {
+		background-image: url('/images/픽셀4.png');
+		background-size: 145px 130px;
+		background-repeat: no-repeat;
+	}
+	
+	.st5 {
+		background-image: url('/images/픽셀5.png');
+		background-size: 145px 130px;
+		background-repeat: no-repeat;
+	}
+	
+	.st6 {
+		background-image: url('/images/픽셀6.png');
+		background-size: 145px 130px;
+		background-repeat: no-repeat;
+	}
+	.use1{
+		background-image: url('/images/qna.png');
+		background-size: 145px 130px;
+		background-repeat: no-repeat;	
+	}
+	.use2{
+		background-image: url('/images/전문가.png');
+		background-size: 145px 130px;
+		background-repeat: no-repeat;	
+	}
+	.use3{
+		background-image: url('/images/premium_review.png');
+		background-size: 145px 130px;
+		background-repeat: no-repeat;	
+	}
+	.st_area .buy {
+		position: relative;
+		min-width: 230px;
+		height: 126px;
+		margin-left: 150px;
+		background: #fff;
+		border-left: 1px solid #e6e6e6;
+		border-radius: 0 5px 5px 0;
+	}
+	.st_area .buy .btn_buy {
+	border: 1px solid #bb2649;
+	width: 100px;
+	font-size: 14px;
+	background-color: #bb2649;
+	color: white;
+	padding: 12px 20px;
+	border-radius: 5px;
+	position: absolute;
+	top: 42px;
+	left: 115px;
+	font-weight: bold;
+	}			
+}
+
+
+.st_area {
+	position: relative;
+	border: 1px solid #e0e0e0;
+	border-radius: 5px;
+	background-color: #fcfcfc;
+}
+
+.pixelfont {
+	font-size: 13px;
+	color: #666;
+	margin-bottom: 2px;
+	margin-left:-5px;
+	display:inline-block;
+	padding:0;
+}
+
+.st_area .buy .area .num strong {
+	font-size: 16px;
+	color: #bb2649;
+	margin:0;
+	padding:0;
+}
+
+.st_area .buy .area {
+	text-align: right;
+	width: 110px;
+	position: absolute;
+	top: 40px;
+}
+span.num{padding:0; margin:0;}
+
+.st_area .buy .btn_buy:hover {
+	color: #bb2649;
+	background-color: white;
+}
+.notice {
+	position:relative;
+	width: 95%;
+	height: 100%;
+	margin-top: 10px;
+	border-top: 1px solid #e5e5e5;
+	background: #f8f8f8;
+	margin-top: 10px;
+	border-top: 1px solid #e5e5e5;
+	background: #f8f8f8;
+	padding: 10px;
+}
+
+span.price {
+	font-size: 25px;
+}
+.buy>dl {
+	display: inline-block;
+	text-align: center;
+	margin-top: 30px;
+}

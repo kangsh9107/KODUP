@@ -1,0 +1,538 @@
+@charset "UTF-8";
+
+/***** 강수형 *****/
+/***** INSERT *****/
+@keyframes spinner {
+	to { transform: rotate(360deg); }
+}
+ 
+.spinner:before {
+	z-index : 100;
+	content: '';
+	box-sizing: border-box;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 70px;
+	height: 70px;
+	margin-top: -15px;
+	margin-left: -15px;
+	border-radius: 50%;
+	border: 3px solid #ccc;
+	border-top-color: #07d;
+	animation: spinner .6s linear infinite;
+}
+
+.board_header {
+	padding: 0;
+}
+
+.board_header span {
+	font-size: 1.5rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+	font-weight: 600;
+	color: #111827;
+}
+
+.board_menual {
+	padding: 0;
+	color: #555;
+	margin: 0 0 40px 0;
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.board_menual span {
+	color: #111827;
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.board_insert_form .input-group {
+	margin: 0 0 30px 0;
+}
+
+.board_insert_form .input-group-text {
+	width: 60px;
+	height: 40px;
+	color: white;
+	border: 0 !important;
+	background-color: #bb2649;
+	justify-content: center;
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.board_insert_form input, .qna_pixel_reward {
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.board_insert_form input:focus, .qna_pixel_reward:focus {
+	outline: 0 0 0 0 !important;
+	box-shadow: 0 0 0 0 !important;
+}
+
+.board_insert_form input::placeholder, .qna_pixel_reward::placeholder {
+	color: #999;
+}
+
+.board_insert_form select {
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.board_insert_form select:focus {
+	outline: 0 0 0 0 !important;
+	box-shadow: 0 0 0 0 !important;
+}
+
+.btnQnaInsertR, .btnQnaUpdateR, .btnList, .btnListView {
+	width: 60px;
+	height: 40px;
+	color: white;
+	background-color: #bb2649;
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+	font-weight: 600;
+}
+
+.btnQnaInsertR:hover, .btnQnaUpdateR:hover, .btnList:hover, .btnListView:hover {
+	background-color: #ff3363;
+	color: white;
+}
+
+/***** SUMMERNOTE *****/
+.note-editor {
+	width: 100% !important;
+}
+
+/***** HASHTAG *****/
+.tagify {
+	height: 40px !important;
+	border-radius: 0 5px 5px 0 !important;
+	font-size: 0.875rem !important;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji !important;
+}
+
+/***** UPDATE *****/
+.board_update_form .input-group {
+	margin: 0 0 30px 0;
+}
+
+.board_update_form .input-group-text {
+	width: 60px;
+	height: 40px;
+	color: white;
+	border: 0 !important;
+	background-color: #bb2649;
+	justify-content: center;
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.board_update_form input {
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.board_update_form input:focus {
+	outline: 0 0 0 0 !important;
+	box-shadow: 0 0 0 0 !important;
+}
+
+.board_update_form input::placeholder {
+	color: #999;
+}
+
+.board_update_form select {
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.board_update_form select:focus {
+	outline: 0 0 0 0 !important;
+	box-shadow: 0 0 0 0 !important;
+}
+
+/***** LIST *****/
+.board_search_form {
+	text-align: center;
+	margin: 0 0 -15px 0;
+	padding: 25px 0 0 0;
+}
+
+.board_search_form label {
+	border-radius: 5px;
+	padding: 3px 7px;
+	height: 36px;
+	line-height: 30px;
+	font-size: 1rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+	color: #111827;
+}
+
+.board_search_form label:hover {
+	cursor: pointer;
+	color: #bb2649;
+}
+
+.board_search_form input[type="radio"]:checked+label {
+	background-color: #e7edf0;
+}
+
+.board_search_form .btnQnaInsert {
+	width: 93px;
+	height: 36px;
+	padding: 3px 7px;
+	color: white;
+	background-color: #bb2649;
+	vertical-align: bottom;
+	line-height: 20px;
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.board_search_form select {
+	width: 93px;
+	height: 36px;
+	float: right;
+	line-height: 15px;
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+	color: #111827;
+}
+
+.board_search_form select:focus {
+	outline: 0 0 0 0 !important;
+	box-shadow: 0 0 0 0 !important;
+}
+
+.board_search_form .btnQnaInsert:hover {
+	background-color: #ff3363;
+}
+
+.board_search_form .btnRefresh {
+	color: #555;
+	font-size: 1.1rem;
+}
+
+.board_search_form .btnRefresh:hover {
+	color: #bb2649;
+}
+
+.board_search_form .btnRefreshHashtag {
+	color: #555;
+	font-size: 1.1rem;
+}
+
+.board_search_form .btnRefreshHashtag:hover {
+	color: #bb2649;
+}
+
+#btnPrevious {
+	color: #555;
+	font-size: 1.1rem;
+}
+
+#btnPrevious:hover {
+	color: #bb2649;
+}
+
+#btnPrevious i:hover {
+	color: #bb2649 !important;
+}
+
+#btnPreviousNone {
+	color: #aaa;
+	font-size: 1.1rem;
+	pointer-events: none;
+}
+
+#btnPreviousNone:hover {
+	color: #aaa !important;
+}
+
+#btnNext {
+	color: #555;
+	font-size: 1.1rem;
+}
+
+#btnNext:hover {
+	color: #bb2649;
+}
+
+#btnNext i:hover {
+	color: #bb2649 !important;
+}
+
+#btnNextNone {
+	color: #aaa;
+	font-size: 1.1rem;
+	pointer-events: none;
+}
+
+#btnNextNone:hover {
+	color: #aaa !important;
+}
+
+#board_btnZone .btn:hover {
+	color: #bb2649;
+}
+
+.board_list_hashtag {
+	text-decoration: none;
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+	color: #555;
+	margin-left: 3px;
+}
+
+.board_list_hashtag:hover {
+	cursor: pointer;
+	color: #bb2649 !important;
+}
+
+/***** LIST SEARCH *****/
+.inputSearchTemp {
+	display: none;
+}
+
+.inputSearch {
+	height: 28.39px;
+	width: 28.39px;
+	border-style: none;
+	letter-spacing: 2px;
+	outline: none;
+	border-radius: 25px;
+	transition: all .5s ease-in-out;
+	background-color: #555;
+	padding-left: 23px;
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.inputSearch::placeholder {
+	color: #555;
+	font-size: 0.8rem;
+	letter-spacing: 2px;
+	font-weight: 100;
+}
+
+.btnSearch {
+	width: 31.39px;
+	height: 28.39px;
+	border-style: none;
+	font-size: 20px;
+	font-weight: bold;
+	outline: none;
+	cursor: pointer;
+	border-radius: 50%;
+	position: absolute;
+	color: white;
+	background-color: transparent;
+	pointer-events: painted;
+	padding: 0;
+}
+
+.btnSearch:focus ~ .inputSearch {
+	width: 40%;
+	border-radius: 0px;
+	background-color: transparent;
+	border-bottom: 1px solid rgba(0,0,0,.5);
+	transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+.inputSearch:focus {
+	width: 40%;
+	border-radius: 0px;
+	background-color: transparent;
+	border-bottom: 1px solid rgba(0,0,0,.5);
+	transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+.btnSearch:hover ~ .inputSearch {
+	width: 40%;
+	border-radius: 0px;
+	background-color: transparent;
+	border-bottom: 1px solid rgba(0,0,0,.5);
+	transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+.btnSearch:hover {
+	color: white;
+}
+
+.inputSearch:hover {
+	width: 40%;
+	border-radius: 0px;
+	background-color: transparent;
+	border-bottom: 1px solid rgba(0,0,0,.5);
+	transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+#board_horsehead {
+	background-color: rgb(255, 51, 99, .1);
+	color: #bb2649;
+	border-radius: 5px;
+	padding: 3px 7px;
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+#qna_pixel_reward {
+	background-color: #f0f6fa;
+	color: rgb(0, 144, 249);
+	border-radius: 5px;
+	padding: 3px 7px;
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+#btnMove:hover {
+	color: #bb2649;
+}
+
+.btnMove {
+	color: #bb2649;
+}
+
+/***** BTNZONE *****/
+#board_btnZone {
+	padding: 10px 10px 10px 0;
+	text-align: center;
+	margin: 60px 0 0 0;
+	border-top: 1px solid #dee2e6;
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+	color: #111827;
+}
+
+#btnMoveInput {
+	vertical-align: middle;
+	text-decoration: none;
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+	color: #111827;
+}
+
+#btnMoveInput:hover {
+	color: #bb2649;
+}
+
+
+/***** 조성호 *****/
+/***** QNA VIEW *****/
+#qna_view {
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+	color: #111827;
+}
+
+#qna_view #qna_view_subject>.col{
+	min-height:45px;
+	font-weight: 600;
+	text-align:left;
+}
+
+#qna_view #qna_view_header{
+	display:inline-block; 
+	width:100%;
+	height:55px;
+	margin-top:10px;
+	
+}
+
+
+#qna_view #qna_view_header {
+	text-align:left;
+	font-size:13px;
+}
+#qna_view #qna_view_doc{
+	min-height: 400px;
+}
+#qna_view #qna_view_hashtag{
+	
+}
+#qna_view #qna_view_hashtag a{
+	text-decoration : none;
+	font-weight: 600;
+	font-size:20px;
+	color:#bb2649;
+}
+
+#qna_view #qna_view_hashtag a:hover{
+	background-color: #ff3363;
+	color: white;
+}
+
+#qna_view #qna_view_btnzone{
+	text-align:right !important;
+}
+.qna_view_originalBtn{
+	width: 50px;
+	height: 30px;
+	color: white;
+	background-color: #bb2649;
+	border : 0px;
+	border-radius:5px;
+}
+#qna_view .btnBoardtype{
+	width:30px;
+	height:30px;
+	
+}
+.qna_view_originalBtn:hover{
+	background-color: #ff3363;
+	color: white;
+}
+#qna_view #qna_view_repl_insert_profileimage_file{
+	width:50px;
+	height:50px;
+}
+#qna_view #qna_view_repl_btnInsert{
+	float:right;
+	
+}
+
+
+#qna_view .qna_view_repl_profile_profileimage_file{
+	width:20px;
+	height:20px;
+}
+#qna_view .qna_view_repl_doc{
+	min-height: 50px;
+	background: #FAFAFA;
+	
+}
+#qna_view .qna_view_repl_btnzone{
+	text-align:right;
+	
+}
+#qna_view .qna_view_repl_inner{
+	margin-left: 50px;
+}
+#qna_view .qna_view_repl_inner_profile_profileimage_file{
+	width:20px;
+	height:20px;
+}
+
+#qna_view .qna_view_repl_inner_btnzone{
+	text-align:right;
+}
+
+#qna_view #qna_view_repl_inner_insert_profileimage_file{
+	width:40px;
+	height:40px;
+}
+#qna_view #qna_view_repl_inner_btnInsert {
+	text-align:right;
+}
+#qna_view .note-frame{
+	border: 1px solid #DCDCDC;
+	border-radius:20px;
+	padding:5px;
+}
+/*채택댓글 클래스(qna_view_repl_selected${replList.repl_status})*/
+.reward_class1{
+	border : 10px solid #bb2649 !important;
+}
