@@ -524,6 +524,7 @@ window.onload = function(){
 			}
 	        /* job이 채팅완료일때 */
 	        if(data.job == "chatComplete"){
+	        	$('.chat_complete_check').attr('value',"complete");
         		document.querySelector('.btnBack').style.visibility="visible";
 	        	var mantoman_pixel_reward = $('.pixel_reward_hidden').val()
 	        	if(data.myId == $('.sessionId_hidden').val()){
@@ -532,6 +533,7 @@ window.onload = function(){
 		        			</div>`;
 					
 					talk.innerHTML += item;
+					talk.scrollTop=talk.scrollHeight;//스크롤바 하단으로 이동
 	        	}
 	        	
 	        	
@@ -721,7 +723,6 @@ $(document).on('click', '.btnFinalComplete', function() {
 	ws.send(temp);
 	$('.btnComplete').hide();
 	$(this).parent().remove();
-	$('.chat_complete_check').val() = "complete"
 });
 
 /* 최종 상담 취소버튼 클릭시 */

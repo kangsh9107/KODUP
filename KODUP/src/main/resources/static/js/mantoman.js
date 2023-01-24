@@ -42,7 +42,7 @@ $(document).on("click", ".btnCall", function() {
 	var html = `<div class="mentorCallDiv_1">
 					<div class='wrapper'>
 					<span>보상 픽셀</span>
-					<input type="text" class="rewardPixel">
+					<input type="text" class="rewardPixel" pattern="^[0-9]+$" oninput="this.reportValidity()">
 					<input type="button" class="btnNext" value="다 음">
 					</div>
 					<div class='wrapper'>
