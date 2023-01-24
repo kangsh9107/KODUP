@@ -8,9 +8,23 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta charset="UTF-8">
 <!-- FAVICON -->
-
-
-
+<link rel="apple-touch-icon" sizes="57x57" href="images/favicon/kodup_favicon.ico">
+<link rel="apple-touch-icon" sizes="60x60" href="images/favicon/kodup_favicon.ico">
+<link rel="apple-touch-icon" sizes="72x72" href="images/favicon/kodup_favicon.ico">
+<link rel="apple-touch-icon" sizes="76x76" href="images/favicon/kodup_favicon.ico">
+<link rel="apple-touch-icon" sizes="114x114" href="images/favicon/kodup_favicon.ico">
+<link rel="apple-touch-icon" sizes="120x120" href="images/favicon/kodup_favicon.ico">
+<link rel="apple-touch-icon" sizes="144x144" href="images/favicon/kodup_favicon.ico">
+<link rel="apple-touch-icon" sizes="152x152" href="images/favicon/kodup_favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon/kodup_favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192"  href="images/favicon/kodup_favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon/kodup_favicon.ico">
+<link rel="icon" type="image/png" sizes="96x96" href="images/favicon/kodup_favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon/kodup_favicon.ico">
+<link rel="manifest" href="images/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="images/favicon/kodup_favicon.ico">
+<meta name="theme-color" content="#ffffff">
 <!-- CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
