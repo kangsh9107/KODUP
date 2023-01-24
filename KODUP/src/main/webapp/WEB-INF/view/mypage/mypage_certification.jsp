@@ -32,7 +32,10 @@
 		
 		<span>* 멘토인증</span><br>
 		<div class="form-floating">
-		  <input type="file" class="form-control" id="floatingPassword" placeholder="Password">
+		<form class='mentor_certification' method='post' enctype='multipart/form-data'>
+		  <input type="file" class="form-control" name='attFile' id="floatingPassword" placeholder="Password"
+		  accept="image/*" >
+		</form>
 		  <label for="floatingPassword" class='label_name'>경력증명서를 첨부하세요</label>
 		</div>
 		  <button type="button" class='btnC btn_mentor_certification' style="background-color:#bb2649;">인증</button><br>

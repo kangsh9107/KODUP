@@ -1,6 +1,7 @@
 package com.kodup.mypage;
 
 import java.io.File;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,9 +23,9 @@ public class MypageService {
 	TransactionStatus status;
 	
 	MypageVo mpVo;
-	MypagePixelVo mPixelVo;
-	MypageQuitVo mqVo;
+	MypagePixelVo mppv;
 	Object savePoint;
+	PageVo pVo;
 	
 	
 	public MypageVo info(String id) {
@@ -55,8 +56,6 @@ public class MypageService {
 
 	
 	public boolean updateR(MypageVo mpVo, String[] delFile) {
-//		System.out.println("service.update");
-//		System.out.println(mpVo.getId());
 
 		boolean b = true;
 
@@ -90,17 +89,6 @@ public class MypageService {
 	}
 	
 	
-	public boolean update(MypageVo mpVo) {
-		boolean b = true;
-
-		status = manager.getTransaction(new DefaultTransactionDefinition());
-		savePoint = status.createSavepoint(); //롤백을위해
-		int cnt = mypageMapper.update(mpVo); // 내용 업데이트
-		if (cnt < 1) b = false;
-		return b;
-	}
-	
-	
 	public void fileDelete(String[] delFile) {
 		/*
 		for(int i=0; i<delFile.length; i++) {
@@ -115,6 +103,19 @@ public class MypageService {
 			}
 		}
 	}
+	
+	public boolean update(MypageVo mpVo) {
+		boolean b = true;
+
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint(); //롤백을위해
+		int cnt = mypageMapper.update(mpVo); // 내용 업데이트
+		if (cnt < 1) b = false;
+		return b;
+	}
+	
+	
+	
 	
 	
 	public boolean mypage_memberinfo_quit_real(MypageVo mpVo) {
@@ -139,13 +140,124 @@ public class MypageService {
 	}
 	
 	
-	//픽셀 조회
-	public MypagePixelVo pixel(String id) {
+	//픽셀, 픽셀이력 조회
+	public List<MypagePixelVo> pixel(PageVo pVo) {
+		int totSize = mypageMapper.totList(pVo);
+		pVo.setTotSize(totSize);
+		this.pVo = pVo;
+
+		//mppv = new MypagePixelVo();
+		List<MypagePixelVo> list = mypageMapper.pixel(pVo);
 		
-		mPixelVo = new MypagePixelVo();
-		mPixelVo = mypageMapper.pixel(id);
-		
-		return mPixelVo;
+		return list;
 	}
+
+
+	
+	public int pixel_have (String id) {
+
+		int pixel_have = mypageMapper.pixel_have(id);
+		
+		return pixel_have;
+	}
+
+	
+	
+	
+	public PageVo getpVo() {
+		return pVo;
+	}
+	
+	
+	public List<MypagePixelVo> pixel_get(PageVo pVo){
+		int totSize = mypageMapper.totList(pVo);
+		pVo.setTotSize(totSize);
+		this.pVo = pVo;
+		
+		mppv = new MypagePixelVo();
+		List<MypagePixelVo> list = mypageMapper.pixel_get(pVo);
+		
+		return list;
+	}
+	
+	
+	public List<MypagePixelVo> pixel_use(PageVo pVo){
+		int totSize = mypageMapper.totList(pVo);
+		pVo.setTotSize(totSize);
+		this.pVo = pVo;
+		
+		mppv = new MypagePixelVo();
+		List<MypagePixelVo> list = mypageMapper.pixel_use(pVo);
+		
+		return list;
+	}
+	
+	
+	
+	//픽셀 환전신청 버튼 클릭 시
+	public boolean mypage_pixel_exchange(MypagePixelVo mppv) {
+		boolean b = true;
+		int cnt = 0;
+		System.out.println(mppv.getId());
+		cnt = mypageMapper.mypage_pixel_exchange_result(mppv);
+		
+		if(cnt > 0) {
+			int cnt2 = 0;
+			cnt2 = mypageMapper.mypage_pixel_exchange_history(mppv);
+			
+			if(cnt2 > 0) {
+				int cnt3 = 0;
+				cnt3 = mypageMapper.mypage_pixel_exchange_status(mppv);
+				
+				if (cnt3 < 1) {
+					b = false;
+				}
+				
+			} else {
+				b = false;
+			}
+			
+		} else {
+			b = false;
+		}
+		
+		return b;
+	}
+	
+	
+//인증페이지
+	
+	public boolean mypage_mentor_certification(MypageCertiVo mpcv) {
+
+		boolean b = true;
+		int cnt=0;
+		
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint(); //롤백을위해
+		cnt = mypageMapper.mypage_mentor_certification_step1(mpcv); // 내용 업데이트
+		
+		if (cnt > 0) {
+			int cnt2 =0;
+			cnt2 = mypageMapper.mypage_mentor_certification_step2(mpcv);
+			
+			if (cnt2 < 1) {
+				b = false;
+			}
+			
+		} else { 
+			b = false;
+		}
+		
+			
+		if (b) {
+			manager.commit(status);
+			
+		} else {
+			status.rollbackToSavepoint(savePoint);
+		}
+
+		return b;
+	}
+	
 	
 }
