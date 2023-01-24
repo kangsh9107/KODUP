@@ -62,6 +62,11 @@ $('.mansearchBtnSearch').on('click',function(){
 	param = $(frm).serialize();
 	$('#center').load("/mansearch/mansearch", param);
 });
+$('.findStr').on('keyup',function(){
+	if(event.keyCode === 13) {
+    	$('.mansearchBtnSearch').click();
+    }
+});
 $('.mansearch_insert').on('click',function(){
 	param = $('.mansearch_search').serialize();
 	$.post('/mansearch/mansearch_insert',param, function(data){
@@ -71,6 +76,7 @@ $('.mansearch_insert').on('click',function(){
 
 $('.mansearch_update').on('click',function(){
 	frm = $('.mansearch_frm')[0];
+	frm.premium_review_sno.value=0;
 	param = $(frm).serialize();
 	$.post("/mansearch/mansearch_update",param,function(data){
 	   $('#center').html(data);		
@@ -140,7 +146,6 @@ premiumView = function(form){
 	var yn = confirm('정말 200픽셀을 사용하여 프리미엄 리뷰를 보시겠습니까?');
 	if(!yn) return;
 	var pixel = document.querySelector(".pixel");
-	pixel.value=0;
 	frm = $('.mansearch_frm')[0];
 	frm.writer_id.value = form.writer_id.value;
 	frm.premium_review_sno.value = form.premium_review_sno.value;

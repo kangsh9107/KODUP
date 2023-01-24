@@ -13,7 +13,7 @@
 
 
 <form class="mansearch_update_form" method='post'>
-<input type='hidden' name='sno' value='${mbVo.sno }'><input type='hidden' name='id' class='member_id' value='${mbVo.id }'/><input type='hidden' name='mansearch_sno' value="${mbVo.mansearch_sno }"/>			
+	<input type='hidden' name='sno' value='${mbVo.sno }'><input type='hidden' name='id' class='member_id' value='${mbVo.id }'/><input type='hidden' name='mansearch_sno' value="${mbVo.mansearch_sno }"/>			
 	<input type='hidden' name='id' class='member_id' value=''/>
 	<input type='hidden' name='nowPage' value='${pVo.nowPage }'>
 	<input type='hidden' name='findStr' value='${pVo.findStr }'>
@@ -90,7 +90,7 @@
 	    	</div> 
 	    	<div class="col-12 col-sm-6" style="margin-bottom:20px; padding-left:0;">
 	    		<label>필수스킬</label>
-		    		<br/><input type="text" name="required_skill" value='${mbVo.required_skill }' class="form-control mansearch_board_insert_form" place autocomplete="off">
+		   		<br/><input type="text" name="required_skill" value='${mbVo.required_skill }' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>       	    	     	    	
 	  	</div>
 	</div>

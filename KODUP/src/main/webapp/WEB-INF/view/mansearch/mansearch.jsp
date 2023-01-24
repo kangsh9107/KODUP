@@ -28,7 +28,7 @@
 	    <input type='hidden' name='mansearch_sno' value='${mbVo.mansearch_sno }'/>
 	    <input type='hidden' id='totPage' value='${pVo.totPage }'>
 		<input type='hidden' name='sort' value=''>	
-		<input type='text'   name='findStr' value='${pVo.findStr }' class='form-control' /> 
+		<input type='text'   name='findStr' value='${pVo.findStr }' class='form-control findStr' /> 
 		<input type='button' class='img-button mansearchBtnSearch' />
 	</div>
 	
@@ -38,31 +38,7 @@
 	</c:if>
 	 <c:if test="${sessionId ne null }"> 
 		<button type='button' class="mansearch_insert">구인등록</button>
-		</c:if>
-		<div class="dropdown" style="float:right;">
-	  		<button class="btn btn-light dropdown-toggle mansearch_dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border:1px solid #000">검색필터</button>
-	  		<div class="dropdown-menu dropdown_row" style="height:300px;">
-	  		<label style="margin-left:20px;">검색 조건은 최대 5개까지 선택 가능합니다.</label><br/>
-	  			<div class="dropdown-content dropdown_content" style="text-align: center;">
-					<select class="form-select form_select" name="mansearch_sort" id="mansearch_sort" size="5">
-	 						<option value="포지션">포지션</option>
-	 						<option value="지역">지역</option>
-	 						<option value="급여">급여</option>
-	 						<option value="경력">경력</option>
-	 						<option value="학력">학력</option>
-					</select>
-					<select class="form-select form_select" name="subdivision" id="subdivision" size="5">
-						
-					</select>
-
-				<input type="text" name="position" value="1">
-				<input type="text" value=""><br/><br/>
-				<button type="button" class="sort_save">저장</button>
-				<button type="button" class="sort_search">검색</button>
-				<button type="button" class="sort_reset">초기화</button>							 
-	  			</div>
-	  		</div>
-		</div>
+	</c:if>
 	</div>
 	<ul class="list-group list-group-flush" style="margin-bottom: 40px;">
 		<c:forEach var="vo" items="${list }">

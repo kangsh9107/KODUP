@@ -39,8 +39,7 @@
 		</div>
 	</div>
 </div>
-<form class="mansearch_input_form" method='post' enctype='multipart/form-data'>
-			
+<form class="mansearch_input_form" method='post'>	
 	<input type='hidden' name='id' class='member_id' value=''/>
 	<input type='hidden' name='nowPage' value='${pVo.nowPage }'>
 	<input type='hidden' name='findStr' value='${pVo.findStr }'>
@@ -117,16 +116,20 @@
 	    	</div> 
 	    	<div class="col-12 col-sm-6" style="margin-bottom:20px; padding-left:0;">
 	    		<label>필수스킬</label>
-		    		<br/><input type="text" name="required_skill" value='java,spring,mysql,고기굽기' class="form-control mansearch_board_insert_form" place autocomplete="off">
+		    	<br/><input type="text" name="required_skill" value='java,spring,mysql,고기굽기' class="form-control mansearch_board_insert_form" autocomplete="off">
 	    	</div>       	    	     	    	
 	  	</div>
 	</div>
+	<div class="container text-left" style="padding-left:0;">
 		<label class="info_label" style="padding-left:0;">글 작성</label>
-		<div class="input-group form-group" style="margin:0 0 30px 0;">
-			<textarea id='summernote' name='doc' class='doc' style=""></textarea>
+		<div class="row">
+			<div class="col">		
+				<div class="input-group form-group" style="margin:0 0 30px 0;">
+					<textarea id='summernote' name='doc' class='doc'></textarea>
+				</div>
+			</div>	
 		</div>
-		
-				
+	</div>			
 </form>	
 <div class="grid text-center" style="--bs-columns: 1;">
 	<div>
