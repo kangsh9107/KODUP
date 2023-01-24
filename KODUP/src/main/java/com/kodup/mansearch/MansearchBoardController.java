@@ -51,7 +51,6 @@ public class MansearchBoardController {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = req.getSession();
 		String buyer_id =(String)session.getAttribute("sessionId");
-		System.out.println("premium_review_sno : " + mbVo.getPremium_review_sno());
 		mbVo = service.review(mbVo.getPremium_review_sno());
 		mbVo.setId(buyer_id);
 		String review = mbVo.getReview();

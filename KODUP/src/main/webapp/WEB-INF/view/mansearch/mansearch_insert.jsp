@@ -41,7 +41,6 @@
 	<input type='hidden' name='id' class='member_id' value=''/>
 	<input type='hidden' name='nowPage' value='${pVo.nowPage }'>
 	<input type='hidden' name='findStr' value='${pVo.findStr }'>
-	
 	<div class="container text-left">
 		<div class="row work_info">
 			<label class="info_label">근무정보</label>
@@ -122,9 +121,7 @@
 		<label class="info_label" style="padding-left:0;">글 작성</label>
 		<div class="row">
 			<div class="col">		
-				<div class="input-group form-group" style="margin:0 0 30px 0;">
-					<textarea id='summernote' name='doc' class='doc'></textarea>
-				</div>
+				<textarea id='summernote' name='doc' class='doc'></textarea>
 			</div>	
 		</div>
 	</div>			

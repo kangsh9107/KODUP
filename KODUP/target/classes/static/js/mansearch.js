@@ -33,25 +33,20 @@ mansearch_Move = function(nowPage){
 	    $('#center').html(data);
 	})
 }
-enter = function(ev){
+$('.inputSearch').keyup(function(evnet) {
 	if(event.keyCode == 13) {
-		console.log('엔터');
-    	$('.mansearchBtnSearch').click();
-    }
-}
-/*$('.mansearch_findStr').on('keyup',function(event){
-	if(event.keyCode == 13) {
-		console.log('엔터');
-    	$('.mansearchBtnSearch').click();
-    }
-});*/
-
-$('.mansearchBtnSearch').on('click',function(){
-	console.log('검색');
+		$('.btnSearch').click();
+	}
+});
+$('.btnSearch').on('click',function(){
 	frm = $('.mansearch_search')[0];
 	frm.nowPage.value = 1;
 	param = $(frm).serialize();
 	$('#center').load("/mansearch/mansearch", param);
+});
+
+$('.btnRefresh').on('click', function(){
+	$('#center').load('/mansearch/mansearch');
 });
 
 $('.mansearch_insert').on('click',function(){
@@ -142,7 +137,8 @@ premiumView = function(form){
 	if(pixel.value >= 200){		
 		var img = form.querySelector('.blur');
 		img.style.display='none';
-		$('.doc_blind_wrap').remove(); 
+		var doc_blind_wrap = form.querySelector('.doc_blind_wrap');
+		doc_blind_wrap.remove();
 		$.ajax({
 		type :'post',
 		url : '/mansearch/premium_review',
