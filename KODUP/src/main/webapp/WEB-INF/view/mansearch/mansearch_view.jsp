@@ -39,7 +39,7 @@ li {
 		<input type='hidden' name='required_skill' value='${mbVo.required_skill }' />
 		<input type='hidden' name='doc' value='${mbVo.doc }' />
 		<input type='hidden' name='pixel' class="pixel" value='${mbVo.pixel }' />
-		<input type='hidden' name='premium_review_sno' value=''/>
+		<input type='hidden' name='premium_review_sno' id='premium_review_sno' value=''/>
 		<input type='hidden' name='writer_id' value=''/>
 		<input type='hidden' name='buyer_id' class='member_id' value='${sessionId }' />
 		<textarea name="review" style="display:none;"> </textarea>		

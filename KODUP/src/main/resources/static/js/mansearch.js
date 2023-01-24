@@ -114,6 +114,11 @@ $('.mansearch_board_insertR').on('click',function(){
 $('.mansearch_deleteR').on('click',function(){
 	let yn = confirm('글을 삭제하시겠습니까?');
 	if(!yn) return;
+/*	frm = $('.mansearch_frm')[0];
+	frm.premium_review_sno.value=0;
+	param = $(frm).serialize();*/	
+	frm = $('.mansearch_frm')[0];
+	frm.premium_review_sno.value=0;
 	param = $('.mansearch_frm').serialize();
 	$.post("/mansearch/mansearch_delete",param,function(data){
 		$('#center').html(data);
