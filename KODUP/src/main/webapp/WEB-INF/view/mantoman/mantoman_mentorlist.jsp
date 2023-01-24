@@ -14,14 +14,14 @@
 	<c:forEach var='mtmVo' items='${list }'>
 		<c:if test='${mtmVo.grade eq 3 }'>
 			<form class='chat_user separator' name='mentorForm'>
-				<img src="../images/${mtmVo.profile_img}" class="mentoProfile_img">
+				<img src="../upload/${mtmVo.profile_img}" class="mentoProfile_img">
 				<span class='profile_nickname'>${mtmVo.nickname }</span>
 				<span class='profile_phrases'>${mtmVo.introduce }</span>
 				<input type='hidden' value='${mtmVo.id }' name='mentorId'>
 				<input type='hidden' value='${mtmVo.nickname }' name='mentoNickname'>
 				<input type='hidden' value='${mtmVo.profile_img}' name='mentoProfile_img_hidden'>
 				<c:if test='${param.mentiId ne mtmVo.id}'>
-					<input type='button' class='btnCall' value='멘토 요청'>
+					<input type='button' class="btnCall ${mtmVo.chat_status eq '1' ? 'consulting' : '' }" value="${mtmVo.chat_status eq '1' ? '상담중' : '멘토 요청' }">
 				</c:if>
 			</form>
 		</c:if>
@@ -52,14 +52,14 @@
 	<c:forEach var='mtmVo' items='${list }'>
 		<c:if test='${mtmVo.grade eq 2 }'>
 			<form class='chat_user separator' name='mentorForm'>
-				<img src="../images/${mtmVo.profile_img}" class="mentoProfile_img">
+				<img src="../upload/${mtmVo.profile_img}" class="mentoProfile_img">
 				<span class='profile_nickname'>${mtmVo.nickname }</span>
 				<span class='profile_phrases'>${mtmVo.introduce }</span>
 				<input type='hidden' value='${mtmVo.id }' name='mentorId'>
 				<input type='hidden' value='${mtmVo.nickname }' name='mentoNickname'>
 				<input type='hidden' value='${mtmVo.profile_img}' name='mentoProfile_img_hidden'>
 				<c:if test='${param.mentiId ne mtmVo.id}'>
-					<input type='button' class='btnCall' value='멘토 요청'>
+					<input type='button' class="btnCall ${mtmVo.chat_status eq '1' ? 'consulting' : '' }" value="${mtmVo.chat_status eq '1' ? '상담중' : '멘토 요청' }">
 				</c:if>
 			</form>
 		</c:if>
@@ -90,14 +90,14 @@
 	<c:forEach var='mtmVo' items='${list }'>
 		<c:if test='${mtmVo.grade eq 1 }'>
 			<form class='chat_user separator' name='mentorForm'>
-				<img src="../images/${mtmVo.profile_img}" class="mentoProfile_img">
+				<img src="../upload/${mtmVo.profile_img}" class="mentoProfile_img">
 				<span class='profile_nickname'>${mtmVo.nickname }</span>
 				<span class='profile_phrases'>${mtmVo.introduce }</span>
 				<input type='hidden' value='${mtmVo.id }' name='mentorId'>
 				<input type='hidden' value='${mtmVo.nickname }' name='mentoNickname'>
 				<input type='hidden' value='${mtmVo.profile_img}' name='mentoProfile_img_hidden'>
 				<c:if test='${param.mentiId ne mtmVo.id}'>
-					<input type='button' class='btnCall' value='멘토 요청'>
+					<input type='button' class="btnCall ${mtmVo.chat_status eq '1' ? 'consulting' : '' }" value="${mtmVo.chat_status eq '1' ? '상담중' : '멘토 요청' }">
 				</c:if>
 			</form>
 		</c:if>
@@ -123,6 +123,7 @@
 	</form>
 </div>
 <script>
+$('.consulting').attr("disabled", true);
 
 $('.mentoProfile_img').on('click',function() {
 	var title  = "member/member_profile_chat.jsp";

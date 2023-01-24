@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../css/mantoman.css">
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 <script defer src="../js/mantoman.js"></script>
@@ -14,7 +15,7 @@
 	<div class='slide_out'>
 		<div class="mantoman_wrapper">
 			<div class="mantoman_main">
-				<img src="../images/${mtmVo.profile_img}" class="profileImg">
+				<img src="../upload/${mtmVo.profile_img}" class="profileImg">
 				<input type='hidden' class='mentiProfile_img_hidden' value='${mtmVo.profile_img}'>
 				<div class="setting_iconDiv">
 					<img src="../images/setting_icon.png" class="setting_icon">

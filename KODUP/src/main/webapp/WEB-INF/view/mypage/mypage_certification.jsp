@@ -27,9 +27,7 @@
 		  <label for="floatingPassword" class='label_name '>계좌번호를 입력하세요</label>
 		</div> 
 		  <button type='button' class='btnC btn_account_certification' style="background-color:#bb2649;">인증</button><br>
-		
 		<br>
-		
 		<span>* 멘토인증</span><br>
 		<div class="form-floating">
 		  <input type="file" class="form-control" id="floatingPassword" placeholder="Password">

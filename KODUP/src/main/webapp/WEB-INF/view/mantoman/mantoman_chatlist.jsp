@@ -12,7 +12,7 @@
 	<div class='chatlist'>
 		<c:forEach var='mtmVo' items='${list }'>
 				<form class='chat_user separator'>
-					<img src="../images/${mtmVo.profile_img}" class="mentoProfile_img">
+					<img src="../upload/${mtmVo.profile_img}" class="mentoProfile_img">
 					<input type='hidden' name='yourProfile_img_hidden' value='${mtmVo.profile_img}'>
 					<input type='hidden' name='roomCode_hidden' value='${mtmVo.roomCode }'>
 					<input type='hidden' name='yourNickname_hidden' value='${mtmVo.nickname }'>
@@ -80,7 +80,7 @@ $(document).on("click", ".clickSection", function() {
 	
 	var mentiProfile_img = $('.mentiProfile_img_hidden').val();
 	
-	var params = {
+ 	var params = {
     	roomCode : "emptyRoom",
     	yourNickname : mentoNickname,
     	myNickname : mentiNickname,
@@ -104,7 +104,6 @@ $(document).on("click", ".clickSection", function() {
         }
     })
 });
-
 </script>
 </body>
 </html>

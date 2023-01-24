@@ -155,6 +155,8 @@ public class LoginController {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = req.getSession();
 		service.chatDelete((String)session.getAttribute("sessionId"));
+		System.out.println("로그아웃 실행중" );
+		System.out.println("sessionId : " + (String)session.getAttribute("sessionId") );
 		String str = null;
 		session.setAttribute("sessionId", str);
 		mv.setViewName("/login/main");
@@ -314,17 +316,22 @@ public class LoginController {
 		boolean c = false;
 		
 		//chat테이블에 존재하는지 확인. true면 중복
+		String a = (String)req.getParameter("id");
+		System.out.println("id : " + a);
 		c = service.checkChatId(req.getParameter("id"));
 		//grade가 0인 회원(멘티)는 로그인시 chat테이블에 추가하지 않음
 		int grade = 0;
 		grade = service.checkGrade(req.getParameter("id"));
+		System.out.println("grade : " + grade);
 		
-		if( !c && grade != 0 ) {
-			b = service.chatInsert(req.getParameter("id"));
+		if( !c ) {
+			b = service.chatInsert(req.getParameter("id"), grade);
 			
 			if( !b ) {
 				mv.addObject("error", "error_chat");
 				mv.setViewName("/login/error");
+			} else {
+				mv.setViewName("/login/main");
 			}
 		} else {
 			mv.setViewName("/login/main");

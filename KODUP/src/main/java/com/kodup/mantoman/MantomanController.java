@@ -25,9 +25,8 @@ public class MantomanController {
 	MantomanService service;
 	
 	@RequestMapping("/mantoman/mantoman_index")
-	public ModelAndView mantomanIndex(MantomanVo mtmVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+	public ModelAndView mantomanIndex(MantomanVo mtmVo,HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
-		
 		String sessionId = req.getParameter("sessionId");
 		mtmVo = service.selectId(sessionId);
 		if(mtmVo!=null) {
@@ -42,7 +41,6 @@ public class MantomanController {
 				mtmVo.setGrade("멘티");
 			}
 		}
-		
 		mv.addObject("mtmVo", mtmVo);
 		mv.setViewName("mantoman/mantoman_index");
 		return mv;
@@ -64,16 +62,9 @@ public class MantomanController {
 	public ModelAndView chatlist(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		String id = (String)req.getParameter("id");
-		System.out.println("id : " + id);
 		List<MantomanVo> list = service.selectChatList(id);
-		System.out.println("list : " + list);
-		for (MantomanVo mtmVo : list) {
-            System.out.println(mtmVo.getId());
-            System.out.println(mtmVo.getLast_talk());
-            System.out.println(mtmVo.getLast_talktime());
-            System.out.println(mtmVo.getNickname());
-        }
 		mv.addObject("list", list);
+		System.out.println("list : " + list);
 		mv.setViewName("mantoman/mantoman_chatlist");
 		return mv;
 	}
@@ -81,13 +72,25 @@ public class MantomanController {
 	@RequestMapping("/profile/member_profile_chat")
 	public ModelAndView profileChat() {
 		ModelAndView mv = new ModelAndView();
-		
 		mv.setViewName("profile/member_profile_chat");
 		return mv;
 	}
 	
 	@RequestMapping("/mantoman/mantoman_chatview")
-	public ModelAndView chatView(MantomanVo mtmVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+	public void chatView(MantomanVo mtmVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		String roomCode = (String)req.getParameter("roomCode");
+		System.out.println("roomCode : " + roomCode);
+		int mantoman_pixel_reward = Integer.parseInt(req.getParameter("mantoman_pixel_reward"));
+		
+		mtmVo.setMantoman_pixel_reward(mantoman_pixel_reward);
+		mtmVo.setRoomCode(roomCode);
+		
+		boolean b = service.insertMantoman(mtmVo);
+	}
+	
+	@RequestMapping("/mantoman/mantoman_chatview2")
+	public ModelAndView chatView2(MantomanVo mtmVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		String roomCode = (String)req.getParameter("roomCode");
 		System.out.println("roomCode : " + roomCode);
@@ -98,15 +101,25 @@ public class MantomanController {
 		String myProfile_img = (String)req.getParameter("myProfile_img");
 		String yourProfile_img = (String)req.getParameter("yourProfile_img");
 		int mantoman_pixel_reward = Integer.parseInt(req.getParameter("mantoman_pixel_reward"));
-		
-		System.out.println("myProfile_img : " + myProfile_img);
+		String requiredTime = (String)req.getParameter("requiredTime");
+		String relation = (String)req.getParameter("relation");
 		
 		mtmVo.setId(sessionId);
 		mtmVo.setYour_id(yourId);
 		mtmVo.setMantoman_pixel_reward(mantoman_pixel_reward);
+		mtmVo.setRequiredTime(requiredTime);
 		mtmVo.setRoomCode(roomCode);
 		
-		boolean b = service.insertMantoman(mtmVo);
+		System.out.println(relation);
+		
+		if(relation.equals("menti")) {
+			System.out.println("여기 들어옴");
+			boolean a = service.chatPixelReward(mtmVo);
+			boolean b = service.chatPixelLog(mtmVo);
+		}
+		
+		boolean c = service.insertMantoman2(mtmVo);
+		boolean d = service.updateChatStatus(sessionId);
 		
 		mv.addObject("roomCode", roomCode);
 		mv.addObject("yourNickname", yourNickname);
@@ -115,9 +128,9 @@ public class MantomanController {
 		mv.addObject("yourId", yourId);
 		mv.addObject("myProfile_img", myProfile_img);
 		mv.addObject("yourProfile_img", yourProfile_img);
+		mv.addObject("relation", relation);
 		mv.addObject("mtmVo", mtmVo);
 		mv.setViewName("mantoman/mantoman_chatview");
-		System.out.println("실행확인");
 		return mv;
 	}
 	
@@ -125,7 +138,6 @@ public class MantomanController {
 	public ModelAndView beforeChatview(MantomanVo mtmVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		String roomCode = (String)req.getParameter("roomCode");
-		System.out.println("roomCode : " + roomCode);
 		String yourNickname = (String)req.getParameter("yourNickname");
 		String myNickname = (String)req.getParameter("myNickname");
 		String sessionId = (String)req.getParameter("sessionId");
@@ -134,8 +146,6 @@ public class MantomanController {
 		String yourProfile_img = (String)req.getParameter("yourProfile_img");
 		int mantoman_pixel_reward = Integer.parseInt(req.getParameter("mantoman_pixel_reward"));
 		String doc = (String)req.getParameter("doc");
-		
-		System.out.println("myProfile_img : " + myProfile_img);
 		
 		mtmVo.setId(sessionId);
 		mtmVo.setYour_id(yourId);
@@ -152,8 +162,24 @@ public class MantomanController {
 		mv.addObject("doc", doc);
 		mv.addObject("mtmVo", mtmVo);
 		mv.setViewName("mantoman/mantoman_chatview");
-		System.out.println("실행확인");
 		return mv;
 	}
-
+	
+	@RequestMapping("/mantoman/chatComplete")
+	public void chatComplete(MantomanVo mtmVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		String mentoId = (String)req.getParameter("mentoId");
+		String mentiId = (String)req.getParameter("mentiId");
+		int mantoman_pixel_reward = Integer.parseInt(req.getParameter("mantoman_pixel_reward"));
+		System.out.println("mantoman_pixel_reward 확인중 : " + mantoman_pixel_reward);
+		mtmVo.setId(mentoId);
+		mtmVo.setMantoman_pixel_reward(mantoman_pixel_reward);
+		
+		boolean a = service.chatPixelLog2(mtmVo);
+		boolean b = service.chatPixelReward2(mtmVo);
+		boolean c = service.updateChatStatus2(mentoId);
+		boolean d = service.updateChatStatus2(mentiId);
+		
+		mv.addObject("mtmVo", mtmVo);
+	}
 }

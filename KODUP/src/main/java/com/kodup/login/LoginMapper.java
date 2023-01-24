@@ -16,7 +16,7 @@ public interface LoginMapper {
 	public int checkEmail(String email);
 	public String getId(String email);
 	
-	public int chatInsert(String mento);
+	public int chatInsert(MemberVo mVo);
 	public int chatDelete(String id);
 	public int updatePwd(MemberVo mVo);
 	
