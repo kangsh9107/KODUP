@@ -9,24 +9,53 @@
 <meta charset="UTF-8">
 <!-- FAVICON -->
 
+
+
 <!-- CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<!-- <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="css/summernote/summernote-lite.css">
 <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css">
 <link href="css/index.css" rel="stylesheet">
 <!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script> -->
+<script src="js/summernote/summernote-lite.js"></script>
+<script src="js/summernote/lang/summernote-ko-KR.js"></script>
 <script src="https://unpkg.com/@yaireo/tagify"></script>
 <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script defer src="js/index.js"></script>
 <title>코드 레벨업 - 코덥!</title>
 </head>
 <body>
+	<!-- HIDDEN -->
+	<form name="index_cb_form" class="index_cb_form" method="post">
+		<input type="hidden" name="sno" value="1">
+		<input type="hidden" name="sort" value="1">
+		<input type="hidden" name="boardtype" value="">
+		<input type="hidden" name="horsehead" value="">
+		<input type="hidden" name="hashtag" value="">
+		<input type="hidden" name="qna_pixel_reward" value="1">
+		<input type="hidden" name="nowPage" value="1">
+		<input type="hidden" name="findStr" value="">
+		<input type="hidden" name="id" value="${sessionScope.sessionId }">
+		<!-- SORT -->
+		<select id="sort" style="display: none;" name="sort" onchange="changeSort()" class="form-select" aria-label="Default select example">
+			<option value="1" ${cbpVo.sort == 1 ? 'selected' : '' }>최신순</option>
+			<option value="2" ${cbpVo.sort == 2 ? 'selected' : '' }>추천순</option>
+			<option value="3" ${cbpVo.sort == 3 ? 'selected' : '' }>댓글순</option>
+			<option value="4" ${cbpVo.sort == 4 ? 'selected' : '' }>조회순</option>
+		</select>
+	</form>
+	<input type="hidden" class="sessionId_hidden" value="${sessionScope.sessionId }">
+	<input type="hidden" class="grade_hidden" value="${sessionScope.grade }">
+	<input type="hidden" class="profile_img_hidden" value="${sessionScope.profile_img }">
+	<input type="hidden" class="pixel_hidden" value="${sessionScope.pixel }">
 	<!-- NAV -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0 index_nav">
 		<div class="container index_hamburg_wrap" style="padding-right: 0;">
@@ -44,22 +73,25 @@
 		        	<div class="col-md-8 index_nav_items">
 				   		<ul class="navbar-nav me-auto mb-2 mb-lg-0 index_nav_ul" style="padding-left: 10px">
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click btnQna" aria-current="page" href="#">Q&A</a>
+				       			<a href="#" class="nav-link active non-click btnQna" aria-current="page" style="cursor: pointer;">Q&A</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click btnInfoshare" aria-current="page" href="#">정보공유</a>
+				       			<a href="#" class="nav-link active non-click btnInfoshare" aria-current="page" style="cursor: pointer;">정보공유</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click btnFreetalking" aria-current="page" href="#">커뮤니티</a>
+				       			<a href="#" class="nav-link active non-click btnFreetalking" aria-current="page" style="cursor: pointer;">커뮤니티</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click mansearch" aria-current="page" href="#">구인</a>
+				       			<a href="#" class="nav-link active non-click mansearch" aria-current="page" style="cursor: pointer;">구인</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click btnJobsearch" aria-current="page" href="#">구직</a>
+				       			<a href="#" class="nav-link active non-click btnJobsearch" aria-current="page" style="cursor: pointer;">구직</a>
 				       		</li>
 				       		<li class="nav-item">
-				       			<a class="nav-link active non-click btnNotification" aria-current="page" href="#">공지사항</a>
+				       			<a href="#" class="nav-link active non-click btnNotification" aria-current="page" style="cursor: pointer;">공지사항</a>
+				       		</li>
+				       		<li class="nav-item">
+				       			<a class="nav-link active" aria-current="page" href="/intro">INTRO</a>
 				       		</li>
 				       	</ul>
 			       	</div>
@@ -69,7 +101,7 @@
 				            	<c:when test="${sessionId ne null }">
 					                <div class="nav-item dropdown index_dropdown_wrap">
 					                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="padding: 4px;">
-					                    	<img src="images/index_default.png" class="d-inline-block align-text-top" style="width: 30px; height: 30px; border-radius: 50%;">
+					                    	<img src="upload/${sessionScope.profile_img }" class="d-inline-block align-text-top" style="width: 30px; height: 30px; border-radius: 50%;">
 					                    </a>
 					                    <div class="dropdown-menu fade-down m-0" id="index_dropdown">
 											<a class="dropdown-item pixelbuy" href="#">포인트충전</a>
@@ -107,32 +139,13 @@
 					<div class="container">
 						<div class="row">
 							<!-- HOT TAG -->
-							<div class="col-md-12" id="index_hashtag">
-								<span style="font-weight: 600;">#인기 태그</span>
-								<hr/>
-								<c:forEach var="list" begin="0" end="4">
-									<a href="#" class="text-decoration-none" style="float: left;"><span>#JAVA</span></a>
-									<span style="float: right; color: #bb2649;">53</span>
-									<br/><br/>
-								</c:forEach>
-							</div>
+							<div class="col-md-12" id="index_hashtag"></div>
 							<!-- HONOR -->
 							<div class="col-md-12" id="index_honor" style="padding: 0;">
 								<img src="images/index_ad4.png" style="width: 100%; float: left;">
 							</div>
 							<!-- TOP WRITER -->
-							<div class="col-md-12" id="index_top_writer">
-								<br/><br/>
-								<span style="font-weight: 600;">#Top Writer</span>
-								<hr/>
-								<c:forEach var="list" begin="0" end="4">
-									<a href="#" class="text-decoration-none" style="float: left;">
-										<img id="index_top_writer_profile" src="images/index_default.png">
-										<span id="index_top_writer_nickname">옥다방고양이</span>
-									</a>
-									<br/><br/>
-								</c:forEach>
-							</div>
+							<div class="col-md-12" id="index_top_writer"></div>
 						</div>
 					</div>
 				</aside>
@@ -218,9 +231,8 @@
 					<ul class="list-inline mt-4">
 						<li class="list-inline-item"><a href="https://twitter.com/?lang=ko" target="_blank" title="twitter"><i class="xi-twitter xi-2x"></i></a></li>
 						<li class="list-inline-item"><a href="https://ko-kr.facebook.com/facebook/" target="_blank" title="facebook"><i class="xi-facebook xi-2x"></i></a></li>
-						<li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank" title="instagram"><i class="xi-instagram xi-2x"></i></a></li>
-						<li class="list-inline-item"><a href="https://www.pinterest.co.kr/" target="_blank" title="pinterest"><i class="xi-pinterest xi-2x"></i></a></li>
 						<li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank" title="youtube"><i class="xi-youtube-play xi-2x"></i></a></li>
+						<li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank" title="instagram"><i class="xi-instagram xi-2x"></i></a></li>
 					</ul>
 				</div>
 			</div>
@@ -231,5 +243,8 @@
 			</div>
 		</div>
 	</footer>
+	<div id='sockectController'>
+
+	</div>
 </body>
 </html>

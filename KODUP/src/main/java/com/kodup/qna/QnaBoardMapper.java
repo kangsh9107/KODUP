@@ -17,6 +17,7 @@ public interface QnaBoardMapper {
 	public int qnaDeleteR(QnaBoardVo qbVo);
 	public int qnaReplDeleteR(int repl_sno);
 	public int replChaetaek(QnaBoardReplVo qbrVo);
+	public int replChaetaek2(QnaBoardReplVo qbrVo);
 	public int giveRewardPixel(QnaBoardVo qbVo);
 	public int pixel_history(QnaBoardVo qbVo);
 	public int insertRepl(QnaBoardReplVo qbrVo);

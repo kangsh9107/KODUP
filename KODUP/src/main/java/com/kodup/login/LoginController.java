@@ -186,6 +186,8 @@ public class LoginController {
 			//pixel 가져옴
 			int pixel = service.getPixel(mVo.getId());
 			session.setAttribute("pixel", pixel);
+			//방문자수 추가
+			service.addVisit(mVo.getId());
 			mv.setViewName("/login/main");
 		}
 		
