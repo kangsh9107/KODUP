@@ -265,7 +265,7 @@ $('.btnQnaInsert').on('click', function() {
 $('.btnQnaInsertR').on('click', function() {
 	var pixel = document.querySelector('.pixel_hidden').value;
 	var reward = document.querySelector('.qna_pixel_reward').value;
-	if(pixel < reward) {
+	if(pixel - reward < 0) {
 		alert('픽셀이 부족합니다.');
 		var title  = 'popup';
 		var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=850, height=600, top=100, left=400';

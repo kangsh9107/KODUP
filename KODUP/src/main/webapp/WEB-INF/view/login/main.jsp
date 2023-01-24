@@ -237,7 +237,7 @@
 							</div>
 							<br/>
 							<a href="#" class="text-decoration-none">
-								<span id="index_subject">
+								<span id="index_subject" onclick="quickNotification('${notification5.sno}', '${notification5.boardtype }')">
 									<c:choose>
 										<c:when test="${fn:length(notification5.subject) gt 26}">
 											<c:out value="${fn:substring(notification5.subject, 0, 25)}..."></c:out>
