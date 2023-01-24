@@ -152,7 +152,6 @@ public class LoginService {
 		int cnt = 0;
 		cnt = loginMapper.checkChatId(id);
 		if(cnt > 0) c = true;
-		
 		return c;
 	}
 	

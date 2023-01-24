@@ -20,9 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kodup.mansearch.MansearchBoardVo;
-import com.kodup.mansearch.MansearchService;
-
 @RestController
 public class LoginController {
 	

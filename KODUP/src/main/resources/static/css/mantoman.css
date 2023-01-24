@@ -228,7 +228,7 @@ body{
 	position:relative;
 }
 
-.mentorCallDiv{
+.mentorCallDiv_1{
 	z-index: 20;
 	position:absolute;
 	top:0;
@@ -241,12 +241,12 @@ body{
 	animation: slideIn 0.7s ease forwards;
 }
 
-.mentorCallDiv>.wrapper{
+.mentorCallDiv_1>.wrapper{
 	margin:10px;
 	white-space: nowrap;
 }
 
-.mentorCallDiv>.wrapper>input[type=text]{
+.mentorCallDiv_1>.wrapper>input[type=text]{
 	width:45%;
 	margin:0 6px;
 	height:20px;
@@ -257,7 +257,23 @@ body{
 	background-color:#fdfdfd;
 }
 
-.mentorCallDiv>.wrapper>input[type=button]{
+
+
+/* */
+.mentorCallDiv_2{
+	z-index: 25;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:80px;
+	padding:0;
+	background-color:white;
+	box-shadow: rgba(1, 0, 0, 0.1) 0px 10px 5px -5px;
+	animation: slideIn 0.7s ease forwards;
+}
+
+.mentorCallDiv_2>.wrapper>input[type=button]{
 	border-radius:3px;
 	border:none;
 	border:0.3px solid #aaa;
@@ -267,17 +283,18 @@ body{
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 }
 
-.mentorCallDiv>.wrapper>input[type=button]:hover{
+.mentorCallDiv_2>.wrapper>input[type=button]:hover{
 	cursor:pointer;
 }
 
-.mentorCallDiv>.wrapper .btnAccess{
+.mentorCallDiv_2>.wrapper .btnAccess{
 	background-color: #bd4864;
 	color:white;
 }
 
+/* */
 .cancelAlertDiv{
-	z-index: 20;
+	z-index: 50;
 	position:absolute;
 	top:0;
 	left:0;

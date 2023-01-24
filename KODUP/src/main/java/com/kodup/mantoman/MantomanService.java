@@ -43,7 +43,43 @@ public class MantomanService {
 		boolean b = false;
 		
 		int cnt = 0;
+		System.out.println("roomCode 확인 : " + mtmVo.getRoomCode());
 		cnt =mapper.insertMantoman(mtmVo);
+		
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		if(cnt > 0) {
+			manager.commit(status);
+			b = true;
+		} else {
+			status.rollbackToSavepoint(savePoint);
+		}
+		return b;
+	}
+	
+	public boolean insertMantoman2(MantomanVo mtmVo){
+		boolean b = false;
+		
+		int cnt = 0;
+		System.out.println("roomCode 확인 : " + mtmVo.getRoomCode());
+		cnt =mapper.insertMantoman2(mtmVo);
+		
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		if(cnt > 0) {
+			manager.commit(status);
+			b = true;
+		} else {
+			status.rollbackToSavepoint(savePoint);
+		}
+		return b;
+	}
+	
+	public boolean updateChatStatus(String sessionId) {
+		boolean b = false;
+		
+		int cnt = 0;
+		cnt = mapper.updateChatStatus(sessionId);
 		
 		status = manager.getTransaction(new DefaultTransactionDefinition());
 		savePoint = status.createSavepoint();
@@ -75,4 +111,105 @@ public class MantomanService {
 		return b;
 	}
 	
+	public void updateFile(MantomanAttVo mtmAttVo){
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		int cnt = mapper.updateFile(mtmAttVo);
+		
+		if(cnt>0) {
+			manager.commit(status);
+		}else {
+			status.rollbackToSavepoint(savePoint);
+		}
+	}
+	
+	public boolean chatPixelReward(MantomanVo mtmVo){
+		boolean b = false;
+		System.out.println("여기도 들어옴");
+		int cnt = 0;
+		cnt = mapper.chatPixelReward(mtmVo);
+		
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		if(cnt > 0) {
+			manager.commit(status);
+			b = true;
+		} else {
+			status.rollbackToSavepoint(savePoint);
+		}
+		
+		return b;
+	}
+	
+	public boolean chatPixelLog(MantomanVo mtmVo){
+		boolean b = false;
+		
+		int cnt = 0;
+		System.out.println("roomCode 확인 : " + mtmVo.getRoomCode());
+		cnt =mapper.chatPixelLog(mtmVo);
+		
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		if(cnt > 0) {
+			manager.commit(status);
+			b = true;
+		} else {
+			status.rollbackToSavepoint(savePoint);
+		}
+		return b;
+	}
+	
+	public boolean chatPixelReward2(MantomanVo mtmVo){
+		boolean b = false;
+		System.out.println("여기도 들어옴");
+		int cnt = 0;
+		cnt = mapper.chatPixelReward2(mtmVo);
+		
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		if(cnt > 0) {
+			manager.commit(status);
+			b = true;
+		} else {
+			status.rollbackToSavepoint(savePoint);
+		}
+		
+		return b;
+	}
+	
+	public boolean chatPixelLog2(MantomanVo mtmVo){
+		boolean b = false;
+		
+		int cnt = 0;
+		System.out.println("roomCode 확인 : " + mtmVo.getRoomCode());
+		cnt =mapper.chatPixelLog2(mtmVo);
+		
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		if(cnt > 0) {
+			manager.commit(status);
+			b = true;
+		} else {
+			status.rollbackToSavepoint(savePoint);
+		}
+		return b;
+	}
+
+	public boolean updateChatStatus2(String id) {
+boolean b = false;
+		
+		int cnt = 0;
+		cnt = mapper.updateChatStatus2(id);
+		
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		if(cnt > 0) {
+			manager.commit(status);
+			b = true;
+		} else {
+			status.rollbackToSavepoint(savePoint);
+		}
+		
+		return b;
+	}
 }
