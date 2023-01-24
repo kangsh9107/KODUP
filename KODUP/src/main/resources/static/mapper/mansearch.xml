@@ -11,7 +11,8 @@
 		SELECT DATEDIFF(deadline, DATE_FORMAT(now(),'%Y-%m-%d')) as deadlinecount, mb.mansearch_sno, mb.pay, mb.corp_location, mb.position, mb.required_career, mb.job_type, mb.required_skill, mb.deadline, 
 			   mb.main_task, mb.sub_task, mb.work_start,mb.education_level, mb.work_type, mb.pay_date,
        		   b.subject,b.id,b.sno,
-               c.corp_logo, c.corp_name
+               c.corp_logo, c.corp_name,
+               m.profile_img
         FROM mansearch_board mb LEFT JOIN board b 		ON mb.sno = b.sno
                                 LEFT JOIN member m      ON b.id = m.id
                         		LEFT JOIN corperation c ON m.id = c.id

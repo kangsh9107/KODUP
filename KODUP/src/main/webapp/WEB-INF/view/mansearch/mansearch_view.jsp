@@ -226,7 +226,7 @@ li {
 			<c:if test="${sessionId ne null }">
 				<div class="col-1" style="padding: 0;">
 					<span> 
-						<img id="premium_review_writer_icon" src="images/index_default.png" style="width: 42px; height: 42px; margin-top: 19px;">
+						<img id="premium_review_writer_icon" src="upload/${mbVo.profile_img }" style="width: 42px; height: 42px; margin-top: 19px;">
 					</span>
 				</div>
 				<div class="col-11">

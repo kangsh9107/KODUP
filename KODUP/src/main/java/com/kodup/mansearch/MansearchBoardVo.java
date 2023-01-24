@@ -19,6 +19,7 @@ public class MansearchBoardVo {
 	String required_skill;
 	String pay_date;
 	// 다중 JOIN을 위한 필드	
+	String profile_img;
 	String boardtype;
 	String subject;
 	String doc;
@@ -37,10 +38,13 @@ public class MansearchBoardVo {
 	int pr_mansearch_sno;
 	// 마감일을 구하기 위한 필드
 	String deadlinecount;
-
 	
-	
-	
+	public String getProfile_img() {
+		return profile_img;
+	}
+	public void setProfile_img(String profile_img) {
+		this.profile_img = profile_img;
+	}
 	public int getPixel() {
 		return pixel;
 	}
