@@ -97,16 +97,24 @@
 			</li>
 			<c:forEach items="${listHashtag }" var="listHashtag">
 				<li class="list-group-item" style="padding: 10px 0 10px 0;">
-					<a href="#" class="text-decoration-none">
-						<img id="index_profile" src="images/index_default.png">
+					<a href="javascript:void(0);" onclick="runTopWriterProfile('${listHashtag.nickname }')" class="text-decoration-none">
+						<img id="index_profile" src="upload/${listHashtag.profile_img }">
 						<span id="index_nickname">${listHashtag.nickname }</span>
 					</a>
 					<span id="index_time">· ${listHashtag.nal }</span>
 					<div style="float: right;">
-						<i class="fas fa-circle-check" style="color: #555; font-size: 0.9rem;"></i>
+						<!-- VIEW CHECK -->
+						<c:choose>
+							<c:when test="${listHashtag.viewStatus == 0 }">
+								<i class="fas fa-circle-check" style="color: #555; font-size: 0.9rem;"></i>
+							</c:when>
+							<c:otherwise>
+								<i class="fas fa-circle-check" style="color: #bb2649; font-size: 0.9rem;"></i>
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<br/>
-					<a href="#" onclick="qna_view()" class="text-decoration-none">
+					<a href="#" onclick="hashtag_view(${listHashtag.sno })" class="text-decoration-none">
 						<span id="index_subject">${listHashtag.subject }</span>
 					</a>
 					<br/>
@@ -115,6 +123,15 @@
 						<c:choose>
 							<c:when test="${listHashtag.boardtype eq 'qna' }">
 								<label id="board_horsehead" style="background-color: #f0f6fa; color: rgb(0, 144, 249);">Q&A</label>
+								<!-- QNA PIXEL REWARD -->
+								<c:choose>
+									<c:when test="${listHashtag.qna_status == 0 }">
+										<label id="qna_pixel_reward" style="border: 1px solid rgba(0, 144, 249, .5)">${listHashtag.qna_pixel_reward }</label>
+									</c:when>
+									<c:otherwise>
+										<label id="qna_pixel_reward" style="text-decoration: line-through;">${listHashtag.qna_pixel_reward }</label>
+									</c:otherwise>
+								</c:choose>
 							</c:when>
 							<c:when test="${listHashtag.boardtype eq 'infoshare' }">
 								<label id="board_horsehead" style="background-color: #f0f6fa; color: rgb(0, 144, 249);">정보공유</label>

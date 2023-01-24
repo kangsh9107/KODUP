@@ -9,6 +9,27 @@
 }
 
 /***** INSERT *****/
+@keyframes spinner {
+	to { transform: rotate(360deg); }
+}
+ 
+.spinner:before {
+	z-index : 100;
+	content: '';
+	box-sizing: border-box;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 70px;
+	height: 70px;
+	margin-top: -15px;
+	margin-left: -15px;
+	border-radius: 50%;
+	border: 3px solid #ccc;
+	border-top-color: #07d;
+	animation: spinner .6s linear infinite;
+}
+
 .board_header {
 	padding: 0;
 }
@@ -216,6 +237,20 @@
 	color: #bb2649;
 }
 
+#btnPrevious i:hover {
+	color: #bb2649 !important;
+}
+
+#btnPreviousNone {
+	color: #aaa;
+	font-size: 1.1rem;
+	pointer-events: none;
+}
+
+#btnPreviousNone:hover {
+	color: #aaa !important;
+}
+
 #btnNext {
 	color: #555;
 	font-size: 1.1rem;
@@ -223,6 +258,20 @@
 
 #btnNext:hover {
 	color: #bb2649;
+}
+
+#btnNext i:hover {
+	color: #bb2649 !important;
+}
+
+#btnNextNone {
+	color: #aaa;
+	font-size: 1.1rem;
+	pointer-events: none;
+}
+
+#btnNextNone:hover {
+	color: #aaa !important;
 }
 
 #board_btnZone .btn:hover {
@@ -331,6 +380,10 @@
 }
 
 #btnMove:hover {
+	color: #bb2649;
+}
+
+.btnMove {
 	color: #bb2649;
 }
 

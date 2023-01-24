@@ -24,8 +24,8 @@
 				<ul class="list-group list-group-flush" style="margin-bottom: 40px;">
 					<c:forEach items="${qna5 }" var="qna5">
 						<li class="list-group-item" style="padding: 10px 0 10px 0;">
-							<a href="#" class="text-decoration-none">
-								<img id="index_profile" src="images/index_default.png">
+							<a href="javascript:void(0);" onclick="runTopWriterProfile('${qna5.nickname }')" class="text-decoration-none">
+								<img id="index_profile" src="upload/${qna5.profile_img }">
 								<span id="index_nickname">${qna5.nickname }</span>
 							</a>
 							<span id="index_time">· ${qna5.nal }</span>
@@ -39,8 +39,8 @@
 							<a href="#" class="text-decoration-none">
 								<span id="index_subject" onclick="quick('${qna5.sno}', '${qna5.boardtype }')">
 									<c:choose>
-										<c:when test="${fn:length(qna5.subject) gt 16}">
-											<c:out value="${fn:substring(qna5.subject, 0, 15)}..."></c:out>
+										<c:when test="${fn:length(qna5.subject) gt 26}">
+											<c:out value="${fn:substring(qna5.subject, 0, 25)}..."></c:out>
 										</c:when>
 										<c:otherwise>
 											<c:out value="${qna5.subject}"></c:out>
@@ -64,8 +64,8 @@
 				<ul class="list-group list-group-flush" style="margin-bottom: 40px;">
 					<c:forEach items="${freetalking5 }" var="freetalking5">
 						<li class="list-group-item" style="padding: 10px 0 10px 0;">
-							<a href="#" class="text-decoration-none">
-								<img id="index_profile" src="images/index_default.png">
+							<a href="javascript:void(0);" onclick="runTopWriterProfile('${freetalking5.nickname }')" class="text-decoration-none">
+								<img id="index_profile" src="upload/${freetalking5.profile_img }">
 								<span id="index_nickname">${freetalking5.nickname }</span>
 							</a>
 							<span id="index_time">· ${freetalking5.nal }</span>
@@ -77,10 +77,10 @@
 							</div>
 							<br/>
 							<a href="#" class="text-decoration-none">
-								<span id="index_subject">
+								<span id="index_subject" onclick="quickFreetalking('${freetalking5.sno}', '${freetalking5.boardtype }')">
 									<c:choose>
-										<c:when test="${fn:length(freetalking5.subject) gt 16}">
-											<c:out value="${fn:substring(freetalking5.subject, 0, 15)}..."></c:out>
+										<c:when test="${fn:length(freetalking5.subject) gt 26}">
+											<c:out value="${fn:substring(freetalking5.subject, 0, 25)}..."></c:out>
 										</c:when>
 										<c:otherwise>
 											<c:out value="${freetalking5.subject}"></c:out>
@@ -104,8 +104,8 @@
 				<ul class="list-group list-group-flush" style="margin-bottom: 40px;">
 					<c:forEach items="${weeklyBest5 }" var="weeklyBest5">
 						<li class="list-group-item" style="padding: 10px 0 10px 0;">
-							<a href="#" class="text-decoration-none">
-								<img id="index_profile" src="images/index_default.png">
+							<a href="javascript:void(0);" onclick="runTopWriterProfile('${weeklyBest5.nickname }')" class="text-decoration-none">
+								<img id="index_profile" src="upload/${weeklyBest5.profile_img }">
 								<span id="index_nickname">${weeklyBest5.nickname }</span>
 							</a>
 							<span id="index_time">· ${weeklyBest5.nal }</span>
@@ -119,8 +119,8 @@
 							<a href="#" class="text-decoration-none">
 								<span id="index_subject">
 									<c:choose>
-										<c:when test="${fn:length(weeklyBest5.subject) gt 16}">
-											<c:out value="${fn:substring(weeklyBest5.subject, 0, 15)}..."></c:out>
+										<c:when test="${fn:length(weeklyBest5.subject) gt 26}">
+											<c:out value="${fn:substring(weeklyBest5.subject, 0, 25)}..."></c:out>
 										</c:when>
 										<c:otherwise>
 											<c:out value="${weeklyBest5.subject}"></c:out>
@@ -144,8 +144,8 @@
 				<ul class="list-group list-group-flush" style="margin-bottom: 40px;">
 					<c:forEach items="${editor5 }" var="editor5">
 						<li class="list-group-item" style="padding: 10px 0 10px 0;">
-							<a href="#" class="text-decoration-none">
-								<img id="index_profile" src="images/index_default.png">
+							<a href="javascript:void(0);" onclick="runTopWriterProfile('${editor5.nickname }')" class="text-decoration-none">
+								<img id="index_profile" src="upload/${editor5.profile_img }">
 								<span id="index_nickname">${editor5.nickname }</span>
 							</a>
 							<span id="index_time">· ${editor5.nal }</span>
@@ -159,8 +159,8 @@
 							<a href="#" class="text-decoration-none">
 								<span id="index_subject">
 									<c:choose>
-										<c:when test="${fn:length(editor5.subject) gt 16}">
-											<c:out value="${fn:substring(editor5.subject, 0, 15)}..."></c:out>
+										<c:when test="${fn:length(editor5.subject) gt 26}">
+											<c:out value="${fn:substring(editor5.subject, 0, 25)}..."></c:out>
 										</c:when>
 										<c:otherwise>
 											<c:out value="${editor5.subject}"></c:out>
@@ -184,8 +184,8 @@
 				<ul class="list-group list-group-flush" style="margin-bottom: 40px;">
 					<c:forEach items="${infoshare5 }" var="infoshare5">
 						<li class="list-group-item" style="padding: 10px 0 10px 0;">
-							<a href="#" class="text-decoration-none">
-								<img id="index_profile" src="images/index_default.png">
+							<a href="javascript:void(0);" onclick="runTopWriterProfile('${infoshare5.nickname }')" class="text-decoration-none">
+								<img id="index_profile" src="upload/${infoshare5.profile_img }">
 								<span id="index_nickname">${infoshare5.nickname }</span>
 							</a>
 							<span id="index_time">· ${infoshare5.nal }</span>
@@ -197,10 +197,10 @@
 							</div>
 							<br/>
 							<a href="#" class="text-decoration-none">
-								<span id="index_subject">
+								<span id="index_subject" onclick="quickInfoshare('${infoshare5.sno}', '${infoshare5.boardtype }')">
 									<c:choose>
-										<c:when test="${fn:length(infoshare5.subject) gt 16}">
-											<c:out value="${fn:substring(infoshare5.subject, 0, 15)}..."></c:out>
+										<c:when test="${fn:length(infoshare5.subject) gt 26}">
+											<c:out value="${fn:substring(infoshare5.subject, 0, 25)}..."></c:out>
 										</c:when>
 										<c:otherwise>
 											<c:out value="${infoshare5.subject}"></c:out>
@@ -224,8 +224,8 @@
 				<ul class="list-group list-group-flush" style="margin-bottom: 40px;">
 					<c:forEach items="${notification5 }" var="notification5">
 						<li class="list-group-item" style="padding: 10px 0 10px 0;">
-							<a href="#" class="text-decoration-none">
-								<img id="index_profile" src="images/index_default.png">
+							<a href="javascript:void(0);" onclick="runTopWriterProfile('${notification5.nickname }')" class="text-decoration-none">
+								<img id="index_profile" src="upload/${notification5.profile_img }">
 								<span id="index_nickname">${notification5.nickname }</span>
 							</a>
 							<span id="index_time">· ${notification5.nal }</span>
@@ -239,8 +239,8 @@
 							<a href="#" class="text-decoration-none">
 								<span id="index_subject">
 									<c:choose>
-										<c:when test="${fn:length(notification5.subject) gt 16}">
-											<c:out value="${fn:substring(notification5.subject, 0, 15)}..."></c:out>
+										<c:when test="${fn:length(notification5.subject) gt 26}">
+											<c:out value="${fn:substring(notification5.subject, 0, 25)}..."></c:out>
 										</c:when>
 										<c:otherwise>
 											<c:out value="${notification5.subject}"></c:out>

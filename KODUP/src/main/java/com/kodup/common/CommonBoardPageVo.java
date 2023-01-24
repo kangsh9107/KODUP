@@ -17,6 +17,7 @@ public class CommonBoardPageVo {
 	String boardtype;
 	String horsehead;
 	String hashtag;
+	String id;
 	
 	public void pageCompute() {
 		totPage = (int)Math.ceil(totSize/(double)listSize);
@@ -64,5 +65,7 @@ public class CommonBoardPageVo {
 	public void setQna_pixel_reward(int qna_pixel_reward) { this.qna_pixel_reward = qna_pixel_reward; }
 	public String getHashtag() { return hashtag; }
 	public void setHashtag(String hashtag) { this.hashtag = hashtag; }
+	public String getId() { return id; }
+	public void setId(String id) { this.id = id; }
 	
 }

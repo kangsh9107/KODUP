@@ -2,6 +2,27 @@
 
 /***** 강수형 *****/
 /***** INSERT *****/
+@keyframes spinner {
+	to { transform: rotate(360deg); }
+}
+ 
+.spinner:before {
+	z-index : 100;
+	content: '';
+	box-sizing: border-box;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 70px;
+	height: 70px;
+	margin-top: -15px;
+	margin-left: -15px;
+	border-radius: 50%;
+	border: 3px solid #ccc;
+	border-top-color: #07d;
+	animation: spinner .6s linear infinite;
+}
+
 .board_header {
 	padding: 0;
 }
@@ -351,9 +372,17 @@
 }
 
 #board_horsehead {
-	background-color: #ff3346;
 	background-color: rgb(255, 51, 99, .1);
 	color: #bb2649;
+	border-radius: 5px;
+	padding: 3px 7px;
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+#qna_pixel_reward {
+	background-color: #f0f6fa;
+	color: rgb(0, 144, 249);
 	border-radius: 5px;
 	padding: 3px 7px;
 	font-size: 0.875rem;

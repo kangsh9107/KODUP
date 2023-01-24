@@ -9,6 +9,8 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import com.kodup.common.CommonBoardMapper;
+
 @Transactional
 @Service
 public class QnaBoardService {
@@ -19,9 +21,16 @@ public class QnaBoardService {
 	@Autowired
 	QnaBoardMapper mapper;
 	
+	@Autowired
+	CommonBoardMapper cbMapper;
+	
 	public QnaBoardVo view(int sno) {
 		QnaBoardVo qbVo=null;
 		qbVo = mapper.view(sno);
+		
+		cbMapper.viewcountUp(sno); //조회수 증가
+		int viewcount = cbMapper.getViewcount(sno);
+		qbVo.setViewcount(viewcount); //증가된 조회수 VIEW에서 즉시 반영
 		
 		List<QnaHashVo> hashList = mapper.hashList(sno);
 		qbVo.setHashtaglist(hashList);

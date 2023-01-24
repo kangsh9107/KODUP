@@ -28,12 +28,6 @@
 	</c:forEach>
 	<!--파트너 멘토 공갈데이터  -->
 	<form class='chat_user separator'>
-		<img src="../images/fox_profile.png" class="mentoProfile_img">
-		<span class='profile_nickname'>옥다방고양이</span><br>
-		<span class='profile_phrases'>주말 언제든 가능해요!</span>
-		<input type='button' class='btnCall' value='멘토 요청'>
-	</form>
-	<form class='chat_user separator'>
 		<img src="../images/devilcookie.png" class="mentoProfile_img">
 		<span class='profile_nickname'>자몽리</span><br>
 		<span class='profile_phrases'>주 활동시간 : 월~금 12:00~19:00</span>

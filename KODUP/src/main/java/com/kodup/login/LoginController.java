@@ -76,7 +76,6 @@ public class LoginController {
 	public ModelAndView hotTag() {
 		ModelAndView mv = new ModelAndView();
 		List<CommonBoardVo> listHotTag = service.hotTag();
-		
 		//hashtag를 #기준으로 뜯고 Map구조에 key,value로 담아서 카운트
 		Map<String, Integer> countHashTag = new HashMap<>();
 		for(CommonBoardVo cbVo : listHotTag) {
@@ -101,7 +100,6 @@ public class LoginController {
 				}
 			}
 		}
-		
 		//value 내림차순으로 정렬하고, value가 같으면 key 오름차순으로 정렬
         List<Map.Entry<String, Integer>> list = new LinkedList<>(countHashTag.entrySet());
         Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
@@ -109,18 +107,16 @@ public class LoginController {
             public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
                 if (o1.getValue() > o2.getValue())      return -1;
                 else if (o1.getValue() < o2.getValue()) return 1;
- 
+                
                 return o1.getKey().compareTo(o2.getKey());
             }
         });
- 
         //순서유지를 위해 LinkedHashMap을 사용
         Map<String, Integer> sortedMap = new LinkedHashMap<>();
         for(Iterator<Map.Entry<String, Integer>> iter = list.iterator(); iter.hasNext();) {
             Map.Entry<String, Integer> entry = iter.next();
             sortedMap.put(entry.getKey(), entry.getValue());
         }
-        
         //정렬된 hashtag 중 상위 5개로 다시 listHotTagTemp를 만든다
         int cnt = 0;
         List<HotTagVo> listHotTagTemp = new LinkedList<>();
@@ -175,12 +171,18 @@ public class LoginController {
 		} else {   //로그인 성공
 			HttpSession session = req.getSession();
 			session.setAttribute("sessionId", mVo.getId());
-			
-			//grade가져옴
+			//grade 가져옴
 			int grade = 0;
 			grade = service.checkGrade(mVo.getId());
 			session.setAttribute("grade", grade);
-			
+			//profile_img 가져옴
+			String profile_img = "";
+			profile_img = service.getProfileImg(mVo.getId());
+			session.setAttribute("profile_img", profile_img);
+			//nickname 가져옴
+			String nickname = "";
+			nickname = service.getNickname(mVo.getId());
+			session.setAttribute("nickname", nickname);
 			mv.setViewName("/login/main");
 		}
 		
@@ -215,12 +217,18 @@ public class LoginController {
 				} else {   //가입 성공
 					HttpSession session = req.getSession();
 					session.setAttribute("sessionId", mVo.getId());
-					
 					//grade가져옴
 					int grade = 0;
 					grade = service.checkGrade(mVo.getId());
 					session.setAttribute("grade", grade);
-					
+					//profile_img 가져옴
+					String profile_img = "";
+					profile_img = service.getProfileImg(mVo.getId());
+					session.setAttribute("profile_img", profile_img);
+					//nickname 가져옴
+					String nickname = "";
+					nickname = service.getNickname(mVo.getId());
+					session.setAttribute("nickname", nickname);
 					mv.setViewName("/login/main");
 				}
 			} else {   //nickname 중복
@@ -248,12 +256,18 @@ public class LoginController {
 		if( b ) { //ID중복. 로그인 성공
 			HttpSession session = req.getSession();
 			session.setAttribute("sessionId", id);
-			
-			//grade가져옴
+			//grade 가져옴
 			int grade = 0;
 			grade = service.checkGrade(id);
 			session.setAttribute("grade", grade);
-			
+			//profile_img 가져옴
+			String profile_img = "";
+			profile_img = service.getProfileImg(id);
+			session.setAttribute("profile_img", profile_img);
+			//nickname 가져옴
+			String nickname = "";
+			nickname = service.getNickname(id);
+			session.setAttribute("nickname", nickname);
 			mv.setViewName("/login/main");
 		} else {  //ID중복 아님. 카카오 회원가입 폼으로.
 			mv.addObject("id", id);
@@ -290,12 +304,18 @@ public class LoginController {
 			} else {   //member테이블 INSERT 성공
 				HttpSession session = req.getSession();
 				session.setAttribute("sessionId", mVo.getId());
-				
 				//grade가져옴
 				int grade = 0;
 				grade = service.checkGrade(mVo.getId());
 				session.setAttribute("grade", grade);
-				
+				//profile_img 가져옴
+				String profile_img = "";
+				profile_img = service.getProfileImg(mVo.getId());
+				session.setAttribute("profile_img", profile_img);
+				//nickname 가져옴
+				String nickname = "";
+				nickname = service.getNickname(mVo.getId());
+				session.setAttribute("nickname", nickname);
 				mv.setViewName("/login/main");
 			}
 		} else { //NICKNAME 중복
@@ -310,21 +330,15 @@ public class LoginController {
 	@RequestMapping("/login/chat")
 	public ModelAndView chat(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
-		boolean b = false;
-		boolean c = false;
-		
-		//chat테이블에 존재하는지 확인. true면 중복
-		c = service.checkChatId(req.getParameter("id"));
-		//grade가 0인 회원(멘티)는 로그인시 chat테이블에 추가하지 않음
-		int grade = 0;
-		grade = service.checkGrade(req.getParameter("id"));
-		
-		if( !c && grade != 0 ) {
-			b = service.chatInsert(req.getParameter("id"));
-			
+		boolean c = service.checkChatId(req.getParameter("id")); //chat테이블에 존재하는지 확인. true면 중복
+		int grade = service.checkGrade(req.getParameter("id"));  //grade 가져옴.
+		if( !c ) {
+			boolean b = service.chatInsert(req.getParameter("id"), grade); //true면 insert 성공
 			if( !b ) {
 				mv.addObject("error", "error_chat");
 				mv.setViewName("/login/error");
+			} else {
+				mv.setViewName("/login/main");
 			}
 		} else {
 			mv.setViewName("/login/main");

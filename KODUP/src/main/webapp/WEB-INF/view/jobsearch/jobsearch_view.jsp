@@ -9,6 +9,7 @@
 <link href="css/jobsearch.css" rel="stylesheet">
 <!-- JS -->
 <script defer src="js/jobsearch.js"></script>
+<script defer src="js/common_board.js"></script>
 <title>jobsearch/jobsearch_view.jsp</title>
 </head>
 <body>
@@ -29,7 +30,7 @@
 	</div>
 	<!-- boardtype  /  horsehead -->
 	<div id="jobsearch_view_horsehead">
-		<a href="#" class="btnBoardtype">${jbVo.boardtype}</a><!-- ${jbVo.boardtype} -->
+		<a href="#" class="btnBoardtype">구직</a><!-- ${jbVo.boardtype} -->
 		/
 		<a>${jbVo.jobsearch_horsehead}</a>
 	</div>
@@ -42,7 +43,7 @@
 				<span id="jobsearch_view_header_section1"> <!-- span태그사용 : 이미지사진+닉네임 한줄로 붙이기위해 span이 inline요소라서 -->
 					<img id="jobsearch_view_header_profileimage_file" 
 					style="width:40px; height:40px; vertical-align: top; border-radius:50%;"
-					src="images/${jbVo.profile_img}" >
+					src="upload/${jbVo.profile_img}" >
 				</span>
 				<!-- 본문 조회수,작성시간 -->
 				<div  id="jobsearch_view_header_section2" style="display:inline-block; vertical-align: top;">
@@ -101,7 +102,7 @@
 					<input type="button" class="btnUpdate jobsearch_view_originalBtn" style="vertical-align:top;"value="수정">
 					<input type="button" class="btnDeleteR  jobsearch_view_originalBtn"style="vertical-align:top;" value="삭제">
 				</c:if>
-				<input type="button" class="btnList  jobsearch_view_originalBtn" style="vertical-align:top;"value="목록">
+				<input type="button" class="btnListUJobsearch  jobsearch_view_originalBtn" style="vertical-align:top;"value="목록">
 			</div>
 			
 			<hr/>
@@ -372,7 +373,24 @@
 				관리자에 의해 삭제된 글입니다.
 			</span>
 		</c:when>
-	</c:choose>		
+	</c:choose>
+	
+	<!-- HIDDEN -->
+	<input type="hidden" name="findStr" value="${cbpVo.findStr }">
+	<input type="hidden" name="sortK" value="${cbpVo.sort }">
+	<input type="hidden" name="boardtypeK" value="${cbpVo.boardtype }">
+	<input type="hidden" name="horseheadK" value="${cbpVo.horsehead }">
+	<input type="hidden" name="horsehead" value="${ibVo.infoshare_horsehead}">
+	<input type="hidden" name="nowPageK" value="${cbpVo.nowPage }">
+	<input type="hidden" name="idK" value="${sessionScope.sessionId }">
+	<input type="hidden" name="subject" value="${ibVo.subject}">
+	<textarea style="display: none;" id="getDoc" name="doc">${ibVo.doc }</textarea>
+	<input type="hidden" name="hashtag" value="">
+	<div id="qna_view_hashtag2" style="display: none;">
+		<c:forEach var='vo' items='${ibVo.hashtaglist}'>
+			${vo.hashtag}
+		</c:forEach>
+	</div>
 </form>
 </body>
 </html>

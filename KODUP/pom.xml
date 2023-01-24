@@ -91,7 +91,6 @@
 		    <artifactId>mail</artifactId>
 		    <version>1.4.7</version>
 		</dependency>
-		
 		<!-- json-simple -->
 		<dependency>
 		    <groupId>com.googlecode.json-simple</groupId>

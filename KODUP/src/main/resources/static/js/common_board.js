@@ -276,7 +276,6 @@ $('.btnQnaInsertR').on('click', function() {
 	//글 작성 내용
 	var summer = $('#summernote').summernote('code');
 	frm.doc.value = summer;
-	console.log(frm.qna_pixel_reward);
 	
 	var regNumber = /^[0-9]+$/;
 	if(qna_horsehead_selected == '말머리') {
@@ -352,6 +351,74 @@ $('.btnListU').on('click', function() {
 	});
 });
 
+$('.btnListUInfoshare').on('click', function() {
+	var frm = $('#infoshare_view')[0];
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/infoshare/infoshare_list_back',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
+});
+
+$('.btnListUFreetalking').on('click', function() {
+	var frm = $('#freetalking_view')[0];
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/infoshare/freetalking_list_back',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
+});
+
+$('.btnListUJobsearch').on('click', function() {
+	var frm = $('#jobsearch_view')[0];
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/jobsearch/jobsearch_list_back',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
+});
+
+$('.btnHashtagU').on('click', function() {
+	var frm = $('#qna_view')[0];
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/login/find_hashtag',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
+});
+
 $('.btnListView').on('click', function() {
 	var frm = $('.board_update_form')[0];
 	var param = new FormData(frm);
@@ -372,9 +439,8 @@ $('.btnListView').on('click', function() {
 //update
 $('.btnUpdate').on('click', function() {
 	var frm = $('#qna_view')[0];
-	var hashtag = $('#qna_view_hashtag2').text().trim();
+	var hashtag = $('#qna_view_hashtag2').text().trim().split('#');
 	frm.hashtag.value = hashtag;
-	
 	var param = new FormData(frm);
 	
 	$.ajax({
@@ -394,33 +460,61 @@ $('.btnUpdate').on('click', function() {
 var temp = $('.board_update_form')[0];
 if(temp != null) {
 	var frm = $('.board_update_form')[0];
-	var addHashtag = frm.hashtag.value.substring(1);
-	
+	var addHashtag = frm.hashtag.value.substring(1); //split('#')할때 공백값 생기는 것 방지
 	var input = document.querySelector('input[name=basic]');
 	var tagify = new Tagify(input);
 	tagify.addTags(addHashtag);
 	
+	/* 태그 추가 확인용
 	tagify.on('add', function() {
 		console.log(tagify.value);
 	});
+	*/
 
 	//updateR
 	$('.btnQnaUpdateR').on('click', function() {
 		var frm = $('.board_update_form')[0];
+		var sort = $("#sort option:selected").val();
+		var label = $('input[name=horsehead_radio]:checked').prop('labels');
+		var horse = $(label).text();
+		frm.sort.value = sort;
+		frm.horsehead.value = horse;
+		//글 작성 말머리
+		var qna_horsehead = document.querySelector('#qna_horsehead');
+		var qna_horsehead_selected = qna_horsehead.options[qna_horsehead.selectedIndex].value;
+		document.querySelector('#horsehead').value = qna_horsehead_selected;
+		//글 작성 내용
+		var summer = $('#summernote').summernote('code');
+		frm.doc.value = summer;
 		
-		var param = new FormData(frm);
-		
-		$.ajax({
-			type: 'POST',
-			url: '/qna/qna_updateR',
-			contentType: false,
-			processData: false,
-			data: param,
-			dataType: 'html',
-			success: function(data) {
-				$('#center').html(data);
-				$('#summernote').summernote('code', $('textarea').text());
-			}
-		});
+		var regNumber = /^[0-9]+$/;
+		if(qna_horsehead_selected == '말머리') {
+			alert('말머리를 선택해주세요.');
+			return;
+		} else if(frm.subject.value.trim() == '') {
+			alert('제목을 입력해주세요.');
+			return;
+		} else if(summer == '') {
+			alert('내용을 입력해주세요.');
+			return;
+		} else {
+			var param = new FormData(frm);
+			
+			$.ajax({
+				type: 'POST',
+				url: '/qna/qna_updateR',
+				contentType: false,
+				processData: false,
+				data: param,
+				dataType: 'html',
+				success: function(data) {
+					if(data == 'error_update') {
+						alert('글 수정 오류입니다. 잠시후 다시 시도해주세요.')
+					} else {
+						$('#center').html(data);
+					}
+				}
+			});
+		}
 	});
 }
