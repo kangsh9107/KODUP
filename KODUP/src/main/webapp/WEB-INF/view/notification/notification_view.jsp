@@ -15,63 +15,63 @@
 <body>
 <form id="notification_view">
 	<div style=" height:20px; display:none;"><!-- visibility:hidden; -->
-	sno<input type='text' id="view_sno" name='sno' size="2" value='${jbVo.sno}' />      <!-- style="visibility: hidden;" 또는 style="display: none;" -->
+	sno<input type='text' id="view_sno" name='sno' size="2" value='${nbVo.sno}' />      <!-- style="visibility: hidden;" 또는 style="display: none;" -->
 	repl_sno<input type='text' name='repl_sno' size="2" value='0'/>
 	
-	board_delete<input type='text'  name='board_delete' size="2" value='${jbVo.board_delete}'/>
+	board_delete<input type='text'  name='board_delete' size="2" value='${nbVo.board_delete}'/>
 	nowPage<input type='text' name='nowPage' value='0' size="2"/>
 	sessionID<input type="text" id="view_sessionID" name='sessionid' value="${sessionScope.sessionId}" size="4"/> <!-- index.jsp의 세션아이디를 그대로 el문으로 받아옴 -->
 	repl_doc(summerCODE)<textarea name="repl_doc" id="view_summer_code" ></textarea>
 	insertInnerReplgrp<input type='text' id="insert_inner_repl_grp" name='grp' size='2' value='0'/>
-	snoID<input type="text" name="sno_id" size="3" value='${jbVo.id}'/>
+	snoID<input type="text" name="sno_id" size="3" value='${nbVo.id}'/>
 	repl_ID<input type="text" id="chaetaekID" name="id" size="3" value=""/>
 	<br/>
 	
 	</div>
 	<!-- boardtype  /  horsehead -->
 	<div id="notification_view_horsehead">
-		<a href="#" class="btnBoardtype">구직</a><!-- ${jbVo.boardtype} -->
+		<a href="#" class="btnBoardtype">공지사항</a><!-- ${nbVo.boardtype} -->
 		/
-		<a>${jbVo.notification_horsehead}</a>
+		<a>${nbVo.notification_horsehead}</a>
 	</div>
 	
 	<!-- 삭제된글에경우 board_delete에 따라 출력되는 화면이달라짐 -->
 	<c:choose>
-		<c:when test="${jbVo.board_delete eq 0}">
+		<c:when test="${nbVo.board_delete eq 0}">
 			<!-- 본문 헤더(작성자사진,닉네임,작성일,조회수,보상픽셀) -->
 			<div id="notification_view_header"  >
 				<span id="notification_view_header_section1"> <!-- span태그사용 : 이미지사진+닉네임 한줄로 붙이기위해 span이 inline요소라서 -->
 					<img id="notification_view_notificationofileimage_file" 
 					style="width:40px; height:40px; vertical-align: top; border-radius:50%;"
-					src="upload/${jbVo.profile_img}" >
+					src="upload/${nbVo.profile_img}" >
 				</span>
 				<!-- 본문 조회수,작성시간 -->
 				<div  id="notification_view_header_section2" style="display:inline-block; vertical-align: top;">
-					<div id="notification_view_profile_nickname">${jbVo.nickname}</div>
-					<span>${jbVo.nal}
+					<div id="notification_view_profile_nickname">${nbVo.nickname}</div>
+					<span>${nbVo.nal}
 					<img src="images/index_viewcount.png" 
 					style="width:20px; height:15px; margin-top: -4px; margin-right:-4px;">
-					${jbVo.viewcount }</span>
+					${nbVo.viewcount }</span>
 					
 				</div>	
 			</div>
 			<!-- 본문 글제목 -->
 			<div id="notification_view_subject">
 				<span style="font-size:1.5rem; font-weight:600;">
-					${jbVo.subject}
+					${nbVo.subject}
 				</span>
 			</div>
 			<!-- 본문 글내용 -->
 			<span id="notification_view_doc" style="font-size:15px; display:inline-block; min-height:300px; margin-top:20px;">
-				${jbVo.doc}
+				${nbVo.doc}
 			</span>
 			<!-- 추천,비추천 -->
 			<c:if test="${sessionScope.sessionId ne null}">
 				<div>
 					<div style="text-align:right;">
 						<button id="btn_viewpage_thumbup" type="button" style="display:inline-block; text-align:right; background-color:#fff; border:0;" ><img src="images/추천엄지.png"></button>
-							<input type="text" id="thumb_standard" value="${jbVo.thumbup-jbVo.thumbdown}" style="display:none;"/>
-							<span id="thumb" style="font-weight:600px;" >${jbVo.thumbup-jbVo.thumbdown}</span>
+							<input type="text" id="thumb_standard" value="${nbVo.thumbup-nbVo.thumbdown}" style="display:none;"/>
+							<span id="thumb" style="font-weight:600px;" >${nbVo.thumbup-nbVo.thumbdown}</span>
 						<button id="btn_viewpage_thumbdown" type="button" style="display:inline-block; text-align:right; background-color:#fff; border:0;" ><img src="images/비추천엄지.png"></button>
 					</div>
 				</div>
@@ -82,15 +82,15 @@
 				<div>
 					<div style="text-align:right;">
 						<button id="btn_viewpage_thumbup" disabled type="button" style="display:inline-block; text-align:right; background-color:#fff; border:0;" ><img src="images/추천엄지.png"></button>
-							<input type="text" id="thumb_standard" value="${jbVo.thumbup-jbVo.thumbdown}" style="display:none;"/>
-							<span id="thumb" style="font-weight:600px;" >${jbVo.thumbup-jbVo.thumbdown}</span>
+							<input type="text" id="thumb_standard" value="${nbVo.thumbup-nbVo.thumbdown}" style="display:none;"/>
+							<span id="thumb" style="font-weight:600px;" >${nbVo.thumbup-nbVo.thumbdown}</span>
 						<button id="btn_viewpage_thumbdown" disabled type="button" style="display:inline-block; text-align:right; background-color:#fff; border:0;" ><img src="images/비추천엄지.png"></button>
 					</div>
 				</div>
 			</c:if>
 			<!-- 본문 해시태그 --><!-- 해당해시태그를 누를경우 findStr로 해당 태그가 들어간 글들을 셀렉트 -->
 			<div id="notification_view_hashtag">
-				<c:forEach var='vo' items='${jbVo.hashtaglist}'>
+				<c:forEach var='vo' items='${nbVo.hashtaglist}'>
 					<span>
 						<a href="#" onclick="notification_view_findHashtag(${vo.hashtag})">${vo.hashtag}</a>
 					</span>
@@ -98,7 +98,7 @@
 			</div>
 			<!-- 본문 btnzone -->
 			<div id="notification_view_btnzone" style="margin-top:30px;" >
-				<c:if test="${jbVo.id eq sessionScope.sessionId}">
+				<c:if test="${nbVo.id eq sessionScope.sessionId}">
 					<input type="button" class="btnUpdate notification_view_originalBtn" style="vertical-align:top;"value="수정">
 					<input type="button" class="btnDeleteR  notification_view_originalBtn"style="vertical-align:top;" value="삭제">
 				</c:if>
@@ -312,21 +312,21 @@
 			</div>
 		</c:when>
 		
-		<c:when test="${jbVo.board_delete eq 1}">
+		<c:when test="${nbVo.board_delete eq 1}">
 			<!-- 본문 헤더(작성자사진,닉네임,작성일,조회수,보상픽셀) -->
 			<div id="notification_view_header"  >
 				<span id="notification_view_header_section1"> <!-- span태그사용 : 이미지사진+닉네임 한줄로 붙이기위해 span이 inline요소라서 -->
 					<img id="notification_view_header_profileimage_file" 
 					style="width:40px; height:40px; vertical-align: top; border-radius:50%;"
-					src="images/${jbVo.profile_img}" >
+					src="images/${nbVo.profile_img}" >
 				</span>
 				<!-- 본문 조회수,작성시간 -->
 				<div  id="notification_view_header_section2" style="display:inline-block; vertical-align: top;">
-					<div id="notification_view_profile_nickname">${jbVo.nickname}</div>
-					<span>${jbVo.nal}
+					<div id="notification_view_profile_nickname">${nbVo.nickname}</div>
+					<span>${nbVo.nal}
 					<img src="images/index_viewcount.png" 
 					style="width:20px; height:15px; margin-top: -4px; margin-right:-4px;">
-					${jbVo.viewcount }</span>
+					${nbVo.viewcount }</span>
 					
 				</div>	
 			</div>
@@ -343,21 +343,21 @@
 				작성자 본인에 의해 삭제된 글입니다.
 			</span>
 		</c:when>
-		<c:when test="${jbVo.board_delete eq 2}">
+		<c:when test="${nbVo.board_delete eq 2}">
 			<!-- 본문 헤더(작성자사진,닉네임,작성일,조회수,보상픽셀) -->
 			<div id="notification_view_header"  >
 				<span id="notification_view_header_section1"> <!-- span태그사용 : 이미지사진+닉네임 한줄로 붙이기위해 span이 inline요소라서 -->
 					<img id="notification_view_header_profileimage_file" 
 					style="width:40px; height:40px; vertical-align: top; border-radius:50%;"
-					src="images/${jbVo.profile_img}" >
+					src="images/${nbVo.profile_img}" >
 				</span>
 				<!-- 본문 조회수,작성시간 -->
 				<div  id="notification_view_header_section2" style="display:inline-block; vertical-align: top;">
-					<div id="notification_view_profile_nickname">${jbVo.nickname}</div>
-					<span>${jbVo.nal}
+					<div id="notification_view_profile_nickname">${nbVo.nickname}</div>
+					<span>${nbVo.nal}
 					<img src="images/index_viewcount.png" 
 					style="width:20px; height:15px; margin-top: -4px; margin-right:-4px;">
-					${jbVo.viewcount }</span>
+					${nbVo.viewcount }</span>
 				</div>	
 			</div>
 		
@@ -380,14 +380,14 @@
 	<input type="hidden" name="sortK" value="${cbpVo.sort }">
 	<input type="hidden" name="boardtypeK" value="${cbpVo.boardtype }">
 	<input type="hidden" name="horseheadK" value="${cbpVo.horsehead }">
-	<input type="hidden" name="horsehead" value="${ibVo.infoshare_horsehead}">
+	<input type="hidden" name="horsehead" value="${nbVo.infoshare_horsehead}">
 	<input type="hidden" name="nowPageK" value="${cbpVo.nowPage }">
 	<input type="hidden" name="idK" value="${sessionScope.sessionId }">
-	<input type="hidden" name="subject" value="${ibVo.subject}">
-	<textarea style="display: none;" id="getDoc" name="doc">${ibVo.doc }</textarea>
+	<input type="hidden" name="subject" value="${nbVo.subject}">
+	<textarea style="display: none;" id="getDoc" name="doc">${nbVo.doc }</textarea>
 	<input type="hidden" name="hashtag" value="">
 	<div id="qna_view_hashtag2" style="display: none;">
-		<c:forEach var='vo' items='${ibVo.hashtaglist}'>
+		<c:forEach var='vo' items='${nbVo.hashtaglist}'>
 			${vo.hashtag}
 		</c:forEach>
 	</div>

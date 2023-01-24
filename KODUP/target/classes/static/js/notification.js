@@ -4,18 +4,78 @@
 
 /***** 강수형 *****/
 /***** SUMMERNOTE *****/
-$(document).ready(function () {
-	$('#summernote').summernote({
-		placeholder: '내용을 입력해주세요.',
-		height: 400,
-		maxHeight: 300,
-		popover: { //footer 밑 쓸모 없는 메뉴 삭제
-			image: [],
-			link: [],
-			air: []
+var fonts = ['맑은 고딕', '돋움', '궁서', '굴림', '굴림체', '궁서체', '나눔 고딕', '바탕', '바탕체', '새굴림'];
+fonts.sort();
+var loadInterval=[];
+var intervalCnt=0;
+$('#summernote').summernote({
+	height: 400,     //에디터 높이
+	minHeight: null, //최소 높이
+	maxHeight: null, //최대 높이
+	focus: true,     //에디터 로딩후 포커스를 맞출지 여부
+	fontNames : fonts,
+	lang: "ko-KR",
+	callbacks: {	 //이미지 첨부 콜백함수
+		onMediaDelete : function(target) {
+			deleteFile(target[0].src);
+		},
+		onImageUpload : function(files, editor, welEditable) {
+			loadInterval.length = files.length;
+			$('#summer').addClass('spinner'); //spinner
+			for(var i=files.length-1; i>=0; i--) {
+				sendFile(i, files[i], this);
+			}
+		}
+	}
+});
+
+function sendFile(intervalPos, file, el) {
+	var form_data = new FormData();
+	form_data.append('file', file);
+	$.ajax({
+		data : form_data,
+		type : "POST",
+		url : '/common/summernoteFileUpload',
+		enctype : 'multipart/form-data',
+		cache : false,
+		contentType : false,
+		processData : false,
+		success : function(img_name) {
+			loadInterval[intervalPos] = setInterval(loadCheck.bind(null, intervalPos, img_name), 1500);
 		}
 	});
-});
+}
+
+function loadCheck(intervalPos, img) {
+	try {
+		var t = new Image();
+		t.src = img;
+		t.onload = function(){
+			clearInterval(loadInterval[intervalPos]);
+			$('#summernote').summernote('editor.insertImage', img);
+			$('#summer').removeClass('spinner'); //spinner
+		}
+	} catch(err) {
+		console.log(err);
+	} finally {
+		console.log('loadCheck finally');
+	}
+}
+
+function deleteFile(target) {
+	console.table("target:" + target)
+	$.ajax({
+		data : {
+			target : target
+		},
+		type : "POST",
+		url : '/common/summernoteFileUpload?flag=delete', //replace with your url
+		cache : false,
+		success : function(resp) {
+			console.log(resp);
+		}
+	});
+}
 
 /***** NOTIFICATION INSERT *****/
 $('.btnNotificationInsert').on('click', function() {

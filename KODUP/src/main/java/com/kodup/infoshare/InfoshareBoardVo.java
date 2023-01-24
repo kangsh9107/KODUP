@@ -9,7 +9,7 @@ public class InfoshareBoardVo {
 	int infoshare_sno,board_delete;
 	String infoshare_horsehead;
 	List<InfoshareHashVo> hashtaglist = new ArrayList<InfoshareHashVo>();
-	
+	 
 	public int getSno() {return sno;}
 	public void setSno(int sno) {this.sno = sno;}
 	public int getViewcount() {return viewcount;}
