@@ -36,7 +36,9 @@
         WHERE b.boardtype = 'mansearch' and mb.mansearch_sno = ${mansearch_sno} 	
 	</select>
 	<select id="premiumlist" parameterType="Integer" resultType="com.kodup.mansearch.MansearchBoardVo">
-		select premium_review_sno,mansearch_sno as pr_mansearch_sno,id as writer_id,review from premium_review where mansearch_sno=${mansearch_sno}
+		SELECT pr.premium_review_sno,pr.mansearch_sno AS pr_mansearch_sno,pr.id AS writer_id,pr.review,m.profile_img 
+		FROM premium_review pr JOIN member m ON pr.id = m.id 
+		WHERE pr.mansearch_sno=${mansearch_sno}
 	</select>
 	<select id="buylist" parameterType="com.kodup.mansearch.MansearchBoardVo" resultType="com.kodup.mansearch.MansearchBoardVo">
 		select premium_review_sno from premium_review_buylist where id = #{id}

@@ -25,7 +25,7 @@
 	    <input type='hidden' name='mansearch_sno' value='${mbVo.mansearch_sno }'/>
 	    <input type='hidden' id='totPage' value='${pVo.totPage }'>
 		<input type='hidden' name='sort' value=''>	
-		<input type='text'   name='findStr' value='${pVo.findStr }' class='form-control mansearch_findStr' autocomplete='off'/> 
+		<input type='text'   name='findStr' value='${pVo.findStr }' class='form-control mansearch_findStr' autocomplete='off' onkeyup="enter()"/> 
 		<input type='button' class='img-button mansearchBtnSearch' />
 	</div>
 	

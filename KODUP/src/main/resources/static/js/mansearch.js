@@ -33,6 +33,12 @@ mansearch_Move = function(nowPage){
 	    $('#center').html(data);
 	})
 }
+enter = function(ev){
+	if(event.keyCode == 13) {
+		console.log('엔터');
+    	$('.mansearchBtnSearch').click();
+    }
+}
 /*$('.mansearch_findStr').on('keyup',function(event){
 	if(event.keyCode == 13) {
 		console.log('엔터');
@@ -94,10 +100,7 @@ $('.mansearch_board_insertR').on('click',function(){
 
 $('.mansearch_deleteR').on('click',function(){
 	let yn = confirm('글을 삭제하시겠습니까?');
-	if(!yn) return;
-/*	frm = $('.mansearch_frm')[0];
-	frm.premium_review_sno.value=0;
-	param = $(frm).serialize();*/	
+	if(!yn) return;	
 	frm = $('.mansearch_frm')[0];
 	frm.premium_review_sno.value=0;
 	param = $(frm).serialize();
@@ -161,6 +164,8 @@ premiumView = function(form){
 }
 
 $('.premium_review_insert').on('click',function(){
+	var yn = confirm('리뷰를 등록하시겠습니까?\n작성 후 수정이나 삭제는 관리자에게 문의바랍니다.');
+	if(!yn) return;
 	frm = $('.mansearch_frm')[0];
 	frm.review.value = $('.premium_review_doc').val();
 	frm.id.value = frm.buyer_id.value;
