@@ -53,10 +53,6 @@ public class LoginService {
 	public boolean login(MemberVo mVo) {
 		String encPwd = enc(mVo.getPwd());
 		mVo.setPwd(encPwd);
-<<<<<<< HEAD
-=======
-		
->>>>>>> refs/remotes/origin/seongho
 		boolean b = false; //true면 로그인 성공
 		int cnt = 0;
 		cnt = loginMapper.login(mVo);

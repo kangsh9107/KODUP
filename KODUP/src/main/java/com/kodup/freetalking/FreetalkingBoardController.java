@@ -55,7 +55,6 @@ public class FreetalkingBoardController {
 		fbVo = service.view(fbVo.getSno());
 		List<FreetalkingBoardReplVo> replList = service.replList(fbVo.getSno());//본문의sno를 넣어줌
 		
-<<<<<<< HEAD
 		//봤던글 표시
 		HttpSession session = req.getSession();
 		cbpVo.setId((String)session.getAttribute("sessionId"));
@@ -63,8 +62,6 @@ public class FreetalkingBoardController {
 		if(cbpVo.getId() != null) cbService.insertView(cbpVo);
 		
 		mv.addObject("cbpVo", cbpVo);
-=======
->>>>>>> refs/remotes/origin/seongho
 		mv.addObject("fbVo",fbVo);
 		mv.addObject("replList",replList);
 		mv.setViewName("/freetalking/freetalking_view");
