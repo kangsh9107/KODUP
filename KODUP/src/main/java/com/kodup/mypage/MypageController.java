@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kodup.login.LoginService;
 
 
-
 @RestController
 public class MypageController {
 	static String path="C:\\Users\\N\\git\\KODUP\\KODUP\\src\\main\\resources\\static\\upload\\"
@@ -48,7 +47,7 @@ public class MypageController {
 		return mv;
 	}
 	
-	@RequestMapping("/board/mypage_memberinfo") //회원정보. select
+	@RequestMapping("/board/mypage_memberinfo") //회원정보. 
 	public ModelAndView mypage_info(HttpServletRequest req, HttpServletResponse res) throws IOException{
 		ModelAndView mv = new ModelAndView();
 		
@@ -64,7 +63,7 @@ public class MypageController {
 	}
 	
 	
-	//회원정보 수정화면. 기존 정보 보여주는 거라 이것도 select
+	//회원정보 수정화면. 기존 정보 보여주는 거
 	@RequestMapping("/board/mypage_memberinfo_update") 
 	public ModelAndView mypage_memberinfo_update(HttpServletRequest req, HttpServletResponse res)throws IOException {
 		ModelAndView mv = new ModelAndView();
@@ -139,8 +138,6 @@ public class MypageController {
 		return attList;
 	}
 	
-
-	
 	
 	@RequestMapping("/board/mypage_dailycheck") //출석체크
 	public ModelAndView mypage_dailycheck() {
@@ -151,26 +148,120 @@ public class MypageController {
 	}
 	
 	
+//나의픽셀 페이지
 	
-	
-	@RequestMapping("/board/mypage_mypixel") //나의 픽셀
-	public ModelAndView mypage_mypixel(HttpServletRequest req, HttpServletResponse res) throws IOException {
+	//<나의 픽셀> 보유픽셀과, 픽셀이력, && 나의픽셀 페이징처리
+	@RequestMapping("/board/mypage_mypixel") 
+	public ModelAndView mypage_mypixel(PageVo pVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
 	
-		
 		HttpSession session = req.getSession();
 		String id = (String)session.getAttribute("sessionId");
 		
-		MypagePixelVo mPixelVo = service.pixel(id);
+		pVo.setId(id);
 		
-		System.out.println("보유픽셀:" + mPixelVo.getPixel());
+		/* if () { */
+		List<MypagePixelVo> list = service.pixel(pVo);
+			/*
+			 * } else if () { List<MypagePixelVo> list = service.pixel_get(pVo); } else {
+			 * List<MypagePixelVo> list = service.pixel_use(pVo); }
+			 */
+		pVo = service.getpVo();
+
+		//System.out.println(list.get(list.size() - 1).pixel);
+		//int pixel = list.get(list.size() - 1).pixel;
+		//mv.addObject("M_PIXEL", pixel);
+		mv.addObject("list", list);
+		mv.addObject("pVo", pVo);
 		
-		mv.addObject("mPixelVo", mPixelVo);
+		
+		mv.setViewName("mypage/mypage_mypixel");
+		
+		return mv;
+	
+	} 
+	
+	//보유픽셀
+	
+	@RequestMapping("/board/mypage_mypixel_have") 
+	public ModelAndView mypage_mypixel_have(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+	
+		HttpSession session = req.getSession();
+		String id = (String)session.getAttribute("sessionId");
+		
+		int pixel_have = service.pixel_have(id);
+
+		mv.addObject("pixel_have", pixel_have);
+		System.out.println(pixel_have); //콘솔 뜸
+		
+		mv.setViewName("mypage/mypage_mypixel");
+		
+		return mv;
+	
+	} 
+	
+	
+	
+	//픽셀 획득 이력
+	@RequestMapping("/board/mypage_pixel_get") 
+	public ModelAndView pixel_get(PageVo pVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+	
+		System.out.println("픽셀get 실행됨");
+		HttpSession session = req.getSession();
+		String id = (String)session.getAttribute("sessionId");
+		
+		pVo.setId(id);
+		
+		List<MypagePixelVo> list = service.pixel_get(pVo);
+		pVo = service.getpVo();
+		
+		
+		mv.addObject("list", list);
+		mv.addObject("pVo", pVo);
+		mv.setViewName("mypage/mypage_mypixel");
+		return mv;
+
+	} 
+	
+	
+	//픽셀 사용 이력
+	@RequestMapping("/board/mypage_pixel_use") 
+	public ModelAndView pixel_use(PageVo pVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+	
+		HttpSession session = req.getSession();
+		String id = (String)session.getAttribute("sessionId");
+		
+		pVo.setId(id);
+		
+		List<MypagePixelVo> list = service.pixel_use(pVo);
+		pVo = service.getpVo();
+		
+		mv.addObject("list", list);
+		mv.addObject("pVo", pVo);
+		mv.setViewName("mypage/mypage_mypixel");
+		return mv;
+
+	} 
+	
+	
+	//환전신청
+	@RequestMapping("/board/mypage_pixel_exchange")
+	public ModelAndView mypage_pixel_exchange(MypagePixelVo mppv) {
+		ModelAndView mv = new ModelAndView();
+		boolean b = true;
+		b = service.mypage_pixel_exchange(mppv);
+		
+		//mv.addObject("class_pixel", mppv.getPixel());
+		//mv.addObject("class_pixel_want_exchange", mppv.getPixel_want_exchange());
 		mv.setViewName("mypage/mypage_mypixel");
 		return mv;
 	}
 	
 	
+//인증페이지
 	
 	@RequestMapping("/board/mypage_certification") //인증
 	public ModelAndView mypage_certification() {
@@ -180,40 +271,120 @@ public class MypageController {
 		return mv;
 	}
 	
+	
+	//이메일인증
+	/*
+	@RequestMapping("/board/mypage_email_certification")
+	public ModelAndView mypage_email_certification(MypageCertiVo mpcv) {
+		ModelAndView mv = new ModelAndView();
+		boolean b = true;
+		b = service.mypage_email_certification(mpcv);
+		
+		//mv.addObject("class_pixel", mppv.getPixel());
+		//mv.addObject("class_pixel_want_exchange", 	mppv.getPixel_want_exchange());
+		mv.setViewName("mypage/mypage_certification");
+		return mv;
+	}
+	
+	
+	//계좌인증
+	@RequestMapping("/board/mypage_account_certification")
+	public ModelAndView mypage_account_certification(MypageCertiVo mpcv) {
+		ModelAndView mv = new ModelAndView();
+		boolean b = true;
+		b = service.mypage_account_certification(mpcv);
+		
+		//mv.addObject("class_pixel", mppv.getPixel());
+		//mv.addObject("class_pixel_want_exchange", 	mppv.getPixel_want_exchange());
+		mv.setViewName("mypage/mypage_certification");
+		return mv;
+	}
+	
+	
+	*/
+	
+	//멘토인증
+	@RequestMapping("/board/mypage_mentor_certification") 
+	public ModelAndView mypage_mentor_certification(@RequestParam("attFile") List<MultipartFile> mul, // 선택한 파일 업로드
+						 @ModelAttribute MypageCertiVo mpcv //폼태그로 날린 정보
+						 ) {		
+		ModelAndView mv = new ModelAndView();
+		boolean b = false;
+		System.out.println("경력증명 : " + mpcv.getCareer_certificate());
+		
+		for(MultipartFile m : mul) {
+			if(!m.isEmpty()) {
+				List<MypageAttVo> attList;
+				try {
+					attList = fileUpload(mul);
+					mpcv.setCareer_certificate(attList.get(0).getSysFile());
+					
+					System.out.println(mpcv.getCareer_certificate());
+					
+					b = service.mypage_mentor_certification(mpcv);				
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}else {
+				//b = service.update(mpcv);
+			}
+			
+		} 
+		
+		mv.setViewName("mypage/mypage_mepixel");
+		return mv;
+	}
+	
+	
+		
+
+	
 	/*
 	@RequestMapping("/board/mypage_corp_certification") //기업인증. 폼 전송 시.
-	public ModelAndView mypage_corp_certification(@RequestParam("attFile") MultipartFile mul,
-			 @RequestParam("attFile2") MultipartFile mul_2,// 선택한 파일 업로드
-			 @ModelAttribute MypageCorpVo mpCVo,
-			 @RequestParam(name = "delFile", required = false, defaultValue="") String[] delFile) {		
-			 
-		ModelAndView mv = new ModelAndView();
+	public ModelAndView corp_updateR(@RequestParam("attFile") MultipartFile mul, // 선택한 파일 업로드
+						 @RequestParam("attFile2") MultipartFile mul_2,
+						 @ModelAttribute MypageCertiVo mpcv, //폼태그로 날린 정보
+						 @RequestParam(name = "delFile", required = false, defaultValue="") String[] delFile) {		
 		
+		System.out.println("왜 안 찍혀?");
+		ModelAndView mv = new ModelAndView();
 		boolean b = false;
+		System.out.println("Corp_name : " + mpcv.getCorp_name());
+		
+		//
 		
 		//for(MultipartFile m : mul) {
-			if(!mul.isEmpty() && !mul_2.isEmpty()) {
-				List<MypageCorpAttVo> attList;
+			//if(!m.isEmpty()) {
+		if(!mul.isEmpty() && !mul_2.isEmpty()) {
+				List<MypageAttVo> attList;
+				
+				
+		} else {}
+		return mv;
+	} */
+				/*
 				try {
 					attList = fileUpload_corp(mul, mul_2);
-					mpCVo.setCorp_license(attList.get(0))
-					System.out.println(mpCVo.getCorp_license());
+					mpcv.setCorp_license();
+					mpcv.setCorp_logo();
+					//(attList.get(0).getSysFile());
 					
-					b = service.mypage_corp_certification(mpCVo, delFile);				
+					b = service.updateR(mpVo, delFile);				
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}else {
 				System.out.println("update 실행전");
-				b = service.update(mpCVo);
+				b = service.update(mpVo);
 				System.out.println("update 실행완료");
 			}
 			
-			mv.setViewName("mypage/mypage_corp_certification");
-			return mv;
 		} 
-		
+		mv.setViewName("mypage/mypage_certification");
+		return mv;
+	}
 	*/
+	
 	
 	// 인증>기업인증 첨부파일 업로드
 	/*

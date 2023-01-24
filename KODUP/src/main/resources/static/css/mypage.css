@@ -129,6 +129,10 @@
 
 /* mypage_corp_certification.jsp */
 
+/*폼태그도 자리 차지하는 경우 있어서 추가한 건데 변화없음*/
+.mentor_certification{display:inline;}
+
+
 #mypage_corp_certification{
 	margin-top: 80px;
 	text-align: center; 
@@ -248,7 +252,7 @@ text {
 
 /* #3981E5; */
 
-.btn_mypage_pixel_charge{
+.btn_mypage_pixel_charge, .btn_mypage_pixel_charge_list{
 	color:#0055CC;
 	background-color:white;
 	border-radius:10px;
@@ -261,7 +265,30 @@ text {
 	border-radius:10px;
 }
 
-.btn_mypage_pixel_exchange{
+.btn_mypage_pixel_total_list, .btn_mypage_pixel_exchange_total{
+	color:black;
+	background-color:white;
+	border-radius:10px;
+}
+
+.btn_mypage_pixel_total_list:hover,
+.btn_mypage_pixel_exchange_total:hover{
+	color:white;
+	background-color:black;
+	border:2px solid black;
+	border-radius:10px;
+}
+
+
+.btn_mypage_pixel_charge_list:hover{
+	color:white;
+	background-color:#0055CC;
+	border:2px solid #0055CC;
+	border-radius:10px;
+}
+
+
+.btn_mypage_pixel_exchange, .btn_mypage_pixel_exchange_list{
 	color:#BB2649;
 	background-color:white;
 	border-radius:10px;
@@ -273,6 +300,15 @@ text {
 	border:2px solid #BB2649; 
 	border-radius:10px;
 }
+
+
+.btn_mypage_pixel_exchange_list:hover{
+	color:white;
+	background-color:#BB2649;
+	border:2px solid #BB2649; 
+	border-radius:10px;
+}
+
 
 .mypage_mypixel_use_box2{
 	border: 1px solid #ccc;
@@ -302,6 +338,12 @@ text {
 	margin-left: 35%;
 }
 
+
+/* form 태그 css가 깨져서 */
+.pixel_exchange{
+	display: inline;	
+}
+
 /* 그리드 구현 영역
 .pixel-grid-container{
 	display: grid;
@@ -322,5 +364,16 @@ text {
 	text-align: center;
 } */
 
+/* 픽셀 리스트 */
+.btnZone{
+	margin-top: 10px;
+	margin-left: 150px;
+}
+
+.btnZone input[type=button]{
+	border: 1px solid white;
+	border-radius: 5px;
+	background-color: white;
+}
 
 

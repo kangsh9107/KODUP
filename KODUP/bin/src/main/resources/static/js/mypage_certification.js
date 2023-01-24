@@ -16,9 +16,25 @@ $('.btn_email_certification, .btn_account_certification').on('click', function()
 //mypage_corp_certification (인증페이지_멘토인증)
 $('.btn_mentor_certification').on('click', function(){
 	console.log("멘토인증");
+	
+	var frm = $('.mentor_certification')[0];
+		var param = new FormData(frm);
+		
+		$.ajax({
+			type : 'POST',
+			url : '/board/mypage_mentor_certification',
+			contentType : false,
+			processData : false,
+			data : param,
+			dataType : 'html',
+			success: function(data){
+				
+				$('#m_section2').load('/board/mypage_corp_certification');
+				}
+			});
+		}
+	
 
-	$('#m_section2').load('/board/mypage_corp_certification');
-});
 
  
 //mypage_corp_certification (인증페이지_기업인증)
