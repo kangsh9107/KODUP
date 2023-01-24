@@ -198,7 +198,7 @@ public class MantomanService {
 	}
 
 	public boolean updateChatStatus2(String id) {
-boolean b = false;
+		boolean b = false;
 		
 		int cnt = 0;
 		cnt = mapper.updateChatStatus2(id);
@@ -214,9 +214,4 @@ boolean b = false;
 		
 		return b;
 	}
-
-//	public ProfileVo selectProfile(String sessionId) {
-//		MantomanVo mtmVo = mapper.selectId(sessionId);
-//		return mtmVo;
-//	}
 }

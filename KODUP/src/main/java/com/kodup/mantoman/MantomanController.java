@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kodup.login.MemberVo;
+import com.kodup.profile.ProfileService;
+import com.kodup.profile.ProfileVo;
 
 import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 
@@ -23,6 +25,9 @@ public class MantomanController {
 	
 	@Autowired
 	MantomanService service;
+	
+	@Autowired
+	ProfileService service2;
 	
 	@RequestMapping("/mantoman/mantoman_index")
 	public ModelAndView mantomanIndex(MantomanVo mtmVo,HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -70,8 +75,23 @@ public class MantomanController {
 	}
 	
 	@RequestMapping("/profile/member_profile_chat")
-	public ModelAndView profileChat() {
+	public ModelAndView profileChat(ProfileVo pfVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
+		String sessionId = (String)req.getParameter("sessionId");
+		pfVo = service2.selectProfile(sessionId);
+		if(pfVo!=null) {
+			String grade = pfVo.getGrade();
+			if(grade.equals("3")) {
+				pfVo.setGrade("파트너멘토");
+			}else if(grade.equals("2")) {
+				pfVo.setGrade("플러스멘토"); 
+			}else if(grade.equals("1")) {
+				pfVo.setGrade("퍼스널멘토");
+			}else if(grade.equals("0")) {
+				pfVo.setGrade("멘티");
+			}
+		}
+		mv.addObject("pfVo", pfVo);
 		mv.setViewName("profile/member_profile_chat");
 		return mv;
 	}
