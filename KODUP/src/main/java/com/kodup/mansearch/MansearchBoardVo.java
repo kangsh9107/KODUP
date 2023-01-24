@@ -36,9 +36,17 @@ public class MansearchBoardVo {
 	String writer_id;
 	String buyer_id;
 	int pr_mansearch_sno;
+	int board_delete;
 	// 마감일을 구하기 위한 필드
 	String deadlinecount;
 	
+	
+	public int getBoard_delete() {
+		return board_delete;
+	}
+	public void setBoard_delete(int board_delete) {
+		this.board_delete = board_delete;
+	}
 	public String getProfile_img() {
 		return profile_img;
 	}

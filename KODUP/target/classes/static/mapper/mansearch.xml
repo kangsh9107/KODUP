@@ -10,7 +10,7 @@
 	<select id="select" parameterType="com.kodup.board.PageVo" resultType="com.kodup.mansearch.MansearchBoardVo">
 		SELECT DATEDIFF(deadline, DATE_FORMAT(now(),'%Y-%m-%d')) as deadlinecount, mb.mansearch_sno, mb.pay, mb.corp_location, mb.position, mb.required_career, mb.job_type, mb.required_skill, mb.deadline, 
 			   mb.main_task, mb.sub_task, mb.work_start,mb.education_level, mb.work_type, mb.pay_date,
-       		   b.subject,b.id,b.sno,
+       		   b.subject,b.id,b.sno,b.board_delete,
                c.corp_logo, c.corp_name,
                m.profile_img
         FROM mansearch_board mb LEFT JOIN board b 		ON mb.sno = b.sno
@@ -60,10 +60,8 @@
 		update mansearch_board set work_start = #{work_start}, pay = #{pay}, corp_location = #{corp_location}, position = #{position}, job_type = #{job_type}, required_career = #{required_career}, education_level = #{education_level}, work_type = #{work_type}, pay_date = #{pay_date}, required_skill = #{required_skill}, deadline = #{deadline}, main_task = #{main_task}, sub_task = #{sub_task}
 	</update>	
 	<delete id='delete' parameterType='com.kodup.mansearch.MansearchBoardVo'>
-		DELETE FROM mb,b
-    		USING mansearch_board AS mb
-    		LEFT JOIN board AS b ON mb.sno = b.sno
-		WHERE mb.sno = ${sno} 
+		UPDATE board SET board_delete = 1 
+		WHERE sno = ${sno} 
 	</delete>
 	<insert id="buylistinsert" parameterType="com.kodup.mansearch.MansearchBoardVo">
 		INSERT INTO premium_review_buylist(id,premium_review_sno) VALUES(#{id},${premium_review_sno} )
