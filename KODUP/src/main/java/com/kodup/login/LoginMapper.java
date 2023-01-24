@@ -17,6 +17,7 @@ public interface LoginMapper {
 	public String getId(String email);
 	public String getProfileImg(String id);
 	public String getNickname(String id);
+	public int getPixel(String id);
 	
 	public int chatInsert(MemberVo mVo);
 	public int chatDelete(String id);

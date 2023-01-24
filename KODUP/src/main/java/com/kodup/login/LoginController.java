@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kodup.mansearch.MansearchBoardVo;
+import com.kodup.mansearch.MansearchService;
+
 @RestController
 public class LoginController {
 	
@@ -183,6 +186,9 @@ public class LoginController {
 			String nickname = "";
 			nickname = service.getNickname(mVo.getId());
 			session.setAttribute("nickname", nickname);
+			//pixel 가져옴
+			int pixel = service.getPixel(mVo.getId());
+			session.setAttribute("pixel", pixel);
 			mv.setViewName("/login/main");
 		}
 		
@@ -229,6 +235,9 @@ public class LoginController {
 					String nickname = "";
 					nickname = service.getNickname(mVo.getId());
 					session.setAttribute("nickname", nickname);
+					//pixel 가져옴
+					int pixel = service.getPixel(mVo.getId());
+					session.setAttribute("pixel", pixel);
 					mv.setViewName("/login/main");
 				}
 			} else {   //nickname 중복
@@ -268,6 +277,9 @@ public class LoginController {
 			String nickname = "";
 			nickname = service.getNickname(id);
 			session.setAttribute("nickname", nickname);
+			//pixel 가져옴
+			int pixel = service.getPixel(id);
+			session.setAttribute("pixel", pixel);
 			mv.setViewName("/login/main");
 		} else {  //ID중복 아님. 카카오 회원가입 폼으로.
 			mv.addObject("id", id);
@@ -316,6 +328,9 @@ public class LoginController {
 				String nickname = "";
 				nickname = service.getNickname(mVo.getId());
 				session.setAttribute("nickname", nickname);
+				//pixel 가져옴
+				int pixel = service.getPixel(mVo.getId());
+				session.setAttribute("pixel", pixel);
 				mv.setViewName("/login/main");
 			}
 		} else { //NICKNAME 중복

@@ -140,6 +140,12 @@ public class LoginService {
 		return id= loginMapper.getNickname(id);
 	}
 	
+	//member테이블 pixel 가져오기
+	public int getPixel(String id) {
+		int pixel = loginMapper.getPixel(id);
+		return pixel;
+	}
+	
 	//chat테이블 id 중복체크
 	public boolean checkChatId(String id) {
 		boolean c = false;

@@ -8,6 +8,7 @@ public class InsertBoardVo {
 	
 	String qna_horsehead;
 	int qna_pixel_reward;
+	int pixel;
 	int sno;
 	String horsehead;
 	String id;
@@ -37,5 +38,7 @@ public class InsertBoardVo {
 	public void setDoc(String doc) { this.doc = doc; }
 	public String getHashtag() { return hashtag; }
 	public void setHashtag(String hashtag) { this.hashtag = hashtag; }
+	public int getPixel() { return pixel; }
+	public void setPixel(int pixel) { this.pixel = pixel; }
 
 }

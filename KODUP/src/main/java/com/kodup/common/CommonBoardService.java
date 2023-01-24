@@ -138,6 +138,7 @@ public class CommonBoardService {
 	//INSERT
 	public boolean insert(InsertBoardVo ibVo) {
 		boolean b = false; //true면 board테이블 insert 성공
+		int checkPixel = cbMapper.checkPixel(ibVo);
 		int sno = 0;
 		int cnt = cbMapper.insertBoard(ibVo);
 		status = manager.getTransaction(new DefaultTransactionDefinition());

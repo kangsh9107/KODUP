@@ -68,6 +68,7 @@
 		<input type="hidden" name="horsehead" value="${cbpVo.horsehead }">
 		<input type="hidden" name="hashtag" value="${cbpVo.hashtag }">
 		<input type="hidden" name="qna_pixel_reward" value="${cbpVo.qna_pixel_reward }">
+		<input type="hidden" id="pixelTemp" name="pixel" value="0">
 		<input type="hidden" name="nowPage" value="${cbpVo.nowPage }">
 		<input type="hidden" name="findStr" value="${cbpVo.findStr }">
 		<input type="hidden" name="id" value="${sessionScope.sessionId }">
