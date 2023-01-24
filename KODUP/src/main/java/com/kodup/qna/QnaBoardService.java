@@ -79,10 +79,8 @@ public class QnaBoardService {
 		status = manager.getTransaction(new DefaultTransactionDefinition());
 		Object savePoint = status.createSavepoint();
 		
-		
 		int cnt = mapper.replChaetaek(qbrVo); 
 		if(cnt<1) {	b=false;}
-		
 		
 		if(b) manager.commit(status);
 		else status.rollbackToSavepoint(savePoint);
@@ -91,7 +89,7 @@ public class QnaBoardService {
 		return b;
 	}
 	
-	public boolean giveRewardPixel(QnaBoardVo qbVo) {
+	public boolean giveRewardPixel(QnaBoardVo qbVo,QnaBoardReplVo qbrVo) {
 		boolean b = true;
 		status = manager.getTransaction(new DefaultTransactionDefinition());
 		Object savePoint = status.createSavepoint();
@@ -99,8 +97,14 @@ public class QnaBoardService {
 		int cnt = mapper.giveRewardPixel(qbVo);
 		if(cnt<1) { b=false; }
 		
-		if(b) manager.commit(status);
-		else status.rollbackToSavepoint(savePoint);
+		if(b) {
+			if(qbVo.getQna_pixel_reward()!=0) {
+				cnt = mapper.pixel_history(qbVo);
+				if(cnt<1) {b=false;}
+			}
+			if(b){manager.commit(status);}
+			else{status.rollbackToSavepoint(savePoint);}
+		}else status.rollbackToSavepoint(savePoint);
 		
 		return b;
 	}
@@ -121,11 +125,7 @@ public class QnaBoardService {
 		
 		return b;
 	}
-	/*
-	public void insertRepl_selected(QnaBoardReplVo qbrVo) {
-		String repl_sno = mapper.
-	}
-	*/
+	
 	
 	
 	public boolean insertRepl2(QnaBoardReplVo qbrVo) {
@@ -133,20 +133,19 @@ public class QnaBoardService {
 		status = manager.getTransaction(new DefaultTransactionDefinition());
 		Object savePoint = status.createSavepoint();
 		
-		int repl_sno=mapper.insertRepl2(qbrVo);//추가된 데이터의repl_sno를 string타입으로 가져옴
-		int cnt = mapper.insertRepl3(repl_sno);//가져온 repl_sno를 repl_selected테이블에추가
+		int repl_sno=mapper.insertRepl2(qbrVo);//추가된 데이터의repl_sno를 int타입으로 가져옴
+		int cnt = mapper.insertRepl3(repl_sno);//가져온 repl_sno를 repl_selected에 데이터 추가
 		if(cnt<1) {	b=false; }
+			
 		
 		if(b) manager.commit(status);
 		else status.rollbackToSavepoint(savePoint);
-		
 		return b;
 	}
 	public boolean insertInnerRepl(QnaBoardReplVo qbrVo) {
 		boolean b = true;
 		status = manager.getTransaction(new DefaultTransactionDefinition());
 		Object savePoint = status.createSavepoint();
-		
 		
 		int cnt = mapper.insertInnerRepl(qbrVo);
 		if(cnt<1) {	b=false; }
@@ -163,7 +162,11 @@ public class QnaBoardService {
 		Object savePoint = status.createSavepoint();
 		
 		int repl_sno=mapper.insertInnerRepl2(qbrVo);//추가된 데이터의repl_sno를 int타입으로 가져옴
-		int cnt = mapper.insertInnerRepl3(repl_sno);//가져온 repl_sno를 repl_selected테이블에 추가
+		//insertInnerRepl2를 통해 입력된 대댓의 repl_sno를 찾고
+		//그 repl_sno와 jsp에서 폼태그시리얼라이즈로가져온 repl_status를 qbrVo에담아 xml통해 입력
+		//(repl_status:채택된댓글에 대댓글인경우 1이 입력될거고 아니면 0이입력)
+		qbrVo.setRepl_sno(repl_sno);
+		int cnt = mapper.insertInnerRepl3(qbrVo);//repl_selected 데이터 추가
 		if(cnt<1) {	b=false; }
 		
 		if(b) manager.commit(status);
@@ -172,10 +175,11 @@ public class QnaBoardService {
 		return b;
 	}
 	
+	
+	//채택이 완료된 sno글에 채택된 댓글에 대댓글을 단경우 해당sno의 채택된 repl_sno 개수를 셀렉트함.
 	public int checkChaeTaek(int sno) {
 		int ChaeTaekStatus=0;
 		ChaeTaekStatus = mapper.checkChaeTaek(sno);
-		System.out.println("채택스테이터스 서비스단:"+ChaeTaekStatus);
 		
 		return ChaeTaekStatus;
 	}

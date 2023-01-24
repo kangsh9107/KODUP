@@ -471,7 +471,7 @@
 	height:20px;
 }
 #qna_view .qna_view_repl_doc{
-	min-height: 100px;
+	min-height: 50px;
 	background: #FAFAFA;
 	
 }
@@ -486,10 +486,7 @@
 	width:20px;
 	height:20px;
 }
-#qna_view .qna_view_repl_inner_doc{
-	min-height: 50px;
-	background: #FAFAFA;
-}
+
 #qna_view .qna_view_repl_inner_btnzone{
 	text-align:right;
 }

@@ -116,7 +116,7 @@ $('#btn_viewpage_thumbup').on('click', function(){
     $.post("/qna/qna_view/thumbup", param, function(data){})
   	var thumb_standard = $('#thumb_standard').val();
     if(Number(thumb) >= thumb_standard){
-    	$('#btn_viewpage_thumbup').attr("disabled", true);//버튼비활성화;추후고도화:컬럼추가하여id당 해당sno에 추천이나 비추천한경우 더이상 선택할수없게 제어
+    	$('#btn_viewpage_thumbup').attr("disabled", true);
 		$('#btn_viewpage_thumbdown').attr("disabled", false);
 	} 
 })
@@ -127,7 +127,7 @@ $('#btn_viewpage_thumbdown').on('click', function(){
     $.post("/qna/qna_view/thumbdown", param, function(data){})
     	var thumb_standard = $('#thumb_standard').val();
     if(Number(thumb) <= thumb_standard){
-	    $('#btn_viewpage_thumbdown').attr("disabled", true);//버튼비활성화;추후고도화:컬럼추가하여id당 해당sno에 추천이나 비추천한경우 더이상 선택할수없게 제어
+	    $('#btn_viewpage_thumbdown').attr("disabled", true);
 		$('#btn_viewpage_thumbup').attr("disabled", false);
 	}
 })
@@ -181,12 +181,8 @@ function view_insert_repl(){
   	//메인서머노트 값 가져오기
     var summernoteContent = $('#view_main_summernote').summernote('code'); 
     var sessionId = $('.sessionId_hidden').val();
-    var sno = $('#view_sno').val();	//없어도될듯 콘솔찍어보기위함
-    
     //가져온 서머노트 값을 폼태그안에 히든태그로 넣어줌
-    $('#view_summer_code').text(summernoteContent);
-    
-	
+    $('#view_summer_code').val(summernoteContent);
 	var param = $('#qna_view').serialize();
     $.post("/qna/qna_view/insertRepl", param, function(data){
        $('#center').html(data);
@@ -195,28 +191,25 @@ function view_insert_repl(){
 }
 
 //본문 대댓글 입력
-
-function view_insert_innerRepl(grp){
-//대댓서머노트 코드 가져오기
+function view_insert_innerRepl(grp,replStatus){
+	//대댓서머노트 코드 가져오기
   	var summernoteSerial = "view_inner_summernote"+grp;
     var summernoteContent = $('#' + summernoteSerial).summernote('code'); 
     var sessionId = $('#sessionId_hidden').val();
-    var sno = $('#view_sno').val();
-    
-    //매개변수로 받아온 grp를 폼태그안에 히든태그에 넣어줌
-    $('#insert_inner_repl_grp').attr("value",grp);
-    
+    var frm = $('#qna_view')[0];
+    frm.repl_status.value=replStatus;
+    frm.grp.value=grp;
     
     //가져온 서머노트 코드를 폼태그안에 히든태그에 넣어줌
     $('#view_summer_code').text(summernoteContent);
-    
+   
+   
 	var param = $('#qna_view').serialize();
     $.post("/qna/qna_view/insertInnerRepl", param, function(data){
        $('#center').html(data);
     })
 	
 }
-
 function view_update_Repl_open(repl_sno){
 	var save_repl_doc = $("#save_repl_doc"+repl_sno).val();//서머code
 	var view_update_summer = $("#view_update_Repl_summernote"+repl_sno);//summernote
@@ -243,15 +236,13 @@ function updateReplCancel(repl_sno){
 }
 
 
-function updateReplUpdate(repl_sno){
+function updateReplUpdate(repl_sno,repl_status){
 	var yn = confirm('댓글을 수정하시겠습니까 ?');
     if( !yn ) return;
-    
-	var view_update_summer = $("#view_update_Repl_summernote"+repl_sno);
-	view_update_summer.summernote('code');
-	
-    
     var frm = $('#qna_view')[0];
+	var view_update_summer = $("#view_update_Repl_summernote"+repl_sno);
+	
+	frm.repl_status.value=repl_status;
     frm.repl_sno.value=repl_sno;
     frm.repl_doc.value=view_update_summer.summernote('code');
     var param = $('#qna_view').serialize();
@@ -259,18 +250,3 @@ function updateReplUpdate(repl_sno){
        $('#center').html(data);
      })
 }
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-

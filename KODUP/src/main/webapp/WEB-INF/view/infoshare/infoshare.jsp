@@ -71,9 +71,9 @@
 			</div>
 			
 			<!-- HIDDEN -->
-			<input type="hidden" name="nowPage" value="">
-			<input type="hidden" name="infoshare_sno" value="">
-			<input type="hidden" name="sno" value="">
+			<input type="hidden" name="nowPage" value="0">
+			<input type="hidden" name="infoshare_sno" value="0">
+			<input type="hidden" name="sno" value="0">
 		</form>
 
 		<!-- LIST -->
@@ -89,7 +89,7 @@
 						<i class="fas fa-circle-check" style="color: #555; font-size: 0.9rem;"></i>
 					</div>
 					<br/>
-					<a href="#" onclick="infoshare_view(${listInfoshare.sno })" class="text-decoration-none">
+					<a href="#" onclick="infoshare_view(${listInfoshare.sno})" class="text-decoration-none">
 						<span id="index_doc">프로그래밍 언어 별 채용공고 통계</span>
 					</a>
 					<br/>

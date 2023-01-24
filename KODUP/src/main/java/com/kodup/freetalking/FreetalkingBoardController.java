@@ -41,10 +41,8 @@ public class FreetalkingBoardController {
 	public ModelAndView freetalkingView(FreetalkingBoardVo fbVo, FreetalkingBoardReplVo fbrVo) {
 		ModelAndView mv = new ModelAndView();
 
-		
 		fbVo = service.view(fbVo.getSno());
 		List<FreetalkingBoardReplVo> replList = service.replList(fbVo.getSno());//본문의sno를 넣어줌
-		
 		
 		mv.addObject("fbVo",fbVo);
 		mv.addObject("replList",replList);

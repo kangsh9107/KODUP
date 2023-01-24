@@ -73,9 +73,9 @@
 			</div>
 			
 			<!-- HIDDEN -->
-			<input type="hidden" name="nowPage" value="">
-			<input type="hidden" name="jobsearch_sno" value="">
-			<input type="hidden" name="sno" value="">
+			<input type="hidden" name="nowPage" value="0">
+			<input type="hidden" name="jobsearch_sno" value="0">
+			<input type="hidden" name="sno" value="0">
 		</form>
 
 		<!-- LIST -->
@@ -91,7 +91,7 @@
 						<i class="fas fa-circle-check" style="color: #555; font-size: 0.9rem;"></i>
 					</div>
 					<br/>
-					<a href="#" onclick="jobsearch_view(${listJobsearch.sno })" class="text-decoration-none">
+					<a href="#" onclick="jobsearch_view(${listJobsearch.sno})" class="text-decoration-none">
 						<span id="index_doc">개발자 3명 프로젝트 찾습니다.</span>
 					</a>
 					<br/>
