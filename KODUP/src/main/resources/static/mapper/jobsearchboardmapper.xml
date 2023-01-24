@@ -45,7 +45,7 @@
     
     <insert id='insertRepl' parameterType="com.kodup.jobsearch.JobsearchBoardReplVo">
     	insert into repl(repl_doc,id,sno, grp,seq,deep,repl_nal) 
-		values("${repl_doc}","${sessionid}",${sno},
+		values(#{repl_doc},#{sessionid},${sno},
 		(select grp from ( select count(*) as grp from repl where deep=0) as repl_temp),
 		(select seq from ( select count(*) as seq from repl) as repl_temp),
 		0,sysdate())
@@ -54,7 +54,7 @@
     
     <insert id='insertInnerRepl' parameterType="com.kodup.jobsearch.JobsearchBoardReplVo">
     	insert into repl(repl_doc,id,sno, grp,seq,deep,repl_nal) 
-		values("${repl_doc}","${sessionid}",${sno},
+		values(#{repl_doc},#{sessionid},${sno},
 		${grp},
 		(select seq from ( select count(*) as seq from repl) as repl_temp),
 		1,sysdate()) 
@@ -63,7 +63,7 @@
     
     
     <update id="ReplUpdateR" parameterType="com.kodup.jobsearch.JobsearchBoardReplVo">
-    	update repl set repl_doc = "${repl_doc}" where repl_sno=${repl_sno}
+    	update repl set repl_doc = #{repl_doc} where repl_sno=${repl_sno}
     </update>
 
 </mapper>

@@ -99,6 +99,7 @@
 			</div>
 			
 			<!-- HIDDEN -->
+<<<<<<< HEAD
 			<input type="hidden" name="sno" value="${cbpVo.sno }">
 			<input type="hidden" name="sort" value="${cbpVo.sort }">
 			<input type="hidden" name="boardtype" value="${cbpVo.boardtype }">
@@ -106,6 +107,11 @@
 			<input type="hidden" name="hashtag" value="${cbpVo.hashtag }">
 			<input type="hidden" name="nowPage" value="${cbpVo.nowPage }">
 			<input type="hidden" name="id" value="${sessionScope.sessionId }">
+=======
+			<input type="hidden" name="nowPage" value="0">
+			<input type="hidden" name="jobsearch_sno" value="0">
+			<input type="hidden" name="sno" value="0">
+>>>>>>> refs/remotes/origin/seongho
 		</form>
 
 		<!-- LIST -->
@@ -134,6 +140,7 @@
 						</c:choose>
 					</div>
 					<br/>
+<<<<<<< HEAD
 					<a href="#" onclick="jobsearch_view(${listJobsearch.sno })" class="text-decoration-none">
 						<span id="index_subject">
 							<c:choose>
@@ -148,6 +155,10 @@
 								</c:otherwise>
 							</c:choose>
 						</span>
+=======
+					<a href="#" onclick="jobsearch_view(${listJobsearch.sno})" class="text-decoration-none">
+						<span id="index_doc">개발자 3명 프로젝트 찾습니다.</span>
+>>>>>>> refs/remotes/origin/seongho
 					</a>
 					<br/>
 					<div style="float: left;">

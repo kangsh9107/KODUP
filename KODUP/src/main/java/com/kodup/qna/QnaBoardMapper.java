@@ -18,12 +18,14 @@ public interface QnaBoardMapper {
 	public int qnaReplDeleteR(int repl_sno);
 	public int replChaetaek(QnaBoardReplVo qbrVo);
 	public int giveRewardPixel(QnaBoardVo qbVo);
+	public int pixel_history(QnaBoardVo qbVo);
 	public int insertRepl(QnaBoardReplVo qbrVo);
 	public int insertRepl2(QnaBoardReplVo qbrVo);
 	public int insertRepl3(int repl_sno);
 	public int insertInnerRepl(QnaBoardReplVo qbrVo);
 	public int insertInnerRepl2(QnaBoardReplVo qbrVo);
-	public int insertInnerRepl3(int repl_sno);
+	public int insertInnerRepl3(QnaBoardReplVo qbrVo);
 	public int checkChaeTaek(int sno);
 	public int ReplUpdateR(QnaBoardReplVo qbrVo);
+
 }

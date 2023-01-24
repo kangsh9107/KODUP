@@ -13,25 +13,28 @@
 <title>qna/qna_view.jsp</title>
 </head>
 <body>
-<form id="qna_view">
-	<div style=" height:20px; display:none;"><!-- visibility:hidden; -->
-	sno<input type='text' id="view_sno" name='sno' size="2" value='${qbVo.sno}' />      <!-- style="visibility: hidden;" 또는 style="display: none;" -->
-	repl_sno<input type='text' name='repl_sno' size="2" value='0'/>
-	pixel<input type="text" name='qna_pixel_reward' size="2" value="${qbVo.qna_pixel_reward}"/>
-	board_delete<input type='text'  name='board_delete' size="2" value='${qbVo.board_delete}'/>
-	nowPage<input type='text' name='nowPage' value='0' size="2"/>
-	sessionID<input type="text" id="view_sessionID" name='sessionid' value="${sessionScope.sessionId}" size="4"/> <!-- index.jsp의 세션아이디를 그대로 el문으로 받아옴 -->
-	repl_doc(summerCODE)<textarea name="repl_doc" id="view_summer_code" ></textarea>
-	insertInnerReplgrp<input type='text' id="insert_inner_repl_grp" name='grp' size='2' value='0'/>
-	snoID<input type="text" name="sno_id" size="3" value='${qbVo.id}'/>
-	repl_ID<input type="text" id="chaetaekID" name="id" size="3" value=""/>
+<form id="qna_view" >
+	<div style=" height:20px; display:none;">
+	<input type='text' name='nowPage' 	value='0' size="2"/>
+	sno
+	<input type='text' id="view_sno" name='sno' size="2" value='${qbVo.sno}' />      
+	repl_sno
+	<input type='text' name='repl_sno' 	  id="repl_sno"  			 value='0' size="2"/>
+	<input type='text' name='board_delete'id="board_delete" 		 value='${qbVo.board_delete}' />
+	<input type="text" name='sessionid'   id="view_sessionID"     	 value='${sessionScope.sessionId}' size="4"/> <!-- index.jsp의 세션아이디를 그대로 el문으로 받아옴 -->
+	<input type="text" name="sno_id" 	  id="sno_id"                value='${qbVo.id}' size="3"/>
+	<input type="text" name="id" 		  id="chaetaekID"            value='0' size="3"/>
+	<input type="text" name="repl_status" id="repl_status"    		 value='0' size="3"/>
+	<input type='text' name="grp"		  id="insert_inner_repl_grp" value='0' size='2' />
+	<input type="text" name='qna_pixel_reward' 						 value="${qbVo.qna_pixel_reward}" size="2" />
+	<textarea		   name="repl_doc"	  id="view_summer_code"  ></textarea>
 	<br/>
-	checkChaeTaek<input type="text" value='${checkChaeTaek}'/>
+	<input id="checkChaeTaek" type="text" value='${checkChaeTaek}'/>
 	
 	</div>
 	<!-- boardtype  /  horsehead -->
 	<div id="qna_view_horsehead">
-		<a href="#" class="btnBoardtype">Q&A</a><!-- ${qbVo.boardtype} -->
+		<a href="#" class="btnBoardtype">Q&A</a>
 		/
 		<a>${qbVo.qna_horsehead}</a>
 	</div>
@@ -113,7 +116,11 @@
 					<!-- 댓글인서트 서머노트 -->
 					<div class="view_summernote_section">
 						<span>
+<<<<<<< HEAD
 							<img id="qna_view_repl_insert_profileimage_file" src="images/default.png" style="border-radius:50%;">
+=======
+							<img id="qna_view_repl_insert_profileimage_file" src="images/${sessionScope.profile_img}" style="border-radius:50%;">
+>>>>>>> refs/remotes/origin/seongho
 						</span>
 						<textarea id="view_main_summernote" class="view_summernote"></textarea>
 					</div>
@@ -156,16 +163,13 @@
 			<!-- 댓글리스트 -->
 			<div id="qna_view_repl_list" style="margin-top:50px;"> 
 				<c:forEach var='replList' items='${replList}'>
-				
-				<div style="visibility:hidden;"> <!-- style="visibility:hidden;" -->
-					repl_doc<input id="save_repl_doc${replList.repl_sno}" type="text" size="4" value="${replList.repl_doc}"/>
-					repl_sno<input type="text"size="2" value="${replList.repl_sno}"/>
-					repl_grp<input type="text" size="2" value="${replList.grp}"/>
-					id<input type="text"size="2" value="${replList.id}"/>
+				<!-- 리플 HIDDEN -->
+				<div style="display:none;"> 
+					<textarea id="save_repl_doc${replList.repl_sno}">${replList.repl_doc}</textarea> 
 				</div>
 					<c:if test ='${replList.deep eq 0}'>
 						<!-- 댓글작성자프로필사진+닉네임+댓글작성시간 -->
-						<div class="qna_view_repl_profile" style="font-size:13px; margin-top:30px;">
+						<div class="qna_view_repl_profile" style="font-size:13px; margin-top:15px;">
 							<span class="qna_view_repl_profile_profileimage"><!--댓글작성자프로필사진+닉네임+댓글작성시간 한줄로 붙이기위해 inline요소인 span태그사용 -->
 								<img class="qna_view_repl_profile_profileimage_file" src="images/${replList.profile_img}"style="border-radius:50%;" >
 							</span>
@@ -182,9 +186,8 @@
 						<!-- reward_class${replList.repl_status}->reward_class1 : 채택댓글클래스-->
 						<div class="qna_view_repl_doc reward_class${replList.repl_status}" 
 						style="position:relative; font-size:13px; border:1px solid #E6E6E6;
-						border-radius:10px; padding:2px;">
+						border-radius:10px; padding:2px; min-height:70px;">
 							<div>
-								
 								<span>
 									<c:choose>
 										<c:when test="${replList.repl_delete eq 0}">
@@ -242,17 +245,23 @@
 							</c:if>
 						</div>
 						<!-- (ON/OFF)display ; 댓글수정서머노트 -->
-						<div id="updateReplSection${replList.repl_sno}"style="display:none;">
+						<div id="updateReplSection${replList.repl_sno}"style="display:none; margin-top:5px;">
 							<textarea id="view_update_Repl_summernote${replList.repl_sno}" style="display:none;">
 							</textarea>
-							<button type="button" class="qna_view_originalBtn" onclick="updateReplUpdate(${replList.repl_sno})">수정입력</button>
-							<button type="button" class="qna_view_originalBtn" onclick="updateReplCancel(${replList.repl_sno})">취소</button>
+							<div id="bntbntnzone"style="display:inline-block; ">
+								<button type="button" class="qna_view_originalBtn" onclick="updateReplUpdate(${replList.repl_sno},${replList.repl_status})">수정</button>
+								<button type="button" class="qna_view_originalBtn" onclick="updateReplCancel(${replList.repl_sno})">취소</button>
+							</div>
 						</div>
 					
 						<!-- (ON/OFF)display ; 대댓글입력폼 -->
 						<div id="repl_insert_section${replList.repl_sno}" style="display:none; font-size:15px; margin-left:50px;">
 							<span>
+<<<<<<< HEAD
 								<img id="qna_view_repl_inner_insert_profileimage_file" src="images/default.png"><!-- 세션아이디의 프로필이미지가 들어감 -->
+=======
+								<img id="qna_view_repl_inner_insert_profileimage_file" src="images/${sessionScope.profile_img}"><!-- 세션아이디의 프로필이미지가 들어감 -->
+>>>>>>> refs/remotes/origin/seongho
 							</span>
 							<!-- 대댓글인서트_내용 서머노트 -->
 							<div id="view_inner_summernote${replList.grp}"class="view_summernote"></div>
@@ -260,16 +269,14 @@
 							<div id="qna_view_repl_inner_btnInsert" >
 								<input type="button" class="qna_view_originalBtn" value="대댓글입력"
 								style="width:100px;"
-								onclick="view_insert_innerRepl(${replList.grp})" >
+								onclick="view_insert_innerRepl(${replList.grp},${replList.repl_status})" >
 							</div>
 						</div>
-						<!-- ----------------------------------- -->
-						
 					</c:if>
 					<c:if test ='${replList.deep ne 0}'>
-						<div class="repl_inner_section${replList.grp}"style="margin-left:50px; margin-top: -30px;">
+						<div class="repl_inner_section${replList.grp}"style="margin-left:50px; ">
 							<!-- 댓글작성자프로필사진+닉네임+댓글작성시간 -->
-							<div class="qna_view_repl_profile" style="font-size:13px; margin-top:30px;">
+							<div class="qna_view_repl_profile" style="font-size:13px; margin-top:15px;">
 								<span class="qna_view_repl_profile_profileimage"><!--댓글작성자프로필사진+닉네임+댓글작성시간 한줄로 붙이기위해 inline요소인 span태그사용 -->
 									<img class="qna_view_repl_profile_profileimage_file" src="images/${replList.profile_img}"style="border-radius:50%;" >
 								</span>
@@ -281,7 +288,7 @@
 								</span>
 							</div>
 							<!-- 댓글내용 -->
-							<div class="qna_view_repl_doc" style="position:relative; font-size:13px; border:1px solid #E6E6E6; border-radius:10px; padding:2px;">
+							<div class="qna_view_repl_doc" style="min-height:70px;position:relative; font-size:13px; border:1px solid #E6E6E6; border-radius:10px; padding:2px;">
 								<div>
 									<span>
 										<c:choose>
@@ -313,7 +320,7 @@
 							<div id="updateReplSection${replList.repl_sno}"style="display:none;">
 								<textarea id="view_update_Repl_summernote${replList.repl_sno}" >
 								</textarea>
-								<button type="button" class="qna_view_originalBtn" onclick="updateReplUpdate(${replList.repl_sno})">수정입력</button>
+								<button type="button" class="qna_view_originalBtn" onclick="updateReplUpdate(${replList.repl_sno},${replList.repl_status})">수정</button>
 								<button type="button" class="qna_view_originalBtn" onclick="updateReplCancel(${replList.repl_sno})">취소</button>
 							</div>
 						</div>	

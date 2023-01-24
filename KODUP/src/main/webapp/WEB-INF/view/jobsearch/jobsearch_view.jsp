@@ -112,7 +112,7 @@
 					<!-- 댓글인서트 서머노트 -->
 					<div class="view_summernote_section">
 						<span>
-							<img id="jobsearch_view_repl_insert_profileimage_file" src="images/" style="border-radius:50%;">
+							<img id="jobsearch_view_repl_insert_profileimage_file" src="images/${sessionScope.profile_img}" style="border-radius:50%;">
 						</span>
 						<textarea id="view_main_summernote" class="view_summernote"></textarea>
 					</div>
@@ -154,15 +154,15 @@
 			<div id="jobsearch_view_repl_list" style="margin-top:50px;"> 
 				<c:forEach var='replList' items='${replList}'>
 				
-				<div style="visibility:hidden;"> <!-- style="visibility:hidden;" -->
-					repl_doc<input id="save_repl_doc${replList.repl_sno}" type="text" size="4" value="${replList.repl_doc}"/>
+				<div style="display:none;"> <!-- style="visibility:hidden;" -->
+					repl_doc<textarea id="save_repl_doc${replList.repl_sno}">${replList.repl_doc}</textarea>
 					repl_sno<input type="text"size="2" value="${replList.repl_sno}"/>
 					repl_grp<input type="text" size="2" value="${replList.grp}"/>
 					id<input type="text"size="2" value="${replList.id}"/>
 				</div>
 					<c:if test ='${replList.deep eq 0}'>
 						<!-- 댓글작성자프로필사진+닉네임+댓글작성시간 -->
-						<div class="jobsearch_view_repl_profile" style="font-size:13px; margin-top:30px;">
+						<div class="jobsearch_view_repl_profile" style="font-size:13px; margin-top:15px;">
 							<span class="jobsearch_view_repl_profile_profileimage"><!--댓글작성자프로필사진+닉네임+댓글작성시간 한줄로 붙이기위해 inline요소인 span태그사용 -->
 								<img class="jobsearch_view_repl_profile_profileimage_file" src="images/${replList.profile_img}"style="border-radius:50%;" >
 							</span>
@@ -242,7 +242,7 @@
 						<!-- (ON/OFF)display ; 대댓글입력폼 -->
 						<div id="repl_insert_section${replList.repl_sno}" style="display:none; font-size:15px; margin-left:50px;">
 							<span>
-								<img id="jobsearch_view_repl_inner_insert_profileimage_file" src="images/ITtravel.png"><!-- 세션아이디의 프로필이미지가 들어감 -->
+								<img id="jobsearch_view_repl_inner_insert_profileimage_file" src="images/${sessionScope.profile_img}" style="border-radius:50%;"><!-- 세션아이디의 프로필이미지가 들어감 -->
 							</span>
 							<!-- 대댓글인서트_내용 서머노트 -->
 							<div id="view_inner_summernote${replList.grp}"class="view_summernote"></div>
@@ -257,9 +257,9 @@
 						
 					</c:if>
 					<c:if test ='${replList.deep ne 0}'>
-						<div class="repl_inner_section${replList.grp}"style="margin-left:50px; margin-top: -30px;">
+						<div class="repl_inner_section${replList.grp}"style="margin-left:50px;">
 							<!-- 댓글작성자프로필사진+닉네임+댓글작성시간 -->
-							<div class="jobsearch_view_repl_profile" style="font-size:13px; margin-top:30px;">
+							<div class="jobsearch_view_repl_profile" style="font-size:13px; margin-top:15px;">
 								<span class="jobsearch_view_repl_profile_profileimage"><!--댓글작성자프로필사진+닉네임+댓글작성시간 한줄로 붙이기위해 inline요소인 span태그사용 -->
 									<img class="jobsearch_view_repl_profile_profileimage_file" src="images/${replList.profile_img}"style="border-radius:50%;" >
 								</span>

@@ -47,39 +47,42 @@
     </update>
     
     <update id="giveRewardPixel" parameterType="com.kodup.qna.QnaBoardVo">
-    	update member set pixel = pixel+${qna_pixel_reward} where id="${id}"
+    	update member set pixel = pixel+${qna_pixel_reward} where id=#{id}
     </update>
+    <insert id="pixel_history" parameterType="com.kodup.qna.QnaBoardVo">
+    	insert into pixel_history(id,pixel_log,history_detail) values(#{id},${qna_pixel_reward},'채택');
+    </insert>
     
     <insert id='insertRepl' parameterType="com.kodup.qna.QnaBoardReplVo">
     	insert into repl(repl_doc,id,sno, grp,seq,deep,repl_nal) 
-		values("${repl_doc}","${sessionid}",${sno},
+		values(#{repl_doc},#{sessionid},${sno},
 		(select grp from ( select count(*) as grp from repl where deep=0) as repl_temp),
 		(select seq from ( select count(*) as seq from repl) as repl_temp),
 		0,sysdate())
     </insert>
     
     <select id="insertRepl2" parameterType="com.kodup.qna.QnaBoardReplVo" resultType="Integer">
-    	select repl_sno from repl where repl_doc="${repl_doc}" and id="${sessionid}" and sno="${sno}"
+    	select max(repl_sno)as repl_sno from repl where  id=#{sessionid} and sno=${sno}
     </select>
     
     <insert id="insertRepl3" parameterType="Integer">
-    	insert into repl_selected(repl_sno,repl_status) values("${_parameter}",0)
+    	insert into repl_selected(repl_sno,repl_status) values(${_parameter},0)
     </insert>
     
     <insert id='insertInnerRepl' parameterType="com.kodup.qna.QnaBoardReplVo">
     	insert into repl(repl_doc,id,sno, grp,seq,deep,repl_nal) 
-		values("${repl_doc}","${sessionid}",${sno},
+		values(#{repl_doc},#{sessionid},${sno},
 		${grp},
 		(select seq from ( select count(*) as seq from repl) as repl_temp),
 		1,sysdate()) 
     </insert>
     
     <select id="insertInnerRepl2" parameterType="com.kodup.qna.QnaBoardReplVo" resultType="Integer">
-    	select repl_sno from repl where repl_doc="${repl_doc}" and id="${sessionid}" and sno="${sno}" and grp=${grp}
+    	select max(repl_sno) as repl_sno from repl where id=#{sessionid} and sno=${sno} and grp=${grp}
     </select>
     
-     <insert id="insertInnerRepl3" parameterType="Integer">
-    	insert into repl_selected(repl_sno,repl_status) values("${_parameter}",0)
+    <insert id="insertInnerRepl3" parameterType="com.kodup.qna.QnaBoardReplVo">
+    	insert into repl_selected(repl_sno,repl_status) values(${repl_sno},${repl_status})
     </insert>
     
     <select id="checkChaeTaek" parameterType="Integer" resultType="Integer">
@@ -87,7 +90,7 @@
     </select>
     
     <update id="ReplUpdateR" parameterType="com.kodup.qna.QnaBoardReplVo">
-    	update repl set repl_doc = "${repl_doc}" where repl_sno=${repl_sno}
+    	update repl set repl_doc = #{repl_doc} where repl_sno=${repl_sno}
     </update>
     
     
