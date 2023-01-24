@@ -43,7 +43,10 @@
     
     <update id='replChaetaek' parameterType="com.kodup.qna.QnaBoardReplVo">
     	UPDATE repl_selected rs JOIN repl r ON rs.repl_sno = r.repl_sno
-		SET rs.repl_status = 1 WHERE r.grp = ${grp} and r.sno = ${sno};
+		SET rs.repl_status = 1 WHERE r.grp = ${grp} and r.sno = ${sno}
+    </update>
+    <update id='replChaetaek2' parameterType="com.kodup.qna.QnaBoardReplVo">
+    	update qna_board set qna_status =1 where sno=${sno}
     </update>
     
     <update id="giveRewardPixel" parameterType="com.kodup.qna.QnaBoardVo">

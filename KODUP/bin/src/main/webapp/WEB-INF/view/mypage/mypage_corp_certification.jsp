@@ -14,8 +14,8 @@ window.scrollTo(0,0);
 <body>
 <div id='mypage_corp_certification'>
 	<span class='mypage_corp_certification_noti'>인증신청이 완료되었습니다. </span><br>
-	<span class='mypage_corp_certification_noti'>잠시 후 메인페이지로 
-	<a href="#" class='btn_index_move'>이동</a> 합니다.
+	<span class='mypage_corp_certification_noti'>잠시 후 
+	<a href="#" class='btn_index_move'>메인페이지</a> 로 이동 합니다.
 		<div class="spinner-border text-danger spinner-border-sm" role="status">
 	 	 <span class="visually-hidden">Loading...</span>
 		</div>

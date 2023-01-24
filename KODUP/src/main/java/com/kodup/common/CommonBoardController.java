@@ -55,11 +55,11 @@ public class CommonBoardController {
 			mv.addObject("listJobsearch", listJobsearch);
 			mv.setViewName("/jobsearch/jobsearch");
 		} else if(boardtype.equals("notification")) {
-//			List<SelectBoardVo> listNotification = cbService.listNotification(cbpVo);
-//			cbpVo = cbService.getCbpVo();
-//			mv.addObject("cbpVo", cbpVo);
-//			mv.addObject("listNotification", listNotification);
-//			mv.setViewName("/notification/notification");
+			List<SelectBoardVo> listNotification = cbService.listNotification(cbpVo);
+			cbpVo = cbService.getCbpVo();
+			mv.addObject("cbpVo", cbpVo);
+			mv.addObject("listNotification", listNotification);
+			mv.setViewName("/notification/notification");
 		}
 		
 		return mv;
@@ -194,6 +194,8 @@ public class CommonBoardController {
 			mv.addObject("error", "error_insert");
 			mv.setViewName("/login/error");
 		} else {
+			boolean c = false; //true면 픽셀감소, 픽셀히스토리 insert 성공
+			c = cbService.history(ibVo);
 			List<SelectBoardVo> listQna = cbService.listQna(cbpVo);
 			cbpVo = cbService.getCbpVo();
 			mv.addObject("cbpVo", cbpVo);

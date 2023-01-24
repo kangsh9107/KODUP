@@ -293,5 +293,18 @@ public class LoginService {
 		
 		return b;
 	}
-
+	//방문자수 추가
+	public void addVisit(String id) {
+		boolean b = true;
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		
+		int cnt = loginMapper.addVisit(id);
+		if(cnt<1) {b=false;}
+	
+		if(b) manager.commit(status);
+		else status.rollbackToSavepoint(savePoint);
+	}
+	
+	
 }

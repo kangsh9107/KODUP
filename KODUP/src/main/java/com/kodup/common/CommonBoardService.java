@@ -113,6 +113,28 @@ public class CommonBoardService {
 		return listJobsearch;
 	}
 	
+	//NOTIFICATION LIST
+	public List<SelectBoardVo> listNotification(CommonBoardPageVo cbpVo) {
+		int totSize = 0;
+		String horsehead = cbpVo.getHorsehead();
+		List<CommonBoardPageVo> listTemp = cbMapper.totListNotification(cbpVo);
+		for(CommonBoardPageVo l : listTemp) {
+			if(horsehead.equals("")) totSize += l.getTotSize();
+			else if(l.getHorsehead().equals(horsehead)) totSize = l.getTotSize();
+		}
+		cbpVo.setTotSize(totSize);
+		this.cbpVo = cbpVo;
+		List<SelectBoardVo> listNotification = cbMapper.listNotification(cbpVo); //조건에 맞는 전체 리스트
+		List<SelectBoardVo> view = cbMapper.listView(cbpVo);   //조건에 맞는 해당 아이디가 본 글 리스트
+		for(SelectBoardVo l : listNotification) { //봤던 글 viewStatus 1로 변경
+			for(SelectBoardVo v : view) {
+				if(l.sno == v.sno) l.setViewStatus(1);
+			}
+		}
+		
+		return listNotification;
+	}
+	
 	//Hash Tag 검색
 	public List<SelectBoardVo> listHashtag(CommonBoardPageVo cbpVo) {
 		int totSize = 0;
@@ -139,6 +161,9 @@ public class CommonBoardService {
 	public boolean insert(InsertBoardVo ibVo) {
 		boolean b = false; //true면 board테이블 insert 성공
 		int checkPixel = cbMapper.checkPixel(ibVo);
+		if(checkPixel < ibVo.getQna_pixel_reward()) {
+			return b;
+		}
 		int sno = 0;
 		int cnt = cbMapper.insertBoard(ibVo);
 		status = manager.getTransaction(new DefaultTransactionDefinition());
@@ -196,6 +221,30 @@ public class CommonBoardService {
 		}
 		
 		return b;
+	}
+	
+	public boolean history(InsertBoardVo ibVo) {
+		boolean c = false; //true면 픽셀감소, 픽셀히스토리 insert 성공
+		int cnt = cbMapper.updatePixel(ibVo);
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint();
+		if(cnt > 0) {
+			manager.commit(status);
+			int cnt2 = cbMapper.insertHistory(ibVo);
+			status = manager.getTransaction(new DefaultTransactionDefinition());
+			savePoint = status.createSavepoint();
+			
+			if(cnt2 > 0) {
+				manager.commit(status);
+				c = true;
+			} else {
+				status.rollbackToSavepoint(savePoint);
+			}
+		} else {
+			status.rollbackToSavepoint(savePoint);
+		}
+		
+		return c;
 	}
 	
 	//봤던글 표시

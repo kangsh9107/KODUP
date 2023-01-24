@@ -66,6 +66,22 @@
 		</if>
 	</select>
 
+	<!-- totSize NOTIFICATION -->
+	<select id="totListNotification" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.CommonBoardPageVo">
+		SELECT COUNT(b.sno) AS totSize, b.boardtype, nb.notification_horsehead AS horsehead
+		FROM board b LEFT JOIN member m              ON b.id = m.id
+		             LEFT JOIN notification_board nb ON b.sno = nb.sno
+		WHERE m.nickname LIKE '%${findStr}%'
+		OR    b.hashtag  LIKE '%${findStr}%'
+		OR    b.subject  LIKE '%${findStr}%'
+		OR    b.doc      LIKE '%${findStr}%'
+		GROUP BY b.boardtype, nb.notification_horsehead
+		HAVING b.boardtype = #{boardtype}
+		<if test="horsehead != ''">
+			AND nb.notification_horsehead = #{horsehead}
+		</if>
+	</select>
+
 	<!-- Q&A LIST -->
 	<select id="listQna" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.SelectBoardVo">
 		SELECT b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
@@ -213,6 +229,43 @@
 		</choose>
 		LIMIT ${startNo}, ${listSize}
 	</select>
+
+	<!-- NOTIFICATION LIST -->
+	<select id="listNotification" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.SelectBoardVo">
+		SELECT b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
+			   b.thumbup, b.thumbdown, (b.thumbup-b.thumbdown) AS thumb, b.board_delete,
+		       m.id, m.nickname, m.profile_img, nb.notification_horsehead AS horsehead,
+		       COUNT(r.repl_sno) AS countRepl
+		FROM board b LEFT JOIN member m              ON b.id = m.id
+		             LEFT JOIN repl r                ON b.sno = r.sno
+		             LEFT JOIN notification_board nb ON b.sno = nb.sno
+		WHERE m.nickname LIKE '%${findStr}%'
+		OR    b.hashtag  LIKE '%${findStr}%'
+		OR    b.subject  LIKE '%${findStr}%'
+		OR    b.doc      LIKE '%${findStr}%'
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, b.doc, b.hashtag, b.viewcount,
+				 b.thumbup, b.thumbdown, thumb, b.board_delete,
+				 m.id, m.nickname, m.profile_img, nb.notification_horsehead
+		HAVING b.boardtype = #{boardtype}
+		<if test="horsehead != '' and horsehead != null">
+			AND nb.notification_horsehead = #{horsehead}
+		</if>
+		<choose>
+			<when test="sort == 1">
+				ORDER BY b.nal DESC, b.sno DESC
+			</when>
+			<when test="sort == 2">
+				ORDER BY thumb DESC, b.nal DESC, b.sno DESC
+			</when>
+			<when test="sort == 3">
+				ORDER BY countRepl DESC, b.nal DESC, b.sno DESC
+			</when>
+			<otherwise>
+				ORDER BY b.viewcount DESC, b.nal DESC, b.sno DESC
+			</otherwise>
+		</choose>
+		LIMIT ${startNo}, ${listSize}
+	</select>
 	
 	<!-- totSizeHashtag -->
 	<select id="totListHashtag" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.CommonBoardPageVo">
@@ -307,5 +360,20 @@
 	<select id="listView" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.SelectBoardVo">
 		SELECT sno FROM view_board WHERE id = #{id}
 	</select>
+	
+	<!-- checkPixel -->
+	<select id="checkPixel" parameterType="com.kodup.common.InsertBoardVo" resultType="Integer">
+		SELECT pixel FROM member WHERE id = #{id}
+	</select>
+	
+	<!-- UPDATE PIXEL -->
+	<update id="updatePixel" parameterType="com.kodup.common.InsertBoardVo">
+		UPDATE member SET pixel = pixel - ${qna_pixel_reward} WHERE id = #{id}
+	</update>
+	
+	<!-- INSERT HISTORY -->
+	<insert id="insertHistory" parameterType="com.kodup.common.InsertBoardVo">
+		INSERT INTO pixel_history(id, pixel_log, history_detail) VALUES(#{id}, ${qna_pixel_reward}, 'Q&amp;A질문글작성');
+	</insert>
 
 </mapper>

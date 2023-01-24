@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,21 +16,48 @@
 
 <div id="mypage_memberinfo">
 	<span class='mypage_subject_text'>회원정보</span>
-		<br><br>
+	
+	<span>${mpVo.id } 님의 회원 등급은 
+	<
+	<c:set var='grade' value="0"/>
+	<c:choose>
+		<c:when test ="${mpVo.grade == 0}">
+			일반회원
+		</c:when> 
+		<c:when test ="${mpVo.grade == 1}">
+			퍼스널멘토
+		</c:when> 
+		<c:when test ="${mpVo.grade == 2}">
+			플러스멘토
+		</c:when> 
+		<c:when test ="${mpVo.grade == 3}">
+			파트너멘토
+		</c:when> 
+		<c:when test ="${mpVo.grade == 4}">
+			게시판지기
+		</c:when> 
+		<c:when test ="${mpVo.grade == 5}">
+			관리자
+		</c:when> 
+		<c:otherwise> 
+			Who are you? 'ㅁ'? 혹시.. 탈퇴회원?  
+		</c:otherwise>
+	</c:choose>
+	> 입니다. </span>
+	<br><br>
+	
 		<div class='mypage_member_profile'>
 			<div class='mypage_member_profile_item'>
-					<img src="https://s3.orbi.kr/data/file/united2/ee9383d48d17470daf04007152b83dc0.png"
-					style='width: 280px;'>
+				<img src='/upload/${mpVo.profile_img }' style='width: 300px; height: 300px;'>
 			</div>
-
+	
 			<div class='mypage_member_profile_item'>
-				<span class='mm_text'>이름</span><span>고박사</span><br>
-				<span class='mm_text'>닉네임</span><span>코덥지박냥</span><br>
-				<span class='mm_text'>이메일</span><span>where_am_i@kodup.kr</span><br>
-				<span class='mm_text'>나이</span><span>만 3세</span><br>
-				<span class='mm_text'>성별</span><span>알수없음askdfja;kdfas</span>
+				<span class='mm_text'>닉네임</span><span>${mpVo.nickname }</span><br>
+				<span class='mm_text'>이메일</span><span>${mpVo.email }</span><br>
+				<span class='mm_text'>나이</span><span>${mpVo.age }</span><br>
+				<span class='mm_text'>성별</span><span>${mpVo.gender }</span>
 				<br><br><br>
-				<button type="button" class="btn btn-outline-primary btnModify">내 정보수정</button><br>
+				<button type="button" class="btn btn-outline-primary btnUpdate">내 정보수정</button>
 				<button type="button" class="btn btn-outline-secondary btnQuit">탈퇴</button>
 			</div>		
 

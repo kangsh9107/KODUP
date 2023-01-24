@@ -111,17 +111,17 @@
 					<span>${cbpVo.nowPage }/${cbpVo.totPage }</span>
 				</div>
 			</li>
-			<c:forEach items="${listNotificatin }" var="listNotificatin">
+			<c:forEach items="${listNotification }" var="listNotification">
 				<li class="list-group-item" style="padding: 10px 0 10px 0;">
-					<a href="javascript:void(0);" onclick="runTopWriterProfile('${listNotificatin.nickname }')" class="text-decoration-none">
-						<img id="index_profile" src="upload/${listNotificatin.profile_img }">
-						<span id="index_nickname">${listNotificatin.nickname }</span>
+					<a href="javascript:void(0);" onclick="runTopWriterProfile('${listNotification.nickname }')" class="text-decoration-none">
+						<img id="index_profile" src="upload/${listNotification.profile_img }">
+						<span id="index_nickname">${listNotification.nickname }</span>
 					</a>
-					<span id="index_time">· ${listNotificatin.nal }</span>
+					<span id="index_time">· ${listNotification.nal }</span>
 					<div style="float: right;">
 						<!-- VIEW CHECK -->
 						<c:choose>
-							<c:when test="${listNotificatin.viewStatus == 0 }">
+							<c:when test="${listNotification.viewStatus == 0 }">
 								<i class="fas fa-circle-check" style="color: #555; font-size: 0.9rem;"></i>
 							</c:when>
 							<c:otherwise>
@@ -130,13 +130,13 @@
 						</c:choose>
 					</div>
 					<br/>
-					<a href="#" onclick="notification_view(${listNotificatin.sno })" class="text-decoration-none">
+					<a href="#" onclick="notification_view(${listNotification.sno})" class="text-decoration-none">
 						<span id="index_subject">
 							<c:choose>
-								<c:when test="${listNotificatin.board_delete == 0 }">
-									${listNotificatin.subject }
+								<c:when test="${listNotification.board_delete == 0 }">
+									${listNotification.subject }
 								</c:when>
-								<c:when test="${listNotificatin.board_delete == 1 }">
+								<c:when test="${listNotification.board_delete == 1 }">
 									작성자가 삭제한 글입니다.
 								</c:when>
 								<c:otherwise>
@@ -148,20 +148,20 @@
 					<br/>
 					<div style="float: left;">
 						<!-- HORSEHEAD -->
-						<label id="board_horsehead">${listNotificatin.horsehead }</label>
+						<label id="board_horsehead">${listNotification.horsehead }</label>
 						<!-- HASHTAG -->
-						<c:forTokens items="${listNotificatin.hashtag }" var="hashtag" delims="#">
+						<c:forTokens items="${listNotification.hashtag }" var="hashtag" delims="#">
 							<a href="#" onclick="runHashtag('${hashtag }')" class="board_list_hashtag">#${hashtag }</a>
 						</c:forTokens>
 					</div>
 					<!-- VIEW & THUMB & REPL -->
 					<div style="float: right; cursor: default;">
 						<img id="index_viewcount" src="images/index_viewcount.png">
-						<span id="index_viewcount_sum">${listNotificatin.viewcount }</span>
+						<span id="index_viewcount_sum">${listNotification.viewcount }</span>
 						<img id="index_updown" src="images/index_updown.png">
-						<span id="index_updown_sum">${listNotificatin.thumb }</span>
+						<span id="index_updown_sum">${listNotification.thumb }</span>
 						<img id="index_repl" src="images/index_repl.png">
-						<span id="index_repl_sum">${listNotificatin.countRepl }</span>
+						<span id="index_repl_sum">${listNotification.countRepl }</span>
 					</div>
 				</li>
 			</c:forEach>

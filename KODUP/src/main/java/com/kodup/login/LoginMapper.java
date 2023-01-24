@@ -36,4 +36,6 @@ public interface LoginMapper {
 	public List<IndexBoardVo> weeklyBest5();
 	public List<IndexBoardVo> editor5();
 	
+	//방문자수추가
+	public int addVisit(String id);
 }
