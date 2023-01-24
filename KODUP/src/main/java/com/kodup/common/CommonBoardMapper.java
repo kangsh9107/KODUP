@@ -28,6 +28,7 @@ public interface CommonBoardMapper {
 	public int insertQnaBoard(InsertBoardVo ibVo);
 	public int insertView(CommonBoardPageVo cbpVo);
 	public int checkView(CommonBoardPageVo cbpVo);
+	public int checkPixel(InsertBoardVo ibVo);
 	
 	public int updateBoard(InsertBoardVo ibVo);
 	public int updateQnaBoard(InsertBoardVo ibVo);

@@ -54,6 +54,7 @@
 	<input type="hidden" class="sessionId_hidden" value="${sessionScope.sessionId }">
 	<input type="hidden" class="grade_hidden" value="${sessionScope.grade }">
 	<input type="hidden" class="profile_img_hidden" value="${sessionScope.profile_img }">
+	<input type="hidden" class="pixel_hidden" value="${sessionScope.pixel }">
 	<!-- NAV -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0 index_nav">
 		<div class="container index_hamburg_wrap" style="padding-right: 0;">

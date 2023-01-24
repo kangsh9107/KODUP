@@ -299,9 +299,9 @@
 	</insert>
 	
 	<!-- checkView -->
-	<insert id="checkView" parameterType="com.kodup.common.CommonBoardPageVo">
+	<select id="checkView" parameterType="com.kodup.common.CommonBoardPageVo" resultType="Integer">
 		SELECT COUNT(sno) FROM view_board WHERE id = #{id} AND sno = ${sno}
-	</insert>
+	</select>
 	
 	<!-- listView -->
 	<select id="listView" parameterType="com.kodup.common.CommonBoardPageVo" resultType="com.kodup.common.SelectBoardVo">

@@ -128,6 +128,11 @@
 		SELECT nickname FROM member WHERE id = #{_parameter}
 	</select>
 	
+	<!-- GET PIXEL -->
+	<select id="getPixel" parameterType="String" resultType="Integer">
+		SELECT pixel FROM member WHERE id = #{_parameter}
+	</select>
+	
 	<!-- CHECK CHAT ID -->
 	<select id="checkChatId" parameterType="String" resultType="Integer">
 		SELECT COUNT(id) FROM chat WHERE id = #{_parameter}
