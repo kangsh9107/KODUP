@@ -53,6 +53,7 @@ $('.btn_corp_certification').on('click', function(){
 	var param = new FormData(frm);
 	
 	console.log(param);
+	console.log(frm);
 	 
 	 $.ajax({
 		 type : 'POST',
@@ -63,7 +64,6 @@ $('.btn_corp_certification').on('click', function(){
 		 dataType : 'html',
 		 success: function(data){
 			 $('#m_section2').load('/mypage/mypage_corp_certification');
-			 console.log("실행");
 		 }						
 	 })
 	 

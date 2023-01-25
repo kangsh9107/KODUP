@@ -43,19 +43,21 @@ $(document).on("click", ".btnCall", function() {
 					<div class='wrapper'>
 					<span>보상 픽셀</span>
 					<input type="text" class="rewardPixel" pattern="^[0-9]+$" oninput="this.reportValidity()">
+					<span>픽셀</span>
 					<input type="button" class="btnNext" value="다 음">
 					</div>
 					<div class='wrapper'>
 						<span>요구 시간</span>
 						<select class="requiredTime">
-						    <option value=""></option>
-						    <option value="80">1분 20초</option>
-						    <option value="300">5분</option>
-						    <option value="600">10분</option>
-						    <option value="1200">20분</option>
-						    <option value="1800">30분</option>
-						    <option value="2700">45분</option>
-						    <option value="3600">60분</option>
+						    <option value="">시간 선택</option>
+						    <option value="1분 20초">1분 20초</option>
+						    <option value="5분">5분</option>
+						    <option value="10분">10분</option>
+						    <option value="15분">15분</option>
+						    <option value="20분">20분</option>
+						    <option value="30분">30분</option>
+						    <option value="45분">45분</option>
+						    <option value="60분">60분</option>
 						</select>
 						<input type="button" class="btnCancel1" value="취 소">
 					</div>
@@ -69,9 +71,9 @@ $(document).on("click", ".btnNext", function() {
 	console.log("실행확인");
 	var html7 = `<div class="mentorCallDiv_2">
 					<div class='wrapper'>
-						<span>질문 내용</span>
+						<span class="question_span">질문 내용</span>
 						<textarea class="question"></textarea>
-						<input type="button" class="btnAccess" value="확 인">
+						<input type="button" class="btnAccess" value="요 청"><br/>
 						<input type="button" class="btnCancel2" value="이 전">
 					</div>
 				</div>`;

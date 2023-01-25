@@ -347,6 +347,18 @@
 		WHERE sno = #{sno}
 	</update>
 	
+	<!-- INFOSHARE UPDATE -->
+	<update id="updateInfoshareBoard" parameterType="com.kodup.common.InsertBoardVo">
+		UPDATE infoshare_board SET infoshare_horsehead = #{infoshare_horsehead}
+		WHERE sno = #{sno}
+	</update>
+	
+	<!-- FREETALKING UPDATE -->
+	<update id="updateFreetalkingBoard" parameterType="com.kodup.common.InsertBoardVo">
+		UPDATE freetalking_board SET freetalking_horsehead = #{freetalking_horsehead}
+		WHERE sno = #{sno}
+	</update>
+	
 	<!-- viewcount up -->
 	<update id="viewcountUp" parameterType="Integer">
 		UPDATE board SET viewcount = viewcount + 1

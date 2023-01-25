@@ -27,6 +27,8 @@ public class MypageCertiVo {
 	String manager_phone;   //담당자 번호
 	String manager_email;   //담당자 이메일
 	
+	String certification_category; 
+	
 	public String getId() {
 		return id;
 	}

@@ -409,3 +409,118 @@
 #btnMoveInput:hover {
 	color: #bb2649;
 }
+
+/***** 조성호 *****/
+/***** notification VIEW *****/
+#notification_view {
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+	color: #111827;
+}
+
+#notification_view #notification_view_subject>.col{
+	min-height:45px;
+	font-weight: 600;
+	text-align:left;
+}
+
+#notification_view #notification_view_header{
+	display:inline-block; 
+	width:100%;
+	height:55px;
+	margin-top:10px;
+	
+}
+
+
+#notification_view #notification_view_header {
+	text-align:left;
+	font-size:13px;
+}
+#notification_view #notification_view_doc{
+	min-height: 400px;
+}
+#notification_view #notification_view_hashtag{
+	
+}
+#notification_view #notification_view_hashtag a{
+	text-decoration : none;
+	font-weight: 600;
+	font-size:20px;
+	color:#bb2649;
+}
+
+#notification_view #notification_view_hashtag a:hover{
+	background-color: #ff3363;
+	color: white;
+}
+
+#notification_view #notification_view_btnzone{
+	text-align:right !important;
+}
+.notification_view_originalBtn{
+	width: 50px;
+	height: 30px;
+	color: white;
+	background-color: #bb2649;
+	border : 0px;
+	border-radius:5px;
+}
+#notification_view .btnBoardtype{
+	width:30px;
+	height:30px;
+	
+}
+.notification_view_originalBtn:hover{
+	background-color: #ff3363;
+	color: white;
+}
+#notification_view #notification_view_repl_insert_profileimage_file{
+	width:50px;
+	height:50px;
+}
+#notification_view #notification_view_repl_btnInsert{
+	float:right;
+	
+}
+
+
+#notification_view .notification_view_repl_profile_profileimage_file{
+	width:20px;
+	height:20px;
+}
+#notification_view .notification_view_repl_doc{
+	min-height: 100px;
+	background: #FAFAFA;
+	
+}
+#notification_view .notification_view_repl_btnzone{
+	text-align:right;
+	
+}
+#notification_view .notification_view_repl_inner{
+	margin-left: 50px;
+}
+#notification_view .notification_view_repl_inner_profile_profileimage_file{
+	width:20px;
+	height:20px;
+}
+#notification_view .notification_view_repl_inner_doc{
+	min-height: 50px;
+	background: #FAFAFA;
+}
+#notification_view .notification_view_repl_inner_btnzone{
+	text-align:right;
+}
+
+#notification_view #notification_view_repl_inner_insert_profileimage_file{
+	width:40px;
+	height:40px;
+}
+#notification_view #notification_view_repl_inner_btnInsert {
+	text-align:right;
+}
+#notification_view .note-frame{
+	border: 1px solid #DCDCDC;
+	border-radius:20px;
+	padding:5px;
+}

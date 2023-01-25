@@ -23,7 +23,7 @@ input.img-button {
     border: none;
 	cursor: pointer;
 }
-button.mansearch_insert,button.sort_save,button.sort_search,button.sort_reset,button.premium_review_insert{
+button.mansearch_insert,button.sort_save,button.sort_search,button.sort_reset,button.premium_review_insert,button.btnMansearch{
 	width:93px;
 	height:38px;
 	padding:6px 12px;
@@ -33,7 +33,7 @@ button.mansearch_insert,button.sort_save,button.sort_search,button.sort_reset,bu
 	border:2px solid #bb2642;
 	border-radius:5px;
 }
-button.mansearch_insert:hover,button.sort_save:hover,button.sort_search:hover,button.sort_reset:hover,button.premium_review_insert:hover{
+button.mansearch_insert:hover,button.sort_save:hover,button.sort_search:hover,button.sort_reset:hover,button.premium_review_insert:hover,button.btnMansearch:hover{
 	background-color:#871b30;
 }
 div.mansearch_title{
@@ -460,3 +460,80 @@ span#index_doc:hover {
 .premium_review_doc{
 	margin-bottom:20px;
 }
+
+.inputSearchTemp {
+	display: none;
+}
+
+.inputSearch {
+	height: 28.39px;
+	width: 28.39px;
+	border-style: none;
+	letter-spacing: 2px;
+	outline: none;
+	border-radius: 25px;
+	transition: all .5s ease-in-out;
+	background-color: #555;
+	padding-left: 23px;
+	font-size: 0.875rem;
+	font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+.inputSearch::placeholder {
+	color: #555;
+	font-size: 0.8rem;
+	letter-spacing: 2px;
+	font-weight: 100;
+}
+
+.btnSearch {
+	width: 31.39px;
+	height: 28.39px;
+	border-style: none;
+	font-size: 20px;
+	font-weight: bold;
+	outline: none;
+	cursor: pointer;
+	border-radius: 50%;
+	position: absolute;
+	color: white;
+	background-color: transparent;
+	pointer-events: painted;
+	padding: 0;
+}
+
+.btnSearch:focus ~ .inputSearch {
+	width: 40%;
+	border-radius: 0px;
+	background-color: transparent;
+	border-bottom: 1px solid rgba(0,0,0,.5);
+	transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+.inputSearch:focus {
+	width: 40%;
+	border-radius: 0px;
+	background-color: transparent;
+	border-bottom: 1px solid rgba(0,0,0,.5);
+	transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+.btnSearch:hover ~ .inputSearch {
+	width: 40%;
+	border-radius: 0px;
+	background-color: transparent;
+	border-bottom: 1px solid rgba(0,0,0,.5);
+	transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+.btnSearch:hover {
+	color: white;
+}
+
+.inputSearch:hover {
+	width: 40%;
+	border-radius: 0px;
+	background-color: transparent;
+	border-bottom: 1px solid rgba(0,0,0,.5);
+	transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}5
