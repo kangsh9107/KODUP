@@ -9,6 +9,8 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import com.kodup.common.CommonBoardMapper;
+
 
 @Transactional
 @Service
@@ -20,9 +22,16 @@ public class InfoshareBoardService {
 	@Autowired
 	InfoshareBoardMapper mapper;
 	
+	@Autowired
+	CommonBoardMapper cbMapper;
+	
 	public InfoshareBoardVo view(int sno) {
 		InfoshareBoardVo ibVo=null;
 		ibVo = mapper.view(sno);
+		
+		cbMapper.viewcountUp(sno); //조회수 증가
+		int viewcount = cbMapper.getViewcount(sno);
+		ibVo.setViewcount(viewcount); //증가된 조회수 VIEW에서 즉시 반영
 		
 		List<InfoshareHashVo> hashList = mapper.hashList(sno);
 		ibVo.setHashtaglist(hashList);

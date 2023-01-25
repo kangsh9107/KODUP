@@ -55,7 +55,9 @@
 		</div>
 		<div class="input-group form-group">
 			<!-- SUMMERNOTE -->
-			<div id="summernote"></div>
+			<div id="summer" style="display: inline-block !important; width: 100% !important;">
+				<div id="summernote"></div>
+			</div>
 		</div>
 		<div class="input-group form-group" style="justify-content: end;">
 			<input type="button" value="취소" class="btn btnListViewInfoshare" style="border-radius: 5px 0 0 5px;">

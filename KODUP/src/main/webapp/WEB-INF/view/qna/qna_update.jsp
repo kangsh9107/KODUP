@@ -56,7 +56,9 @@
 		</div>
 		<div class="input-group form-group">
 			<!-- SUMMERNOTE -->
-			<div id="summernote"></div>
+			<div id="summer" style="display: inline-block !important; width: 100% !important;">
+				<div id="summernote"></div>
+			</div>
 		</div>
 		<div class="input-group form-group" style="justify-content: end;">
 			<span class="input-group-text">보상픽셀</span>

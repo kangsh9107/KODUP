@@ -33,7 +33,7 @@
 				<div class="col-md-12" style="padding-left: 10px; padding-right: 10px;">
 					<!-- INSERT -->
 					<c:choose>
-						<c:when test="${sessionScope.sessionId ne null }">
+						<c:when test="${sessionScope.sessionId eq 'master' }">
 							<input type="button" class="btn btnNotificationInsert" value="&#xf304; 작성하기" style="font-family: FontAwesome; float: left;">
 						</c:when>
 						<c:otherwise>

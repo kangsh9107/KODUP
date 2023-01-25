@@ -9,6 +9,8 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import com.kodup.common.CommonBoardMapper;
+
 @Transactional
 @Service
 public class FreetalkingBoardService {
@@ -19,10 +21,16 @@ public class FreetalkingBoardService {
 	@Autowired
 	FreetalkingBoardMapper mapper;
 	
+	@Autowired
+	CommonBoardMapper cbMapper;
 	
 	public FreetalkingBoardVo view(int sno) {
 		FreetalkingBoardVo fbVo=null;
 		fbVo = mapper.view(sno);
+		
+		cbMapper.viewcountUp(sno); //조회수 증가
+		int viewcount = cbMapper.getViewcount(sno);
+		fbVo.setViewcount(viewcount); //증가된 조회수 VIEW에서 즉시 반영
 		
 		List<FreetalkingHashVo> hashList = mapper.hashList(sno);
 		fbVo.setHashtaglist(hashList);
