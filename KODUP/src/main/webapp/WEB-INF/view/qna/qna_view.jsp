@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- CSS -->
+<!-- CSS --> 
 <link href="css/qna.css" rel="stylesheet">
 <!-- JS -->
 <script defer src="js/qna.js"></script>
@@ -14,7 +14,7 @@
 </head>
 <body>
 <form id="qna_view" >
-	<div style=" height:20px; display:none;">
+	<div style=" height:20px; ">
 	<input type='text' name='nowPage' 	value='0' size="2"/>
 	sno
 	<input type='text' id="view_sno" name='sno' size="2" value='${qbVo.sno}' />      
@@ -386,14 +386,14 @@
 	</c:choose>		
 
 	<!-- HIDDEN -->
-	<input type="hidden" name="findStr" value="${cbpVo.findStr }">
-	<input type="hidden" name="sortK" value="${cbpVo.sort }">
-	<input type="hidden" name="boardtypeK" value="${cbpVo.boardtype }">
-	<input type="hidden" name="horseheadK" value="${cbpVo.horsehead }">
-	<input type="hidden" name="horsehead" value="${qbVo.qna_horsehead}">
-	<input type="hidden" name="nowPageK" value="${cbpVo.nowPage }">
-	<input type="hidden" name="idK" value="${sessionScope.sessionId }">
-	<input type="hidden" name="subject" value="${qbVo.subject}">
+	<input type="text" name="findStr" value="${cbpVo.findStr }">
+	<input type="text" name="sortK" value="${cbpVo.sort }">
+	<input type="text" name="boardtypeK" value="${cbpVo.boardtype }">
+	<input type="text" name="horseheadK" value="${cbpVo.horsehead }">
+	<input type="text" name="horsehead" value="${qbVo.qna_horsehead}">
+	<input type="text" name="nowPageK" value="${cbpVo.nowPage }">
+	<input type="text" name="idK" value="${sessionScope.sessionId }">
+	<input type="text" name="subject" value="${qbVo.subject}">
 	<textarea style="display: none;" id="getDoc" name="doc">${qbVo.doc }</textarea>
 	<input type="hidden" name="hashtag" value="">
 	<div id="qna_view_hashtag2" style="display: none;">

@@ -24,7 +24,7 @@ public class QnaBoardController {
 	
 	@Autowired
 	CommonBoardService cbService;
-	
+	 
 	@RequestMapping("/qna/hashtag_view")
 	public ModelAndView hashtagView(QnaBoardVo qbVo, QnaBoardReplVo qbrVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
@@ -103,7 +103,7 @@ public class QnaBoardController {
 	}
 	
 	@RequestMapping("/qna/qna_view/ReplDeleteR")
-	public ModelAndView qnaReplDeleteR(QnaBoardVo qbVo, QnaBoardReplVo qbrVo){
+	public ModelAndView qnaReplDeleteR(QnaBoardVo qbVo, QnaBoardReplVo qbrVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		
@@ -115,6 +115,16 @@ public class QnaBoardController {
 		qbVo = service.view(qbVo.getSno());
 		int checkChaeTaek =service.checkChaeTaek(qbVo.getSno());
 		List<QnaBoardReplVo> replList = service.replList(qbVo.getSno());
+		
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(qbVo.getSno());
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		
+		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("msg",msg);
 		mv.addObject("qbVo",qbVo);
 		mv.addObject("checkChaeTaek",checkChaeTaek);
@@ -124,7 +134,7 @@ public class QnaBoardController {
 		
 	}
 	@RequestMapping("/qna/qna_view/ReplChaetaek")
-	public ModelAndView replChaetaek(QnaBoardVo qbVo, QnaBoardReplVo qbrVo){
+	public ModelAndView replChaetaek(QnaBoardVo qbVo, QnaBoardReplVo qbrVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		
@@ -142,7 +152,16 @@ public class QnaBoardController {
 		int checkChaeTaek =service.checkChaeTaek(qbVo.getSno());
 		List<QnaBoardReplVo> replList = service.replList(qbVo.getSno());
 		
-		mv.addObject("msg",msg);	//고도화시 이 msg를 가공해서 jsp에 뿌려주자
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(qbVo.getSno());
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		
+		mv.addObject("cbpVo", cbpVo);
+		mv.addObject("msg",msg);	
 		mv.addObject("qbVo",qbVo);
 		mv.addObject("checkChaeTaek",checkChaeTaek);
 		mv.addObject("replList",replList);
@@ -151,7 +170,7 @@ public class QnaBoardController {
 		
 	}
 	@RequestMapping("/qna/qna_view/insertRepl")
-	public ModelAndView insertRepl(QnaBoardReplVo qbrVo, QnaBoardVo qbVo) {
+	public ModelAndView insertRepl(QnaBoardReplVo qbrVo, QnaBoardVo qbVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		
@@ -168,8 +187,17 @@ public class QnaBoardController {
 		
 		qbVo = service.view(qbVo.getSno());
 		int checkChaeTaek =service.checkChaeTaek(qbVo.getSno());
-		
 		List<QnaBoardReplVo> replList = service.replList(qbVo.getSno());
+		 
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(qbVo.getSno());
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		
+		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("msg",msg);	
 		mv.addObject("qbVo",qbVo);
 		mv.addObject("replList",replList);
@@ -179,7 +207,7 @@ public class QnaBoardController {
 	}
 	
 	@RequestMapping("/qna/qna_view/insertInnerRepl")
-	public ModelAndView insertInnerRepl(QnaBoardReplVo qbrVo, QnaBoardVo qbVo) {
+	public ModelAndView insertInnerRepl(QnaBoardReplVo qbrVo, QnaBoardVo qbVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		boolean b = service.insertInnerRepl(qbrVo);
@@ -193,10 +221,18 @@ public class QnaBoardController {
 		}else {msg = "댓글 입력(1/2) 중 오류 발생";}
 		
 		qbVo = service.view(qbVo.getSno());
-		
 		List<QnaBoardReplVo> replList = service.replList(qbVo.getSno());
 		int checkChaeTaek =service.checkChaeTaek(qbVo.getSno());
 		
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(qbVo.getSno());
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		
+		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("msg",msg);	
 		mv.addObject("qbVo",qbVo);
 		mv.addObject("replList",replList);
@@ -206,7 +242,7 @@ public class QnaBoardController {
 	}
 	
 	@RequestMapping("/qna/qna_view/ReplUpdateR")
-	public ModelAndView ReplUpdateR(QnaBoardReplVo qbrVo, QnaBoardVo qbVo) {
+	public ModelAndView ReplUpdateR(QnaBoardReplVo qbrVo, QnaBoardVo qbVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		boolean b = service.ReplUpdateR(qbrVo);
@@ -214,10 +250,18 @@ public class QnaBoardController {
 			msg = "수정 중 오류 발생";
 		}
 		qbVo = service.view(qbVo.getSno());
-		
 		List<QnaBoardReplVo> replList = service.replList(qbVo.getSno());
 		int checkChaeTaek =service.checkChaeTaek(qbVo.getSno());
-		//mv.addObject("attList",attlist);
+		
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(qbVo.getSno());
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		
+		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("msg",msg);	
 		mv.addObject("qbVo",qbVo);
 		mv.addObject("checkChaeTaek",checkChaeTaek);
