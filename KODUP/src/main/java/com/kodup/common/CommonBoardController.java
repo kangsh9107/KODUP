@@ -352,12 +352,30 @@ public class CommonBoardController {
 		return mv;
 	}
 	
+	@RequestMapping("/freetalking/freetalking_update")
+	public ModelAndView freetalkingUpdate(CommonBoardPageVo cbpVo, InsertBoardVo ibVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		ibVo.setFreetalking_horsehead(req.getParameter("horsehead"));
+		ibVo.setSubject(req.getParameter("subject"));
+		ibVo.setDoc(req.getParameter("doc"));
+		
+		mv.addObject("cbpVo", cbpVo);
+		mv.addObject("ibVo", ibVo);
+		mv.setViewName("/freetalking/freetalking_update");
+		return mv;
+	}
+	
 	//updateR
 	@RequestMapping("/qna/qna_updateR")
 	public ModelAndView qnaUpdateR(CommonBoardPageVo cbpVo, InsertBoardVo ibVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		String basic = req.getParameter("basic");
 		StringBuilder sb = new StringBuilder();
+		String boardtype = ibVo.getBoardtype();
 		
 		//[{"value":"hashtag"},{}]를 파싱해서 #hashtag#hashtag로 만든다
 		try {
@@ -375,7 +393,7 @@ public class CommonBoardController {
 		
 		boolean b = false; //true면 글 수정 성공
 		ibVo.setQna_horsehead(req.getParameter("qna_horseheadK"));
-		b = cbService.update(ibVo);
+		b = cbService.update(ibVo, boardtype);
 		if( !b ) {
 			mv.addObject("error", "error_update");
 			mv.setViewName("/login/error");
@@ -396,6 +414,7 @@ public class CommonBoardController {
 		ModelAndView mv = new ModelAndView();
 		String basic = req.getParameter("basic");
 		StringBuilder sb = new StringBuilder();
+		String boardtype = ibVo.getBoardtype();
 		
 		//[{"value":"hashtag"},{}]를 파싱해서 #hashtag#hashtag로 만든다
 		try {
@@ -412,8 +431,8 @@ public class CommonBoardController {
 		}
 		
 		boolean b = false; //true면 글 수정 성공
-		ibVo.setQna_horsehead(req.getParameter("infoshare_horseheadK"));
-		b = cbService.update(ibVo);
+		ibVo.setInfoshare_horsehead(req.getParameter("infoshare_horseheadK"));
+		b = cbService.update(ibVo, boardtype);
 		if( !b ) {
 			mv.addObject("error", "error_update");
 			mv.setViewName("/login/error");
@@ -424,6 +443,45 @@ public class CommonBoardController {
 			mv.addObject("cbpVo", cbpVo);
 			mv.addObject("listInfoshare", listInfoshare);
 			mv.setViewName("/infoshare/infoshare");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping("/freetalking/freetalking_updateR")
+	public ModelAndView freetalkingUpdateR(CommonBoardPageVo cbpVo, InsertBoardVo ibVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		String basic = req.getParameter("basic");
+		StringBuilder sb = new StringBuilder();
+		String boardtype = ibVo.getBoardtype();
+		
+		//[{"value":"hashtag"},{}]를 파싱해서 #hashtag#hashtag로 만든다
+		try {
+			JSONParser jParser = new JSONParser();
+			JSONArray jArray = (JSONArray)jParser.parse(basic);
+			for(int i=0; i<jArray.size(); i++) {
+				JSONObject jObject = (JSONObject)jArray.get(i);
+				sb.append("#");
+				sb.append(jObject.get("value"));
+			}
+			ibVo.setHashtag(sb.toString());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		boolean b = false; //true면 글 수정 성공
+		ibVo.setFreetalking_horsehead(req.getParameter("freetalking_horseheadK"));
+		b = cbService.update(ibVo, boardtype);
+		if( !b ) {
+			mv.addObject("error", "error_update");
+			mv.setViewName("/login/error");
+		} else {
+			List<SelectBoardVo> listFreetalking = cbService.listFreetalking(cbpVo);
+			cbpVo = cbService.getCbpVo();
+			
+			mv.addObject("cbpVo", cbpVo);
+			mv.addObject("listFreetalking", listFreetalking);
+			mv.setViewName("/freetalking/freetalking");
 		}
 		
 		return mv;

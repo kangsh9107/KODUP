@@ -35,13 +35,13 @@
 			<span class="input-group-text">말머리</span>
 			<br/>
 			<select id="freetalking_horsehead" class="form-select" aria-label="Default select example">
-				<option value="말머리" ${ibVo.qna_horsehead eq '말머리' ? 'selected' : '' }>말머리를 선택해주세요.</option>
-				<option value="스포츠" ${ibVo.qna_horsehead eq '스포츠' ? 'selected' : '' }>스포츠</option>
-				<option value="게임" ${ibVo.qna_horsehead eq '게임' ? 'selected' : '' }>게임</option>
-				<option value="일상" ${ibVo.qna_horsehead eq '일상' ? 'selected' : '' }>일상</option>
-				<option value="연예" ${ibVo.qna_horsehead eq '연예' ? 'selected' : '' }>연예</option>
-				<option value="기타" ${ibVo.qna_horsehead eq '기타' ? 'selected' : '' }>기타</option>
-				<option value="" ${ibVo.qna_horsehead eq '' ? 'selected' : '' }>전체</option>
+				<option value="말머리" ${ibVo.freetalking_horsehead eq '말머리' ? 'selected' : '' }>말머리를 선택해주세요.</option>
+				<option value="스포츠" ${ibVo.freetalking_horsehead eq '스포츠' ? 'selected' : '' }>스포츠</option>
+				<option value="게임" ${ibVo.freetalking_horsehead eq '게임' ? 'selected' : '' }>게임</option>
+				<option value="일상" ${ibVo.freetalking_horsehead eq '일상' ? 'selected' : '' }>일상</option>
+				<option value="연예" ${ibVo.freetalking_horsehead eq '연예' ? 'selected' : '' }>연예</option>
+				<option value="기타" ${ibVo.freetalking_horsehead eq '기타' ? 'selected' : '' }>기타</option>
+				<option value="" ${ibVo.freetalking_horsehead eq '' ? 'selected' : '' }>전체</option>
 			</select>
 		</div>
 		<div class="input-group form-group">

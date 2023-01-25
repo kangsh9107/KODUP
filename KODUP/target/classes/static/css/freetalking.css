@@ -94,7 +94,7 @@
 	box-shadow: 0 0 0 0 !important;
 }
 
-.btnFreetalkingInsertR, .btnFreetalkingUpdateR, .btnList {
+.btnFreetalkingInsertR, .btnFreetalkingUpdateR, .btnList, .btnListViewFreetalking {
 	width: 60px;
 	height: 40px;
 	color: white;
@@ -104,7 +104,7 @@
 	font-weight: 600;
 }
 
-.btnFreetalkingInsertR:hover, .btnFreetalkingUpdateR:hover, .btnList:hover {
+.btnFreetalkingInsertR:hover, .btnFreetalkingUpdateR:hover, .btnList:hover, .btnListViewFreetalking:hover {
 	background-color: #ff3363;
 	color: white;
 }

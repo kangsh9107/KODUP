@@ -36,6 +36,8 @@ public interface CommonBoardMapper {
 	
 	public int updateBoard(InsertBoardVo ibVo);
 	public int updateQnaBoard(InsertBoardVo ibVo);
+	public int updateInfoshareBoard(InsertBoardVo ibVo);
+	public int updateFreetalkingBoard(InsertBoardVo ibVo);
 	public void viewcountUp(int sno);
 	public int getViewcount(int sno);
 	
