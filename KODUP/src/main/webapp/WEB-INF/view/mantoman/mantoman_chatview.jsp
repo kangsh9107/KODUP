@@ -99,6 +99,7 @@ body{
 	height: 75vh;
 	overflow: scroll;
 }
+
 #chatt #msg{
 	bottom:0;
 	font-size:16px;
@@ -261,9 +262,10 @@ body{
 	color:white;
 	font-family: 'SebangGothic';
 	position: absolute;
-	right:55px;
+	right:60px;
 	top:16px;
 	font-size:14px;
+	z-index:3;
 }
 
 #remainning_time{
@@ -533,7 +535,9 @@ window.onload = function(){
 		        			</div>`;
 					
 					talk.innerHTML += item;
-					talk.scrollTop=talk.scrollHeight;//스크롤바 하단으로 이동
+					setTimeout(function() {
+						talk.scrollTop=talk.scrollHeight;//스크롤바 하단으로 이동
+					},100);
 	        	}
 	        	
 	        	
@@ -543,7 +547,7 @@ window.onload = function(){
 	        	        type : "GET",
 	        	        data : {
 	        	        	mentoId:data.yourId,
-	        	        	memtiId:$('.sessionId_hidden').val(),
+	        	        	mentiId:$('.yourId_hidden').val(),
 	        				mantoman_pixel_reward:mantoman_pixel_reward
 	        	        },
 	        	        contentType: "application/json",
@@ -559,7 +563,9 @@ window.onload = function(){
         			</div>`;
 			
 					talk.innerHTML += item;
-					talk.scrollTop=talk.scrollHeight;//스크롤바 하단으로 이동
+					setTimeout(function() {
+						talk.scrollTop=talk.scrollHeight;//스크롤바 하단으로 이동
+					},100);
 	        	}
 	        }
 		}
@@ -636,7 +642,25 @@ function fileUpload(ev){
 
 /* 타이머 */
 var requiredTime = document.querySelector('.requiredTime_hidden').value; //요구시간
+console.log("requiredTime : " + requiredTime);
 if(requiredTime!=""){
+	if(requiredTime=="1분 20초"){
+		requiredTime=80;
+	}else if(requiredTime=="5분"){
+		requiredTime=300;
+	}else if(requiredTime=="10분"){
+		requiredTime=600;
+	}else if(requiredTime=="15분"){
+		requiredTime=900;
+	}else if(requiredTime=="20분"){
+		requiredTime=1200;
+	}else if(requiedTime=="30분"){
+		requiredTime=1800;
+	}else if(RequiredTime=="45분"){
+		requiredTime=2700;
+	}else{
+		requiredTime=3600;
+	}
 	
 	var min = ""; //분
 	var sec = ""; //초
@@ -648,8 +672,8 @@ if(requiredTime!=""){
 		sec = requiredTime%60; //나머지를 계산
 		
 		//남은시간 10분 미만일때
-		if(requiredTime < 600 || requiredTime >= 60){ 
-			document.getElementById("timerDiv").style.right = "70px";
+		if(requiredTime < 600 && requiredTime >= 60){ 
+			document.getElementById("timerDiv").style.right = "60px";
 		}
 		
 		//남은시간 60초 이상일때

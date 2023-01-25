@@ -58,6 +58,7 @@
 		<input type="hidden" name="nowPage" value="1">
 		<input type="hidden" name="findStr" value="">
 		<input type="hidden" name="id" value="${sessionScope.sessionId }">
+		<input type="hidden" class="nickname_hidden" value="${sessionScope.nickname }">
 		<!-- SORT -->
 		<select id="sort" style="display: none;" name="sort" onchange="changeSort()" class="form-select" aria-label="Default select example">
 			<option value="1" ${cbpVo.sort == 1 ? 'selected' : '' }>최신순</option>
