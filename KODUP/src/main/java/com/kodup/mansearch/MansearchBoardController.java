@@ -22,6 +22,8 @@ public class MansearchBoardController {
 	
 	@Autowired
 	MansearchService service;
+	
+	// 구인게시판 처음 들어올 때
 	@RequestMapping("/mansearch/mansearch")
 	public ModelAndView select(PageVo pVo) {
 		ModelAndView mv = new ModelAndView();
@@ -34,6 +36,7 @@ public class MansearchBoardController {
 		return mv;
 	}
 	
+	// 리스트에서 view로 넘어갈 때
 	@RequestMapping("/mansearch/mansearch_view")
 	public ModelAndView view(MansearchBoardVo mbVo,PageVo pVo, MemberVo mVo) {
 		ModelAndView mv = new ModelAndView();
@@ -46,6 +49,8 @@ public class MansearchBoardController {
 
 		return mv;
 	}
+	
+	// 프리미엄리뷰 보기 버튼 눌렀을 때
 	@RequestMapping("/mansearch/premium_review")
 	public ModelAndView review(HttpServletRequest req,MemberVo mVo,MansearchBoardVo mbVo) {
 		ModelAndView mv = new ModelAndView();
@@ -64,6 +69,8 @@ public class MansearchBoardController {
 		mv.setViewName("mansearch/mansearch_premium_review");
 		return mv;
 	}
+	
+	// 구인등록 버튼 클릭
 	@RequestMapping("/mansearch/mansearch_insert")
 	public ModelAndView insert(PageVo pVo) {
 		ModelAndView mv = new ModelAndView();
@@ -73,6 +80,7 @@ public class MansearchBoardController {
 		return mv;
 	}
 	
+	// 수정버튼 클릭
 	@RequestMapping("/mansearch/mansearch_update")
 	public ModelAndView update(MansearchBoardVo mbVo, PageVo pVo) {
 		ModelAndView mv = new ModelAndView();
@@ -84,6 +92,7 @@ public class MansearchBoardController {
 		return mv;
 	}
 	
+	// 삭제버튼 클릭
 	@RequestMapping("/mansearch/mansearch_delete")
 	public ModelAndView delete(MansearchBoardVo mbVo,PageVo pVo) {
 		ModelAndView mv = new ModelAndView();

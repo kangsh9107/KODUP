@@ -20,6 +20,8 @@ li {
 		<img src="/images/mansearch_images/${mbVo.corp_logo }" class="view_corp_logo"> 
 		<label>${mbVo.corp_name }</label>
 	</span><br />
+	<input type='hidden' name='findStr' value='${pVo.findStr }'/>
+    <input type='hidden' name='nowPage' value='${pVo.nowPage }'/>
 	<input type='hidden' name='sno' value='${mbVo.sno }'>
 	<input type='hidden' name='id' class='member_id' value='${mbVo.id }' />
 	<input type='hidden' name='mansearch_sno' value="${mbVo.mansearch_sno }" />
@@ -58,10 +60,16 @@ li {
 					</svg>
 					<span class="deadline_count">마감일 ${mbVo.deadline }</span>
 				</span>
-				<c:if test="${mbVo.id eq sessionId }">
-					<button type='button' class='mansearch_deleteR' style="float: right; margin: 5px;">삭제</button>
-					<button type='button' class='mansearch_update' style="float: right; margin: 5px;">수정</button>
-				</c:if>
+				<c:choose>
+					<c:when test="${mbVo.id eq sessionId }">
+						<button type="button" class="btnMansearch" style="float:right; margin:5px; width:auto;">목록</button>
+						<button type='button' class='mansearch_deleteR' style="float: right; margin: 5px;">삭제</button>
+						<button type='button' class='mansearch_update' style="float: right; margin: 5px;">수정</button>
+					</c:when>
+					<c:otherwise>
+						<button type="button" class="btnMansearch" style="float:right; width:auto; margin-top:10px;">목록</button>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>
@@ -161,6 +169,7 @@ li {
 			${mbVo.doc }
 		</pre>
 	</div>
+	
 </form>
 <div class="container text-center mansearch_view_manager">
 	<div class="row" style="vertical-align: middle;">
