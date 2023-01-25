@@ -94,7 +94,7 @@
 	box-shadow: 0 0 0 0 !important;
 }
 
-.btnInfoshareInsertR, .btnInfoshareUpdateR, .btnList {
+.btnInfoshareInsertR, .btnInfoshareUpdateR, .btnList, .btnListViewInfoshare {
 	width: 60px;
 	height: 40px;
 	color: white;
@@ -104,7 +104,7 @@
 	font-weight: 600;
 }
 
-.btnInfoshareInsertR:hover, .btnInfoshareUpdateR:hover, .btnList:hover {
+.btnInfoshareInsertR:hover, .btnInfoshareUpdateR:hover, .btnList:hover, .btnListViewInfoshare:hover {
 	background-color: #ff3363;
 	color: white;
 }
