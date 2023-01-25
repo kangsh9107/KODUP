@@ -64,7 +64,12 @@ $('.mansearch_update').on('click',function(){
 	   $('#center').html(data);		
 	})
 });
-
+$('.btnMansearch').on('click', function(){
+    param = $('.mansearch_frm').serialize();
+    $.post("/mansearch/mansearch", param, function(data){
+    	$('#center').html(data);
+   	})
+})
 $('.mansearch_board_cancel').on('click',function(){
 	window.scrollTo(0,0);
 	$('#center').load('/mansearch/mansearch');

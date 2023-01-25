@@ -23,7 +23,7 @@ input.img-button {
     border: none;
 	cursor: pointer;
 }
-button.mansearch_insert,button.sort_save,button.sort_search,button.sort_reset,button.premium_review_insert{
+button.mansearch_insert,button.sort_save,button.sort_search,button.sort_reset,button.premium_review_insert,button.btnMansearch{
 	width:93px;
 	height:38px;
 	padding:6px 12px;
@@ -33,7 +33,7 @@ button.mansearch_insert,button.sort_save,button.sort_search,button.sort_reset,bu
 	border:2px solid #bb2642;
 	border-radius:5px;
 }
-button.mansearch_insert:hover,button.sort_save:hover,button.sort_search:hover,button.sort_reset:hover,button.premium_review_insert:hover{
+button.mansearch_insert:hover,button.sort_save:hover,button.sort_search:hover,button.sort_reset:hover,button.premium_review_insert:hover,button.btnMansearch:hover{
 	background-color:#871b30;
 }
 div.mansearch_title{

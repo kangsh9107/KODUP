@@ -91,7 +91,7 @@
 	    	</div>       	    	     	    	
 	  	</div>
 	</div>
-	<div class="container text-left" style="padding-left:0;">
+	<div class="container text-left" style="padding-left:0; margin-bottom:20px;">
 		<label class="info_label" style="padding-left:0;">글 작성</label>
 		<div class="row">
 			<div class="col">

@@ -20,6 +20,8 @@ li {
 		<img src="/images/mansearch_images/${mbVo.corp_logo }" class="view_corp_logo"> 
 		<label>${mbVo.corp_name }</label>
 	</span><br />
+	<input type='hidden' name='findStr' value='${pVo.findStr }'/>
+    <input type='hidden' name='nowPage' value='${pVo.nowPage }'/>
 	<input type='hidden' name='sno' value='${mbVo.sno }'>
 	<input type='hidden' name='id' class='member_id' value='${mbVo.id }' />
 	<input type='hidden' name='mansearch_sno' value="${mbVo.mansearch_sno }" />
@@ -49,6 +51,7 @@ li {
 		<div class="row justify-content-md-center">
 			<div class="col mansearch_view_subject">
 				<span style="font-size: 1.8rem; padding: 0; margin: 0;"> <label><strong>${mbVo.subject }</strong></label></span>
+				<button type="button" class="btnMansearch" style="float:right;">목록</button>
 				<br/>
 				<span class="deadline" style='font-weight: bold;'> 
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
