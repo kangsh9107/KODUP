@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kodup.common.CommonBoardPageVo;
 import com.kodup.common.CommonBoardService;
+import com.kodup.common.SelectBoardVo;
 
 
 @RestController
@@ -25,27 +26,6 @@ public class InfoshareBoardController {
 	
 	@Autowired
 	CommonBoardService cbService;
-	
-	@RequestMapping("/infoshare/infoshare")
-	public ModelAndView infoshare() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/infoshare/infoshare");
-		return mv;
-	}
-
-	@RequestMapping("/infoshare/infoshare_insert")
-	public ModelAndView infoshareInsert() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/infoshare/infoshare_insert");
-		return mv;
-	}
-	
-	@RequestMapping("/infoshare/infoshare_update")
-	public ModelAndView infoshareUpdate() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/infoshare/infoshare_update");
-		return mv;
-	}
 	
 	//성호
 	@RequestMapping("/infoshare/infoshare_view")
@@ -80,7 +60,7 @@ public class InfoshareBoardController {
 	}
 	
 	@RequestMapping("/infoshare/infoshare_view/deleteR")
-	public ModelAndView infoshareDeleteR(InfoshareBoardVo ibVo) {
+	public ModelAndView infoshareDeleteR(InfoshareBoardVo ibVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		
@@ -89,6 +69,19 @@ public class InfoshareBoardController {
 			msg = "삭제중 오류 발생";
 		}
 		//mv = infoshare(ibVo);	//담겨진 데이터들을 들고 infoshare()를 통해  infoshare.jsp로 넘어가게 하려고
+		
+		//리스트 출력
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		List<SelectBoardVo> listInfoshare = cbService.listInfoshare(cbpVo);
+		cbpVo = cbService.getCbpVo();
+		
+		mv.addObject("cbpVo", cbpVo);
+		mv.addObject("listInfoshare", listInfoshare);
 		mv.addObject("msg",msg);
 		mv.setViewName("/infoshare/infoshare");
 		return mv;

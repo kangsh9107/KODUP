@@ -12,6 +12,7 @@ public class IndexBoardVo {
 	String profile_img;
 	String nickname;
 	String countRepl;
+	int board_delete;
 	
 	public int getSno() { return sno; }
 	public void setSno(int sno) { this.sno = sno; }
@@ -29,5 +30,7 @@ public class IndexBoardVo {
 	public void setNickname(String nickname) { this.nickname = nickname; }
 	public String getCountRepl() { return countRepl; }
 	public void setCountRepl(String countRepl) { this.countRepl = countRepl; }
+	public int getBoard_delete() { return board_delete; }
+	public void setBoard_delete(int board_delete) { this.board_delete = board_delete; }
 	
 }

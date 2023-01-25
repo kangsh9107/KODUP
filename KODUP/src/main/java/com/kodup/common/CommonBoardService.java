@@ -158,35 +158,85 @@ public class CommonBoardService {
 	}
 	
 	//INSERT
-	public boolean insert(InsertBoardVo ibVo) {
+	public boolean insert(InsertBoardVo ibVo, String boardtype) {
 		boolean b = false; //true면 board테이블 insert 성공
-		int checkPixel = cbMapper.checkPixel(ibVo);
-		if(checkPixel < ibVo.getQna_pixel_reward()) {
-			return b;
-		}
-		int sno = 0;
-		int cnt = cbMapper.insertBoard(ibVo);
-		status = manager.getTransaction(new DefaultTransactionDefinition());
-		savePoint = status.createSavepoint();
-		if(cnt > 0) {
-			manager.commit(status);
-			b = true;
-			sno = cbMapper.getSno(); //board테이블의 마지막 sno 가져옴
-			ibVo.setSno(sno);
-			
-			boolean c = false; //true면 qna_board테이블 insert 성공
-			int cnt2 = cbMapper.insertQnaBoard(ibVo);
+		if(boardtype.equals("qna")) {
+			int checkPixel = cbMapper.checkPixel(ibVo);
+			if(checkPixel < ibVo.getQna_pixel_reward()) return b;
+			int sno = 0;
+			int cnt = cbMapper.insertBoard(ibVo);
 			status = manager.getTransaction(new DefaultTransactionDefinition());
 			savePoint = status.createSavepoint();
-			if(cnt2 > 0) {
+			if(cnt > 0) {
 				manager.commit(status);
-				c = true;
+				b = true;
+				sno = cbMapper.getSno(); //board테이블의 마지막 sno 가져옴
+				ibVo.setSno(sno);
+				
+				boolean c = false; //true면 qna_board테이블 insert 성공
+				int cnt2 = cbMapper.insertQnaBoard(ibVo);
+				status = manager.getTransaction(new DefaultTransactionDefinition());
+				savePoint = status.createSavepoint();
+				if(cnt2 > 0) {
+					manager.commit(status);
+					c = true;
+				} else {
+					status.rollbackToSavepoint(savePoint);
+					b = false;
+				}
 			} else {
 				status.rollbackToSavepoint(savePoint);
-				b = false;
 			}
-		} else {
-			status.rollbackToSavepoint(savePoint);
+		} else if(boardtype.equals("infoshare")) {
+			int sno = 0;
+			int cnt = cbMapper.insertBoard(ibVo);
+			status = manager.getTransaction(new DefaultTransactionDefinition());
+			savePoint = status.createSavepoint();
+			if(cnt > 0) {
+				manager.commit(status);
+				b = true;
+				sno = cbMapper.getSno(); //board테이블의 마지막 sno 가져옴
+				ibVo.setSno(sno);
+				
+				boolean c = false; //true면 infoshare_board테이블 insert 성공
+				int cnt2 = cbMapper.insertInfoshareBoard(ibVo);
+				status = manager.getTransaction(new DefaultTransactionDefinition());
+				savePoint = status.createSavepoint();
+				if(cnt2 > 0) {
+					manager.commit(status);
+					c = true;
+				} else {
+					status.rollbackToSavepoint(savePoint);
+					b = false;
+				}
+			} else {
+				status.rollbackToSavepoint(savePoint);
+			}
+		} else if(boardtype.equals("freetalking")) {
+			int sno = 0;
+			int cnt = cbMapper.insertBoard(ibVo);
+			status = manager.getTransaction(new DefaultTransactionDefinition());
+			savePoint = status.createSavepoint();
+			if(cnt > 0) {
+				manager.commit(status);
+				b = true;
+				sno = cbMapper.getSno(); //board테이블의 마지막 sno 가져옴
+				ibVo.setSno(sno);
+				
+				boolean c = false; //true면 infoshare_board테이블 insert 성공
+				int cnt2 = cbMapper.insertFreetalkingBoard(ibVo);
+				status = manager.getTransaction(new DefaultTransactionDefinition());
+				savePoint = status.createSavepoint();
+				if(cnt2 > 0) {
+					manager.commit(status);
+					c = true;
+				} else {
+					status.rollbackToSavepoint(savePoint);
+					b = false;
+				}
+			} else {
+				status.rollbackToSavepoint(savePoint);
+			}
 		}
 		
 		return b;

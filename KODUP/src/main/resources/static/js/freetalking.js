@@ -94,11 +94,6 @@ $('.btnSearch').click(function() {
 	console.log("검색");
 });
 
-/***** BACK TO LIST *****/
-$('.btnList').on('click', function() {
-	$('#center').load('/freetalking/freetalking');
-});
-
 
 
 

@@ -7,6 +7,10 @@ import com.kodup.login.Time;
 public class InsertBoardVo {
 	
 	String qna_horsehead;
+	String infoshare_horsehead;
+	String freetalking_horsehead;
+	String jobsearch_horsehead;
+	String notification_horsehead;
 	int qna_pixel_reward;
 	int pixel;
 	int sno;
@@ -40,5 +44,13 @@ public class InsertBoardVo {
 	public void setHashtag(String hashtag) { this.hashtag = hashtag; }
 	public int getPixel() { return pixel; }
 	public void setPixel(int pixel) { this.pixel = pixel; }
+	public String getInfoshare_horsehead() { return infoshare_horsehead; }
+	public void setInfoshare_horsehead(String infoshare_horsehead) { this.infoshare_horsehead = infoshare_horsehead; }
+	public String getFreetalking_horsehead() { return freetalking_horsehead; }
+	public void setFreetalking_horsehead(String freetalking_horsehead) { this.freetalking_horsehead = freetalking_horsehead; }
+	public String getJobsearch_horsehead() { return jobsearch_horsehead; }
+	public void setJobsearch_horsehead(String jobsearch_horsehead) { this.jobsearch_horsehead = jobsearch_horsehead; }
+	public String getNotification_horsehead() { return notification_horsehead; }
+	public void setNotification_horsehead(String notification_horsehead) { this.notification_horsehead = notification_horsehead; }
 
 }

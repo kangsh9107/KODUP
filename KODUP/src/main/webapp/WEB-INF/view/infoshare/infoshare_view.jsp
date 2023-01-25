@@ -99,7 +99,7 @@
 			<!-- 본문 btnzone -->
 			<div id="infoshare_view_btnzone" style="margin-top:30px;" >
 				<c:if test="${ibVo.id eq sessionScope.sessionId}">
-					<input type="button" class="btnUpdate infoshare_view_originalBtn" style="vertical-align:top;"value="수정">
+					<input type="button" class="btnUpdateInfoshare infoshare_view_originalBtn" style="vertical-align:top;"value="수정">
 					<input type="button" class="btnDeleteR  infoshare_view_originalBtn"style="vertical-align:top;" value="삭제">
 				</c:if>
 				<input type="button" class="btnListUInfoshare  infoshare_view_originalBtn" style="vertical-align:top;"value="목록">

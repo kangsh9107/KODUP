@@ -28,7 +28,6 @@ public class CommonBoardController {
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = req.getSession();
 		cbpVo.setId((String)session.getAttribute("sessionId"));
-		
 		String boardtype = cbpVo.getBoardtype();
 		if(boardtype.equals("qna")) {
 			List<SelectBoardVo> listQna = cbService.listQna(cbpVo);
@@ -141,6 +140,25 @@ public class CommonBoardController {
 		return mv;
 	}
 	
+	//NOTIFICATION 리스트 출력 back
+	@RequestMapping("/notification/notification_list_back")
+	public ModelAndView notificationListBack(CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		List<SelectBoardVo> listNotification = cbService.listNotification(cbpVo);
+		cbpVo = cbService.getCbpVo();
+		
+		mv.addObject("cbpVo", cbpVo);
+		mv.addObject("listNotification", listNotification);
+		mv.setViewName("/notification/notification");
+		return mv;
+	}
+	
 	//hashtag search
 	@RequestMapping("/login/find_hashtag")
 	public ModelAndView hashtagList(CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -168,10 +186,27 @@ public class CommonBoardController {
 		return mv;
 	}
 	
+	@RequestMapping("/infoshare/infoshare_insert")
+	public ModelAndView infoshareInsert(CommonBoardPageVo cbpVo) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("cbpVo", cbpVo);
+		mv.setViewName("/infoshare/infoshare_insert");
+		return mv;
+	}
+	
+	@RequestMapping("/freetalking/freetalking_insert")
+	public ModelAndView freetalkingInsert(CommonBoardPageVo cbpVo) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("cbpVo", cbpVo);
+		mv.setViewName("/freetalking/freetalking_insert");
+		return mv;
+	}
+	
 	//INSERTR
 	@RequestMapping("/qna/qna_insertR")
 	public ModelAndView qnaInsertR(CommonBoardPageVo cbpVo, InsertBoardVo ibVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
+		String boardtype = cbpVo.getBoardtype();
 		String basic = req.getParameter("basic");
 		StringBuilder sb = new StringBuilder();
 		//[{"value":"hashtag"},{}]를 파싱해서 #hashtag#hashtag로 만든다
@@ -189,7 +224,7 @@ public class CommonBoardController {
 		}
 		
 		boolean b = false; //true면 글 작성 성공
-		b = cbService.insert(ibVo);
+		b = cbService.insert(ibVo, boardtype);
 		if( !b ) {
 			mv.addObject("error", "error_insert");
 			mv.setViewName("/login/error");
@@ -201,6 +236,82 @@ public class CommonBoardController {
 			mv.addObject("cbpVo", cbpVo);
 			mv.addObject("listQna", listQna);
 			mv.setViewName("/qna/qna");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping("/infoshare/infoshare_insertR")
+	public ModelAndView infoshareInsertR(CommonBoardPageVo cbpVo, InsertBoardVo ibVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		String boardtype = cbpVo.getBoardtype();
+		String basic = req.getParameter("basic");
+		StringBuilder sb = new StringBuilder();
+		//[{"value":"hashtag"},{}]를 파싱해서 #hashtag#hashtag로 만든다
+		try {
+			JSONParser jParser = new JSONParser();
+			JSONArray jArray = (JSONArray)jParser.parse(basic);
+			for(int i=0; i<jArray.size(); i++) {
+				JSONObject jObject = (JSONObject)jArray.get(i);
+				sb.append("#");
+				sb.append(jObject.get("value"));
+			}
+			ibVo.setHashtag(sb.toString());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		boolean b = false; //true면 글 작성 성공
+		b = cbService.insert(ibVo, boardtype);
+		if( !b ) {
+			mv.addObject("error", "error_insert");
+			mv.setViewName("/login/error");
+		} else {
+			boolean c = false; //true면 픽셀감소, 픽셀히스토리 insert 성공
+			c = cbService.history(ibVo);
+			List<SelectBoardVo> listInfoshare = cbService.listInfoshare(cbpVo);
+			cbpVo = cbService.getCbpVo();
+			mv.addObject("cbpVo", cbpVo);
+			mv.addObject("listInfoshare", listInfoshare);
+			mv.setViewName("/infoshare/infoshare");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping("/freetalking/freetalking_insertR")
+	public ModelAndView freetalkingInsertR(CommonBoardPageVo cbpVo, InsertBoardVo ibVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		String boardtype = cbpVo.getBoardtype();
+		String basic = req.getParameter("basic");
+		StringBuilder sb = new StringBuilder();
+		//[{"value":"hashtag"},{}]를 파싱해서 #hashtag#hashtag로 만든다
+		try {
+			JSONParser jParser = new JSONParser();
+			JSONArray jArray = (JSONArray)jParser.parse(basic);
+			for(int i=0; i<jArray.size(); i++) {
+				JSONObject jObject = (JSONObject)jArray.get(i);
+				sb.append("#");
+				sb.append(jObject.get("value"));
+			}
+			ibVo.setHashtag(sb.toString());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		boolean b = false; //true면 글 작성 성공
+		b = cbService.insert(ibVo, boardtype);
+		if( !b ) {
+			mv.addObject("error", "error_insert");
+			mv.setViewName("/login/error");
+		} else {
+			boolean c = false; //true면 픽셀감소, 픽셀히스토리 insert 성공
+			c = cbService.history(ibVo);
+			List<SelectBoardVo> listFreetalking = cbService.listFreetalking(cbpVo);
+			cbpVo = cbService.getCbpVo();
+			mv.addObject("cbpVo", cbpVo);
+			mv.addObject("listFreetalking", listFreetalking);
+			mv.setViewName("/freetalking/freetalking");
 		}
 		
 		return mv;
@@ -221,6 +332,23 @@ public class CommonBoardController {
 		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("ibVo", ibVo);
 		mv.setViewName("/qna/qna_update");
+		return mv;
+	}
+	
+	@RequestMapping("/infoshare/infoshare_update")
+	public ModelAndView infoshareUpdate(CommonBoardPageVo cbpVo, InsertBoardVo ibVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		ibVo.setInfoshare_horsehead(req.getParameter("horsehead"));
+		ibVo.setSubject(req.getParameter("subject"));
+		ibVo.setDoc(req.getParameter("doc"));
+		
+		mv.addObject("cbpVo", cbpVo);
+		mv.addObject("ibVo", ibVo);
+		mv.setViewName("/infoshare/infoshare_update");
 		return mv;
 	}
 	
@@ -258,6 +386,44 @@ public class CommonBoardController {
 			mv.addObject("cbpVo", cbpVo);
 			mv.addObject("listQna", listQna);
 			mv.setViewName("/qna/qna");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping("/infoshare/infoshare_updateR")
+	public ModelAndView infoshareUpdateR(CommonBoardPageVo cbpVo, InsertBoardVo ibVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
+		ModelAndView mv = new ModelAndView();
+		String basic = req.getParameter("basic");
+		StringBuilder sb = new StringBuilder();
+		
+		//[{"value":"hashtag"},{}]를 파싱해서 #hashtag#hashtag로 만든다
+		try {
+			JSONParser jParser = new JSONParser();
+			JSONArray jArray = (JSONArray)jParser.parse(basic);
+			for(int i=0; i<jArray.size(); i++) {
+				JSONObject jObject = (JSONObject)jArray.get(i);
+				sb.append("#");
+				sb.append(jObject.get("value"));
+			}
+			ibVo.setHashtag(sb.toString());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		boolean b = false; //true면 글 수정 성공
+		ibVo.setQna_horsehead(req.getParameter("infoshare_horseheadK"));
+		b = cbService.update(ibVo);
+		if( !b ) {
+			mv.addObject("error", "error_update");
+			mv.setViewName("/login/error");
+		} else {
+			List<SelectBoardVo> listInfoshare = cbService.listInfoshare(cbpVo);
+			cbpVo = cbService.getCbpVo();
+			
+			mv.addObject("cbpVo", cbpVo);
+			mv.addObject("listInfoshare", listInfoshare);
+			mv.setViewName("/infoshare/infoshare");
 		}
 		
 		return mv;
