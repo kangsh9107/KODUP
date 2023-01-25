@@ -21,9 +21,6 @@
 		ORDER BY b.sno desc
 		limit ${startNo}, ${listSize}
 	</select>
-	<select id="review" parameterType="Integer" resultType="com.kodup.mansearch.MansearchBoardVo">
-		SELECT pr.premium_review_sno,pr.mansearch_sno,pr.id AS writer_id,review FROM premium_review pr WHERE pr.premium_review_sno=${premium_review_sno}
-	</select>
  	<select id="view" parameterType="Integer" resultType="com.kodup.mansearch.MansearchBoardVo">
 		SELECT DATEDIFF(deadline, DATE_FORMAT(now(),'%Y-%m-%d')) as deadlinecount, mb.pay, mb.pay_date, mb.education_level, mb.work_type, mb.corp_location, mb.position, mb.required_career, mb.job_type, mb.required_skill, mb.deadline, 
 			   mb.main_task, mb.sub_task,mb.work_start,mb.sno, mb.mansearch_sno,
@@ -34,6 +31,9 @@
                                 LEFT JOIN member m      		ON b.id = m.id
                         		LEFT JOIN corperation c 		ON m.id = c.id
         WHERE b.boardtype = 'mansearch' and mb.mansearch_sno = ${mansearch_sno} 	
+	</select>
+	<select id="review" parameterType="Integer" resultType="com.kodup.mansearch.MansearchBoardVo">
+		SELECT pr.premium_review_sno,pr.mansearch_sno,pr.id AS writer_id,review FROM premium_review pr WHERE pr.premium_review_sno=${premium_review_sno}
 	</select>
 	<select id="premiumlist" parameterType="Integer" resultType="com.kodup.mansearch.MansearchBoardVo">
 		SELECT pr.premium_review_sno,pr.mansearch_sno AS pr_mansearch_sno,pr.id AS writer_id,pr.review,m.profile_img 
@@ -54,6 +54,9 @@
 		insert into mansearch_board(sno,work_start,pay,corp_location,position,job_type,required_career,education_level,work_type,pay_date,required_skill,deadline,main_task,sub_task)
 		values((select sno from board order by sno desc limit 0,1),#{work_start},#{pay},#{corp_location},#{position},#{job_type},#{required_career},#{education_level},#{work_type},#{pay_date},#{required_skill},#{deadline},#{main_task},#{sub_task})
 	</insert>
+	<insert id="buylistinsert" parameterType="com.kodup.mansearch.MansearchBoardVo">
+		INSERT INTO premium_review_buylist(id,premium_review_sno) VALUES(#{id},${premium_review_sno} )
+	</insert>
 	<update id='boardupdate' parameterType='com.kodup.mansearch.MansearchBoardVo'>
 		update board set subject = #{subject}, doc = #{doc}
 		where sno = #{sno}
@@ -61,13 +64,10 @@
  	<update id='mansearchupdate' parameterType='com.kodup.mansearch.MansearchBoardVo'>
 		update mansearch_board set work_start = #{work_start}, pay = #{pay}, corp_location = #{corp_location}, position = #{position}, job_type = #{job_type}, required_career = #{required_career}, education_level = #{education_level}, work_type = #{work_type}, pay_date = #{pay_date}, required_skill = #{required_skill}, deadline = #{deadline}, main_task = #{main_task}, sub_task = #{sub_task}
 	</update>	
-	<delete id='delete' parameterType='com.kodup.mansearch.MansearchBoardVo'>
+	<update id='delete' parameterType='com.kodup.mansearch.MansearchBoardVo'>
 		UPDATE board SET board_delete = 1 
 		WHERE sno = ${sno} 
-	</delete>
-	<insert id="buylistinsert" parameterType="com.kodup.mansearch.MansearchBoardVo">
-		INSERT INTO premium_review_buylist(id,premium_review_sno) VALUES(#{id},${premium_review_sno} )
-	</insert>
+	</update>
 	<update id="readpixel" parameterType="String">
 		update member set pixel = pixel-200
 		where id = #{id}

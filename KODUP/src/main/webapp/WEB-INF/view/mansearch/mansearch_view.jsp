@@ -51,7 +51,6 @@ li {
 		<div class="row justify-content-md-center">
 			<div class="col mansearch_view_subject">
 				<span style="font-size: 1.8rem; padding: 0; margin: 0;"> <label><strong>${mbVo.subject }</strong></label></span>
-				<button type="button" class="btnMansearch" style="float:right;">목록</button>
 				<br/>
 				<span class="deadline" style='font-weight: bold;'> 
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -61,10 +60,16 @@ li {
 					</svg>
 					<span class="deadline_count">마감일 ${mbVo.deadline }</span>
 				</span>
-				<c:if test="${mbVo.id eq sessionId }">
-					<button type='button' class='mansearch_deleteR' style="float: right; margin: 5px;">삭제</button>
-					<button type='button' class='mansearch_update' style="float: right; margin: 5px;">수정</button>
-				</c:if>
+				<c:choose>
+					<c:when test="${mbVo.id eq sessionId }">
+						<button type="button" class="btnMansearch" style="float:right; margin:5px; width:auto;">목록</button>
+						<button type='button' class='mansearch_deleteR' style="float: right; margin: 5px;">삭제</button>
+						<button type='button' class='mansearch_update' style="float: right; margin: 5px;">수정</button>
+					</c:when>
+					<c:otherwise>
+						<button type="button" class="btnMansearch" style="float:right; width:auto; margin-top:10px;">목록</button>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>
@@ -164,6 +169,7 @@ li {
 			${mbVo.doc }
 		</pre>
 	</div>
+	
 </form>
 <div class="container text-center mansearch_view_manager">
 	<div class="row" style="vertical-align: middle;">

@@ -4,7 +4,6 @@
 var frm;
 var param;
 var memberid = document.querySelector('.member_id');
-var subdivision = document.querySelector('#subdivision');
 $(document).ready(function () {
 	$('#summernote').summernote({
 		placeholder: '내용을 입력해주세요.',
@@ -15,6 +14,7 @@ $(document).ready(function () {
 	});
 });
 
+// list에서 view로 들어갈 때 호출하는 함수
 mansearch_view = function(mansearch_sno){
 	frm = $('.mansearch_search')[0];
 	frm.mansearch_sno.value = mansearch_sno;
@@ -25,6 +25,8 @@ mansearch_view = function(mansearch_sno){
 	    $('#center').html(data);
 	})	
 }
+
+// 페이징처리 함수
 mansearch_Move = function(nowPage){
 	frm = $('.mansearch_search')[0];
 	frm.nowPage.value = nowPage;
@@ -33,11 +35,15 @@ mansearch_Move = function(nowPage){
 	    $('#center').html(data);
 	})
 }
-$('.inputSearch').keyup(function(evnet) {
+
+// findStr에서 엔터 눌렀을 때 검색되게 처리
+$('.inputSearch').on('keyup',function(event) {
 	if(event.keyCode == 13) {
 		$('.btnSearch').click();
 	}
 });
+
+// findStr 검색버튼
 $('.btnSearch').on('click',function(){
 	frm = $('.mansearch_search')[0];
 	frm.nowPage.value = 1;
@@ -45,10 +51,12 @@ $('.btnSearch').on('click',function(){
 	$('#center').load("/mansearch/mansearch", param);
 });
 
+// 새로고침
 $('.btnRefresh').on('click', function(){
 	$('#center').load('/mansearch/mansearch');
 });
 
+// 구인등록
 $('.mansearch_insert').on('click',function(){
 	param = $('.mansearch_search').serialize();
 	$.post('/mansearch/mansearch_insert',param, function(data){
@@ -56,6 +64,7 @@ $('.mansearch_insert').on('click',function(){
 	})
 });
 
+// view > 수정버튼
 $('.mansearch_update').on('click',function(){
 	frm = $('.mansearch_frm')[0];
 	frm.premium_review_sno.value=0;
@@ -64,18 +73,22 @@ $('.mansearch_update').on('click',function(){
 	   $('#center').html(data);		
 	})
 });
+
+// view에서 다시 목록으로 돌아가는 버튼
 $('.btnMansearch').on('click', function(){
     param = $('.mansearch_frm').serialize();
     $.post("/mansearch/mansearch", param, function(data){
     	$('#center').html(data);
    	})
 })
+
+// 구인등록 & 정보수정 > 취소버튼
 $('.mansearch_board_cancel').on('click',function(){
 	window.scrollTo(0,0);
 	$('#center').load('/mansearch/mansearch');
 });
 
-
+// 구인등록 > 저장버튼
 $('.mansearch_board_insertR').on('click',function(){
 	window.scrollTo(0,0);
 	memberid.value = sessionId;
@@ -98,6 +111,7 @@ $('.mansearch_board_insertR').on('click',function(){
 	
 })
 
+// view > 삭제버튼
 $('.mansearch_deleteR').on('click',function(){
 	let yn = confirm('글을 삭제하시겠습니까?');
 	if(!yn) return;	
@@ -109,6 +123,7 @@ $('.mansearch_deleteR').on('click',function(){
 	})
 })
 
+// update > 저장버튼
 $('.mansearch_board_updateR').on('click',function(){
 	window.scrollTo(0,0);
 	memberid.value = sessionId;
@@ -131,6 +146,7 @@ $('.mansearch_board_updateR').on('click',function(){
 	
 })
 
+// 프리미엄리뷰 보기
 premiumView = function(form){
 	var yn = confirm('정말 200픽셀을 사용하여 프리미엄 리뷰를 보시겠습니까?');
 	if(!yn) return;
@@ -164,6 +180,7 @@ premiumView = function(form){
 	}
 }
 
+// 프리미엄리뷰 등록
 $('.premium_review_insert').on('click',function(){
 	var yn = confirm('리뷰를 등록하시겠습니까?\n작성 후 수정이나 삭제는 관리자에게 문의바랍니다.');
 	if(!yn) return;
