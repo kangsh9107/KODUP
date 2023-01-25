@@ -6,23 +6,23 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kodup.login.MemberVo;
+import com.kodup.profile.ProfileService;
+import com.kodup.profile.ProfileVo;
 
-import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 
 @RestController
 public class MantomanController {
 	
 	@Autowired
 	MantomanService service;
+	
+	@Autowired
+	ProfileService service2;
 	
 	@RequestMapping("/mantoman/mantoman_index")
 	public ModelAndView mantomanIndex(MantomanVo mtmVo,HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -70,8 +70,27 @@ public class MantomanController {
 	}
 	
 	@RequestMapping("/profile/member_profile_chat")
-	public ModelAndView profileChat() {
+	public ModelAndView profileChat(ProfileVo pfVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
+		String nickname = (String)req.getParameter("nickname");
+		pfVo = service2.selectProfile(nickname);
+		if(pfVo!=null) {
+			String grade = pfVo.getGrade();
+			if(grade.equals("5")) {
+				pfVo.setGrade("관리자");
+			}else if(grade.equals("4")) {
+				pfVo.setGrade("게시판지기");
+			}else if(grade.equals("3")) {
+				pfVo.setGrade("파트너멘토");
+			}else if(grade.equals("2")) {
+				pfVo.setGrade("플러스멘토"); 
+			}else if(grade.equals("1")) {
+				pfVo.setGrade("퍼스널멘토");
+			}else if(grade.equals("0")) {
+				pfVo.setGrade("멘티");
+			}
+		}
+		mv.addObject("pfVo", pfVo);
 		mv.setViewName("profile/member_profile_chat");
 		return mv;
 	}
@@ -171,7 +190,7 @@ public class MantomanController {
 		String mentoId = (String)req.getParameter("mentoId");
 		String mentiId = (String)req.getParameter("mentiId");
 		int mantoman_pixel_reward = Integer.parseInt(req.getParameter("mantoman_pixel_reward"));
-		System.out.println("mantoman_pixel_reward 확인중 : " + mantoman_pixel_reward);
+		
 		mtmVo.setId(mentoId);
 		mtmVo.setMantoman_pixel_reward(mantoman_pixel_reward);
 		
@@ -179,6 +198,7 @@ public class MantomanController {
 		boolean b = service.chatPixelReward2(mtmVo);
 		boolean c = service.updateChatStatus2(mentoId);
 		boolean d = service.updateChatStatus2(mentiId);
+		
 		
 		mv.addObject("mtmVo", mtmVo);
 	}

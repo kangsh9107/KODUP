@@ -189,6 +189,22 @@ body{
 	color: #6c748e;
 }
 
+.chat_user .btnCall{
+	border-radius:3px;
+	border:none;
+	border:0.3px solid #aaa;
+	padding:3.6px 0;
+	width:70px;
+	font-size:12px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+	float:right;
+}
+
+.chat_user .btnCall:hover{
+	cursor:pointer;
+	background-color: #dbdbdb;
+}
+
 .slide_in{
   animation: slideIn 0.5s ease forwards;
 }
@@ -247,8 +263,8 @@ body{
 }
 
 .mentorCallDiv_1>.wrapper>input[type=text]{
-	width:45%;
-	margin:0 6px;
+	width:37%;
+	margin:0 0 0 6px;
 	height:20px;
 	border-radius:5px;
 	border:1px solid #aaa;
@@ -257,9 +273,36 @@ body{
 	background-color:#fdfdfd;
 }
 
+.mentorCallDiv_1>.wrapper>input[type=button]{
+	float:right;
+	border-radius:3px;
+	border:none;
+	border:0.3px solid #aaa;
+	padding:3.6px 0;
+	width:55px;
+	font-size:12px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+}
 
+.mentorCallDiv_1>.wrapper .btnNext{
+	background-color:#b9b9dc;
+}
+.mentorCallDiv_1>.wrapper .btnNext:hover{
+	cursor:pointer;
+	background-color:#a8a8c8;
+}
 
-/* */
+.mentorCallDiv_1>.wrapper .btnCancel1:hover{
+	cursor:pointer;
+	background-color: #dbdbdb;
+}
+
+.mentorCallDiv_1>.wrapper .requiredTime{
+	width:39%;
+	height:23px;
+	margin:0 6px;
+}
+
 .mentorCallDiv_2{
 	z-index: 25;
 	position:absolute;
@@ -273,14 +316,19 @@ body{
 	animation: slideIn 0.7s ease forwards;
 }
 
+.mentorCallDiv_2>.wrapper{
+	position:relative;
+}
+
 .mentorCallDiv_2>.wrapper>input[type=button]{
 	border-radius:3px;
 	border:none;
 	border:0.3px solid #aaa;
 	padding:3.6px 0;
-	width:60px;
+	width:55px;
 	font-size:12px;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+	float:right;
 }
 
 .mentorCallDiv_2>.wrapper>input[type=button]:hover{
@@ -288,11 +336,42 @@ body{
 }
 
 .mentorCallDiv_2>.wrapper .btnAccess{
-	background-color: #bd4864;
+	position:absolute;
+	top:12px;
+	right:10px;
+	background-color:#bd4864;
 	color:white;
 }
 
-/* */
+.mentorCallDiv_2>.wrapper .btnAccess:hover{
+	background-color:#a23d56;
+}
+
+.mentorCallDiv_2>.wrapper .question_span{
+	position:absolute;
+	top:28px;
+}
+.mentorCallDiv_2>.wrapper .btnCancel2{
+	position:absolute;
+	top:43px;
+	right:10px;
+}
+
+.mentorCallDiv_2>.wrapper .btnCancel2:hover{
+	background-color: #dbdbdb;
+}
+
+.mentorCallDiv_2>.wrapper .question{
+	position:absolute;
+	top:12px;
+	left:25%;
+	outline: none;
+	resize: none;
+	width:49%;
+	height:49px;
+	font-size:15px;
+}
+
 .cancelAlertDiv{
 	z-index: 50;
 	position:absolute;

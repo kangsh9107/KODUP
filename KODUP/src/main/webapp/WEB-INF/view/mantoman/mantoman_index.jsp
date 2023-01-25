@@ -31,7 +31,7 @@
 					<nav class="mantoman_atags">
 						<div id="horizontal-underline"></div>
 			        	<a href="#" id="btnMentorList" class='atag' onclick="return false">멘토 프로필</a>
-			        	<a href="#" id="btnChatList" class='atag' onclick="return false">대화 내용1</a>   
+			        	<a href="#" id="btnChatList" class='atag' onclick="return false">대화 내용</a>   
 					</nav>
 				</div>
 			</div>

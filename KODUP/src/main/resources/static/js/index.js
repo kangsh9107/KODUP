@@ -303,8 +303,10 @@ $(document).on('click', '.btnMainNotification', function() {
 
 
 /***** 이세형 *****/
+/* 내프로필 */
 $('#btnMyprofile').on('click', function() {
-   $('#center').load('/profile/member_profile'); 
+	var nickname = $('.nickname_hidden').val();
+   $('#center').load('/profile/member_profile?nickname='+nickname); 
 });
 
 /* 맨투맨 팝업창 */
@@ -391,7 +393,6 @@ if(sessionId != ''){
 		}
 		/* job이 채팅시작일때(yourId와 sessionId를 구분해서 파라미터로 넘긴다) */
 		if(data.job=="startChat"){
-			
 			if(data.mentoId==sessionId){
 				/* 공통 저장 컬럼(mantoman_room) */
 				var params = {
@@ -437,7 +438,7 @@ if(sessionId != ''){
 	}
 }
 
-/*요청 거절 버튼 클릭시*/
+/* 요청 거절 버튼 클릭시 */
 $(document).on("click", ".btnRefuseCall", function() {
     dataArray.job = "refuseCall";
 	dataArray.mentiId = $('.mentiId_hidden').val();
@@ -561,7 +562,6 @@ window.addEventListener("beforeunload", function (e) {
 		toDoWhenClosing();
 	}
 });
-
 
 
 /***** 박요한 *****/

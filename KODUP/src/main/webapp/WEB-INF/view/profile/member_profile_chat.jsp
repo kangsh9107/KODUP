@@ -20,18 +20,19 @@ body{
 </style>
 </head>
 <body>
+<input type="hidden" class="id_hidden" value="${pfVo.id }">
 <div class="profile_wrapper">
 	<div class="profile_main">
-		<img src="../images/fox_profile.png" class="profileImg">
+		<img src="../upload/${pfVo.profile_img }" class="profileImg">
 		<div class="setting_iconDiv">
 			<img src="../images/setting_icon.png" class="setting_icon">
 		</div>
 		
 		<div class="profile_nicknameDiv">
-			<span class="profile_nickname">옥다방고양이</span>
-			<span class="profile_grade">파트너 멘토</span>
+			<span class="profile_nickname">${pfVo.nickname }</span>
+			<span class="profile_grade">${pfVo.grade }</span>
 		</div>
-		<div class="profile_phrases">주말 언제든 가능해요!</div>
+		<div class="profile_phrases">${pfVo.introduce }</div>
 		<div class="profile_nav">
 			<nav class="profile_atags">
 				<div id="horizontal-underline"></div>
