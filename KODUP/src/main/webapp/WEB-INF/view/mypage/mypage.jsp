@@ -48,5 +48,8 @@
 	</div>	
 	<div id="m_section2"></div>
 </div>	
+<form>
+	<input type="hidden" id="nowPage" name="nowPage" value="${pVo.nowPage }">
+</form>
 </body>
 </html>

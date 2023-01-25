@@ -170,7 +170,7 @@ public class MypageService {
 	
 	
 	public List<MypagePixelVo> pixel_get(PageVo pVo){
-		int totSize = mypageMapper.totList(pVo);
+		int totSize = mypageMapper.totListGet(pVo);
 		pVo.setTotSize(totSize);
 		this.pVo = pVo;
 		
@@ -182,7 +182,7 @@ public class MypageService {
 	
 	
 	public List<MypagePixelVo> pixel_use(PageVo pVo){
-		int totSize = mypageMapper.totList(pVo);
+		int totSize = mypageMapper.totListUse(pVo);
 		pVo.setTotSize(totSize);
 		this.pVo = pVo;
 		

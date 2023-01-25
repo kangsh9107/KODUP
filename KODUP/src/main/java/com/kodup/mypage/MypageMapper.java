@@ -21,6 +21,8 @@ public interface MypageMapper {
 	public List<MypagePixelVo> pixel_get(PageVo pVo);
 	public List<MypagePixelVo> pixel_use(PageVo pVo);
 	public int totList(PageVo pVo);
+	public int totListGet(PageVo pVo);
+	public int totListUse(PageVo pVo);
 	public List<MypagePixelVo> select(PageVo pVo);
 	
 	public int mypage_pixel_exchange_result(MypagePixelVo mppv);

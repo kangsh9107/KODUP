@@ -106,48 +106,62 @@ $('.btn_mypage_pixel_exchange_list').on("click", function(){
 });
 
 */
+
+
+/*
+$('.btn_mypage_pixel_total_list').on("click", function(){
+	console.log("전체버튼클릭");
+	document.querySelector("#value").value = 1;
+	console.log(value);
+});
+
+
+$('.btn_mypage_pixel_charge_list').on("click", function(){
+	console.log("획득버튼클릭");
+	//$('.mypixel_hidden_btn').attr('value', 2);
+	document.querySelector("#value").value = 2;
+	console.log(value);
+});
+
+$('.btn_mypage_pixel_exchange_list').on("click", function(){
+	console.log("사용버튼클릭");
+	document.querySelector("#value").value = 3;
+	console.log(value);
+});
+*/
+
 mypageMove = function(nowPage){
-	frm = $('.frm_search')[0];
-	frm.nowPage.value = nowPage;
-	param = $(frm).serialize();
-	
-	console.log(nowPage);
-	
-	var value = $('.mypixel_hidden_btn').val();
-	
-	$('.btn_mypage_pixel_total_list').on("click", function(){
-		console.log("전체버튼클릭");
-		value = 1;
-		console.log(value);
-	});
-	
-	
-	$('.btn_mypage_pixel_charge_list').on("click", function(){
-			console.log("획득버튼클릭");
-		//$('.mypixel_hidden_btn').attr('value', 2);
-			value = 2;
-			console.log(value);
-	});
-	
-	$('.btn_mypage_pixel_exchange_list').on("click", function(){
-			console.log("사용버튼클릭");
-		value = 3;
-		console.log(value);
-	});
-	
-	if(value == 1){
-		$.post("/board/mypage_mypixel", param, function(data){
-			$('#m_section2').html(data);
-	    })
-	} else if(value == 2){
-		$.post("/board/mypage_mypixel_get", param, function(data){
-			$('#m_section2').html(data);
-		})
-	} else {
-		$.post("/board/mypage_mypixel_use", param, function(data){
-			$('#m_section2').html(data);
-	})
+/*	frm = $('.frm_search')[0];
+	document.querySelector('#nowPage').value = nowPage;
+	param = $(frm).serialize();*/
+	var frm = $('.frm_value')[0];
+	var param = $(frm).serialize();
+	$.post("/board/mypage_mypixel?nowPage=" + nowPage, param, function(data){
+		$('#m_section2').html(data);
+    });
 }
+
+mypageMoveGet = function(nowPage){
+/*	frm = $('.frm_search')[0];
+	document.querySelector('#nowPage').value = nowPage;
+	param = $(frm).serialize();*/
+	var frm = $('.frm_value')[0];
+	var param = $(frm).serialize();
+	console.log(nowPage);
+	$.post("/board/mypage_pixel_get?nowPage=" + nowPage, param, function(data){
+		$('#m_section2').html(data);
+    });
+}
+
+mypageMoveUse = function(nowPage){
+/*	frm = $('.frm_search')[0];
+	document.querySelector('#nowPage').value = nowPage;
+	param = $(frm).serialize();*/
+	var frm = $('.frm_value')[0];
+	var param = $(frm).serialize();
+	$.post("/board/mypage_pixel_use?nowPage=" + nowPage, param, function(data){
+		$('#m_section2').html(data);
+    });
 }
 
 

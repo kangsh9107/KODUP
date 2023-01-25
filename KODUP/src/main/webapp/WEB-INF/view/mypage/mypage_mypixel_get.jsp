@@ -27,7 +27,7 @@
 <%--          <input type='text' size='10' class='class_pixel' value='${pixel_have }' readonly ><span>픽셀</span> --%>
          
         <%--  <%if %> --%>
-       <%--   <input type='text' size='10' class='class_pixel' value=' ${pixel }' readonly><span>픽셀</span> --%>
+     <%--     <input type='text' size='10' class='class_pixel' value=' ${pixel }' readonly><span>픽셀</span> --%>
          <c:forEach var="pix" items="${ list }" begin="0" end="0">
             <input type='text' size='10' class='class_pixel' value='${pix.pixel }' readonly><span>픽셀</span>
          </c:forEach> 
@@ -156,21 +156,21 @@
       </form>
     <div class='btnZone'>
       <c:if test="${pVo.startPage>1 }">
-         <input type='button' value='맨첨' class='btnFirst' onclick = 'mypageMove(1)'/>
+         <input type='button' value='맨첨' class='btnFirst' onclick = 'mypageMoveGet(1)'/>
          <input type='button' value='이전' class='btnPrev' 
-                   onclick = 'mypageMove(${pVo.startPage-1})'/>
+                   onclick = 'mypageMoveGet(${pVo.startPage-1})'/>
       </c:if>
       
       <c:forEach var='i' begin='${pVo.startPage }' end='${pVo.endPage }'>
          <input type='button' value='${i }' class='btnMove' 
-                    onclick = 'mypageMove(${i})'/>
+                    onclick = 'mypageMoveGet(${i})'/>
       </c:forEach>
       
       <c:if test="${pVo.totPage>pVo.endPage }">
          <input type='button' value='다음' class='btnNext' 
-                   onclick = 'mypageMove(${pVo.endPage+1})'/>
+                   onclick = 'mypageMoveGet(${pVo.endPage+1})'/>
          <input type='button' value='맨끝' class='btnLast' 
-                   onclick = 'mypageMove(${pVo.totPage})'/>
+                   onclick = 'mypageMoveGet(${pVo.totPage})'/>
       </c:if>
    </div>    
 </div>
