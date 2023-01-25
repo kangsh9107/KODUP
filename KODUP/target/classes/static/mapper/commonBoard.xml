@@ -311,7 +311,7 @@
 		SELECT sno FROM board ORDER BY sno DESC LIMIT 0,1
 	</select>
 	
-	<!-- INSERT -->
+	<!-- COMMON BOARD INSERT -->
 	<insert id="insertBoard" parameterType="com.kodup.common.InsertBoardVo">
 		INSERT INTO board(id, boardtype, nal, subject, doc, hashtag)
 		VALUES(#{id}, #{boardtype}, NOW(), #{subject}, #{doc}, #{hashtag})
@@ -321,6 +321,18 @@
 	<insert id="insertQnaBoard" parameterType="com.kodup.common.InsertBoardVo">
 		INSERT INTO qna_board(sno, qna_pixel_reward, qna_horsehead)
 		VALUES(${sno}, ${qna_pixel_reward}, #{qna_horsehead})
+	</insert>
+	
+	<!-- INFOSHARE INSERT -->
+	<insert id="insertInfoshareBoard" parameterType="com.kodup.common.InsertBoardVo">
+		INSERT INTO infoshare_board(sno, infoshare_horsehead)
+		VALUES(${sno}, #{infoshare_horsehead})
+	</insert>
+	
+	<!-- FREETALKING INSERT -->
+	<insert id="insertFreetalkingBoard" parameterType="com.kodup.common.InsertBoardVo">
+		INSERT INTO freetalking_board(sno, freetalking_horsehead)
+		VALUES(${sno}, #{freetalking_horsehead})
 	</insert>
 	
 	<!-- UPDATE -->

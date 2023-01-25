@@ -25,28 +25,6 @@ public class FreetalkingBoardController {
 	@Autowired
 	CommonBoardService cbService;
 	
-	@RequestMapping("/freetalking/freetalking")
-	public ModelAndView freetalking() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/freetalking/freetalking");
-		return mv;
-	}
-
-	@RequestMapping("/freetalking/freetalking_insert")
-	public ModelAndView freetalkingInsert() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/freetalking/freetalking_insert");
-		return mv;
-	}
-	
-	@RequestMapping("/freetalking/freetalking_update")
-	public ModelAndView freetalkingUpdate() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/freetalking/freetalking_update");
-		return mv;
-	}
-	
-	
 	//성호
 	@RequestMapping("/freetalking/freetalking_view")
 	public ModelAndView freetalkingView(FreetalkingBoardVo fbVo, FreetalkingBoardReplVo fbrVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -111,7 +89,6 @@ public class FreetalkingBoardController {
 		mv.addObject("replList",replList);
 		mv.setViewName("/freetalking/freetalking_view");
 		return mv;
-		
 	}
 	
 	@RequestMapping("/freetalking/freetalking_view/insertRepl")

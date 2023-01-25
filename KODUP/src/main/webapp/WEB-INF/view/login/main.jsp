@@ -39,11 +39,21 @@
 							<a href="#" class="text-decoration-none">
 								<span id="index_subject" onclick="quick('${qna5.sno}', '${qna5.boardtype }')">
 									<c:choose>
-										<c:when test="${fn:length(qna5.subject) gt 26}">
-											<c:out value="${fn:substring(qna5.subject, 0, 25)}..."></c:out>
+										<c:when test="${qna5.board_delete == 0 }">
+											<c:choose>
+												<c:when test="${fn:length(qna5.subject) gt 26}">
+													<c:out value="${fn:substring(qna5.subject, 0, 25)}..."></c:out>
+												</c:when>
+												<c:otherwise>
+													<c:out value="${qna5.subject}"></c:out>
+												</c:otherwise>
+											</c:choose>
+										</c:when>
+										<c:when test="${qna5.board_delete == 1 }">
+											작성자가 삭제한 글입니다.
 										</c:when>
 										<c:otherwise>
-											<c:out value="${qna5.subject}"></c:out>
+											관리자가 삭제한 글입니다.
 										</c:otherwise>
 									</c:choose>
 								</span>
@@ -79,11 +89,21 @@
 							<a href="#" class="text-decoration-none">
 								<span id="index_subject" onclick="quickFreetalking('${freetalking5.sno}', '${freetalking5.boardtype }')">
 									<c:choose>
-										<c:when test="${fn:length(freetalking5.subject) gt 26}">
-											<c:out value="${fn:substring(freetalking5.subject, 0, 25)}..."></c:out>
+										<c:when test="${freetalking5.board_delete == 0 }">
+											<c:choose>
+												<c:when test="${fn:length(freetalking5.subject) gt 26}">
+													<c:out value="${fn:substring(freetalking5.subject, 0, 25)}..."></c:out>
+												</c:when>
+												<c:otherwise>
+													<c:out value="${freetalking5.subject}"></c:out>
+												</c:otherwise>
+											</c:choose>
+										</c:when>
+										<c:when test="${freetalking5.board_delete == 1 }">
+											작성자가 삭제한 글입니다.
 										</c:when>
 										<c:otherwise>
-											<c:out value="${freetalking5.subject}"></c:out>
+											관리자가 삭제한 글입니다.
 										</c:otherwise>
 									</c:choose>
 								</span>
@@ -119,11 +139,21 @@
 							<a href="#" class="text-decoration-none">
 								<span id="index_subject">
 									<c:choose>
-										<c:when test="${fn:length(weeklyBest5.subject) gt 26}">
-											<c:out value="${fn:substring(weeklyBest5.subject, 0, 25)}..."></c:out>
+										<c:when test="${weeklyBest5.board_delete == 0 }">
+											<c:choose>
+												<c:when test="${fn:length(weeklyBest5.subject) gt 26}">
+													<c:out value="${fn:substring(weeklyBest5.subject, 0, 25)}..."></c:out>
+												</c:when>
+												<c:otherwise>
+													<c:out value="${weeklyBest5.subject}"></c:out>
+												</c:otherwise>
+											</c:choose>
+										</c:when>
+										<c:when test="${weeklyBest5.board_delete == 1 }">
+											작성자가 삭제한 글입니다.
 										</c:when>
 										<c:otherwise>
-											<c:out value="${weeklyBest5.subject}"></c:out>
+											관리자가 삭제한 글입니다.
 										</c:otherwise>
 									</c:choose>
 								</span>
@@ -159,11 +189,21 @@
 							<a href="#" class="text-decoration-none">
 								<span id="index_subject">
 									<c:choose>
-										<c:when test="${fn:length(editor5.subject) gt 26}">
-											<c:out value="${fn:substring(editor5.subject, 0, 25)}..."></c:out>
+										<c:when test="${editor5.board_delete == 0 }">
+											<c:choose>
+												<c:when test="${fn:length(editor5.subject) gt 26}">
+													<c:out value="${fn:substring(editor5.subject, 0, 25)}..."></c:out>
+												</c:when>
+												<c:otherwise>
+													<c:out value="${editor5.subject}"></c:out>
+												</c:otherwise>
+											</c:choose>
+										</c:when>
+										<c:when test="${editor5.board_delete == 1 }">
+											작성자가 삭제한 글입니다.
 										</c:when>
 										<c:otherwise>
-											<c:out value="${editor5.subject}"></c:out>
+											관리자가 삭제한 글입니다.
 										</c:otherwise>
 									</c:choose>
 								</span>
@@ -199,11 +239,21 @@
 							<a href="#" class="text-decoration-none">
 								<span id="index_subject" onclick="quickInfoshare('${infoshare5.sno}', '${infoshare5.boardtype }')">
 									<c:choose>
-										<c:when test="${fn:length(infoshare5.subject) gt 26}">
-											<c:out value="${fn:substring(infoshare5.subject, 0, 25)}..."></c:out>
+										<c:when test="${infoshare5.board_delete == 0 }">
+											<c:choose>
+												<c:when test="${fn:length(infoshare5.subject) gt 26}">
+													<c:out value="${fn:substring(infoshare5.subject, 0, 25)}..."></c:out>
+												</c:when>
+												<c:otherwise>
+													<c:out value="${infoshare5.subject}"></c:out>
+												</c:otherwise>
+											</c:choose>
+										</c:when>
+										<c:when test="${infoshare5.board_delete == 1 }">
+											작성자가 삭제한 글입니다.
 										</c:when>
 										<c:otherwise>
-											<c:out value="${infoshare5.subject}"></c:out>
+											관리자가 삭제한 글입니다.
 										</c:otherwise>
 									</c:choose>
 								</span>
@@ -239,11 +289,21 @@
 							<a href="#" class="text-decoration-none">
 								<span id="index_subject" onclick="quickNotification('${notification5.sno}', '${notification5.boardtype }')">
 									<c:choose>
-										<c:when test="${fn:length(notification5.subject) gt 26}">
-											<c:out value="${fn:substring(notification5.subject, 0, 25)}..."></c:out>
+										<c:when test="${notification5.board_delete == 0 }">
+											<c:choose>
+												<c:when test="${fn:length(notification5.subject) gt 26}">
+													<c:out value="${fn:substring(notification5.subject, 0, 25)}..."></c:out>
+												</c:when>
+												<c:otherwise>
+													<c:out value="${notification5.subject}"></c:out>
+												</c:otherwise>
+											</c:choose>
+										</c:when>
+										<c:when test="${notification5.board_delete == 1 }">
+											작성자가 삭제한 글입니다.
 										</c:when>
 										<c:otherwise>
-											<c:out value="${notification5.subject}"></c:out>
+											관리자가 삭제한 글입니다.
 										</c:otherwise>
 									</c:choose>
 								</span>

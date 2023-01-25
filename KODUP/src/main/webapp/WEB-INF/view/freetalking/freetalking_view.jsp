@@ -100,7 +100,7 @@
 			<!-- 본문 btnzone -->
 			<div id="freetalking_view_btnzone" style="margin-top:30px;" >
 				<c:if test="${fbVo.id eq sessionScope.sessionId}">
-					<input type="button" class="btnUpdate freetalking_view_originalBtn" style="vertical-align:top;"value="수정">
+					<input type="button" class="btnUpdateFreetalking freetalking_view_originalBtn" style="vertical-align:top;"value="수정">
 					<input type="button" class="btnDeleteR  freetalking_view_originalBtn"style="vertical-align:top;" value="삭제">
 				</c:if>
 				<input type="button" class="btnListUFreetalking  freetalking_view_originalBtn" style="vertical-align:top;"value="목록">

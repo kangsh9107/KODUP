@@ -261,6 +261,54 @@ $('.btnQnaInsert').on('click', function() {
 	});
 });
 
+$('.btnInfoshareInsert').on('click', function() {
+	var frm = $('.board_search_form')[0];
+	var sort = $("#sort option:selected").val();
+	var label = $('input[name=horsehead_radio]:checked').prop('labels');
+	var horse = $(label).text();
+	frm.sort.value = sort;
+	if(horse == '전체') horse = '';
+	frm.horsehead.value = horse;
+	
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/infoshare/infoshare_insert',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
+});
+
+$('.btnFreetalkingInsert').on('click', function() {
+	var frm = $('.board_search_form')[0];
+	var sort = $("#sort option:selected").val();
+	var label = $('input[name=horsehead_radio]:checked').prop('labels');
+	var horse = $(label).text();
+	frm.sort.value = sort;
+	if(horse == '전체') horse = '';
+	frm.horsehead.value = horse;
+	
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/freetalking/freetalking_insert',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
+});
+
 //INSERTR
 $('.btnQnaInsertR').on('click', function() {
 	var pixel = document.querySelector('.pixel_hidden').value;
@@ -318,6 +366,101 @@ $('.btnQnaInsertR').on('click', function() {
 				}
 			});
 		}
+	}
+});
+
+$('.btnInfoshareInsertR').on('click', function() {
+	var frm = $('.board_insert_form')[0];
+	var sort = $("#sort option:selected").val();
+	var label = $('input[name=horsehead_radio]:checked').prop('labels');
+	var horse = $(label).text();
+	frm.sort.value = sort;
+	frm.horsehead.value = horse;
+	frm.boardtype.value = 'infoshare';
+	//글 작성 말머리
+	var infoshare_horsehead = document.querySelector('#infoshare_horsehead');
+	var infoshare_horsehead_selected = infoshare_horsehead.options[infoshare_horsehead.selectedIndex].value;
+	document.querySelector('#horsehead').value = infoshare_horsehead_selected;
+	//글 작성 내용
+	var summer = $('#summernote').summernote('code');
+	frm.doc.value = summer;
+	
+	var regNumber = /^[0-9]+$/;
+	if(infoshare_horsehead_selected == '말머리') {
+		alert('말머리를 선택해주세요.');
+		return;
+	} else if(frm.subject.value.trim() == '') {
+		alert('제목을 입력해주세요.');
+		return;
+	} else if(summer == '') {
+		alert('내용을 입력해주세요.');
+		return;
+	} else {
+		var param = new FormData(frm);
+		
+		$.ajax({
+			type: 'POST',
+			url: '/infoshare/infoshare_insertR',
+			contentType: false,
+			processData: false,
+			data: param,
+			dataType: 'html',
+			success: function(data) {
+				if(data == 'error_insert') {
+					alert('글 작성 오류입니다. 잠시후 다시 시도해주세요.')
+				} else {
+					$('#center').html(data);
+				}
+			}
+		});
+	}
+});
+
+$('.btnFreetalkingInsertR').on('click', function() {
+	var frm = $('.board_insert_form')[0];
+	var sort = $("#sort option:selected").val();
+	var label = $('input[name=horsehead_radio]:checked').prop('labels');
+	var horse = $(label).text();
+	frm.sort.value = sort;
+	frm.horsehead.value = horse;
+	frm.boardtype.value = 'freetalking';
+	//글 작성 말머리
+	var freetalking_horsehead = document.querySelector('#freetalking_horsehead');
+	var freetalking_horsehead_selected = freetalking_horsehead.options[freetalking_horsehead.selectedIndex].value;
+	var infoshare_horsehead_selected = infoshare_horsehead.options[infoshare_horsehead.selectedIndex].value;
+	document.querySelector('#horsehead').value = freetalking_horsehead_selected;
+	//글 작성 내용
+	var summer = $('#summernote').summernote('code');
+	frm.doc.value = summer;
+	
+	var regNumber = /^[0-9]+$/;
+	if(freetalking_horsehead_selected == '말머리') {
+		alert('말머리를 선택해주세요.');
+		return;
+	} else if(frm.subject.value.trim() == '') {
+		alert('제목을 입력해주세요.');
+		return;
+	} else if(summer == '') {
+		alert('내용을 입력해주세요.');
+		return;
+	} else {
+		var param = new FormData(frm);
+		
+		$.ajax({
+			type: 'POST',
+			url: '/freetalking/freetalking_insertR',
+			contentType: false,
+			processData: false,
+			data: param,
+			dataType: 'html',
+			success: function(data) {
+				if(data == 'error_insert') {
+					alert('글 작성 오류입니다. 잠시후 다시 시도해주세요.')
+				} else {
+					$('#center').html(data);
+				}
+			}
+		});
 	}
 });
 
@@ -412,6 +555,23 @@ $('.btnListUJobsearch').on('click', function() {
 	});
 });
 
+$('.btnListUNotification').on('click', function() {
+	var frm = $('#notification_view')[0];
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/notification/notification_list_back',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
+});
+
 $('.btnHashtagU').on('click', function() {
 	var frm = $('#qna_view')[0];
 	var param = new FormData(frm);
@@ -446,6 +606,23 @@ $('.btnListView').on('click', function() {
 	});
 });
 
+$('.btnListViewInfoshare').on('click', function() {
+	var frm = $('.board_update_form')[0];
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/infoshare/infoshare_view',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+		}
+	});
+});
+
 //update
 $('.btnUpdate').on('click', function() {
 	var frm = $('#qna_view')[0];
@@ -456,6 +633,46 @@ $('.btnUpdate').on('click', function() {
 	$.ajax({
 		type: 'POST',
 		url: '/qna/qna_update',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+			$('#summernote').summernote('code', $('textarea').text());
+		}
+	});
+});
+
+$('.btnUpdateInfoshare').on('click', function() {
+	var frm = $('#infoshare_view')[0];
+	var hashtag = $('#qna_view_hashtag2').text().trim().split('#');
+	frm.hashtag.value = hashtag;
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/infoshare/infoshare_update',
+		contentType: false,
+		processData: false,
+		data: param,
+		dataType: 'html',
+		success: function(data) {
+			$('#center').html(data);
+			$('#summernote').summernote('code', $('textarea').text());
+		}
+	});
+});
+
+$('.btnUpdateFreetalking').on('click', function() {
+	var frm = $('#freetalking_view')[0];
+	var hashtag = $('#qna_view_hashtag2').text().trim().split('#');
+	frm.hashtag.value = hashtag;
+	var param = new FormData(frm);
+	
+	$.ajax({
+		type: 'POST',
+		url: '/infoshare/infoshare_update',
 		contentType: false,
 		processData: false,
 		data: param,
@@ -513,6 +730,52 @@ if(temp != null) {
 			$.ajax({
 				type: 'POST',
 				url: '/qna/qna_updateR',
+				contentType: false,
+				processData: false,
+				data: param,
+				dataType: 'html',
+				success: function(data) {
+					if(data == 'error_update') {
+						alert('글 수정 오류입니다. 잠시후 다시 시도해주세요.')
+					} else {
+						$('#center').html(data);
+					}
+				}
+			});
+		}
+	});
+	
+	$('.btnInfoshareUpdateR').on('click', function() {
+		var frm = $('.board_update_form')[0];
+		var sort = $("#sort option:selected").val();
+		var label = $('input[name=horsehead_radio]:checked').prop('labels');
+		var horse = $(label).text();
+		frm.sort.value = sort;
+		frm.horsehead.value = horse;
+		//글 작성 말머리
+		var infoshare_horsehead = document.querySelector('#infoshare_horsehead');
+		var infoshare_horsehead_selected = infoshare_horsehead.options[infoshare_horsehead.selectedIndex].value;
+		document.querySelector('#horsehead').value = infoshare_horsehead_selected;
+		//글 작성 내용
+		var summer = $('#summernote').summernote('code');
+		frm.doc.value = summer;
+		
+		var regNumber = /^[0-9]+$/;
+		if(infoshare_horsehead_selected == '말머리') {
+			alert('말머리를 선택해주세요.');
+			return;
+		} else if(frm.subject.value.trim() == '') {
+			alert('제목을 입력해주세요.');
+			return;
+		} else if(summer == '') {
+			alert('내용을 입력해주세요.');
+			return;
+		} else {
+			var param = new FormData(frm);
+			
+			$.ajax({
+				type: 'POST',
+				url: '/infoshare/infoshare_updateR',
 				contentType: false,
 				processData: false,
 				data: param,

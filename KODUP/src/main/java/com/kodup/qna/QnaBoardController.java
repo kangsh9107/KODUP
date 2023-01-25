@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kodup.common.CommonBoardPageVo;
 import com.kodup.common.CommonBoardService;
+import com.kodup.common.SelectBoardVo;
 
 @RestController
 public class QnaBoardController {
@@ -88,7 +89,7 @@ public class QnaBoardController {
 	}
 	
 	@RequestMapping("/qna/qna_view/deleteR")
-	public ModelAndView qnaDeleteR(QnaBoardVo qbVo) {
+	public ModelAndView qnaDeleteR(QnaBoardVo qbVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		
@@ -97,6 +98,19 @@ public class QnaBoardController {
 			msg = "삭제중 오류 발생";
 		}
 		//mv = qna(qbVo);	//담겨진 데이터들을 들고 qna()를 통해  qna.jsp로 넘어가게 하려고
+		
+		//리스트 출력
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		List<SelectBoardVo> listQna = cbService.listQna(cbpVo);
+		cbpVo = cbService.getCbpVo();
+		
+		mv.addObject("cbpVo", cbpVo);
+		mv.addObject("listQna", listQna);
 		mv.addObject("msg",msg);
 		mv.setViewName("/qna/qna");
 		return mv;

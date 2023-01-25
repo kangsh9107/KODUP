@@ -34,10 +34,10 @@
 					<!-- INSERT -->
 					<c:choose>
 						<c:when test="${sessionScope.sessionId ne null }">
-							<input type="button" class="btn btnfreetalkingInsert" value="&#xf304; 작성하기" style="font-family: FontAwesome; float: left;">
+							<input type="button" class="btn btnFreetalkingInsert" value="&#xf304; 작성하기" style="font-family: FontAwesome; float: left;">
 						</c:when>
 						<c:otherwise>
-							<input type="button" style="visibility: hidden;" class="btn btnfreetalkingInsert" value="&#xf304; 작성하기" style="font-family: FontAwesome; float: left;">
+							<input type="button" style="visibility: hidden;" class="btn btnFreetalkingInsert" value="&#xf304; 작성하기" style="font-family: FontAwesome; float: left;">
 						</c:otherwise>
 					</c:choose>
 					<!-- HORSEHEAD -->

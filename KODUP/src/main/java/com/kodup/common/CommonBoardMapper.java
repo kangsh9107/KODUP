@@ -26,6 +26,8 @@ public interface CommonBoardMapper {
 	public int insertBoard(InsertBoardVo ibVo);
 	public int getSno();
 	public int insertQnaBoard(InsertBoardVo ibVo);
+	public int insertInfoshareBoard(InsertBoardVo ibVo);
+	public int insertFreetalkingBoard(InsertBoardVo ibVo);
 	public int insertView(CommonBoardPageVo cbpVo);
 	public int checkView(CommonBoardPageVo cbpVo);
 	public int checkPixel(InsertBoardVo ibVo);

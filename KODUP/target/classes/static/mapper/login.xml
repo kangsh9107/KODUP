@@ -16,72 +16,72 @@
 	
 	<!-- QNA5 -->
 	<select id="qna5" resultType="com.kodup.login.IndexBoardVo">
-		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb,
+		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb, b.board_delete,
 		       m.profile_img, m.nickname,
 		       COUNT(r.repl_sno) AS countRepl
 		FROM board b LEFT JOIN member m ON b.id = m.id
 		             LEFT JOIN repl r   ON b.sno = r.sno
 		WHERE b.boardtype = 'qna'
-		GROUP BY b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown), m.profile_img, m.nickname
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown), b.board_delete, m.profile_img, m.nickname
 		ORDER BY b.nal DESC, b.sno DESC LIMIT 0, 5
 	</select>
 	
 	<!-- FREETALKING5 -->
 	<select id="freetalking5" resultType="com.kodup.login.IndexBoardVo">
-		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb,
+		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb, b.board_delete,
 		       m.profile_img, m.nickname,
 		       COUNT(r.repl_sno) AS countRepl
 		FROM board b LEFT JOIN member m ON b.id = m.id
 		             LEFT JOIN repl r   ON b.sno = r.sno
 		WHERE b.boardtype = 'freetalking'
-		GROUP BY b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown), m.profile_img, m.nickname
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown), b.board_delete, m.profile_img, m.nickname
 		ORDER BY b.nal DESC, b.sno DESC LIMIT 0, 5
 	</select>
 	
 	<!-- INFOSHARE5 -->
 	<select id="infoshare5" resultType="com.kodup.login.IndexBoardVo">
-		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb,
+		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb, b.board_delete,
 		       m.profile_img, m.nickname,
 		       COUNT(r.repl_sno) AS countRepl
 		FROM board b LEFT JOIN member m ON b.id = m.id
 		             LEFT JOIN repl r   ON b.sno = r.sno
 		WHERE b.boardtype = 'infoshare'
-		GROUP BY b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown), m.profile_img, m.nickname
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown), b.board_delete, m.profile_img, m.nickname
 		ORDER BY b.nal DESC, b.sno DESC LIMIT 0, 5
 	</select>
 	
 	<!-- NOTIFICATION5 -->
 	<select id="notification5" resultType="com.kodup.login.IndexBoardVo">
-		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb,
+		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb, b.board_delete,
 		       m.profile_img, m.nickname,
 		       COUNT(r.repl_sno) AS countRepl
 		FROM board b LEFT JOIN member m ON b.id = m.id
 		             LEFT JOIN repl r   ON b.sno = r.sno
 		WHERE b.boardtype = 'notification'
-		GROUP BY b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown), m.profile_img, m.nickname
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown), b.board_delete, m.profile_img, m.nickname
 		ORDER BY b.nal DESC, b.sno DESC LIMIT 0, 5
 	</select>
 	
 	<!-- WEEKLYBEST5 -->
 	<select id="weeklyBest5" resultType="com.kodup.login.IndexBoardVo">
-		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb, b.viewcount,
+		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb, b.viewcount, b.board_delete,
 			   m.profile_img, m.nickname,
 			   COUNT(r.repl_sno) AS countRepl
 		FROM board b LEFT JOIN member m ON b.id = m.id
 					 LEFT JOIN repl r   ON b.sno = r.sno
 		WHERE b.nal > DATE_ADD(NOW(), INTERVAL -7 DAY)
-		GROUP BY b.sno, b.boardtype, b.nal, b.subject, thumb, b.viewcount, m.profile_img, m.nickname
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, thumb, b.viewcount, b.board_delete, m.profile_img, m.nickname
 		ORDER BY thumb DESC, viewcount DESC, b.nal DESC, b.sno DESC LIMIT 0, 5
 	</select>
 	
 	<!-- EDITOR5 -->
 	<select id="editor5" resultType="com.kodup.login.IndexBoardVo">
-		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb, b.viewcount,
+		SELECT b.sno, b.boardtype, b.nal, b.subject, (b.thumbup-b.thumbdown) AS thumb, b.viewcount, b.board_delete,
 			   m.profile_img, m.nickname,
 			   COUNT(r.repl_sno) AS countRepl
 		FROM board b LEFT JOIN member m ON b.id = m.id
 					 LEFT JOIN repl r   ON b.sno = r.sno
-		GROUP BY b.sno, b.boardtype, b.nal, b.subject, thumb, b.viewcount, m.profile_img, m.nickname
+		GROUP BY b.sno, b.boardtype, b.nal, b.subject, thumb, b.viewcount, b.board_delete, m.profile_img, m.nickname
 		ORDER BY RAND() LIMIT 0, 5
 	</select>
 	
