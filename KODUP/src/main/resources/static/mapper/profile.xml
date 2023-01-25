@@ -5,6 +5,18 @@
 	<select id="selectProfile" parameterType="String" resultType="com.kodup.profile.ProfileVo">
 		SELECT m.id, m.profile_img, m.nickname, m.grade, mi.introduce
 		FROM member m LEFT JOIN member_introduce mi ON m.id = mi.id
-		WHERE m.id = #{_parameter}
+		WHERE m.nickname = #{_parameter}
+	</select>
+	
+	<!-- 내 게시글 보기 -->
+	<select id="selectMyArticle" parameterType="String" resultType="com.kodup.profile.ProfileVo">
+		SELECT sno, id, boardtype, nal, subject FROM board WHERE id = #{_parameter}
+	</select>
+	
+	<!-- 내 댓글 보기 -->
+	<select id="selectMyrepl" parameterType="String" resultType="com.kodup.profile.ProfileVo">
+		SELECT r.repl_sno, r.id, r.sno, r.repl_nal, r.repl_doc, b.boardtype
+		FROM repl r JOIN board b on r.sno = b.sno
+		WHERE r.id = #{_parameter}
 	</select>
 </mapper>

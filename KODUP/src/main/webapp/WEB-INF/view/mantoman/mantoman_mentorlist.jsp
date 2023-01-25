@@ -117,12 +117,14 @@
 	</form>
 </div>
 <script>
+
 $('.consulting').attr("disabled", true);
 
 $('.mentoProfile_img').on('click',function() {
+	var nickname = this.parentNode.mentoNickname.value;
 	var title  = "member/member_profile_chat.jsp";
 	var status = "toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=400, height=500, top=400, left=870"; 
-    window.open("/profile/member_profile_chat", title, status);
+    window.open("/profile/member_profile_chat?nickname="+nickname, title, status);
 });
 
 /* $("button").hover(function() {

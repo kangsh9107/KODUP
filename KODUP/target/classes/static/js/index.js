@@ -306,7 +306,8 @@ $(document).on('click', '.btnMainNotification', function() {
 
 /* 내프로필 */
 $('#btnMyprofile').on('click', function() {
-   $('#center').load('/profile/member_profile?sessionId='+id); 
+	var nickname = $('.nickname_hidden').val();
+   $('#center').load('/profile/member_profile?nickname='+nickname); 
 });
 
 /* 맨투맨 팝업창 */

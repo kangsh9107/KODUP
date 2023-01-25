@@ -20,6 +20,7 @@ body{
 </style>
 </head>
 <body>
+<input type="hidden" class="id_hidden" value="${pfVo.id }">
 <div class="profile_wrapper">
 	<div class="profile_main">
 		<img src="../upload/${pfVo.profile_img }" class="profileImg">

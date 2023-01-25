@@ -21,17 +21,42 @@ horizontalMenus.forEach((menu) =>
 
 /*------------------------------------------------------------------------*/
 
-$('#profile_innerSection').load('/profile/member_profile_myarticle');
 
+/* 프로필 열릴때 */
+$('#profile_innerSection').load('/profile/member_profile_myarticle?id='+id);
+
+/* 내 게시글 조회 버튼클릭시 */
 $('#btnMyarticle').on('click', function() {
-	$('#profile_innerSection').load('/profile/member_profile_myarticle'); 
+	$('#profile_innerSection').load('/profile/member_profile_myarticle?id='+id); 
 });
 
-
-
+/* 내 댓글 조회 버튼클릭시 */
 $('#btnMyrepl').on('click', function() {
-	$('#profile_innerSection').load('/profile/member_profile_myrepl'); 
+	$('#profile_innerSection').load('/profile/member_profile_myrepl?id='+id); 
 });
 
+/* 내 게시글 클릭시 */
 
-
+$(document).on('click', '.subject', function() {
+	var sno = this.parentNode.sno_hidden.value;
+	var boardtype = this.parentNode.boardtype_hidden.value;
+	console.log("sno : " + sno);
+	console.log("boardtype : " + boardtype);
+	if(boardtype=="qna"){
+		$.post("/profile/qna_view?sno="+sno, function(data){
+	        $('#center').html(data);
+	    })
+	}else if(boardtype=="freetalking"){
+		$.post("/profile/freetalking_view?sno="+sno, function(data){
+        	$('#center').html(data);
+    	})
+	}else if(boardtype=="JOBSearCh"){
+		$.post("/profile/jobsearch_view?sno="+sno, function(data){
+        	$('#center').html(data);
+    	})
+	}else if(boardtype=="notifiCation"){
+		$.post("/profile/jobsearch_view?sno="+sno, function(data){
+        	$('#center').html(data);
+    	})
+	}
+});
