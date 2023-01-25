@@ -363,8 +363,6 @@ public class MypageController {
       
    //MypageAttVo
    
-   ///////
-   /*
 	@RequestMapping("/board/mypage_corp_certification") //기업인증. 폼 전송 시.
 	public ModelAndView mypage_corp_certification(@RequestParam("corp_license") List<MultipartFile> mul, // 선택한 파일 업로드
 												  @RequestParam("corp_logo") List<MultipartFile> mul_2,
@@ -381,33 +379,40 @@ public class MypageController {
 			mpatt.add(mul_2.get(i));
 		}
 		
-		List<MypageAttVo> attList = fileUpload(mpatt);
-		
+		List<MypageAttVo> attList = null;
+		try {
+			attList = fileUpload(mpatt);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		mpcv.setCorp_license(attList.get(0).getSysFile());
+		mpcv.setCorp_logo(attList.get(0).getSysFile());
 			
 		
 		for(MultipartFile m : mpatt) {
 			if(!m.isEmpty()) {
-				List<MypageAttVo> attList;
+				//List<MypageAttVo> attList2;
 				try {
 					attList = fileUpload(mul);
-					mpVo.setProfile_img(attList.get(0).getSysFile());
-					System.out.println(mpVo.getProfile_img()); //1234-1.png
+					//mpcv.setProfile_img(attList.get(0).getSysFile());
+					System.out.println(mpcv.getCorp_license()); //1234-1.png
 		               
-					b = service.updateR(mpVo, delFile);            
+					b = service.corp_updateR(mpcv);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			} else {
-				System.out.println("update 실행전");
-				b = service.update(mpVo);
-				System.out.println("update 실행완료");
+				/*
+				 * System.out.println("update 실행전"); b = service.(mpcv);
+				 * System.out.println("update 실행완료");
+				 */
 			}
 		} 
 		      
 		mv.setViewName("mypage/mypage_memberinfo");
 		return mv;
 	}
-		   */
+		   
       	
       /*
       } else {}

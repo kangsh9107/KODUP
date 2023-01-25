@@ -88,6 +88,8 @@ public class MypageService {
 		return b;
 	}
 	
+
+
 	
 	public void fileDelete(String[] delFile) {
 		/*
@@ -103,6 +105,62 @@ public class MypageService {
 			}
 		}
 	}
+	
+	
+	public boolean corp_updateR(MypageCertiVo mpcv) {
+
+		boolean b = true;
+
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint(); //롤백을위해
+		int cnt = mypageMapper.corp_updateR(mpcv); // 내용 업데이트
+		if (cnt < 1) b = false;
+		else {
+			cnt=mypageMapper.corp_status(mpcv);
+			if(cnt<1) b=false;
+			
+			if(b)manager.commit(status);
+			else status.rollbackToSavepoint(savePoint);
+		}
+		
+		
+		
+		/*
+		if (b) {
+			manager.commit(status);
+			fileDelete(delFile); // 파일 삭제
+			/*
+			if (delFile != null && delFile.length > 0) {
+				// 첨부 파일 데이터 삭제
+				cnt = mypageMapper.attDelete(delFile);
+				if (cnt > 0) {
+					
+				} else {
+					b = false;
+				}
+			}
+			
+		} else {
+			status.rollbackToSavepoint(savePoint);
+			delFile = new String[1];
+			delFile[0] = mpVo.getProfile_img();
+			fileDelete(delFile);
+		}
+		 */
+		return b;
+	}
+	
+	/*
+	public void certi_fileDelete(String[] delFile) {
+		
+		File file = new File(MypageController.path + f);
+		if (file.exists())
+			file.delete();
+		}
+	*/
+	
+	
+	
 	
 	public boolean update(MypageVo mpVo) {
 		boolean b = true;
