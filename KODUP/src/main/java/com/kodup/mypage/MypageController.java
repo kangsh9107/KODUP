@@ -159,7 +159,7 @@ public class MypageController {
       String id = (String)session.getAttribute("sessionId");
       
       pVo.setId(id);
-      
+      if(req.getParameter("nowPage") != null) pVo.setNowPage(Integer.parseInt(req.getParameter("nowPage")));
       /* if () { */
       List<MypagePixelVo> list = service.pixel(pVo);
          /*
@@ -167,10 +167,12 @@ public class MypageController {
           * List<MypagePixelVo> list = service.pixel_use(pVo); }
           */
       pVo = service.getpVo();
+      if(req.getParameter("nowPage") != null) pVo.setNowPage(Integer.parseInt(req.getParameter("nowPage")));
 
       //System.out.println(list.get(list.size() - 1).pixel);
       //int pixel = list.get(list.size() - 1).pixel;
       //mv.addObject("M_PIXEL", pixel);
+      System.out.println("nowPage : " + pVo.getNowPage());
       
       System.out.println(list);
 
@@ -217,12 +219,16 @@ public class MypageController {
    @RequestMapping("/board/mypage_pixel_get") 
    public ModelAndView pixel_get(PageVo pVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
       ModelAndView mv = new ModelAndView();
-   
+      System.out.println("nowpage1 : " + pVo.getNowPage());
+      String nowPage = (String)req.getParameter("nowPage");
+      System.out.println("nowPage2 : "+ nowPage);
+      
       System.out.println("픽셀get 실행됨");
       HttpSession session = req.getSession();
       String id = (String)session.getAttribute("sessionId");
       
       pVo.setId(id);
+      if(req.getParameter("nowPage") != null) pVo.setNowPage(Integer.parseInt(req.getParameter("nowPage")));
       
       List<MypagePixelVo> list = service.pixel_get(pVo);
       pVo = service.getpVo();
@@ -230,7 +236,7 @@ public class MypageController {
       
       mv.addObject("list", list);
       mv.addObject("pVo", pVo);
-      mv.setViewName("mypage/mypage_mypixel");
+      mv.setViewName("mypage/mypage_mypixel_get");
       return mv;
 
    } 
@@ -245,13 +251,14 @@ public class MypageController {
       String id = (String)session.getAttribute("sessionId");
       
       pVo.setId(id);
+      if(req.getParameter("nowPage") != null) pVo.setNowPage(Integer.parseInt(req.getParameter("nowPage")));
       
       List<MypagePixelVo> list = service.pixel_use(pVo);
       pVo = service.getpVo();
       
       mv.addObject("list", list);
       mv.addObject("pVo", pVo);
-      mv.setViewName("mypage/mypage_mypixel");
+      mv.setViewName("mypage/mypage_mypixel_use");
       return mv;
 
    } 
@@ -313,13 +320,21 @@ public class MypageController {
    
    */
    
-   //멘토인증
+   //멘토인증 			
    @RequestMapping("/board/mypage_mentor_certification") 
-   public ModelAndView mypage_mentor_certification(@RequestParam("attFile") List<MultipartFile> mul, // 선택한 파일 업로드
+   public ModelAndView mypage_mentor_certification(HttpServletRequest req, HttpServletResponse res,
+		    	   @RequestParam(value ="attFile", required=false) List<MultipartFile> mul, // 선택한 파일 업로드
                    @ModelAttribute MypageCertiVo mpcv //폼태그로 날린 정보
-                   ) {      
+                   ) throws IOException {
       ModelAndView mv = new ModelAndView();
+      
+      HttpSession session = req.getSession();
+      String id = (String)session.getAttribute("sessionId");
+      mpcv.setId(id);
+
+      System.out.println(mpcv);
       boolean b = false;
+      System.out.println("파일" + req.getParameter( "attFile"));
       System.out.println("경력증명 : " + mpcv.getCareer_certificate());
       
       for(MultipartFile m : mul) {
@@ -341,38 +356,61 @@ public class MypageController {
          
       } 
       
-      mv.setViewName("mypage/mypage_mepixel");
+      mv.setViewName("mypage/mypage_corp_certification");
       return mv;
    }
    
-   
       
-
+   //MypageAttVo
    
+   ///////
    /*
-   @RequestMapping("/board/mypage_corp_certification") //기업인증. 폼 전송 시.
-   public ModelAndView corp_updateR(@RequestParam("attFile") MultipartFile mul, // 선택한 파일 업로드
-                   @RequestParam("attFile2") MultipartFile mul_2,
-                   @ModelAttribute MypageCertiVo mpcv, //폼태그로 날린 정보
-                   @RequestParam(name = "delFile", required = false, defaultValue="") String[] delFile) {      
+	@RequestMapping("/board/mypage_corp_certification") //기업인증. 폼 전송 시.
+	public ModelAndView mypage_corp_certification(@RequestParam("corp_license") List<MultipartFile> mul, // 선택한 파일 업로드
+												  @RequestParam("corp_logo") List<MultipartFile> mul_2,
+												  @ModelAttribute MypageCertiVo mpcv //폼태그로 날린 정보
+												 ){
+		System.out.println("왜 안 찍혀?");
+		ModelAndView mv = new ModelAndView(); 
       
-      System.out.println("왜 안 찍혀?");
-      ModelAndView mv = new ModelAndView();
-      boolean b = false;
-      System.out.println("Corp_name : " + mpcv.getCorp_name());
-      
-      //
-      
-      //for(MultipartFile m : mul) {
-         //if(!m.isEmpty()) {
-      if(!mul.isEmpty() && !mul_2.isEmpty()) {
-            List<MypageAttVo> attList;
-            
-            
+		boolean b = false;
+		
+		List<MultipartFile> mpatt = new ArrayList<MultipartFile>();
+		for(int i=0; i<1; i++) {
+			mpatt.add(mul.get(i));
+			mpatt.add(mul_2.get(i));
+		}
+		
+		List<MypageAttVo> attList = fileUpload(mpatt);
+		
+			
+		
+		for(MultipartFile m : mpatt) {
+			if(!m.isEmpty()) {
+				List<MypageAttVo> attList;
+				try {
+					attList = fileUpload(mul);
+					mpVo.setProfile_img(attList.get(0).getSysFile());
+					System.out.println(mpVo.getProfile_img()); //1234-1.png
+		               
+					b = service.updateR(mpVo, delFile);            
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else {
+				System.out.println("update 실행전");
+				b = service.update(mpVo);
+				System.out.println("update 실행완료");
+			}
+		} 
+		      
+		mv.setViewName("mypage/mypage_memberinfo");
+		return mv;
+	}
+		   */
+      	
+      /*
       } else {}
-      return mv;
-   } */
-            /*
             try {
                attList = fileUpload_corp(mul, mul_2);
                mpcv.setCorp_license();
@@ -389,16 +427,14 @@ public class MypageController {
             System.out.println("update 실행완료");
          }
          
-      } 
       mv.setViewName("mypage/mypage_certification");
       return mv;
    }
-   */
-   
+}  */
    
    // 인증>기업인증 첨부파일 업로드
-   /*
-   public List<MypageCorpVo> fileUpload_corp(MultipartFile mul, MultipartFile mul_2) throws Exception{
+	/*
+   public List<MypageCorpVo> fileUpload_corp(List<MultipartFile> mul) throws Exception{
       List<MypageCorpAttVo> attList = new ArrayList<MypageCorpAttVo>();
       for(MultipartFile m : mul) {
          if(m.isEmpty()) continue;
@@ -419,9 +455,7 @@ public class MypageController {
       
       return attList;
    }
-   
    */
-   
    
    @RequestMapping("/board/mypage_memberinfo_quit") //회원탈퇴 (단순 회원탈퇴 페이지 이동버튼)
    public ModelAndView mypage_memberinfo_quit(HttpServletRequest req, HttpServletResponse res) throws IOException{

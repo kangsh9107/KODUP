@@ -54,13 +54,7 @@ public class PageVo {
     public void setStartNo(int startNo) {this.startNo = startNo;    }
     public int getEndNo() {return endNo;    }
     public void setEndNo(int endNo) {this.endNo = endNo;    }
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
+	public String getId() { return id; }
+	public void setId(String id) { this.id = id; }
     
 }

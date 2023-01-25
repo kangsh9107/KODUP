@@ -99,6 +99,14 @@
 		select COUNT(pixel_history_sno) from pixel_history where id = #{id}
 	</select>
 	
+	<select id="totListGet" parameterType='com.kodup.mypage.PageVo' resultType='Integer'>
+		select COUNT(pixel_history_sno) from pixel_history where id = #{id} and pixel_log <![CDATA[<]]> 0
+	</select>
+	
+	<select id="totListUse" parameterType='com.kodup.mypage.PageVo' resultType='Integer'>
+		select COUNT(pixel_history_sno) from pixel_history where id = #{id} and pixel_log <![CDATA[>]]> 0
+	</select>
+	
 	
 <!-- 	<select id="select" parameterType="kr.jobtc.springboot.board.PageVo" resultType="kr.jobtc.springboot.board.BoardVo">
         select sno, id, grp, seq, deep, hit, date_format(nal, '%y-%m-%d') nal,

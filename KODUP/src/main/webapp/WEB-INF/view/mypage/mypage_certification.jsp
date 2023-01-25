@@ -39,8 +39,9 @@
 		  <button type="button" class='btnC btn_mentor_certification' style="background-color:#bb2649;">인증</button><br>
 	
 		<br>
-		<span>* 기업인증</span><br>
+		<span>* 기업인증</span><br>						   
 			<form class='corp_certification' method='post' enctype='multipart/form-data'>
+				<input type=hidden class='hidden_id' name='id' value='${sessionId }'>
 				<div class="form-floating bottom">
 					<input type="text" name="corp_name" class="form-control" id="floatingPassword" placeholder="Password">
 					<label for="floatingPassword" class='label_name'>회사명</label>
@@ -56,13 +57,13 @@
 				</div> 
 				<br>
 				<div class="form-floating bottom">
-				  <input type="file" name="corp_license attFile" class="form-control" id="floatingPassword" placeholder="Password"
+				  <input type="file" name="corp_license" class="form-control" id="floatingPassword" placeholder="Password"
 				  accept='image/*'>
 				  <label for="floatingPassword" class='label_name'>사업자 등록증을 첨부하세요</label>
 				</div>
 				<br>
 				<div class="form-floating bottom">
-				  <input type="file" name="corp_logo attFile2" class="form-control" id="floatingPassword" placeholder="Password"
+				  <input type="file" name="corp_logo" class="form-control" id="floatingPassword" placeholder="Password"
 				  accept='image/*'>
 				  <label for="floatingPassword" class='label_name'>회사 로고를 첨부하세요</label>
 				</div>

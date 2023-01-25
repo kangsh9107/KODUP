@@ -40,7 +40,7 @@
 			관리자
 		</c:when> 
 		<c:otherwise> 
-			Who are you? 'ㅁ'? 혹시.. 탈퇴회원?  
+			Who are you? 'ㅁ'? 세션이 만료되었나요? 아니면 탈퇴회원?  
 		</c:otherwise>
 	</c:choose>
 	> 입니다. </span>
