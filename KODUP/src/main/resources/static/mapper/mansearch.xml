@@ -63,6 +63,7 @@
 	</update>
  	<update id='mansearchupdate' parameterType='com.kodup.mansearch.MansearchBoardVo'>
 		update mansearch_board set work_start = #{work_start}, pay = #{pay}, corp_location = #{corp_location}, position = #{position}, job_type = #{job_type}, required_career = #{required_career}, education_level = #{education_level}, work_type = #{work_type}, pay_date = #{pay_date}, required_skill = #{required_skill}, deadline = #{deadline}, main_task = #{main_task}, sub_task = #{sub_task}
+		where mansearch_sno = ${mansearch_sno}
 	</update>	
 	<update id='delete' parameterType='com.kodup.mansearch.MansearchBoardVo'>
 		UPDATE board SET board_delete = 1 

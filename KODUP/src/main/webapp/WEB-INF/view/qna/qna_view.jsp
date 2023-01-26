@@ -18,7 +18,7 @@
 	<input type='text' name='nowPage' 	value='0' size="2"/>
 	sno
 	<input type='text' id="view_sno" name='sno' size="2" value='${qbVo.sno}' />      
-	repl_sno
+	repl_sno 
 	<input type='text' name='repl_sno' 	  id="repl_sno"  			 value='0' size="2"/>
 	<input type='text' name='board_delete'id="board_delete" 		 value='${qbVo.board_delete}' />
 	<input type="text" name='sessionid'   id="view_sessionID"     	 value='${sessionScope.sessionId}' size="4"/> <!-- index.jsp의 세션아이디를 그대로 el문으로 받아옴 -->

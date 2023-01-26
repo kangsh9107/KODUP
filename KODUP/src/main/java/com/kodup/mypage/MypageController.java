@@ -202,7 +202,6 @@ public class MypageController {
       String id = (String)session.getAttribute("sessionId");
       
       int pixel_have = service.pixel_have(id);
-
       mv.addObject("pixel_have", pixel_have);
       System.out.println(pixel_have); //콘솔 뜸
       
