@@ -216,13 +216,26 @@ public class ProfileController {
 	@RequestMapping("/profile/mansearch_view")
 	public ModelAndView view(MansearchBoardVo mbVo, MemberVo mVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		ModelAndView mv = new ModelAndView();
+		
+		String id = (String)req.getParameter("id");
 		int sno = Integer.parseInt(req.getParameter("sno"));
-		mbVo = msService.view(sno);
-		List<MansearchBoardVo> premiumlist = msService.premiumlist(sno,mVo);
+		
+		int mansearch_sno = service.selectMansearchSno(sno);
+		
+		System.out.println("실행됨됨");
+		mVo.setId(id);
+		mbVo.setMansearch_sno(mansearch_sno);
+		
+		mbVo = msService.view(mbVo.getMansearch_sno());
+		List<MansearchBoardVo> premiumlist = msService.premiumlist(mbVo.getMansearch_sno(),mVo);
+		
+		for(MansearchBoardVo a : premiumlist) {
+			System.out.println("profile_img : " + a.getProfile_img());
+		}
+		
 		mv.addObject("premiumlist",premiumlist);
 		mv.addObject("mbVo",mbVo);
 		mv.setViewName("mansearch/mansearch_view");
-
 		return mv;
 	}
 }

@@ -19,4 +19,10 @@
 		FROM repl r JOIN board b on r.sno = b.sno
 		WHERE r.id = #{_parameter}
 	</select>
+	
+	<!-- sno로 mansearch_sno 찾기 -->
+	<select id="selectMansearchSno" parameterType="Integer" resultType="Integer">
+		SELECT mansearch_sno FROM mansearch_board WHERE sno = #{_parameter}
+	</select>
+		
 </mapper>

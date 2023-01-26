@@ -36,4 +36,9 @@ public class ProfileService {
 		return list;
 	}
 
+	public int selectMansearchSno(int sno) {
+		int mansearch_sno = mapper.selectMansearchSno(sno);
+		return mansearch_sno;
+	}
+
 }

@@ -10,9 +10,6 @@ function horizontalIndicator(e) {
   a=horizontalBar.style.left = e.offsetLeft + "px";
   b=horizontalBar.style.width = e.offsetWidth + "px";
   c=horizontalBar.style.top = e.offsetTop + e.offsetHeight + 5 + "px";
-  console.log(a);
-  console.log(b);
-  console.log(c);
 }
 
 horizontalMenus.forEach((menu) =>

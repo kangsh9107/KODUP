@@ -11,4 +11,5 @@ public interface ProfileMapper {
 	ProfileVo selectProfile(String nickname);
 	List<ProfileVo> selectMyArticle(String id);
 	List<ProfileVo> selectMyrepl(String id);
+	int selectMansearchSno(int sno);
 }

@@ -12,13 +12,13 @@
 <div class='myarticle_articleWrapper'>
 	<c:forEach var='pfVo' items='${list }'>
 			<form class='article'>
-				<span class='boardtype'>${pfVo.boardtype}에 게시글을 작성하였습니다.</span>
+				<span class='boardtype'>${pfVo.boardtype}에 댓글을 작성하였습니다.</span>
 				<span class='nal'>${pfVo.repl_nal }</span><br>
 				<span class='subject'>${pfVo.repl_doc }</span>
-				<input type='hidden' class='sno_hidden' value="${pfVo.sno }">
-				<input type='hidden' class='boardtype_hidden' value="${pfVo.boardtype}">
-				<input type='hidden'class='nal_hidden' value="${pfVo.repl_nal }">
-				<input type='hidden'class='subject_hidden' value="${pfVo.repl_doc}">
+				<input type='hidden' name='sno_hidden' class='sno_hidden' value="${pfVo.sno }">
+				<input type='hidden' name='boardtype_hidden' class='boardtype_hidden' value="${pfVo.boardtype}">
+				<input type='hidden'name='nal_hidden' class='nal_hidden' value="${pfVo.repl_nal }">
+				<input type='hidden'name='subject_hidden' class='subject_hidden' value="${pfVo.repl_doc}">
 			</form>
 	</c:forEach>
 </div>

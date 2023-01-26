@@ -729,8 +729,8 @@ if(requiredTime!=""){
 /* 상담 완료버튼 클릭시 팝업창 */
 $('.btnComplete').on('click', function() {
 	var popupCall = `<div class='popupCallDiv'>
-		<span>상담을 완료하시겠습니까?</span>
-		<input type="button" value="완 료" class="btnFinalComplete">
+		<span>상담을 완료하시겠습니까?</span><br/><br/>
+		<input type="button" style="background-color:#a8a8c8;" value="완 료" class="btnFinalComplete">
 		<input type="button" value="취 소" class="btnRefuseComplete">			
 	</div>`;
 	
@@ -773,7 +773,7 @@ if(roomCode=="emptyRoom"){
 }
 
 /* 새로고침 방지(새로고침시 대화내용 및 남은시간 초기화 방지) */
-/*
+
 function noEvent() {
     if (event.keyCode == 116) {
         event.keyCode= 2;
@@ -785,6 +785,6 @@ function noEvent() {
     }
 }
 document.onkeydown = noEvent;
-*/
+
 </script>
 </html>
