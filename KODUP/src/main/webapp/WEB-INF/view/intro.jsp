@@ -6,27 +6,67 @@
 <meta charset="UTF-8">
 <!-- CSS -->
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link href="css/intro.css" rel="stylesheet">
 <!-- JS -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <title>코드레벨업 - 코덥!</title>
-<style>
-section {
-	margin: 0 auto;
-	text-align: center;
-	background-color: #ccc;
-}
-
-div {
-	margin: 300px auto;
-}
-
-.container div {
-	background-color: white;
-	width: 600px;
-}
-</style>
 </head>
 <body>
+	<div class="first">
+		<div class="jb-box">
+			<video muted autoplay loop>
+				<!-- <source src="images/인트로영상.mp4" type="video/mp4"> -->
+			</video>
+			<img id="video" src="images/인트로영상2.gif">
+			<div id="wrapper">
+				<div id="wrapper-inner">
+					<div id="scroll-down">
+						<span class="arrow-down"><!-- css generated icon --></span>
+						<span id="scroll-title">Scroll down</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="intro intro1 container1">
+		<div></div>
+		<div class="intro1_1" data-aos="fade-up">
+			
+		</div>
+		<div class="intro1_2" data-aos="fade-up" data-aos-delay="300">
+			
+		</div>
+		<div class="intro1_3" data-aos="fade-up" data-aos-delay="600">
+			
+		</div>
+		<div class="intro1_4" data-aos="fade-up" data-aos-delay="900">
+			
+		</div>
+		<div></div>
+	</div>
+	<div class="intro intro2 container2">
+		<div class="intro2_1" data-aos="flip-left"></div>
+	</div>
+	
+	<div class="intro intro3"></div>
+	<div class="intro intro4"></div>
+	
+	<div class="intro intro5"></div>
+	<div class="intro intro6"></div>
+	
+	<div class="intro intro7"></div>
+	<div class="intro intro8"></div>
+	
+	<div class="intro intro9"></div>
+	<div class="intro intro10"></div>
+	
+	<div class="intro intro11"></div>
+	<div class="intro intro12"></div>
+	
+	<div style="display: none;"></div>
+	
+	<!-- 
 	<section class="section section--code" style="margin-top: 1000px;">
 		<div class="container">
 			<h2 class="section-title">Fade</h2>
@@ -193,6 +233,7 @@ div {
 			</div>
 		</div>
 	</section>
+	-->
 	
 	<script> 
 		AOS.init(); //자바스크립트로 init()을 해야 동작한다.
