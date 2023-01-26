@@ -49,6 +49,9 @@
 	<div id="m_section2"></div>
 </div>	
 <form>
+<!-- hidden -->
+
+	<input type='text' class='sessionId' value="${sessionScope.sessionId}"/>
 	<input type="hidden" id="nowPage" name="nowPage" value="${pVo.nowPage }">
 </form>
 </body>

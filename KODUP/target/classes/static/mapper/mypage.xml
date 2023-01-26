@@ -142,15 +142,19 @@
 		
 		
 		<!-- 기업인증 -->
-		<insert id='corp_updateR' parameterType='com.kodup.mypage.MypageCertiVo'>
-			insert into corperation (id, corp_license, corp_logo, corp_name, corp_phone, corp_email, manager_name, manager_phone, manager_email)
-			values (#{id}, #{corp_license}, #{corp_logo}, #{corp_name}, #{corp_phone}, #{corp_email}, #{manager_name}, #{manager_phone}, #{manager_email} )
+		<!-- 1. 기업 인증 이력이 있는지 확인 -->
+		<select id='select_corp_status' parameterType='String' resultType="Integer">
+			select ifnull(corp_status,0) from member where id=#{id} 
+		</select>
+		
+		<insert id='insert_corp' parameterType='com.kodup.mypage.MypageCertiVo'>
+			insert into corperation(id, corp_license, corp_logo, corp_name, corp_phone, corp_email, manager_name, manager_phone, manager_email)
+			values(#{id}, #{license_sysFile}, #{logo_sysFile}, #{corp_name}, #{corp_phone}, #{corp_email}, #{manager_name}, #{manager_phone}, #{manager_email} )
 		</insert> 
 		
 		<!-- 기업스테이스 변경 -->
-		<update id='corp_status' parameterType='com.kodup.mypage.MypageCertiVo'>
+		<update id='change_corp_status' parameterType='com.kodup.mypage.MypageCertiVo'>
 			update member set corp_status = 1 where id = #{id}
 		</update>
-		 
 		
 </mapper>

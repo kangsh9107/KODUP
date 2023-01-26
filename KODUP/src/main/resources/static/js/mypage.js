@@ -36,5 +36,6 @@ $('.btnMyPixel').on('click', function(){
 //mypage_certification (인증)
 $('.btnCertification').on('click', function(){
    console.log("인증");
+   var sessionId = $('.sessionId').val();
    $('#m_section2').load('/board/mypage_certification');
 });

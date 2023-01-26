@@ -281,9 +281,13 @@ public class MypageController {
 //인증페이지
    
    @RequestMapping("/board/mypage_certification") //인증
-   public ModelAndView mypage_certification() {
+   public ModelAndView mypage_certification(String sessionId) {
       ModelAndView mv = new ModelAndView();
-      
+     
+      //int status = 0;
+      //status = service.select_corp_status(sessionId);
+     
+      //mv.addObject("status", status);
       mv.setViewName("mypage/mypage_certification");
       return mv;
    }
@@ -362,17 +366,97 @@ public class MypageController {
    
       
    //MypageAttVo
-   
-	@RequestMapping("/board/mypage_corp_certification") //기업인증. 폼 전송 시.
-	public ModelAndView mypage_corp_certification(@RequestParam("corp_license") List<MultipartFile> mul, // 선택한 파일 업로드
-												  @RequestParam("corp_logo") List<MultipartFile> mul_2,
-												  @ModelAttribute MypageCertiVo mpcv //폼태그로 날린 정보
-												 ){
-		System.out.println("왜 안 찍혀?");
-		ModelAndView mv = new ModelAndView(); 
-      
-		boolean b = false;
+   @RequestMapping("/board/mypage_corp_certification") //기업인증. 폼 전송 시.
+   public ModelAndView mypage_corp_certification(@RequestParam("corp_license") MultipartFile mul1, // 선택한 파일 업로드
+                                      @RequestParam("corp_logo") MultipartFile mul2,
+                                      @ModelAttribute MypageCertiVo mpcv, //폼태그로 날린 정보
+                                      @RequestParam(name="status") String name)
+                                     {
+	ModelAndView mv = new ModelAndView(); 
+	String id = mpcv.getId();
+	System.out.println("id="+id);
+	
+	
+	MultipartFile m1 = mul1;
+	MultipartFile m2 = mul2;
+ 
+	UUID uuid = UUID.randomUUID();
 		
+	       
+       //license
+       String license_oriFile = m1.getOriginalFilename();
+       String license_sysFile ="";
+       File temp = new File(path+license_oriFile);
+       try {
+         m1.transferTo(temp);
+      } catch (IllegalStateException e) {
+         e.printStackTrace();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+       license_sysFile=(uuid.getLeastSignificantBits()*-1) + "-" + license_oriFile;
+       File f = new File(path+license_sysFile);
+       temp.renameTo(f);
+       mpcv.setLicense_oriFile(license_oriFile);
+       mpcv.setLicense_sysFile(license_sysFile);
+      
+       //logo
+       String logo_oriFile = m2.getOriginalFilename();
+       String logo_sysFile ="";
+       File temp2 = new File(path+logo_oriFile);
+       try {
+         m2.transferTo(temp2);
+       } catch (IllegalStateException e) {
+         e.printStackTrace();
+       } catch (IOException e) {
+         e.printStackTrace();
+       }
+       logo_sysFile=(uuid.getLeastSignificantBits()*-1) + "-" + logo_oriFile;
+       File f2 = new File(path+logo_sysFile);
+       temp.renameTo(f2);
+       mpcv.setLicense_oriFile(logo_oriFile);
+       mpcv.setLogo_sysFile(logo_sysFile);
+       
+       
+       //int a = service.select_corp_status(mpcv); //셀렉트 스테이터스
+       
+       String msg = "";
+	   boolean b = true;
+	   b = service.insert_corp(mpcv);
+	   if(!b) msg = "기업 신청 중 오류 발생했습니다.";
+	   else msg = "기업 신청 성공했습니다.";
+       
+       /*
+       String msg ="";
+       if(스테이터스==0) {
+       boolean b1 = service.insert_certi_corp(mpaVo,mpcv);
+          if(!b1) msg = "기업인증신청실패"
+          else msg="성공"
+       };
+       
+       if(스테이터스==1) {
+          boolean b2 = service.update_certi_corp(mpaVo,mpcv);
+          if(!b2) msg = "인증신청정보수정실패"
+          else msg="성공"
+       };
+       if(스테이터스==2) {   
+         boolean b3 = service.update_certi_corp(mpaVo,mpcv);
+         if(!b3) msg = "기업정보수정실패"
+          else msg="성공"
+       };
+       mv.addObject("msg",msg);
+       */
+	  mv.addObject("msg", msg);
+      mv.setViewName("mypage/mypage_corp_certification");
+      return mv;
+   }
+	
+	
+	
+	 
+	
+		
+		/*
 		List<MultipartFile> mpatt = new ArrayList<MultipartFile>();
 		for(int i=0; i<1; i++) {
 			mpatt.add(mul.get(i));
@@ -402,16 +486,12 @@ public class MypageController {
 					e.printStackTrace();
 				}
 			} else {
-				/*
-				 * System.out.println("update 실행전"); b = service.(mpcv);
-				 * System.out.println("update 실행완료");
-				 */
 			}
 		} 
 		      
 		mv.setViewName("mypage/mypage_memberinfo");
-		return mv;
-	}
+		return mv;  
+	}*/
 		   
       	
       /*

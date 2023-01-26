@@ -27,8 +27,40 @@ public class MypageCertiVo {
 	String manager_phone;   //담당자 번호
 	String manager_email;   //담당자 이메일
 	
-	String certification_category; 
+	String license_oriFile; 
+	String license_sysFile;
+	String logo_oriFile;
+	String logo_sysFile;
 	
+	
+	String certification_category;  //인증유형
+	   String apply_date;  //신청날짜
+	   
+	
+	public String getLicense_oriFile() {
+		return license_oriFile;
+	}
+	public void setLicense_oriFile(String license_oriFile) {
+		this.license_oriFile = license_oriFile;
+	}
+	public String getLicense_sysFile() {
+		return license_sysFile;
+	}
+	public void setLicense_sysFile(String license_sysFile) {
+		this.license_sysFile = license_sysFile;
+	}
+	public String getLogo_oriFile() {
+		return logo_oriFile;
+	}
+	public void setLogo_oriFile(String logo_oriFile) {
+		this.logo_oriFile = logo_oriFile;
+	}
+	public String getLogo_sysFile() {
+		return logo_sysFile;
+	}
+	public void setLogo_sysFile(String logo_sysFile) {
+		this.logo_sysFile = logo_sysFile;
+	}
 	public String getId() {
 		return id;
 	}

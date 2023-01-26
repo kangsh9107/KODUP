@@ -107,22 +107,6 @@ public class MypageService {
 	}
 	
 	
-	public boolean corp_updateR(MypageCertiVo mpcv) {
-
-		boolean b = true;
-
-		status = manager.getTransaction(new DefaultTransactionDefinition());
-		savePoint = status.createSavepoint(); //롤백을위해
-		int cnt = mypageMapper.corp_updateR(mpcv); // 내용 업데이트
-		if (cnt < 1) b = false;
-		else {
-			cnt=mypageMapper.corp_status(mpcv);
-			if(cnt<1) b=false;
-			
-			if(b)manager.commit(status);
-			else status.rollbackToSavepoint(savePoint);
-		}
-		
 		
 		
 		/*
@@ -147,8 +131,6 @@ public class MypageService {
 			fileDelete(delFile);
 		}
 		 */
-		return b;
-	}
 	
 	/*
 	public void certi_fileDelete(String[] delFile) {
@@ -171,8 +153,6 @@ public class MypageService {
 		if (cnt < 1) b = false;
 		return b;
 	}
-	
-	
 	
 	
 	
@@ -285,6 +265,7 @@ public class MypageService {
 	
 //인증페이지
 	
+	//멘토인증
 	public boolean mypage_mentor_certification(MypageCertiVo mpcv) {
 
 		boolean b = true;
@@ -318,4 +299,63 @@ public class MypageService {
 	}
 	
 	
+	//기업인증 1.기업 인증 여부 확인
+	public int select_corp_status(String sessionId) {
+		int a = 0;
+		a = mypageMapper.select_corp_status(sessionId);
+		System.out.println(a);
+		
+		return a;
+	}
+	
+	//기업인증 2-1. 기업인증 status가 0일 때 실행되는 insert 쿼리
+	public boolean insert_corp(MypageCertiVo mpcv) {
+		boolean b = true;
+		
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint(); //롤백을위해
+		
+		int cnt = mypageMapper.insert_corp(mpcv); // 내용 업데이트
+		if (cnt < 1) b = false;
+		else {
+			cnt = mypageMapper.change_corp_status(mpcv);
+			if(cnt < 1) b = false;
+			
+			if(b) manager.commit(status);
+			else status.rollbackToSavepoint(savePoint);
+		}
+		
+		return b;
+	}
+		
+			
+	//기업인증 2-2. insert 쿼리 정상 입력 시 실행되는 update 쿼리 (기업인증 status 변경)
+	//기업인증 2-3. status가 1이거나 2일 때 실행되는 update쿼리
+	/*public boolean update_corp(MypageCertiVo mpcv) {
+		boolean b = true;
+		
+		status = manager.getTransaction(new DefaultTransactionDefinition());
+		savePoint = status.createSavepoint(); //롤백을위해
+		
+		int cnt = mypageMapper.update_corp(mpcv); // 내용 업데이트
+		if (cnt < 1)b = false;
+		
+		if(b) manager.commit(status);
+		else status.rollbackToSavepoint(savePoint);
+		
+		
+		return b;
+	}*/
+			
+	
+	
+	/*public int update_corp(MypageCertiVo mpcv) {
+		int a = 0;
+		a = mypageMapper.update_corp(mpcv);
+		
+		System.out.println(a);
+		
+		return a;
+	}
+	*/
 }

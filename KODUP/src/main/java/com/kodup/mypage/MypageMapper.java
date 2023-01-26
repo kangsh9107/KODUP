@@ -32,9 +32,9 @@ public interface MypageMapper {
 	public int mypage_mentor_certification_step1(MypageCertiVo mpcv);
 	public int mypage_mentor_certification_step2(MypageCertiVo mpcv);
 	
-	//corp_updateR
-	public int corp_updateR(MypageCertiVo mpcv);
-	public int corp_status(MypageCertiVo mpcv);
+	public int select_corp_status(String id);
+	public int insert_corp(MypageCertiVo mpcv);
+	public int change_corp_status(MypageCertiVo mpcv);
 	
 	public int update(MypageVo mpVo);
 	public int updateR(MypageVo mpVo);
