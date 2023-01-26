@@ -29,6 +29,7 @@
 		</div>
 	</div>
 	
+	<!-- 수형 -->
 	<div class="intro intro1 container1">
 		<div></div>
 		<div class="intro1_1" data-aos="fade-up">
@@ -49,18 +50,23 @@
 		<div class="intro2_1" data-aos="flip-left"></div>
 	</div>
 	
+	<!-- 요한 -->
 	<div class="intro intro3"></div>
 	<div class="intro intro4"></div>
 	
+	<!-- 성호 -->
 	<div class="intro intro5"></div>
 	<div class="intro intro6"></div>
 	
+	<!-- 한나 -->
 	<div class="intro intro7"></div>
 	<div class="intro intro8"></div>
 	
+	<!-- 세형 -->
 	<div class="intro intro9"></div>
 	<div class="intro intro10"></div>
 	
+	<!-- 재민 -->
 	<div class="intro intro11"></div>
 	<div class="intro12"></div>
 	
