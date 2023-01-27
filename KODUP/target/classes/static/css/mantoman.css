@@ -271,6 +271,7 @@ body{
 	font-size:14px;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 	background-color:#fdfdfd;
+	text-align:right;
 }
 
 .mentorCallDiv_1>.wrapper>input[type=button]{
@@ -301,6 +302,7 @@ body{
 	width:39%;
 	height:23px;
 	margin:0 6px;
+	text-align:center;
 }
 
 .mentorCallDiv_2{

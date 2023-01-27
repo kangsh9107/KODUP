@@ -29,7 +29,7 @@ public class SummernoteFileUpload {
 		}
 		UUID uuid = null;
 		String tempDir = "c:/temp/";
-		String uploadPath = "C:\\Users\\K\\Documents\\GitHub\\KODUP\\KODUP\\src\\main\\resources\\static\\images\\";
+		String uploadPath = "C:\\Users\\K\\git\\KODUP\\KODUP\\src\\main\\resources\\static\\images\\";
 		ModelAndView mv = new ModelAndView();
 		
 		if(flag.equals("delete")) {

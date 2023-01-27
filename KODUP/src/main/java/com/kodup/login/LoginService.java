@@ -261,7 +261,7 @@ public class LoginService {
 			Session pass = Session.getInstance(prop, new Authenticator() {
 				@Override
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication("kangsh9107@naver.com", "비밀번호");
+					return new PasswordAuthentication("kangsh9107@naver.com", "kodup100");
 				}
 			});
 			//보내는 메시지 캡슐화

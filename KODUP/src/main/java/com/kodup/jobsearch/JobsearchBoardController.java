@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kodup.common.CommonBoardPageVo;
 import com.kodup.common.CommonBoardService;
+import com.kodup.common.SelectBoardVo;
 
 
 @RestController
@@ -83,7 +84,7 @@ public class JobsearchBoardController {
 	}
 	
 	@RequestMapping("/jobsearch/jobsearch_view/deleteR")
-	public ModelAndView jobsearchDeleteR(JobsearchBoardVo jbVo) {
+	public ModelAndView jobsearchDeleteR(JobsearchBoardVo jbVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		
@@ -91,14 +92,26 @@ public class JobsearchBoardController {
 		if(!b) {
 			msg = "삭제중 오류 발생";
 		}
-		//mv = jobsearch(jbVo);	//담겨진 데이터들을 들고 jobsearch()를 통해  jobsearch.jsp로 넘어가게 하려고
+		
+		//리스트 출력
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		List<SelectBoardVo> listJobsearch = cbService.listJobsearch(cbpVo);
+		cbpVo = cbService.getCbpVo();
+		
+		mv.addObject("cbpVo", cbpVo);
+		mv.addObject("listJobsearch", listJobsearch);
 		mv.addObject("msg",msg);
 		mv.setViewName("/jobsearch/jobsearch");
 		return mv;
 	}
 	
 	@RequestMapping("/jobsearch/jobsearch_view/ReplDeleteR")
-	public ModelAndView jobsearchReplDeleteR(JobsearchBoardVo jbVo, JobsearchBoardReplVo jbrVo){
+	public ModelAndView jobsearchReplDeleteR(JobsearchBoardVo jbVo, JobsearchBoardReplVo jbrVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		
@@ -107,9 +120,20 @@ public class JobsearchBoardController {
 			msg = "삭제중 오류 발생";
 		}
 		
+		
 		jbVo = service.view(jbVo.getSno());
 	
 		List<JobsearchBoardReplVo> replList = service.replList(jbVo.getSno());
+		
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(jbVo.getSno());
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		
+		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("msg",msg);
 		mv.addObject("jbVo",jbVo);
 		mv.addObject("replList",replList);
@@ -119,7 +143,7 @@ public class JobsearchBoardController {
 	}
 	
 	@RequestMapping("/jobsearch/jobsearch_view/insertRepl")
-	public ModelAndView insertRepl(JobsearchBoardReplVo jbrVo, JobsearchBoardVo jbVo) {
+	public ModelAndView insertRepl(JobsearchBoardReplVo jbrVo, JobsearchBoardVo jbVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		//댓글을 repl에 추가(service.insertRepl(jbrVo))->
@@ -136,7 +160,15 @@ public class JobsearchBoardController {
 		
 		List<JobsearchBoardReplVo> replList = service.replList(jbVo.getSno());
 		
-		//mv.addObject("attList",attlist);
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(jbVo.getSno());
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		
+		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("msg",msg);	//고도화시 이 msg를 가공해서 jsp에 뿌려주자jsp에서 스크립틀릿열고 alert(${msg})등 할수있음
 		mv.addObject("jbVo",jbVo);
 		mv.addObject("replList",replList);
@@ -145,7 +177,7 @@ public class JobsearchBoardController {
 	}
 	
 	@RequestMapping("/jobsearch/jobsearch_view/insertInnerRepl")
-	public ModelAndView insertInnerRepl(JobsearchBoardReplVo jbrVo, JobsearchBoardVo jbVo) {
+	public ModelAndView insertInnerRepl(JobsearchBoardReplVo jbrVo, JobsearchBoardVo jbVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		boolean b = service.insertInnerRepl(jbrVo);
@@ -159,7 +191,15 @@ public class JobsearchBoardController {
 		
 		List<JobsearchBoardReplVo> replList = service.replList(jbVo.getSno());
 		
-		//mv.addObject("attList",attlist);
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(jbVo.getSno());
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		
+		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("msg",msg);	//고도화시 이 msg를 가공해서 jsp에 뿌려주자jsp에서 스크립틀릿열고 alert(${msg})등 할수있음
 		mv.addObject("jbVo",jbVo);
 		mv.addObject("replList",replList);
@@ -170,7 +210,7 @@ public class JobsearchBoardController {
 	
 	
 	@RequestMapping("/jobsearch/jobsearch_view/ReplUpdateR")
-	public ModelAndView ReplUpdateR(JobsearchBoardReplVo jbrVo, JobsearchBoardVo jbVo) {
+	public ModelAndView ReplUpdateR(JobsearchBoardReplVo jbrVo, JobsearchBoardVo jbVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		boolean b = service.ReplUpdateR(jbrVo);
@@ -184,7 +224,15 @@ public class JobsearchBoardController {
 		
 		List<JobsearchBoardReplVo> replList = service.replList(jbVo.getSno());
 		
-		//mv.addObject("attList",attlist);
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(jbVo.getSno());
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		
+		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("msg",msg);	
 		mv.addObject("jbVo",jbVo);
 		mv.addObject("replList",replList);

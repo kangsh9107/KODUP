@@ -41,42 +41,43 @@
 		<br>
 		<span>* 기업인증</span><br>						   
 			<form class='corp_certification' method='post' enctype='multipart/form-data'>
-				<input type=hidden class='hidden_id' name='id' value='${sessionId }'>
+				<input type='hidden' name="status" id="status" value='${status}'>
+				<input type='hidden' class='hidden_id' name='id' value='${sessionId}'>
 				<div class="form-floating bottom">
-					<input type="text" name="corp_name" class="form-control" id="floatingPassword" placeholder="Password">
+					<input type="text" name="corp_name" class="form-control" value="고양이회사" id="floatingPassword" placeholder="Password">
 					<label for="floatingPassword" class='label_name'>회사명</label>
 				</div>
 				<br>
 				<div class="form-floating bottom">
-					<input type="text" name="corp_phone" class="form-control" id="floatingPassword" placeholder="Password">
+					<input type="text" name="corp_phone" class="form-control" value="02-1234-5678" id="floatingPassword" placeholder="Password">
 					<label for="floatingPassword" class='label_name'>회사 연락처</label>
 				</div>
 				<div class="form-floating bottom">
-					<input type="text" name="corp_email" class="form-control" id="floatingPassword" placeholder="Password">
+					<input type="text" name="corp_email" class="form-control" value="cat345@naver.com" id="floatingPassword" placeholder="Password">
 					<label for="floatingPassword" class='label_name'>회사 이메일</label>
 				</div> 
 				<br>
 				<div class="form-floating bottom">
-				  <input type="file" name="corp_license" class="form-control" id="floatingPassword" placeholder="Password"
+				  <input type="file" name="att" class="form-control" id="floatingPassword" placeholder="Password"
 				  accept='image/*'>
 				  <label for="floatingPassword" class='label_name'>사업자 등록증을 첨부하세요</label>
 				</div>
 				<br>
 				<div class="form-floating bottom">
-				  <input type="file" name="corp_logo" class="form-control" id="floatingPassword" placeholder="Password"
+				  <input type="file" name="att" class="form-control" id="floatingPassword" placeholder="Password"
 				  accept='image/*'>
 				  <label for="floatingPassword" class='label_name'>회사 로고를 첨부하세요</label>
 				</div>
 				<div class="form-floating">
-					<input type="text" name="manager_name" class="form-control" id="floatingPassword" placeholder="Password">
+					<input type="text" name="manager_name" class="form-control" value="이한나" id="floatingPassword" placeholder="Password">
 					<label for="floatingPassword" class='label_name'>담당자</label>
 				</div> 
 				<div class="form-floating">
-					<input type="text" name="manager_phone" class="form-control" id="floatingPassword" placeholder="Password">
+					<input type="text" name="manager_phone" class="form-control" value="010-1234-5678" id="floatingPassword" placeholder="Password">
 					<label for="floatingPassword" class='label_name'>담당자 연락처</label>
 				</div> 
 				<div class="form-floating">
-					<input type="text" name="manager_email" class="form-control" id="floatingPassword" placeholder="Password">
+					<input type="text" name="manager_email" class="form-control" value="hannasPick@naver.com" id="floatingPassword" placeholder="Password">
 					<label for="floatingPassword" class='label_name'>담당자 이메일</label>
 				</div> 
 				<button type="button" class='btnC btn_corp_certification' style="background-color:#bb2649;">인증</button><br>

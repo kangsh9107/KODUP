@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kodup.common.CommonBoardPageVo;
 import com.kodup.common.CommonBoardService;
+import com.kodup.common.SelectBoardVo;
 
 @RestController
 public class FreetalkingBoardController {
@@ -57,7 +58,7 @@ public class FreetalkingBoardController {
 	}
 	
 	@RequestMapping("/freetalking/freetalking_view/deleteR")
-	public ModelAndView freetalkingDeleteR(FreetalkingBoardVo fbVo) {
+	public ModelAndView freetalkingDeleteR(FreetalkingBoardVo fbVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		
@@ -65,14 +66,25 @@ public class FreetalkingBoardController {
 		if(!b) {
 			msg = "삭제중 오류 발생";
 		}
-		//mv = freetalking(fbVo);	//담겨진 데이터들을 들고 freetalking()를 통해  Freetalking.jsp로 넘어가게 하려고
+		//리스트 출력
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		List<SelectBoardVo> listFreetalking = cbService.listFreetalking(cbpVo);
+		cbpVo = cbService.getCbpVo();
+		
+		mv.addObject("cbpVo", cbpVo);
+		mv.addObject("listFreetalking", listFreetalking);
 		mv.addObject("msg",msg);
 		mv.setViewName("/freetalking/freetalking");
 		return mv;
 	}
 	
 	@RequestMapping("/freetalking/freetalking_view/ReplDeleteR")
-	public ModelAndView freetalkingReplDeleteR(FreetalkingBoardVo fbVo, FreetalkingBoardReplVo fbrVo){
+	public ModelAndView freetalkingReplDeleteR(FreetalkingBoardVo fbVo, FreetalkingBoardReplVo fbrVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		
@@ -82,8 +94,17 @@ public class FreetalkingBoardController {
 		}
 		
 		fbVo = service.view(fbVo.getSno());
-	
 		List<FreetalkingBoardReplVo> replList = service.replList(fbVo.getSno());
+		
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(fbVo.getSno());
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		
+		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("msg",msg);
 		mv.addObject("fbVo",fbVo);
 		mv.addObject("replList",replList);
@@ -92,7 +113,7 @@ public class FreetalkingBoardController {
 	}
 	
 	@RequestMapping("/freetalking/freetalking_view/insertRepl")
-	public ModelAndView insertRepl(FreetalkingBoardReplVo fbrVo, FreetalkingBoardVo fbVo) {
+	public ModelAndView insertRepl(FreetalkingBoardReplVo fbrVo, FreetalkingBoardVo fbVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		//댓글을 repl에 추가(service.insertRepl(fbrVo))->
@@ -108,8 +129,16 @@ public class FreetalkingBoardController {
 		fbVo = service.view(fbVo.getSno());
 		
 		List<FreetalkingBoardReplVo> replList = service.replList(fbVo.getSno());
+		 
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(fbVo.getSno());
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
 		
-		//mv.addObject("attList",attlist);
+		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("msg",msg);	//고도화시 이 msg를 가공해서 jsp에 뿌려주자jsp에서 스크립틀릿열고 alert(${msg})등 할수있음
 		mv.addObject("fbVo",fbVo);
 		mv.addObject("replList",replList);
@@ -118,7 +147,7 @@ public class FreetalkingBoardController {
 	}
 	
 	@RequestMapping("/freetalking/freetalking_view/insertInnerRepl")
-	public ModelAndView insertInnerRepl(FreetalkingBoardReplVo fbrVo, FreetalkingBoardVo fbVo) {
+	public ModelAndView insertInnerRepl(FreetalkingBoardReplVo fbrVo, FreetalkingBoardVo fbVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		boolean b = service.insertInnerRepl(fbrVo);
@@ -132,7 +161,15 @@ public class FreetalkingBoardController {
 		
 		List<FreetalkingBoardReplVo> replList = service.replList(fbVo.getSno());
 		
-		//mv.addObject("attList",attlist);
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(fbVo.getSno());
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		
+		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("msg",msg);	//고도화시 이 msg를 가공해서 jsp에 뿌려주자jsp에서 스크립틀릿열고 alert(${msg})등 할수있음
 		mv.addObject("fbVo",fbVo);
 		mv.addObject("replList",replList);
@@ -143,7 +180,7 @@ public class FreetalkingBoardController {
 	
 	
 	@RequestMapping("/freetalking/freetalking_view/ReplUpdateR")
-	public ModelAndView ReplUpdateR(FreetalkingBoardReplVo fbrVo, FreetalkingBoardVo fbVo) {
+	public ModelAndView ReplUpdateR(FreetalkingBoardReplVo fbrVo, FreetalkingBoardVo fbVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		boolean b = service.ReplUpdateR(fbrVo);
@@ -157,7 +194,15 @@ public class FreetalkingBoardController {
 		
 		List<FreetalkingBoardReplVo> replList = service.replList(fbVo.getSno());
 		
-		//mv.addObject("attList",attlist);
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(fbVo.getSno());
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		
+		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("msg",msg);	
 		mv.addObject("fbVo",fbVo);
 		mv.addObject("replList",replList);

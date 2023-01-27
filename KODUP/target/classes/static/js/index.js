@@ -313,7 +313,7 @@ $('#btnMyprofile').on('click', function() {
 $('#btnMantoman').on('click',function() {
 	if(sessionId != '') {
 		var title  = 'popup';
-		var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=350, height=500, top=400, left=1300'; 
+		var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=370, height=500, top=400, left=1300'; 
 		window.open('/mantoman/mantoman_index?sessionId=' + sessionId, title, status);
 	} else {
 		window.scrollTo(0, 0);
@@ -407,13 +407,13 @@ if(sessionId != ''){
 		        	}
 		    	})
 				var title  = 'popup';
-				var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=360, height=500, top=400, left=1300';
+				var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=370, height=500, top=400, left=1300';
 				window.open("/mantoman/mantoman_chatview2?roomCode="+data.roomCode+"&yourNickname="+data.mentiNickname+"&myNickname="+data.mentoNickname
 							+"&sessionId="+sessionId+"&yourId="+data.mentiId+"&mantoman_pixel_reward="+data.mantoman_pixel_reward+"&requiredTime="+data.requiredTime
 							+"&myProfile_img="+data.mentoProfile_img+"&yourProfile_img="+data.mentiProfile_img+"&relation=mento", title, status);
 			}else if(data.mentiId==sessionId){
 				var title  = 'popup';
-				var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=360, height=500, top=400, left=1300';
+				var status = 'toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=370, height=500, top=400, left=1300';
 				window.open("/mantoman/mantoman_chatview2?roomCode="+data.roomCode+"&yourNickname="+data.mentoNickname+"&myNickname="+data.mentiNickname
 							+"&sessionId="+sessionId+"&yourId="+data.mentoId+"&mantoman_pixel_reward="+data.mantoman_pixel_reward+"&requiredTime="+data.requiredTime
 							+"&myProfile_img="+data.mentiProfile_img+"&yourProfile_img="+data.mentoProfile_img+"&relation=menti", title, status);

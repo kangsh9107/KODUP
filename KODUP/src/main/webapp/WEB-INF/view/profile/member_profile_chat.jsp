@@ -43,7 +43,7 @@ body{
 				<div id="horizontal-underline"></div>
 	        	<a href="#" id="btnMyarticle" class='atag' onclick="return false">작성 게시글</a>
 	        	<a href="#" id="btnMyrepl" class='atag' onclick="return false">작성 댓글</a>   
-	        	<a href="#" class='atag' onclick="return false">인스타그램</a>
+	        	<!-- <a href="#" class='atag' onclick="return false">인스타그램</a> -->
 			</nav>
 		</div>
 	</div>

@@ -23,7 +23,7 @@ import com.kodup.login.LoginService;
 
 @RestController
 public class MypageController {
-   static String path="C:\\Users\\N\\git\\KODUP\\KODUP\\src\\main\\resources\\static\\upload\\"
+   static String path="C:\\Users\\K\\git\\KODUP\\KODUP\\src\\main\\resources\\static\\upload\\"
 ;
    //리퀘스트 매핑 주소 = mypage 폴더 내 jsp 파일명
    /*
@@ -126,6 +126,34 @@ public class MypageController {
          File temp = new File(path + oriFile);    // 임시저장 경로
          m.transferTo(temp);
          sysFile =(uuid.getLeastSignificantBits()*-1) + "-" + oriFile;
+         File f = new File(path + sysFile);
+         temp.renameTo(f);
+         
+         MypageAttVo attVo = new MypageAttVo();
+         attVo.setSysFile(sysFile);
+         
+         attList.add(attVo);
+      }
+      
+      return attList;
+   }
+   
+   public List<MypageAttVo> fileUpload2(List<MultipartFile> mul, MypageCertiVo mpcv) throws Exception{
+      List<MypageAttVo> attList = new ArrayList<MypageAttVo>();
+      int cnt = 0;
+      for(MultipartFile m : mul) {
+         if(m.isEmpty()) continue;
+         UUID uuid = UUID.randomUUID();
+         String oriFile = m.getOriginalFilename();
+         String sysFile = ""; 
+         File temp = new File(path + oriFile);    // 임시저장 경로
+         m.transferTo(temp);
+         sysFile = (uuid.getLeastSignificantBits()*-1) + "-" + oriFile;
+         if(cnt < 1) {
+            mpcv.setLicense_sysFile(sysFile);
+         } else {
+            mpcv.setLogo_sysFile(sysFile);
+         }
          File f = new File(path + sysFile);
          temp.renameTo(f);
          
@@ -281,9 +309,15 @@ public class MypageController {
 //인증페이지
    
    @RequestMapping("/board/mypage_certification") //인증
-   public ModelAndView mypage_certification() {
+   public ModelAndView mypage_certification(HttpServletRequest req, HttpServletResponse res) throws IOException {
       ModelAndView mv = new ModelAndView();
+      HttpSession session = req.getSession();
+      String id = (String)session.getAttribute("sessionId");
       
+      int status = 0;
+     status = service.select_corp_status(id);
+     
+     mv.addObject("status", status);
       mv.setViewName("mypage/mypage_certification");
       return mv;
    }
@@ -320,10 +354,10 @@ public class MypageController {
    
    */
    
-   //멘토인증 			
+   //멘토인증          
    @RequestMapping("/board/mypage_mentor_certification") 
    public ModelAndView mypage_mentor_certification(HttpServletRequest req, HttpServletResponse res,
-		    	   @RequestParam(value ="attFile", required=false) List<MultipartFile> mul, // 선택한 파일 업로드
+                @RequestParam(value ="attFile", required=false) List<MultipartFile> mul, // 선택한 파일 업로드
                    @ModelAttribute MypageCertiVo mpcv //폼태그로 날린 정보
                    ) throws IOException {
       ModelAndView mv = new ModelAndView();
@@ -360,60 +394,78 @@ public class MypageController {
       return mv;
    }
    
-      
+   //@RequestParam(name="status") int status) 
    //MypageAttVo
-   
-	@RequestMapping("/board/mypage_corp_certification") //기업인증. 폼 전송 시.
-	public ModelAndView mypage_corp_certification(@RequestParam("corp_license") List<MultipartFile> mul, // 선택한 파일 업로드
-												  @RequestParam("corp_logo") List<MultipartFile> mul_2,
-												  @ModelAttribute MypageCertiVo mpcv //폼태그로 날린 정보
-												 ){
-		System.out.println("왜 안 찍혀?");
-		ModelAndView mv = new ModelAndView(); 
+   @RequestMapping("/board/mypage_corp_certification") //기업인증. 폼 전송 시.
+   public ModelAndView mypage_corp_certification(@RequestParam("att") List<MultipartFile> mul, // 선택한 파일 업로드
+                                      @ModelAttribute MypageCertiVo mpcv) throws Exception //폼태그로 날린 정보
+    {
+	   System.out.println("컨트롤");
+      ModelAndView mv = new ModelAndView();
+      List<MypageAttVo> mpatt = fileUpload(mul);
+      String[] temp = new String[mpatt.size()];
+      for(int i=0; i<mpatt.size(); i++) {
+         if(mpatt.get(i).getSysFile() != null || mpatt.get(i).getSysFile() != "") {
+            temp[i] = mpatt.get(i).getSysFile();
+         }
+      }
+      boolean b = true;
+      mpcv.setLicense_sysFile(temp[0]);
+      mpcv.setLogo_sysFile(temp[1]);
+      b = service.insert_corp(mpcv);
+      if( !b ) {
+         service.fileDelete(temp);
+      } else {
+         
+      }
       
-		boolean b = false;
-		
-		List<MultipartFile> mpatt = new ArrayList<MultipartFile>();
-		for(int i=0; i<1; i++) {
-			mpatt.add(mul.get(i));
-			mpatt.add(mul_2.get(i));
-		}
-		
-		List<MypageAttVo> attList = null;
-		try {
-			attList = fileUpload(mpatt);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-		mpcv.setCorp_license(attList.get(0).getSysFile());
-		mpcv.setCorp_logo(attList.get(0).getSysFile());
-			
-		
-		for(MultipartFile m : mpatt) {
-			if(!m.isEmpty()) {
-				//List<MypageAttVo> attList2;
-				try {
-					attList = fileUpload(mul);
-					//mpcv.setProfile_img(attList.get(0).getSysFile());
-					System.out.println(mpcv.getCorp_license()); //1234-1.png
-		               
-					b = service.corp_updateR(mpcv);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} else {
-				/*
-				 * System.out.println("update 실행전"); b = service.(mpcv);
-				 * System.out.println("update 실행완료");
-				 */
-			}
-		} 
-		      
-		mv.setViewName("mypage/mypage_memberinfo");
-		return mv;
-	}
-		   
-      	
+      mv.setViewName("mypage/mypage_certification");
+      return mv;
+    }
+   
+   
+   
+    
+   
+      
+      /*
+      List<MultipartFile> mpatt = new ArrayList<MultipartFile>();
+      for(int i=0; i<1; i++) {
+         mpatt.add(mul.get(i));
+         mpatt.add(mul_2.get(i));
+      }
+      
+      List<MypageAttVo> attList = null;
+      try {
+         attList = fileUpload(mpatt);
+      } catch (Exception e1) {
+         e1.printStackTrace();
+      }
+      mpcv.setCorp_license(attList.get(0).getSysFile());
+      mpcv.setCorp_logo(attList.get(0).getSysFile());
+         
+      
+      for(MultipartFile m : mpatt) {
+         if(!m.isEmpty()) {
+            //List<MypageAttVo> attList2;
+            try {
+               attList = fileUpload(mul);
+               //mpcv.setProfile_img(attList.get(0).getSysFile());
+               System.out.println(mpcv.getCorp_license()); //1234-1.png
+                     
+               b = service.corp_updateR(mpcv);
+            } catch (Exception e) {
+               e.printStackTrace();
+            }
+         } else {
+         }
+      } 
+            
+      mv.setViewName("mypage/mypage_memberinfo");
+      return mv;  
+   }*/
+         
+         
       /*
       } else {}
             try {
@@ -438,7 +490,7 @@ public class MypageController {
 }  */
    
    // 인증>기업인증 첨부파일 업로드
-	/*
+   /*
    public List<MypageCorpVo> fileUpload_corp(List<MultipartFile> mul) throws Exception{
       List<MypageCorpAttVo> attList = new ArrayList<MypageCorpAttVo>();
       for(MultipartFile m : mul) {

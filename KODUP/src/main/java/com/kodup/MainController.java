@@ -13,5 +13,12 @@ public class MainController {
 		mv.setViewName("index");
 		return mv;
 	}
+	
+	@RequestMapping("/index")
+	public ModelAndView index2() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("index");
+		return mv;
+	}
 
 }

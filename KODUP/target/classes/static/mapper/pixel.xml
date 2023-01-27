@@ -17,6 +17,6 @@
 	</update>
 	<insert id="buylog" parameterType="com.kodup.pixel.PixelHistoryVo">
 		insert into pixel_history(id,pixel_log,history_date,history_detail)
-		values(#{id},(select pixel_buy_amount from pixel_buy_list order by pixel_buy_date desc limit 0,1),now(),'픽셀 구매')
+		values(#{id},(select pixel_buy_amount from pixel_buy_list order by pixel_buy_date desc limit 0,1),now(),'픽셀구매')
 	</insert>	
 </mapper>

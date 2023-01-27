@@ -1,13 +1,20 @@
 @charset "UTF-8";
+@font-face {
+    font-family: 'GangwonEduPowerExtraBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: 'GangwonEduPowerExtraBoldA';
 }
 
 body {
-	height: 1300vh;
+	height: 1880vh;
 	background: linear-gradient(180deg, rgba(255,255,255,1) 0%,
 				rgba(0,0,0,1) 40%,
 				rgba(0,0,0,1) 80%,
@@ -343,7 +350,6 @@ video {
 
 #video {
 	width: 100%;
-	height: 100vh;
 	position: absolute;
 }
 
@@ -359,35 +365,95 @@ div.intro {
 
 div.container1 {
 	display: grid !important;
-	grid-template-columns: 50px 1fr 1fr 1fr 1fr 50px;
-	grid-column-gap: 100px;
+	grid-template-columns: 30px 1fr 1fr 1fr 1fr 30px;
+	grid-column-gap: 40px;
+	padding-top: 50px;
 }
 
 div.container1 div {
 	box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-	height: 80vh;
-}
-
-div.container1 div.intro1_1 {
-	background-color: gray;
-}
-
-div.container1 div.intro1_2 {
-	background-color: gray;
-}
-
-div.container1 div.intro1_3 {
-	background-color: gray;
-}
-
-div.container1 div.intro1_4 {
-	background-color: gray;
-}
-
-div.container2 div {
 	height: 70vh;
 }
 
-div.intro2_1 {
-	background-color: gray;
+div.container1 div.intro1_1 {
+	background-image: url("../images/인트로_수형1.png");
+	background-repeat: no-repeat;
+}
+
+div.container1 div.intro1_2 {
+	background-image: url("../images/인트로_수형2.png");
+	background-repeat: no-repeat;
+}
+
+div.container1 div.intro1_3 {
+	background-image: url("../images/인트로_수형4.png");
+	background-repeat: no-repeat;
+}
+
+div.container1 div.intro1_4 {
+	background-image: url("../images/인트로_수형3.png");
+	background-repeat: no-repeat;
+}
+
+div.intro1_5 {
+	text-align: center;
+	font-size: 7rem;
+}
+
+.btnGoHome {
+	text-decoration: none;
+	font-size: 7rem;
+	color: white;
+}
+
+.btnGoHome:hover {
+	color: gray;
+}
+
+.credit {
+	height: 10vh;
+	font-size: 3rem;
+	color: white;
+	text-align: center;
+}
+
+/***** 박요한 *****/
+div.intro3{
+   margin-bottom:1800px;
+}
+div.intro4{
+}
+div.intro3 div.intro3_1{
+   text-align:center;
+   width:100%;
+   height: 150vh;
+   color:white;
+   font-size:7em;
+}
+div.intro3 div.intro3_2{
+   text-align:center;
+   width:100%;
+   height:100vh;
+   color:white;
+   font-size:7em;
+}
+div.intro4 div.intro4_1{
+   text-align:center;
+   width:100%;
+   height: 120vh;
+   color:white;
+   font-size:7em;
+}
+div.intro4 div.intro4_2{
+   text-align:center;
+   width:100%;
+   height: 100vh;
+   color:white;
+   font-size:7em;
+}
+
+section {
+   margin: 0 auto;
+   text-align: center;
+   background-color: #ccc;
 }

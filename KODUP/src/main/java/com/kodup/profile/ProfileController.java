@@ -125,7 +125,7 @@ public class ProfileController {
 		mv.addObject("checkChaeTaek",checkChaeTaek);
 		mv.addObject("qbVo",qbVo);
 		mv.addObject("replList",replList);
-		mv.setViewName("/qna/qna_view");
+		mv.setViewName("/qna/qna_view_chat");
 		return mv;
 	}
 	
@@ -146,7 +146,7 @@ public class ProfileController {
 		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("fbVo",fbVo);
 		mv.addObject("replList",replList);
-		mv.setViewName("/freetalking/freetalking_view");
+		mv.setViewName("/freetalking/freetalking_view_chat");
 		return mv;
 	}
 	
@@ -167,7 +167,7 @@ public class ProfileController {
 		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("jbVo",jbVo);
 		mv.addObject("replList",replList);
-		mv.setViewName("/jobsearch/jobsearch_view");
+		mv.setViewName("/jobsearch/jobsearch_view_chat");
 		return mv;
 	}
 	
@@ -188,7 +188,7 @@ public class ProfileController {
 		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("nbVo",nbVo);
 		mv.addObject("replList",replList);
-		mv.setViewName("/notification/notification_view");
+		mv.setViewName("/notification/notification_view_chat");
 		return mv;
 	}
 	
@@ -209,7 +209,7 @@ public class ProfileController {
 		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("ibVo",ibVo);
 		mv.addObject("replList",replList);
-		mv.setViewName("/infoshare/infoshare_view");
+		mv.setViewName("/infoshare/infoshare_view_chat");
 		return mv;
 	}
 	
@@ -222,20 +222,15 @@ public class ProfileController {
 		
 		int mansearch_sno = service.selectMansearchSno(sno);
 		
-		System.out.println("실행됨됨");
 		mVo.setId(id);
 		mbVo.setMansearch_sno(mansearch_sno);
 		
 		mbVo = msService.view(mbVo.getMansearch_sno());
 		List<MansearchBoardVo> premiumlist = msService.premiumlist(mbVo.getMansearch_sno(),mVo);
 		
-		for(MansearchBoardVo a : premiumlist) {
-			System.out.println("profile_img : " + a.getProfile_img());
-		}
-		
 		mv.addObject("premiumlist",premiumlist);
 		mv.addObject("mbVo",mbVo);
-		mv.setViewName("mansearch/mansearch_view");
+		mv.setViewName("mansearch/mansearch_view_chat");
 		return mv;
 	}
 }

@@ -88,7 +88,7 @@ public class InfoshareBoardController {
 	}
 	
 	@RequestMapping("/infoshare/infoshare_view/ReplDeleteR")
-	public ModelAndView infoshareReplDeleteR(InfoshareBoardVo ibVo, InfoshareBoardReplVo ibrVo){
+	public ModelAndView infoshareReplDeleteR(InfoshareBoardVo ibVo, InfoshareBoardReplVo ibrVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		
@@ -98,8 +98,17 @@ public class InfoshareBoardController {
 		}
 		
 		ibVo = service.view(ibVo.getSno());
-	
 		List<InfoshareBoardReplVo> replList = service.replList(ibVo.getSno());
+		
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(ibVo.getSno());
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		
+		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("msg",msg);
 		mv.addObject("ibVo",ibVo);
 		mv.addObject("replList",replList);
@@ -109,7 +118,7 @@ public class InfoshareBoardController {
 	}
 	
 	@RequestMapping("/infoshare/infoshare_view/insertRepl")
-	public ModelAndView insertRepl(InfoshareBoardReplVo ibrVo, InfoshareBoardVo ibVo) {
+	public ModelAndView insertRepl(InfoshareBoardReplVo ibrVo, InfoshareBoardVo ibVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		//댓글을 repl에 추가(service.insertRepl(ibrVo))->
@@ -123,10 +132,17 @@ public class InfoshareBoardController {
 		
 		
 		ibVo = service.view(ibVo.getSno());
-		
 		List<InfoshareBoardReplVo> replList = service.replList(ibVo.getSno());
 		
-		//mv.addObject("attList",attlist);
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(ibVo.getSno());
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		
+		mv.addObject("cbpVo", cbpVo);		
 		mv.addObject("msg",msg);	//고도화시 이 msg를 가공해서 jsp에 뿌려주자jsp에서 스크립틀릿열고 alert(${msg})등 할수있음
 		mv.addObject("ibVo",ibVo);
 		mv.addObject("replList",replList);
@@ -135,7 +151,7 @@ public class InfoshareBoardController {
 	}
 	
 	@RequestMapping("/infoshare/infoshare_view/insertInnerRepl")
-	public ModelAndView insertInnerRepl(InfoshareBoardReplVo ibrVo, InfoshareBoardVo ibVo) {
+	public ModelAndView insertInnerRepl(InfoshareBoardReplVo ibrVo, InfoshareBoardVo ibVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		boolean b = service.insertInnerRepl(ibrVo);
@@ -146,10 +162,17 @@ public class InfoshareBoardController {
 		} 
 		
 		ibVo = service.view(ibVo.getSno());
-		
 		List<InfoshareBoardReplVo> replList = service.replList(ibVo.getSno());
 		
-		//mv.addObject("attList",attlist);
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(ibVo.getSno());
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		
+		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("msg",msg);	//고도화시 이 msg를 가공해서 jsp에 뿌려주자jsp에서 스크립틀릿열고 alert(${msg})등 할수있음
 		mv.addObject("ibVo",ibVo);
 		mv.addObject("replList",replList);
@@ -160,7 +183,7 @@ public class InfoshareBoardController {
 	
 	
 	@RequestMapping("/infoshare/infoshare_view/ReplUpdateR")
-	public ModelAndView ReplUpdateR(InfoshareBoardReplVo ibrVo, InfoshareBoardVo ibVo) {
+	public ModelAndView ReplUpdateR(InfoshareBoardReplVo ibrVo, InfoshareBoardVo ibVo, CommonBoardPageVo cbpVo, HttpServletRequest req, HttpServletResponse res) throws IOException {
 		String msg="";
 		ModelAndView mv = new ModelAndView();
 		boolean b = service.ReplUpdateR(ibrVo);
@@ -171,10 +194,17 @@ public class InfoshareBoardController {
 		}
 		
 		ibVo = service.view(ibVo.getSno());
-		
 		List<InfoshareBoardReplVo> replList = service.replList(ibVo.getSno());
 		
-		//mv.addObject("attList",attlist);
+		HttpSession session = req.getSession();
+		cbpVo.setId((String)session.getAttribute("sessionId"));
+		cbpVo.setSno(ibVo.getSno());
+		cbpVo.setSort(Integer.parseInt(req.getParameter("sortK")));
+		cbpVo.setBoardtype(req.getParameter("boardtypeK"));
+		cbpVo.setHorsehead(req.getParameter("horseheadK"));
+		cbpVo.setNowPage(Integer.parseInt(req.getParameter("nowPageK")));
+		
+		mv.addObject("cbpVo", cbpVo);
 		mv.addObject("msg",msg);	
 		mv.addObject("ibVo",ibVo);
 		mv.addObject("replList",replList);
