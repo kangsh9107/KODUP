@@ -13,7 +13,7 @@ for(let i=0; i<memberid.length; i++){
 }
 
 // 카드결제 api -------------------------------------------------
-var IMP = window.IMP;    //안해도 괜찮다
+var IMP = window.IMP;    
 IMP.init("imp68151717"); //본인 아임포트 가맹점 식별코드
 function requestPay1() {
 	frm = $('.pixel_frm1')[0];
